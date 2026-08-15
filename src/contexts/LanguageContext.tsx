@@ -64,7 +64,6 @@ const translations = {
   "home.continueTitle": { ru: "Продолжить обучение", en: "Continue learning" },
   "home.new": { ru: "Новое", en: "New" },
   "home.trending": { ru: "В тренде", en: "Trending" },
-  "home.guidesSubtitle": { ru: "Короткие пошаговые материалы из курсов", en: "Short step-by-step guides from the courses" },
   "home.allCourses": { ru: "Весь каталог", en: "Browse all courses" },
 
   "bottomNav.back": { ru: "Назад", en: "Back" },

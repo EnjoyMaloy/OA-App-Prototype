@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { ChevronRight, FileText, Play } from "lucide-react";
+import { ChevronRight, Play } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { usePurchaseStore } from "@/hooks/usePurchaseStore";
 import CourseCard from "@/components/CourseCard";
-import Footer from "@/components/Footer";
 import { categories, courses, getCategoryLabel } from "@/data/courses";
 import { lessonsData, courseProgress, currentLessonIndex } from "@/data/lessons";
 
@@ -206,30 +205,6 @@ const Home = () => {
           </section>
         )}
 
-        {/* Guides entry point */}
-        <section className="mb-8">
-          <button
-            onClick={() => navigate("/instructions")}
-            className="w-full text-left rounded-2xl bg-muted p-4 flex items-center gap-3 hover:bg-violet-super-light transition-colors"
-          >
-            <span
-              className="flex-shrink-0 inline-flex items-center justify-center rounded-xl"
-              style={{ width: 44, height: 44, background: "#E8DCFB" }}
-            >
-              <FileText className="w-5 h-5" style={{ color: "#460466" }} />
-            </span>
-            <span className="min-w-0 flex-1">
-              <span className="text-[18px] font-normal leading-[110%] text-foreground block">
-                {t("sidebar.instructions")}
-              </span>
-              <span className="text-[14px] leading-[140%] text-muted-foreground block mt-1">
-                {t("home.guidesSubtitle")}
-              </span>
-            </span>
-            <ChevronRight className="w-5 h-5 flex-shrink-0 text-muted-foreground" />
-          </button>
-        </section>
-
         {/* All courses */}
         <button
           onClick={() => navigate("/catalog")}
@@ -239,7 +214,6 @@ const Home = () => {
           {t("home.allCourses")}
         </button>
       </div>
-      <Footer />
     </div>
   );
 };
