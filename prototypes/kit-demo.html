@@ -1,0 +1,128 @@
+<title>Prototype Kit</title>
+
+<div class="screen stack stack-8">
+
+  <div class="stack stack-2">
+    <h1 class="text-h1">Кит прототипов</h1>
+    <p class="text-caption-14">Блоки, из которых собираются черновики экранов. Всё на токенах приложения.</p>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <h2 class="text-h3">Типографика</h2>
+    </div>
+    <div class="stack stack-4">
+      <span class="text-h1">Заголовок H1 — 28</span>
+      <span class="text-h2">Заголовок H2 — 24</span>
+      <span class="text-h3">Заголовок H3 — 20</span>
+      <span class="text-subh-16">Подзаголовок 16 bold</span>
+      <span class="text-body-14">Основной текст 14</span>
+      <span class="text-caption-12">Подпись 12</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2 class="text-h3">Кнопки</h2>
+    </div>
+    <div class="stack stack-3">
+      <button class="btn btn--primary btn--block">Основное действие</button>
+      <button class="btn btn--accent btn--block">Акцентное — далее</button>
+      <button class="btn btn--ghost btn--block">Второстепенное</button>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2 class="text-h3">Карточка и поле</h2>
+      <a href="#">Все ›</a>
+    </div>
+    <div class="stack stack-4">
+      <div class="field">
+        <div class="card" style="background: hsl(var(--background))">
+          <span class="text-caption-12" style="color: hsl(var(--violet-light))">Урок 6</span>
+          <h3 class="text-h3" style="margin: 6px 0 0">Название урока</h3>
+          <div class="row-between" style="margin: 16px 0 8px">
+            <span class="text-body-14" style="color: hsl(var(--muted-foreground))">Пройдено:</span>
+            <span class="text-body-14" style="font-weight: 600">61%</span>
+          </div>
+          <div class="progress"><span style="width: 61%"></span></div>
+          <div class="row" style="margin-top: 16px; gap: 12px">
+            <button class="btn btn--primary grow">Продолжить</button>
+            <div class="stack stack-2" style="align-items: flex-end">
+              <span class="text-body-14" style="color: hsl(var(--muted-foreground))">Награда</span>
+              <div class="row" style="gap: 6px">
+                <span class="coin">S</span>
+                <span style="font-size: 22px; font-weight: 600">800</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="row" style="gap: 8px; margin-bottom: 8px">
+          <span class="chip">Категория</span>
+          <span class="chip chip--violet">Инструкция</span>
+        </div>
+        <p class="text-body-14" style="margin: 0; line-height: 1.5">Обычная карточка на фоне <code>--card</code>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2 class="text-h3">Лента плиток</h2>
+    </div>
+    <div class="rail">
+      <button class="tile" style="--tile-bg: hsl(var(--cat-ai-bg))">
+        <span></span>
+        <span>
+          <span style="font-size: 14px; font-weight: 500; display: block">AI-навыки</span>
+          <span style="font-size: 12px; font-weight: 500; color: hsl(var(--cat-ai))">Скоро</span>
+        </span>
+      </button>
+      <button class="tile" style="--tile-bg: hsl(var(--cat-crypto-bg))">
+        <span></span>
+        <span>
+          <span style="font-size: 14px; font-weight: 500; display: block">Основы крипты</span>
+          <span style="font-size: 12px; font-weight: 500; color: hsl(var(--cat-crypto))">2 курса</span>
+        </span>
+      </button>
+      <button class="tile" style="--tile-bg: hsl(var(--cat-web3-bg))">
+        <span></span>
+        <span>
+          <span style="font-size: 14px; font-weight: 500; display: block">Web3 и DeFi</span>
+          <span style="font-size: 12px; font-weight: 500; color: hsl(var(--cat-web3))">4 курса</span>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2 class="text-h3">Заметка к экрану</h2>
+    </div>
+    <p class="note">Так помечаются вопросы и решения по логике: что происходит по тапу, откуда берутся данные, какие состояния бывают. В приложение эти заметки не переносятся.</p>
+  </section>
+
+</div>
+
+<nav class="tabbar">
+  <a href="#" aria-current="page">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10l9-7 9 7v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+    Главная
+  </a>
+  <a href="#">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    Каталог
+  </a>
+  <a href="#">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h7v16H4z"/><path d="M13 4h7v16h-7z"/></svg>
+    Мои курсы
+  </a>
+  <a href="#" aria-disabled="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+    Профиль
+  </a>
+</nav>
