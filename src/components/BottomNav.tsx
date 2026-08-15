@@ -144,6 +144,21 @@ const BottomNav = () => {
           >
             <Search className="w-[22px] h-[22px] text-foreground" />
           </button>
+
+          <Link
+            to="/profile"
+            className={`flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center active:scale-95 transition-transform ${GLASS}`}
+            aria-label={t("bottomNav.profile")}
+          >
+            <User
+              className={`w-[22px] h-[22px] ${
+                // Без авторизации профиль уводит на /auth — кнопка остаётся активной
+                location.pathname === "/profile" || location.pathname === "/auth"
+                  ? "text-[#924CFE]"
+                  : "text-foreground"
+              }`}
+            />
+          </Link>
         </div>
       </div>
     </>
