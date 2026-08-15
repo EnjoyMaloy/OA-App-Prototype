@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { ChevronDown, LayoutGrid } from "lucide-react";
+import { ChevronDown, LayoutGrid, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { usePurchaseStore } from "@/hooks/usePurchaseStore";
 import CourseCard from "@/components/CourseCard";
@@ -9,7 +9,7 @@ import { categories, courses, getCategoryLabel } from "@/data/courses";
 
 const Catalog = () => {
   const { lang, t } = useLanguage();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get("q") || "";
   // Category can be preselected from the home screen: /catalog?cat=web3
   const [selectedCategory, setSelectedCategory] = useState<string | null>(searchParams.get("cat"));
@@ -35,6 +35,19 @@ const Catalog = () => {
         <p className="text-[16px] text-muted-foreground mb-8">
           {t("catalog.subtitle")}
         </p>
+
+        {/* Активный поиск — приходит с кнопки поиска в таб-баре */}
+        {searchQuery && (
+          <button
+            onClick={() => setSearchParams({})}
+            className="inline-flex items-center gap-2 mb-6 pl-3 pr-2 py-2 rounded-full bg-muted text-[14px] text-foreground hover:brightness-95 transition-all"
+          >
+            <span>
+              {t("catalog.searchFor")} «{searchQuery}»
+            </span>
+            <X className="w-4 h-4 text-muted-foreground" />
+          </button>
+        )}
 
         {/* Category cards row */}
         <div className="flex gap-3 overflow-x-auto pb-4 mb-8 scrollbar-hide">

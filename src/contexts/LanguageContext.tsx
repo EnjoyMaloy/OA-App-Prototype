@@ -57,6 +57,7 @@ const translations = {
   "article.min": { ru: "мин", en: "min" },
   "catalog.subtitle": { ru: "Выбери категорию и подбери подходящие курсы для твоих интересов", en: "Choose a category and find courses that match your interests" },
   "catalog.categories": { ru: "Категории", en: "Categories" },
+  "catalog.searchFor": { ru: "Поиск:", en: "Search:" },
   "nav.searchCourse": { ru: "Найти курс...", en: "Find a course..." },
   // Home screen
   "home.greeting": { ru: "Привет!", en: "Hi there!" },
