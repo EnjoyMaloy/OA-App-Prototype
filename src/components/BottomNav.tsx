@@ -42,8 +42,6 @@ const BottomNav = () => {
     { label: t("sidebar.home"), icon: Home, path: "/" },
     { label: t("sidebar.catalog"), icon: LayoutGrid, path: "/catalog" },
     { label: t("sidebar.myCourses"), icon: BookOpen, path: "/my-courses" },
-    { label: t("sidebar.instructions"), icon: FileText, path: "/instructions" },
-    { label: t("bottomNav.profile"), icon: User, path: "/profile", disabled: true },
   ];
 
   const courseItems: NavItem[] = [
@@ -97,29 +95,22 @@ const BottomNav = () => {
       {/* Плавающая панель: «пилюля» с разделами + отдельная кнопка поиска */}
       <div className="fixed inset-x-0 bottom-0 z-50 md:hidden pointer-events-none px-3 pb-[max(12px,env(safe-area-inset-bottom))]">
         <div className="flex items-end gap-2 pointer-events-auto">
-          <nav className={`flex-1 min-w-0 flex items-center justify-between gap-1 h-16 px-2 rounded-full ${GLASS}`}>
+          <nav className={`flex-1 min-w-0 flex items-center justify-around gap-1 h-16 px-2 rounded-full ${GLASS}`}>
             {items.map((item) => {
               const active = isActive(item);
               const Icon = item.icon;
 
-              // Активный раздел раскрывается в подпись — иначе пять названий не помещаются рядом с поиском
+              // Без подписей: раздел читается по иконке, активный — по фиолетовой подложке
               const content = (
-                <>
-                  <Icon
-                    className={`w-[22px] h-[22px] flex-shrink-0 ${
-                      active ? "text-[#924CFE]" : item.disabled ? "text-muted-foreground/40" : "text-muted-foreground"
-                    }`}
-                  />
-                  {active && (
-                    <span className="text-[13px] font-medium leading-none text-[#924CFE] whitespace-nowrap">
-                      {item.label}
-                    </span>
-                  )}
-                </>
+                <Icon
+                  className={`w-[22px] h-[22px] flex-shrink-0 ${
+                    active ? "text-[#924CFE]" : item.disabled ? "text-muted-foreground/40" : "text-muted-foreground"
+                  }`}
+                />
               );
 
-              const className = `flex items-center justify-center gap-1.5 h-11 rounded-full transition-all flex-shrink-0 ${
-                active ? "px-3 bg-[#924CFE]/10" : "w-9"
+              const className = `flex items-center justify-center w-12 h-12 rounded-full transition-all flex-shrink-0 ${
+                active ? "bg-[#924CFE]/10" : ""
               }`;
 
               if (item.action) {
