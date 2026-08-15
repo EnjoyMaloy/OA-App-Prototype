@@ -11,9 +11,9 @@ interface NavItem {
   action?: () => void;
 }
 
-/** Стеклянная подложка «пилюли» и кнопки поиска — одна на оба элемента. */
+/** Стеклянная подложка «пилюли» и круглых кнопок — одна на все элементы. */
 const GLASS =
-  "backdrop-blur-2xl backdrop-saturate-150 bg-background/70 border border-white/50 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.14)]";
+  "backdrop-blur-2xl backdrop-saturate-150 bg-background/85 border border-black/[0.06] dark:border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.10)]";
 
 const BottomNav = () => {
   const location = useLocation();
@@ -100,17 +100,26 @@ const BottomNav = () => {
               const active = isActive(item);
               const Icon = item.icon;
 
-              // Без подписей: раздел читается по иконке, активный — по фиолетовой подложке
+              // Без подписей: активный раздел — светлая капсула с фиолетовым свечением из-под неё
               const content = (
-                <Icon
-                  className={`w-[22px] h-[22px] flex-shrink-0 ${
-                    active ? "text-[#924CFE]" : item.disabled ? "text-muted-foreground/40" : "text-muted-foreground"
-                  }`}
-                />
+                <>
+                  {active && (
+                    <span
+                      aria-hidden
+                      className="absolute -left-2 -bottom-1 w-10 h-10 rounded-full bg-[#924CFE]/45 blur-xl pointer-events-none"
+                    />
+                  )}
+                  <Icon
+                    strokeWidth={2.2}
+                    className={`relative w-[22px] h-[22px] flex-shrink-0 ${
+                      item.disabled ? "text-foreground/25" : "text-foreground"
+                    }`}
+                  />
+                </>
               );
 
-              const className = `flex items-center justify-center w-12 h-12 rounded-full transition-all flex-shrink-0 ${
-                active ? "bg-[#924CFE]/10" : ""
+              const className = `relative flex items-center justify-center w-12 h-12 rounded-[18px] transition-all flex-shrink-0 ${
+                active ? "bg-foreground/[0.07]" : ""
               }`;
 
               if (item.action) {
@@ -142,22 +151,22 @@ const BottomNav = () => {
             className={`flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center active:scale-95 transition-transform ${GLASS}`}
             aria-label={t("nav.searchCourse")}
           >
-            <Search className="w-[22px] h-[22px] text-foreground" />
+            <Search strokeWidth={2.2} className="w-[22px] h-[22px] text-foreground" />
           </button>
 
           <Link
             to="/profile"
-            className={`flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center active:scale-95 transition-transform ${GLASS}`}
+            className={`relative flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center active:scale-95 transition-transform ${GLASS}`}
             aria-label={t("bottomNav.profile")}
           >
-            <User
-              className={`w-[22px] h-[22px] ${
-                // Без авторизации профиль уводит на /auth — кнопка остаётся активной
-                location.pathname === "/profile" || location.pathname === "/auth"
-                  ? "text-[#924CFE]"
-                  : "text-foreground"
-              }`}
-            />
+            {/* Без авторизации профиль уводит на /auth — свечение остаётся */}
+            {(location.pathname === "/profile" || location.pathname === "/auth") && (
+              <span
+                aria-hidden
+                className="absolute -left-1 -bottom-1 w-10 h-10 rounded-full bg-[#924CFE]/45 blur-xl pointer-events-none"
+              />
+            )}
+            <User strokeWidth={2.2} className="relative w-[22px] h-[22px] text-foreground" />
           </Link>
         </div>
       </div>
