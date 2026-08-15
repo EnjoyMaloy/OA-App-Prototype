@@ -9,6 +9,7 @@ import Navbar from "@/components/Navbar";
 import BottomNav from "@/components/BottomNav";
 import Sidebar from "@/components/Sidebar";
 import Index from "./pages/Index.tsx";
+import Home from "./pages/Home.tsx";
 import Articles from "./pages/Articles.tsx";
 import ArticleEditor from "./pages/ArticleEditor.tsx";
 import Auth from "./pages/Auth.tsx";
@@ -37,7 +38,7 @@ const App = () => (
                 <Navbar />
                 <main className="flex-1 min-w-0 overflow-auto pb-16 md:pb-0">
                   <Routes>
-                    <Route path="/" element={<Catalog />} />
+                    <Route path="/" element={<Home />} />
                     <Route path="/catalog" element={<Catalog />} />
                     <Route path="/my-courses" element={<Index />} />
                     <Route path="/articles" element={<Articles />} />

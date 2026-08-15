@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Home, Circle, BookOpen, FileText, User, ArrowLeft, GraduationCap, Trophy } from "lucide-react";
+import { Home, LayoutGrid, BookOpen, FileText, User, ArrowLeft, GraduationCap, Trophy } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const BottomNav = () => {
@@ -12,7 +12,7 @@ const BottomNav = () => {
 
   const defaultItems = [
     { label: t("sidebar.home"), icon: Home, path: "/" },
-    { label: t("sidebar.catalog"), icon: Circle, path: "/catalog", disabled: true },
+    { label: t("sidebar.catalog"), icon: LayoutGrid, path: "/catalog" },
     { label: t("sidebar.myCourses"), icon: BookOpen, path: "/my-courses" },
     { label: t("sidebar.instructions"), icon: FileText, path: "/instructions" },
     { label: t("bottomNav.profile"), icon: User, path: "/profile", disabled: true },

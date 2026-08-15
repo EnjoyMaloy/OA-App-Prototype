@@ -58,6 +58,15 @@ const translations = {
   "catalog.subtitle": { ru: "Выбери категорию и подбери подходящие курсы для твоих интересов", en: "Choose a category and find courses that match your interests" },
   "catalog.categories": { ru: "Категории", en: "Categories" },
   "nav.searchCourse": { ru: "Найти курс...", en: "Find a course..." },
+  // Home screen
+  "home.greeting": { ru: "Привет!", en: "Hi there!" },
+  "home.subtitle": { ru: "Продолжай учиться и забирай награды", en: "Keep learning and collect your rewards" },
+  "home.continueTitle": { ru: "Продолжить обучение", en: "Continue learning" },
+  "home.new": { ru: "Новое", en: "New" },
+  "home.trending": { ru: "В тренде", en: "Trending" },
+  "home.guidesSubtitle": { ru: "Короткие пошаговые материалы из курсов", en: "Short step-by-step guides from the courses" },
+  "home.allCourses": { ru: "Весь каталог", en: "Browse all courses" },
+
   "bottomNav.back": { ru: "Назад", en: "Back" },
   "bottomNav.course": { ru: "Курс", en: "Course" },
   "bottomNav.quest": { ru: "Квест", en: "Quest" },

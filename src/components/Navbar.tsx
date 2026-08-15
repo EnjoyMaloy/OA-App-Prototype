@@ -23,7 +23,8 @@ const Navbar = () => {
   const isInstructions = location.pathname === "/instructions";
   const isArticleView = location.pathname.startsWith("/instructions/");
   const isMyCourses = location.pathname === "/my-courses";
-  const isCatalog = location.pathname === "/catalog" || location.pathname === "/";
+  const isHome = location.pathname === "/";
+  const isCatalog = location.pathname === "/catalog";
   const isCourseView = location.pathname.startsWith("/course/");
   const isProfile = location.pathname === "/profile";
   const searchValue = searchParams.get("q") || "";
@@ -48,15 +49,15 @@ const Navbar = () => {
     >
       <div className="max-w-full mx-auto px-3 md:px-9 flex items-center justify-between h-full gap-2 md:gap-4 pt-2 md:pt-0">
         {/* Left: Streak (mobile) + Search (desktop) */}
-        {isInstructions || isCatalog || isCourseView ? (
+        {isHome || isInstructions || isCatalog || isCourseView ? (
           <div className="flex items-center gap-4">
             {/* Streak - always visible */}
             <button className="flex items-center gap-2 text-foreground hover:opacity-80 transition-opacity">
               <Flame className="w-5 h-5" style={{ color: "#F65C39" }} />
               <span className="text-[18px] md:text-[20px] font-semibold">56</span>
             </button>
-            {/* Search - desktop only */}
-            <div className="relative hidden md:block" style={{ width: 260 }}>
+            {/* Search - desktop only; home has no list to filter */}
+            <div className={`relative ${isHome ? "hidden" : "hidden md:block"}`} style={{ width: 260 }}>
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 type="text"
