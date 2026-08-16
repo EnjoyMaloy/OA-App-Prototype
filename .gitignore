@@ -23,3 +23,6 @@ dist-prototypes
 *.njsproj
 *.sln
 *.sw?
+
+# Локальные одноразовые скрипты для скриншотов
+.t.mjs
