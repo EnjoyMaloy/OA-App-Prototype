@@ -84,8 +84,25 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`sticky top-0 z-50 bg-background border-b border-border/20 h-16 md:h-20 ${isArticleView || isMyCourses || isProfile ? 'hidden md:block' : ''}`}
+      className={`sticky top-0 z-50 bg-background h-16 md:h-20 relative ${isArticleView || isMyCourses || isProfile ? 'hidden md:block' : ''}`}
+      // Брендовый градиент: сверху фиолетовый, к низу растворяется в фоне страницы
+      style={{
+        background:
+          // Слой поверх непрозрачного фона: внизу шапки остаётся ровно та же плотность,
+          // с которой начинается хвост под ней — иначе на стыке видна ступенька
+          "linear-gradient(180deg, hsl(var(--violet-super-light)) 0%, hsl(var(--violet-super-light) / 0.5) 100%), hsl(var(--background))",
+      }}
     >
+      {/* Хвост градиента: уводит фиолетовый в страницу, чтобы граница шапки не читалась линией */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-0 right-0 top-full h-12"
+        style={{
+          background:
+            "linear-gradient(180deg, hsl(var(--violet-super-light) / 0.5) 0%, hsl(var(--violet-super-light) / 0) 100%)",
+        }}
+      />
+
       <div className="max-w-full mx-auto px-3 md:px-9 flex items-center justify-between h-full gap-2 md:gap-4 pt-2 md:pt-0">
         {/* Left: profile (mobile) / streak + search (desktop) */}
         <div className="flex items-center gap-4">
