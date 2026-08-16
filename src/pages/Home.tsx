@@ -157,13 +157,13 @@ const Home = () => {
                   key={cat.id}
                   onClick={() => navigate(`/catalog?cat=${cat.id}`)}
                   className="flex-shrink-0 flex flex-col justify-between rounded-2xl p-3 transition-all hover:scale-[1.03]"
-                  style={{ background: cat.bg, width: 138, height: 122 }}
+                  style={{ background: cat.bg, width: 148, height: 126 }}
                 >
                   <Icon style={{ color: cat.iconColor }} className="w-9 h-9" />
                   <div className="text-left w-full">
                     {/* Название категории живёт в акцентном цвете самой категории */}
                     <span
-                      className="text-[16px] font-semibold leading-[1.15] block whitespace-pre-line"
+                      className="text-[18px] font-semibold leading-[1.15] block whitespace-pre-line"
                       style={{ color: cat.labelColor }}
                     >
                       {label}
