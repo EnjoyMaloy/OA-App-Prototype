@@ -70,10 +70,7 @@ const Home = () => {
     <div className="min-h-screen bg-background">
       <div className="max-w-6xl mx-auto px-4 py-6 md:py-10">
         {/* Greeting */}
-        <div className="mb-5">
-          <h1 className="text-h1 text-foreground mb-2">{t("home.greeting")}</h1>
-          <p className="text-[16px] text-muted-foreground">{t("home.subtitle")}</p>
-        </div>
+        <h1 className="text-h1 text-foreground mb-5">{t("home.greeting")}</h1>
 
         {/* Промо-баннеры */}
         <section className="mb-8">

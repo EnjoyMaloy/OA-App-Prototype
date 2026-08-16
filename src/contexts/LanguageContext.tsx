@@ -63,8 +63,7 @@ const translations = {
   "catalog.results": { ru: "Результаты", en: "Results" },
   "nav.searchCourse": { ru: "Найти курс...", en: "Find a course..." },
   // Home screen
-  "home.greeting": { ru: "Привет!", en: "Hi there!" },
-  "home.subtitle": { ru: "Продолжай учиться и забирай награды", en: "Keep learning and collect your rewards" },
+  "home.greeting": { ru: "Привет, Павел", en: "Hi, Pavel" },
   "home.continueTitle": { ru: "Продолжить обучение", en: "Continue learning" },
   "home.new": { ru: "Новое", en: "New" },
   "home.trending": { ru: "В тренде", en: "Trending" },
