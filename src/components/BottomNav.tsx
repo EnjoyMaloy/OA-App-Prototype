@@ -36,12 +36,17 @@ const BottomNav = () => {
     if (searchOpen) inputRef.current?.focus();
   }, [searchOpen]);
 
-  const submitSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    const q = query.trim();
-    navigate(q ? `/catalog?q=${encodeURIComponent(q)}` : "/catalog");
-    setSearchOpen(false);
-    setQuery("");
+  // Поиск живёт в каталоге: кнопка уводит туда и разворачивает поле на месте меню
+  const openSearch = () => {
+    setQuery(new URLSearchParams(location.search).get("q") ?? "");
+    setSearchOpen(true);
+    if (location.pathname !== "/catalog") navigate("/catalog");
+  };
+
+  const applyQuery = (value: string) => {
+    setQuery(value);
+    const trimmed = value.trim();
+    navigate({ pathname: "/catalog", search: trimmed ? `?q=${encodeURIComponent(trimmed)}` : "" }, { replace: true });
   };
 
   const defaultItems: NavItem[] = [
@@ -70,37 +75,55 @@ const BottomNav = () => {
     return location.pathname.startsWith(item.path);
   };
 
-  return (
-    <>
-      {/* Поиск: лист над таб-баром */}
-      {searchOpen && (
-        <div className="fixed inset-0 z-[60] md:hidden" onClick={() => setSearchOpen(false)}>
-          <div className="absolute inset-0 bg-black/20 backdrop-blur-[2px]" />
+  // Активный поиск занимает место меню: поле во всю ширину и кнопка выхода справа
+  if (searchOpen) {
+    return (
+      <div className="fixed inset-x-0 bottom-0 z-50 md:hidden px-3 pb-[max(12px,env(safe-area-inset-bottom))]">
+        <div className="flex items-center gap-2">
           <form
-            onSubmit={submitSearch}
-            onClick={(e) => e.stopPropagation()}
-            className={`absolute left-3 right-3 bottom-[calc(88px+env(safe-area-inset-bottom))] flex items-center gap-2 rounded-full pl-4 pr-2 h-14 ${GLASS}`}
+            onSubmit={(e) => {
+              e.preventDefault();
+              inputRef.current?.blur();
+            }}
+            className={`flex-1 min-w-0 flex items-center gap-2 h-16 rounded-full pl-5 pr-3 ${GLASS}`}
           >
-            <Search className="w-5 h-5 flex-shrink-0 text-muted-foreground" />
+            <Search strokeWidth={2.2} className="w-5 h-5 flex-shrink-0 text-muted-foreground" />
             <input
               ref={inputRef}
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(e) => applyQuery(e.target.value)}
               placeholder={t("nav.searchCourse")}
               className="flex-1 min-w-0 bg-transparent border-none text-[17px] text-foreground placeholder:text-muted-foreground focus:outline-none"
             />
-            <button
-              type="button"
-              onClick={() => setSearchOpen(false)}
-              className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="close-search"
-            >
-              <X className="w-5 h-5" />
-            </button>
+            {query && (
+              <button
+                type="button"
+                onClick={() => {
+                  applyQuery("");
+                  inputRef.current?.focus();
+                }}
+                className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center bg-foreground/35"
+                aria-label="clear-search"
+              >
+                <X strokeWidth={3} className="w-3.5 h-3.5 text-background" />
+              </button>
+            )}
           </form>
-        </div>
-      )}
 
+          <button
+            onClick={() => setSearchOpen(false)}
+            className={`flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center active:scale-95 transition-transform ${GLASS}`}
+            aria-label="close-search"
+          >
+            <X strokeWidth={2.2} className="w-[22px] h-[22px] text-foreground" />
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <>
       {/* Плавающая панель: «пилюля» с разделами + отдельная кнопка поиска */}
       <div className="fixed inset-x-0 bottom-0 z-50 md:hidden pointer-events-none px-3 pb-[max(12px,env(safe-area-inset-bottom))]">
         <div className="flex items-end gap-2 pointer-events-auto">
@@ -149,7 +172,7 @@ const BottomNav = () => {
           </nav>
 
           <button
-            onClick={() => setSearchOpen(true)}
+            onClick={openSearch}
             className={`flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center active:scale-95 transition-transform ${GLASS}`}
             aria-label={t("nav.searchCourse")}
           >
