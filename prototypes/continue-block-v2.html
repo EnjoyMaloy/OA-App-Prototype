@@ -1,0 +1,415 @@
+<title>Продолжить обучение · 20</title>
+
+<style>
+  /* Локальные добавки поверх кита — только для этого черновика */
+  .cont { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; border: 0; cursor: pointer; padding: 16px; border-radius: 16px; background: hsl(var(--card)); }
+  .cont__title { font-size: 17px; font-weight: 500; line-height: 1.2; color: hsl(var(--foreground)); }
+  .cont__sub { font-size: 13px; color: hsl(var(--muted-foreground)); }
+  .cont__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+  .chev { flex: 0 0 auto; font-size: 22px; color: hsl(var(--muted-foreground)); line-height: 1 }
+  .ring { flex: 0 0 auto; position: relative; width: 56px; height: 56px }
+  .ring svg { transform: rotate(-90deg) }
+  .ring__label { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600 }
+  .play { flex: 0 0 auto; width: 44px; height: 44px; border-radius: 999px; background: hsl(var(--primary)); color: #fff; display: flex; align-items: center; justify-content: center }
+  .pill { flex: 0 0 auto; height: 40px; padding: 0 18px; border-radius: 999px; background: hsl(var(--primary)); color: #fff; font-size: 15px; font-weight: 500; display: flex; align-items: center; border: 0 }
+  .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: hsl(var(--primary)) }
+  .variant { display: flex; flex-direction: column; gap: 10px }
+  .variant__cap { font-size: 13px; color: hsl(var(--muted-foreground)) }
+  .variant h2 { font-size: 18px; font-weight: 600; margin: 0 }
+</style>
+
+<div class="screen stack stack-8">
+
+  <div class="stack stack-2">
+    <h1 class="text-h1">Продолжить обучение · 20</h1>
+    <p class="text-caption-14">Развитие текущего блока: кольцо, подписи, действие, контур, градиенты. Везде один и тот же курс, 61 %, 2 урока в остатке.</p>
+  </div>
+
+  <!-- 1 -->
+  <section class="variant">
+    <h2>1. Сейчас в приложении</h2>
+    <p class="variant__cap">Кольцо 8px, блик по краю, шеврон.</p>
+    <button class="cont">
+      <span class="ring">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--border))" stroke-width="8"/>
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--primary))" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/>
+          <circle cx="28" cy="28" r="25" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="157.1" stroke-dashoffset="61.3"/>
+        </svg>
+      </span>
+      <span class="cont__body">
+        <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+        <span class="cont__sub">Осталось 2 урока</span>
+      </span>
+      <span class="chev">›</span>
+    </button>
+  </section>
+
+  <!-- 2 -->
+  <section class="variant">
+    <h2>2. Градиент по дуге</h2>
+    <p class="variant__cap">Дуга уходит из тёмного фиолетового в светлый — видно направление движения.</p>
+    <button class="cont">
+      <span class="ring">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs>
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--border))" stroke-width="8"/>
+          <circle cx="28" cy="28" r="23" fill="none" stroke="url(#g2)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/>
+        </svg>
+      </span>
+      <span class="cont__body">
+        <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+        <span class="cont__sub">Осталось 2 урока</span>
+      </span>
+      <span class="chev">›</span>
+    </button>
+  </section>
+
+  <!-- 3 -->
+  <section class="variant">
+    <h2>3. Тонкое кольцо и процент</h2>
+    <p class="variant__cap">Дуга 4px, в центре снова процент — спокойнее и информативнее.</p>
+    <button class="cont">
+      <span class="ring">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="25" fill="none" stroke="hsl(var(--border))" stroke-width="4"/>
+          <circle cx="28" cy="28" r="25" fill="none" stroke="hsl(var(--primary))" stroke-width="4" stroke-linecap="round" stroke-dasharray="157.1" stroke-dashoffset="61.3"/>
+        </svg>
+        <span class="ring__label">61%</span>
+      </span>
+      <span class="cont__body">
+        <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+        <span class="cont__sub">Осталось 2 урока</span>
+      </span>
+      <span class="chev">›</span>
+    </button>
+  </section>
+
+  <!-- 4 -->
+  <section class="variant">
+    <h2>4. Кольцо-сегменты</h2>
+    <p class="variant__cap">Дуга разбита по урокам: видно шаги, а не абстрактный процент.</p>
+    <button class="cont">
+      <span class="ring">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--border))" stroke-width="8" stroke-dasharray="14 4.06"/>
+          <!-- пять закрашенных сегментов из восьми, дальше длинный пропуск -->
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--primary))" stroke-width="8" stroke-dasharray="14 4.06 14 4.06 14 4.06 14 4.06 14 200"/>
+        </svg>
+      </span>
+      <span class="cont__body">
+        <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+        <span class="cont__sub">Урок 5 из 8</span>
+      </span>
+      <span class="chev">›</span>
+    </button>
+  </section>
+
+  <!-- 5 -->
+  <section class="variant">
+    <h2>5. Двойное кольцо</h2>
+    <p class="variant__cap">Внешнее — прогресс курса, внутреннее — текущий урок.</p>
+    <button class="cont">
+      <span class="ring">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="25" fill="none" stroke="hsl(var(--border))" stroke-width="4"/>
+          <circle cx="28" cy="28" r="25" fill="none" stroke="hsl(var(--primary))" stroke-width="4" stroke-linecap="round" stroke-dasharray="157.1" stroke-dashoffset="61.3"/>
+          <circle cx="28" cy="28" r="18" fill="none" stroke="hsl(var(--border))" stroke-width="4"/>
+          <circle cx="28" cy="28" r="18" fill="none" stroke="#FF7D60" stroke-width="4" stroke-linecap="round" stroke-dasharray="113.1" stroke-dashoffset="62.2"/>
+        </svg>
+      </span>
+      <span class="cont__body">
+        <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+        <span class="cont__sub">Курс 61 % · урок 45 %</span>
+      </span>
+      <span class="chev">›</span>
+    </button>
+  </section>
+
+  <!-- 6 -->
+  <section class="variant">
+    <h2>6. Play внутри кольца</h2>
+    <p class="variant__cap">Кольцо становится кнопкой: прогресс и действие в одном месте.</p>
+    <button class="cont">
+      <span class="ring">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--border))" stroke-width="6"/>
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--primary))" stroke-width="6" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/>
+        </svg>
+        <span class="ring__label" style="font-size: 16px; color: hsl(var(--primary))">▶</span>
+      </span>
+      <span class="cont__body">
+        <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+        <span class="cont__sub">Осталось 2 урока</span>
+      </span>
+    </button>
+  </section>
+
+  <!-- 7 -->
+  <section class="variant">
+    <h2>7. Номер урока в кольце</h2>
+    <p class="variant__cap">В центре не процент, а место в курсе.</p>
+    <button class="cont">
+      <span class="ring">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="24" fill="none" stroke="hsl(var(--border))" stroke-width="5"/>
+          <circle cx="28" cy="28" r="24" fill="none" stroke="hsl(var(--primary))" stroke-width="5" stroke-linecap="round" stroke-dasharray="150.8" stroke-dashoffset="58.8"/>
+        </svg>
+        <span class="ring__label" style="font-size: 12px">5<span style="color: hsl(var(--muted-foreground))">/8</span></span>
+      </span>
+      <span class="cont__body">
+        <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+        <span class="cont__sub">Быстрый старт в Telegram Gifts</span>
+      </span>
+      <span class="chev">›</span>
+    </button>
+  </section>
+
+  <!-- 8 -->
+  <section class="variant">
+    <h2>8. Квадратный индикатор</h2>
+    <p class="variant__cap">Прогресс идёт по контуру скруглённого квадрата — перекликается с плитками категорий.</p>
+    <button class="cont">
+      <span class="ring">
+        <svg width="56" height="56" viewBox="0 0 56 56" style="transform: none">
+          <rect x="5" y="5" width="46" height="46" rx="15" fill="none" stroke="hsl(var(--border))" stroke-width="6"/>
+          <rect x="5" y="5" width="46" height="46" rx="15" fill="none" stroke="hsl(var(--primary))" stroke-width="6" stroke-linecap="round" stroke-dasharray="167" stroke-dashoffset="65" transform="rotate(-90 28 28)"/>
+        </svg>
+      </span>
+      <span class="cont__body">
+        <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+        <span class="cont__sub">Осталось 2 урока</span>
+      </span>
+      <span class="chev">›</span>
+    </button>
+  </section>
+
+  <!-- 9 -->
+  <section class="variant">
+    <h2>9. Вертикальная шкала</h2>
+    <p class="variant__cap">Вместо кольца — столбик слева, заполняется снизу вверх.</p>
+    <button class="cont">
+      <span style="flex: 0 0 auto; width: 10px; height: 56px; border-radius: 999px; background: hsl(var(--border)); display: flex; align-items: flex-end; overflow: hidden">
+        <span style="display: block; width: 100%; height: 61%; background: hsl(var(--primary)); border-radius: 999px"></span>
+      </span>
+      <span class="cont__body">
+        <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+        <span class="cont__sub">Пройдено 61 % · осталось 2 урока</span>
+      </span>
+      <span class="chev">›</span>
+    </button>
+  </section>
+
+  <!-- 10 -->
+  <section class="variant">
+    <h2>10. Градиентная заливка карточки</h2>
+    <p class="variant__cap">Фон уходит из фиолетового в белый — блок мягко выделяется на странице.</p>
+    <button class="cont" style="background: linear-gradient(120deg, hsl(var(--violet-super-light)) 0%, hsl(var(--card)) 65%)">
+      <span class="ring">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="23" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="8"/>
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--primary))" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/>
+        </svg>
+      </span>
+      <span class="cont__body">
+        <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+        <span class="cont__sub">Осталось 2 урока</span>
+      </span>
+      <span class="chev">›</span>
+    </button>
+  </section>
+
+  <!-- 11 -->
+  <section class="variant">
+    <h2>11. Фиолетовый контур</h2>
+    <p class="variant__cap">Белый фон и тонкая фиолетовая рамка вместо серой заливки.</p>
+    <button class="cont" style="background: hsl(var(--background)); border: 1px solid hsl(var(--primary) / .35)">
+      <span class="ring">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--violet-super-light))" stroke-width="8"/>
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--primary))" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/>
+        </svg>
+      </span>
+      <span class="cont__body">
+        <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+        <span class="cont__sub">Осталось 2 урока</span>
+      </span>
+      <span class="chev">›</span>
+    </button>
+  </section>
+
+  <!-- 12 -->
+  <section class="variant">
+    <h2>12. Градиентная обводка</h2>
+    <p class="variant__cap">Рамка-градиент как у кнопки премиума: блок читается как «особенный».</p>
+    <div style="padding: 1.5px; border-radius: 17px; background: linear-gradient(120deg, #924CFE, #D9C0FF, #FF9E7D)">
+      <button class="cont" style="background: hsl(var(--background))">
+        <span class="ring">
+          <svg width="56" height="56" viewBox="0 0 56 56">
+            <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--border))" stroke-width="8"/>
+            <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--primary))" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/>
+          </svg>
+        </span>
+        <span class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <span class="cont__sub">Осталось 2 урока</span>
+        </span>
+        <span class="chev">›</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="variant">
+    <h2>13. Тёмная карточка</h2>
+    <p class="variant__cap">Инверсия: единственный тёмный блок на светлой главной.</p>
+    <button class="cont" style="background: #232323">
+      <span class="ring">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8"/>
+          <circle cx="28" cy="28" r="23" fill="none" stroke="#C9A6FF" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/>
+        </svg>
+      </span>
+      <span class="cont__body">
+        <span class="cont__title" style="color: #fff">Стратегии торговли на вторичном рынке</span>
+        <span class="cont__sub" style="color: rgba(255,255,255,.6)">Осталось 2 урока</span>
+      </span>
+      <span class="chev" style="color: rgba(255,255,255,.5)">›</span>
+    </button>
+  </section>
+
+  <!-- 14 -->
+  <section class="variant">
+    <h2>14. Фиолетовое свечение</h2>
+    <p class="variant__cap">Белая карточка с мягкой цветной тенью — приподнята над страницей.</p>
+    <button class="cont" style="background: hsl(var(--background)); box-shadow: 0 10px 30px hsl(var(--primary) / .22)">
+      <span class="ring">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--border))" stroke-width="8"/>
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--primary))" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/>
+        </svg>
+      </span>
+      <span class="cont__body">
+        <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+        <span class="cont__sub">Осталось 2 урока</span>
+      </span>
+      <span class="chev">›</span>
+    </button>
+  </section>
+
+  <!-- 15 -->
+  <section class="variant">
+    <h2>15. Кнопка-пилюля</h2>
+    <p class="variant__cap">Явное действие вместо шеврона.</p>
+    <button class="cont">
+      <span class="ring">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--border))" stroke-width="8"/>
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--primary))" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/>
+        </svg>
+      </span>
+      <span class="cont__body">
+        <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+        <span class="cont__sub">Осталось 2 урока</span>
+      </span>
+      <span class="pill">Продолжить</span>
+    </button>
+  </section>
+
+  <!-- 16 -->
+  <section class="variant">
+    <h2>16. Круглая кнопка play</h2>
+    <p class="variant__cap">Компромисс: действие заметное, но места занимает мало.</p>
+    <button class="cont">
+      <span class="ring">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--border))" stroke-width="8"/>
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--primary))" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/>
+        </svg>
+      </span>
+      <span class="cont__body">
+        <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+        <span class="cont__sub">Осталось 2 урока</span>
+      </span>
+      <span class="play">▶</span>
+    </button>
+  </section>
+
+  <!-- 17 -->
+  <section class="variant">
+    <h2>17. Урок как главное</h2>
+    <p class="variant__cap">Сначала место в курсе, потом название урока.</p>
+    <button class="cont">
+      <span class="ring">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--border))" stroke-width="8"/>
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--primary))" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/>
+        </svg>
+      </span>
+      <span class="cont__body">
+        <span class="cont__sub">Урок 5 из 8</span>
+        <span class="cont__title" style="font-size: 18px">Стратегии торговли на вторичном рынке</span>
+      </span>
+      <span class="chev">›</span>
+    </button>
+  </section>
+
+  <!-- 18 -->
+  <section class="variant">
+    <h2>18. Надзаголовок курса</h2>
+    <p class="variant__cap">Сверху капсом — курс, ниже урок. Понятно, куда ведёт тап.</p>
+    <button class="cont">
+      <span class="ring">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--border))" stroke-width="8"/>
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--primary))" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/>
+        </svg>
+      </span>
+      <span class="cont__body">
+        <span class="eyebrow">Telegram Gifts</span>
+        <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+      </span>
+      <span class="chev">›</span>
+    </button>
+  </section>
+
+  <!-- 19 -->
+  <section class="variant">
+    <h2>19. Линия вместо кольца</h2>
+    <p class="variant__cap">Прогресс — тонкая полоса по нижней кромке карточки, слева освобождается место.</p>
+    <div style="position: relative; border-radius: 16px; overflow: hidden; background: hsl(var(--card))">
+      <button class="cont" style="background: transparent; padding-bottom: 20px">
+        <span class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <span class="cont__sub">Пройдено 61 % · осталось 2 урока</span>
+        </span>
+        <span class="play">▶</span>
+      </button>
+      <span style="position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: hsl(var(--border))">
+        <span style="display: block; width: 61%; height: 100%; border-radius: 0 999px 999px 0; background: hsl(var(--primary))"></span>
+      </span>
+    </div>
+  </section>
+
+  <!-- 20 -->
+  <section class="variant">
+    <h2>20. Зеркальная композиция</h2>
+    <p class="variant__cap">Кольцо справа, текст слева — блок читается слева направо до самого действия.</p>
+    <button class="cont">
+      <span class="cont__body">
+        <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+        <span class="cont__sub">Осталось 2 урока</span>
+      </span>
+      <span class="ring">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--border))" stroke-width="8"/>
+          <circle cx="28" cy="28" r="23" fill="none" stroke="hsl(var(--primary))" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/>
+          <circle cx="28" cy="28" r="25" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="157.1" stroke-dashoffset="61.3"/>
+        </svg>
+      </span>
+    </button>
+  </section>
+
+  <p class="note">Скажи номера — соберу гибрид: например, кольцо из 2, подпись из 18 и кнопка из 16.</p>
+
+</div>
