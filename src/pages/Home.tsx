@@ -70,9 +70,6 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-6xl mx-auto px-4 py-6 md:py-10">
-        {/* Greeting */}
-        <h1 className="text-h1 text-foreground mb-5">{t("home.greeting")}</h1>
-
         {/* Промо-баннеры */}
         <section className="mb-8">
           <BannerCarousel />
