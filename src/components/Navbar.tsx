@@ -102,26 +102,24 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`sticky top-0 z-50 bg-background h-16 md:h-20 relative transition-transform duration-300 ease-out ${hidden ? '-translate-y-full' : 'translate-y-0'} ${isArticleView || isMyCourses || isProfile ? 'hidden md:block' : ''}`}
-      // Брендовый градиент: сверху фиолетовый, к низу растворяется в фоне страницы
-      style={{
-        background:
-          // Слой поверх непрозрачного фона: внизу шапки остаётся ровно та же плотность,
-          // с которой начинается хвост под ней — иначе на стыке видна ступенька
-          "linear-gradient(180deg, hsl(var(--violet-super-light)) 0%, hsl(var(--violet-super-light) / 0.5) 100%), hsl(var(--background))",
-      }}
+      className={`sticky top-0 z-50 h-16 md:h-20 relative transition-transform duration-300 ease-out ${hidden ? '-translate-y-full' : 'translate-y-0'} ${isArticleView || isMyCourses || isProfile ? 'hidden md:block' : ''}`}
     >
-      {/* Хвост градиента: уводит фиолетовый в страницу, чтобы граница шапки не читалась линией */}
+      {/* Стекло шапки: размытие и фиолетовый градиент гаснут к низу по маске,
+          поэтому у шапки нет чёткой нижней границы — контент под ней просто расфокусирован */}
       <div
         aria-hidden
-        className={`pointer-events-none absolute left-0 right-0 top-full h-12 transition-opacity duration-300 ${hidden ? "opacity-0" : "opacity-100"}`}
+        className={`pointer-events-none absolute inset-x-0 top-0 h-[calc(100%+44px)] transition-opacity duration-300 ${hidden ? "opacity-0" : "opacity-100"}`}
         style={{
+          backdropFilter: "blur(16px) saturate(1.5)",
+          WebkitBackdropFilter: "blur(16px) saturate(1.5)",
           background:
-            "linear-gradient(180deg, hsl(var(--violet-super-light) / 0.5) 0%, hsl(var(--violet-super-light) / 0) 100%)",
+            "linear-gradient(180deg, hsl(var(--violet-super-light) / 0.92) 0%, hsl(var(--violet-super-light) / 0.6) 50%, hsl(var(--violet-super-light) / 0) 100%)",
+          maskImage: "linear-gradient(180deg, #000 0%, #000 45%, rgba(0,0,0,0.35) 78%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(180deg, #000 0%, #000 45%, rgba(0,0,0,0.35) 78%, transparent 100%)",
         }}
       />
 
-      <div className="max-w-full mx-auto px-3 md:px-9 flex items-center justify-between h-full gap-2 md:gap-4 pt-2 md:pt-0">
+      <div className="relative z-10 max-w-full mx-auto px-3 md:px-9 flex items-center justify-between h-full gap-2 md:gap-4 pt-2 md:pt-0">
         {/* Left: profile (mobile) / streak + search (desktop) */}
         <div className="flex items-center gap-4">
           {/* Mobile keeps the profile on the left, the streak moves to the right edge */}
