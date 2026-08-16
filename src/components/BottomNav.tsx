@@ -42,6 +42,7 @@ const BottomNav = () => {
     { label: t("sidebar.home"), icon: Home, path: "/" },
     { label: t("sidebar.catalog"), icon: LayoutGrid, path: "/catalog" },
     { label: t("sidebar.myCourses"), icon: BookOpen, path: "/my-courses" },
+    { label: t("bottomNav.profile"), icon: User, path: "/profile" },
   ];
 
   const courseItems: NavItem[] = [
@@ -58,6 +59,8 @@ const BottomNav = () => {
     if (isMyCourses && item.path === "/my-courses?tab=instructions") return currentTab === "instructions";
     if (isMyCourses && item.path === "/my-courses") return !currentTab;
     if (item.path === "/") return location.pathname === "/";
+    // Без авторизации профиль уводит на /auth — пункт остаётся выбранным
+    if (item.path === "/profile") return location.pathname === "/profile" || location.pathname === "/auth";
     return location.pathname.startsWith(item.path);
   };
 
@@ -100,25 +103,17 @@ const BottomNav = () => {
               const active = isActive(item);
               const Icon = item.icon;
 
-              // Без подписей: активный раздел — светлая капсула с фиолетовым свечением из-под неё
+              // Без подписей: активный раздел помечается только светлой капсулой
               const content = (
-                <>
-                  {active && (
-                    <span
-                      aria-hidden
-                      className="absolute -left-2 -bottom-1 w-10 h-10 rounded-full bg-[#924CFE]/45 blur-xl pointer-events-none"
-                    />
-                  )}
-                  <Icon
-                    strokeWidth={2.2}
-                    className={`relative w-[22px] h-[22px] flex-shrink-0 ${
-                      item.disabled ? "text-foreground/25" : "text-foreground"
-                    }`}
-                  />
-                </>
+                <Icon
+                  strokeWidth={2.2}
+                  className={`w-[22px] h-[22px] flex-shrink-0 ${
+                    item.disabled ? "text-foreground/25" : "text-foreground"
+                  }`}
+                />
               );
 
-              const className = `relative flex items-center justify-center w-12 h-12 rounded-[18px] transition-all flex-shrink-0 ${
+              const className = `flex items-center justify-center w-12 h-12 rounded-[18px] transition-all flex-shrink-0 ${
                 active ? "bg-foreground/[0.07]" : ""
               }`;
 
@@ -153,21 +148,6 @@ const BottomNav = () => {
           >
             <Search strokeWidth={2.2} className="w-[22px] h-[22px] text-foreground" />
           </button>
-
-          <Link
-            to="/profile"
-            className={`relative flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center active:scale-95 transition-transform ${GLASS}`}
-            aria-label={t("bottomNav.profile")}
-          >
-            {/* Без авторизации профиль уводит на /auth — свечение остаётся */}
-            {(location.pathname === "/profile" || location.pathname === "/auth") && (
-              <span
-                aria-hidden
-                className="absolute -left-1 -bottom-1 w-10 h-10 rounded-full bg-[#924CFE]/45 blur-xl pointer-events-none"
-              />
-            )}
-            <User strokeWidth={2.2} className="relative w-[22px] h-[22px] text-foreground" />
-          </Link>
         </div>
       </div>
     </>
