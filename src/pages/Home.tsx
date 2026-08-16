@@ -93,7 +93,7 @@ const Home = () => {
             // Персик держится почти до правого края и растворяется у самой стрелки
             style={{ background: "linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)" }}
           >
-            <span className="flex-shrink-0 w-14 h-14">
+            <span className="relative flex-shrink-0 w-14 h-14">
               <svg width="56" height="56" viewBox="0 0 56 56" className="-rotate-90">
                 <defs>
                   <linearGradient id="continueArc" x1="0" y1="0" x2="1" y2="1">
@@ -114,6 +114,18 @@ const Home = () => {
                   strokeDashoffset={RING_LENGTH * (1 - courseProgress / 100)}
                 />
               </svg>
+              {/* Процент залит тем же градиентом, что и дуга */}
+              <span
+                className="absolute inset-0 flex items-center justify-center text-[15px] font-bold"
+                style={{
+                  backgroundImage: "linear-gradient(120deg, #FF5C1A, #FFB088)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
+                {courseProgress}%
+              </span>
             </span>
 
             <span className="min-w-0 flex-1 flex flex-col gap-1.5">
