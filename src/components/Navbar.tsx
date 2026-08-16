@@ -47,15 +47,16 @@ const Navbar = () => {
 
   const streakButton = (
     <button className="flex items-center gap-1.5 md:gap-2 text-foreground hover:opacity-80 transition-opacity">
-      <Flame className="w-5 h-5" fill="#F65C39" stroke="#F65C39" />
+      <Flame className="w-6 h-6 md:w-7 md:h-7" fill="#F65C39" stroke="#F65C39" />
       <span className="text-[18px] md:text-[20px] font-semibold">56</span>
     </button>
   );
 
+  // Баланс набран так же, как стрик: иконка и цифра одного размера
   const balanceBlock = (
     <div className="flex items-center gap-1.5 md:gap-2 cursor-pointer hover:opacity-80 transition-opacity">
-      <CrystalIcon className="w-5 h-5 md:w-6 md:h-6" color="#924CFE" />
-      <span className="font-normal text-foreground text-[15px] md:text-base">212,384</span>
+      <CrystalIcon className="w-6 h-6 md:w-7 md:h-7" color="#924CFE" />
+      <span className="text-[18px] md:text-[20px] font-semibold text-foreground">142</span>
     </div>
   );
 
