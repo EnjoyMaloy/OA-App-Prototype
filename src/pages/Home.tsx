@@ -8,11 +8,10 @@ import { categories, courses, getCategoryLabel } from "@/data/courses";
 import { lessonsData, courseProgress, currentLessonIndex } from "@/data/lessons";
 import { pluralRu } from "@/lib/utils";
 
-// Кольцо прогресса: основная дуга и тонкий блик по её внешнему краю
+// Кольцо прогресса: градиентная дуга со свечением поверх трека, разбитого по урокам
 const RING_R = 23;
 const RING_LENGTH = 2 * Math.PI * RING_R;
-const GLOSS_R = 25;
-const GLOSS_LENGTH = 2 * Math.PI * GLOSS_R;
+const SEGMENT_GAP = 5;
 
 const SectionHeader = ({
   title,
@@ -86,51 +85,70 @@ const Home = () => {
           <BannerCarousel />
         </section>
 
-        {/* Continue learning — строка с кольцом прогресса, вся карточка кликабельна */}
+        {/* Continue learning — тёмная карточка: кольцо со свечением, название во всю ширину, действие снизу */}
         <section className="mb-8">
           <SectionHeader title={t("home.continueTitle")} />
-          <button
+          <div
             onClick={() => navigate("/my-courses")}
-            className="w-full flex items-center gap-3.5 rounded-2xl bg-card p-4 text-left hover:brightness-95 transition-all"
+            className="rounded-2xl p-4 cursor-pointer hover:brightness-110 transition-all"
+            style={{ background: "linear-gradient(120deg, #1C1C1E 0%, #33204D 100%)" }}
           >
-            <span className="flex-shrink-0 w-14 h-14">
-              <svg width="56" height="56" viewBox="0 0 56 56" className="-rotate-90">
-                <circle cx="28" cy="28" r={RING_R} fill="none" stroke="hsl(var(--border))" strokeWidth="8" />
-                <circle
-                  cx="28"
-                  cy="28"
-                  r={RING_R}
-                  fill="none"
-                  stroke="hsl(var(--primary))"
-                  strokeWidth="8"
-                  strokeLinecap="round"
-                  strokeDasharray={RING_LENGTH}
-                  strokeDashoffset={RING_LENGTH * (1 - courseProgress / 100)}
-                />
-                {/* Блик: светлая нить по внешнему краю дуги */}
-                <circle
-                  cx="28"
-                  cy="28"
-                  r={GLOSS_R}
-                  fill="none"
-                  stroke="rgba(255,255,255,0.35)"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeDasharray={GLOSS_LENGTH}
-                  strokeDashoffset={GLOSS_LENGTH * (1 - courseProgress / 100)}
-                />
-              </svg>
-            </span>
-
-            <span className="min-w-0 flex-1 flex flex-col gap-1.5">
-              <span className="block text-[17px] font-medium leading-[1.2] text-foreground">
-                {currentLesson.title}
+            <div className="flex items-center gap-3.5">
+              <span className="flex-shrink-0 w-14 h-14">
+                <svg width="56" height="56" viewBox="0 0 56 56" className="-rotate-90">
+                  <defs>
+                    <linearGradient id="continueArc" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stopColor="#A66CFF" />
+                      <stop offset="1" stopColor="#E2D0FF" />
+                    </linearGradient>
+                    <filter id="continueGlow" x="-60%" y="-60%" width="220%" height="220%">
+                      <feDropShadow dx="0" dy="0" stdDeviation="3.2" floodColor="#A66CFF" floodOpacity="0.9" />
+                    </filter>
+                  </defs>
+                  {/* Трек разбит по урокам курса */}
+                  <circle
+                    cx="28"
+                    cy="28"
+                    r={RING_R}
+                    fill="none"
+                    stroke="rgba(255,255,255,0.15)"
+                    strokeWidth="8"
+                    strokeDasharray={`${RING_LENGTH / lessonsData.length - SEGMENT_GAP} ${SEGMENT_GAP}`}
+                  />
+                  <circle
+                    cx="28"
+                    cy="28"
+                    r={RING_R}
+                    fill="none"
+                    stroke="url(#continueArc)"
+                    strokeWidth="8"
+                    strokeLinecap="round"
+                    strokeDasharray={RING_LENGTH}
+                    strokeDashoffset={RING_LENGTH * (1 - courseProgress / 100)}
+                    filter="url(#continueGlow)"
+                  />
+                </svg>
               </span>
-              <span className="block text-[13px] text-muted-foreground">{lessonsLeft}</span>
-            </span>
 
-            <ChevronRight className="w-5 h-5 flex-shrink-0 text-muted-foreground" />
-          </button>
+              <span className="min-w-0 flex-1 flex flex-col gap-1.5">
+                <span className="block text-white text-[17px] font-medium leading-[1.2]">
+                  {currentLesson.title}
+                </span>
+                <span className="block text-[13px] text-white/60">{lessonsLeft}</span>
+              </span>
+            </div>
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate("/my-courses");
+              }}
+              className="mt-3.5 h-9 px-4 rounded-full bg-white text-[14px] font-medium hover:opacity-90 transition-opacity"
+              style={{ color: "#232323" }}
+            >
+              {t("index.continue")}
+            </button>
+          </div>
         </section>
 
         {/* Categories */}
