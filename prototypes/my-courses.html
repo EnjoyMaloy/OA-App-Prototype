@@ -1,0 +1,117 @@
+<title>Мои курсы</title>
+
+<div class="screen stack stack-8">
+
+  <div class="stack stack-2">
+    <h1 class="text-h1">Мои курсы</h1>
+    <p class="text-caption-14">Курсы, к которым у тебя есть доступ</p>
+  </div>
+
+  <!-- Текущий курс: единственный, к которому есть «продолжить» -->
+  <section>
+    <div class="section-head">
+      <h2 class="text-h3">Продолжить</h2>
+    </div>
+    <div class="field">
+      <div class="card" style="background: hsl(var(--background))">
+        <span class="text-caption-12" style="color: hsl(var(--violet-light))">Урок 6 из 8</span>
+        <h3 class="text-h3" style="margin: 6px 0 0">Быстрый старт в Telegram Gifts</h3>
+        <p class="text-body-14" style="margin: 8px 0 0; color: hsl(var(--muted-foreground)); line-height: 1.4">
+          Стратегии торговли на вторичном рынке
+        </p>
+        <div class="row-between" style="margin: 16px 0 8px">
+          <span class="text-body-14" style="color: hsl(var(--muted-foreground))">Пройдено:</span>
+          <span class="text-body-14" style="font-weight: 600">61%</span>
+        </div>
+        <div class="progress"><span style="width: 61%"></span></div>
+        <button class="btn btn--primary btn--block" style="margin-top: 16px">Продолжить</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Остальные доступные курсы -->
+  <section>
+    <div class="section-head">
+      <h2 class="text-h3">Все мои курсы</h2>
+      <span class="text-caption-14">4</span>
+    </div>
+
+    <div class="stack stack-3">
+
+      <button class="card row" style="gap: 12px; text-align: left; border: 0; cursor: pointer; width: 100%">
+        <span style="flex: 0 0 auto; width: 56px; height: 56px; border-radius: 12px; background: hsl(var(--cat-web3-bg))"></span>
+        <span class="grow stack stack-2">
+          <span style="font-size: 16px; font-weight: 500; line-height: 1.2">Быстрый старт в Telegram Gifts</span>
+          <span class="progress" style="height: 4px"><span style="width: 61%"></span></span>
+          <span class="text-caption-12">Пройдено 61% · осталось 3 урока</span>
+        </span>
+      </button>
+
+      <button class="card row" style="gap: 12px; text-align: left; border: 0; cursor: pointer; width: 100%">
+        <span style="flex: 0 0 auto; width: 56px; height: 56px; border-radius: 12px; background: hsl(var(--cat-invest-bg))"></span>
+        <span class="grow stack stack-2">
+          <span style="font-size: 16px; font-weight: 500; line-height: 1.2">2 курс — В подписке без триала</span>
+          <span class="progress" style="height: 4px"><span style="width: 100%"></span></span>
+          <span class="text-caption-12">Завершён · награда получена</span>
+        </span>
+        <span class="chip chip--violet" style="flex: 0 0 auto">Готово</span>
+      </button>
+
+      <button class="card row" style="gap: 12px; text-align: left; border: 0; cursor: pointer; width: 100%">
+        <span style="flex: 0 0 auto; width: 56px; height: 56px; border-radius: 12px; background: hsl(var(--cat-crypto-bg))"></span>
+        <span class="grow stack stack-2">
+          <span style="font-size: 16px; font-weight: 500; line-height: 1.2">3 курс — В подписке с триалом</span>
+          <span class="progress" style="height: 4px"><span style="width: 0%"></span></span>
+          <span class="text-caption-12">Ещё не начат · 6 уроков</span>
+        </span>
+      </button>
+
+      <button class="card row" style="gap: 12px; text-align: left; border: 0; cursor: pointer; width: 100%">
+        <span style="flex: 0 0 auto; width: 56px; height: 56px; border-radius: 12px; background: hsl(var(--cat-tools-bg))"></span>
+        <span class="grow stack stack-2">
+          <span style="font-size: 16px; font-weight: 500; line-height: 1.2">4 курс — Платный без триала</span>
+          <span class="progress" style="height: 4px"><span style="width: 0%"></span></span>
+          <span class="text-caption-12">Ещё не начат · 9 уроков</span>
+        </span>
+      </button>
+
+    </div>
+  </section>
+
+  <button class="btn btn--ghost btn--block">Найти ещё курсы</button>
+
+  <section class="stack stack-3">
+    <h2 class="text-h3">Что решаем</h2>
+    <p class="note">
+      <b>Что попадает в список:</b> бесплатные курсы, купленные поштучно и открытые подпиской.
+      Сейчас в прототипе это courses + purchasedCourses + подписка. Если подписку отменили —
+      курс остаётся в списке или пропадает?
+    </p>
+    <p class="note">
+      <b>Порядок:</b> сначала начатые, потом не начатые, завершённые в конце. Ок?
+    </p>
+    <p class="note">
+      <b>По тапу:</b> карта уроков курса (сейчас это /course/:id/lessons). Блок «Продолжить» ведёт
+      сразу к текущему уроку — или тоже на карту?
+    </p>
+    <p class="note">
+      <b>Пусто:</b> если курсов нет — заголовок, короткая фраза и кнопка «В каталог» вместо списка.
+    </p>
+  </section>
+
+</div>
+
+<nav class="tabbar">
+  <a href="#">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 10l9-7 9 7v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+  </a>
+  <a href="#">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+  </a>
+  <a href="#" aria-current="page">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h7v16H4z"/><path d="M13 4h7v16h-7z"/></svg>
+  </a>
+  <a href="#">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+  </a>
+</nav>
