@@ -35,8 +35,10 @@ const App = () => (
             <div className="flex h-screen">
               <Sidebar />
               <div className="flex-1 min-w-0 flex flex-col">
-                <Navbar />
+                {/* Шапка лежит внутри области прокрутки: так при скрытии она
+                    не оставляет за собой пустую полосу в разметке */}
                 <main className="flex-1 min-w-0 overflow-auto pb-28 md:pb-0">
+                  <Navbar />
                   <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/catalog" element={<Catalog />} />
