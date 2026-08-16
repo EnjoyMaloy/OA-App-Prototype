@@ -98,15 +98,9 @@ const Home = () => {
             />
 
             <div className="relative z-10 bg-background rounded-xl p-4">
-              <span className="text-caption-12 font-medium text-violet-light">
-                {t("index.lesson")} {currentLesson.number}
-              </span>
-              <h3 className="text-[20px] font-normal leading-[110%] text-foreground mt-1.5">
+              <h3 className="text-[20px] font-normal leading-[110%] text-foreground">
                 {currentLesson.title}
               </h3>
-              <p className="text-[14px] leading-[140%] text-muted-foreground mt-1.5">
-                {t("index.title")}
-              </p>
 
               <div className="flex items-center justify-between mt-4 mb-2">
                 <span className="text-[14px] text-muted-foreground">{t("index.completed")}</span>
@@ -119,32 +113,14 @@ const Home = () => {
                 />
               </div>
 
-              <div className="flex items-center gap-3 mt-4">
-                <button
-                  onClick={() => navigate("/my-courses")}
-                  className="flex-1 md:flex-none md:w-[260px] inline-flex items-center justify-center gap-2 text-[16px] font-medium tracking-[0.01em] hover:opacity-90 transition-opacity"
-                  style={{ background: "#232323", color: "#FFFFFF", borderRadius: 12, height: 52 }}
-                >
-                  <Play className="w-4 h-4" fill="#FFFFFF" />
-                  {t("index.continue")}
-                </button>
-                <div className="flex flex-col items-end flex-shrink-0" style={{ gap: 6 }}>
-                  <span className="text-[14px] leading-[100%] text-muted-foreground">
-                    {t("index.reward")}
-                  </span>
-                  <div className="flex items-center" style={{ gap: 6 }}>
-                    <span
-                      className="inline-flex items-center justify-center rounded-full text-[11px] font-bold"
-                      style={{ width: 22, height: 22, background: "#FF7D60", color: "#FFFFFF" }}
-                    >
-                      S
-                    </span>
-                    <span className="text-[22px] font-semibold leading-[100%] tracking-[-0.01em] text-foreground">
-                      {currentLesson.reward.toLocaleString()}
-                    </span>
-                  </div>
-                </div>
-              </div>
+              <button
+                onClick={() => navigate("/my-courses")}
+                className="w-full md:w-[260px] mt-4 inline-flex items-center justify-center gap-2 text-[16px] font-medium tracking-[0.01em] hover:opacity-90 transition-opacity"
+                style={{ background: "#232323", color: "#FFFFFF", borderRadius: 12, height: 52 }}
+              >
+                <Play className="w-4 h-4" fill="#FFFFFF" />
+                {t("index.continue")}
+              </button>
             </div>
           </div>
         </section>
