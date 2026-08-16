@@ -36,6 +36,16 @@ const BottomNav = () => {
     if (searchOpen) inputRef.current?.focus();
   }, [searchOpen]);
 
+  // Кнопка поиска в шапке каталога открывает то же поле
+  useEffect(() => {
+    const handler = () => {
+      setQuery(new URLSearchParams(window.location.search).get("q") ?? "");
+      setSearchOpen(true);
+    };
+    window.addEventListener("open-search", handler);
+    return () => window.removeEventListener("open-search", handler);
+  }, []);
+
   // Поиск живёт в каталоге: кнопка уводит туда и разворачивает поле на месте меню
   const openSearch = () => {
     setQuery(new URLSearchParams(location.search).get("q") ?? "");

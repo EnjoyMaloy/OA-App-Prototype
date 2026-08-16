@@ -58,6 +58,9 @@ const translations = {
   "catalog.subtitle": { ru: "Выбери категорию и подбери подходящие курсы для твоих интересов", en: "Choose a category and find courses that match your interests" },
   "catalog.categories": { ru: "Категории", en: "Categories" },
   "catalog.searchFor": { ru: "Поиск:", en: "Search:" },
+  "catalog.seeAll": { ru: "Посмотреть всё", en: "See all" },
+  "catalog.allCourses": { ru: "Все курсы", en: "All courses" },
+  "catalog.results": { ru: "Результаты", en: "Results" },
   "nav.searchCourse": { ru: "Найти курс...", en: "Find a course..." },
   // Home screen
   "home.greeting": { ru: "Привет!", en: "Hi there!" },
