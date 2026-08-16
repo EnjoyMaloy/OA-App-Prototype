@@ -1,0 +1,348 @@
+<title>Градиент дуги · светлая</title>
+
+<style>
+  .cont { position: relative; width: 100%; padding: 16px; border-radius: 16px; cursor: pointer }
+  .cont__row { display: flex; align-items: center; gap: 14px }
+  .cont__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px }
+  .cont__title { font-size: 17px; font-weight: 500; line-height: 1.2; color: #202020 }
+  .cont__foot { display: flex; align-items: center; justify-content: space-between; gap: 12px }
+  .cont__sub { font-size: 13px; color: rgba(32,32,32,.55) }
+  .ring { flex: 0 0 auto; position: relative }
+  .ring svg { transform: rotate(-90deg) }
+  .pill { flex: 0 0 auto; height: 32px; padding: 0 14px; border-radius: 999px; font-size: 13px; font-weight: 500; border: 0; white-space: nowrap; cursor: pointer }
+  .variant { display: flex; flex-direction: column; gap: 10px }
+  .variant__cap { font-size: 13px; color: hsl(var(--muted-foreground)) }
+  .variant h2 { font-size: 17px; font-weight: 600; margin: 0 }
+</style>
+
+<div class="screen stack stack-8">
+
+  <div class="stack stack-2">
+    <h1 class="text-h1">Градиент дуги · 20</h1>
+    <p class="text-caption-14">Светлая карточка, формат прежний. Меняется только градиент прогресса — пары и цвета из брендбука Open Academy.</p>
+  </div>
+
+  <section class="variant">
+    <h2>G1. Purple → Orange</h2>
+    <p class="variant__cap">Первая рекомендованная пара брендбука.</p>
+    <div class="cont" style="background:#FFFFFF">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A66CFF"/><stop offset="1" stop-color="#FF8645"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(32,32,32,.12)" stroke-width="8" stroke-dasharray="13.06 5"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>G2. Orange → Purple</h2>
+    <p class="variant__cap">Та же пара в обратном направлении: к финишу дуга уходит в фиолетовый.</p>
+    <div class="cont" style="background:#FFFFFF">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8645"/><stop offset="1" stop-color="#A66CFF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(32,32,32,.12)" stroke-width="8" stroke-dasharray="13.06 5"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#g2)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>G3. Pink → Yellow</h2>
+    <p class="variant__cap">Вторая пара: розовый в жёлтый.</p>
+    <div class="cont" style="background:#FFFFFF">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF96C8"/><stop offset="1" stop-color="#FFDD31"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(32,32,32,.12)" stroke-width="8" stroke-dasharray="13.06 5"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#g3)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>G4. Yellow → Pink</h2>
+    <p class="variant__cap">Она же наоборот — старт тёплый, финиш розовый.</p>
+    <div class="cont" style="background:#FFFFFF">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFDD31"/><stop offset="1" stop-color="#FF96C8"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(32,32,32,.12)" stroke-width="8" stroke-dasharray="13.06 5"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#g4)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>G5. Blue → Lime</h2>
+    <p class="variant__cap">Третья пара: небо в лайм.</p>
+    <div class="cont" style="background:#FFFFFF">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#88C5FD"/><stop offset="1" stop-color="#CCEF40"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(32,32,32,.12)" stroke-width="8" stroke-dasharray="13.06 5"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#g5)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>G6. Lime → Blue</h2>
+    <p class="variant__cap">Та же пара в обратную сторону.</p>
+    <div class="cont" style="background:#FFFFFF">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="g6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#CCEF40"/><stop offset="1" stop-color="#88C5FD"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(32,32,32,.12)" stroke-width="8" stroke-dasharray="13.06 5"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#g6)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>G7. Монохром фиолетовый</h2>
+    <p class="variant__cap">От тёмного оттенка OA Purple к светлому — спокойнее цветных пар.</p>
+    <div class="cont" style="background:#FFFFFF">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="g7" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8B3DFF"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(32,32,32,.12)" stroke-width="8" stroke-dasharray="13.06 5"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#g7)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>G8. Фиолетовый → розовый</h2>
+    <p class="variant__cap">Соседние цвета палитры: переход почти незаметен, но живой.</p>
+    <div class="cont" style="background:#FFFFFF">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="g8" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8B3DFF"/><stop offset="1" stop-color="#FF96C8"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(32,32,32,.12)" stroke-width="8" stroke-dasharray="13.06 5"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#g8)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>G9. Фиолетовый → голубой</h2>
+    <p class="variant__cap">Холодная связка внутри бренда.</p>
+    <div class="cont" style="background:#FFFFFF">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="g9" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A66CFF"/><stop offset="1" stop-color="#88C5FD"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(32,32,32,.12)" stroke-width="8" stroke-dasharray="13.06 5"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#g9)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>G10. Фиолетовый → лайм</h2>
+    <p class="variant__cap">Максимальный контраст палитры.</p>
+    <div class="cont" style="background:#FFFFFF">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="g10" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8B3DFF"/><stop offset="1" stop-color="#CCEF40"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(32,32,32,.12)" stroke-width="8" stroke-dasharray="13.06 5"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#g10)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>G11. Оранжевый → жёлтый</h2>
+    <p class="variant__cap">Тёплая связка: дуга светлеет к концу.</p>
+    <div class="cont" style="background:#FFFFFF">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="g11" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFDD31"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(32,32,32,.12)" stroke-width="8" stroke-dasharray="13.06 5"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#g11)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>G12. Три стопа: фиолет → розовый → оранжевый</h2>
+    <p class="variant__cap">Плавный проход по тёплой части палитры.</p>
+    <div class="cont" style="background:#FFFFFF">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="g12" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8B3DFF"/><stop offset="0.55" stop-color="#FF96C8"/><stop offset="1" stop-color="#FF8645"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(32,32,32,.12)" stroke-width="8" stroke-dasharray="13.06 5"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#g12)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>G13. Три стопа: голубой → лайм → жёлтый</h2>
+    <p class="variant__cap">Холод переходит в тепло через лайм.</p>
+    <div class="cont" style="background:#FFFFFF">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="g13" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4BA6F5"/><stop offset="0.5" stop-color="#CCEF40"/><stop offset="1" stop-color="#FFDD31"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(32,32,32,.12)" stroke-width="8" stroke-dasharray="13.06 5"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#g13)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>G14. Purple → Orange со свечением</h2>
+    <p class="variant__cap">Фирменная пара плюс ореол.</p>
+    <div class="cont" style="background:#FFFFFF">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="g14" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A66CFF"/><stop offset="1" stop-color="#FF8645"/></linearGradient><filter id="g14f" x="-60%" y="-60%" width="220%" height="220%"><feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#A66CFF" flood-opacity=".8"/></filter></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(32,32,32,.12)" stroke-width="8" stroke-dasharray="13.06 5"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#g14)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4" filter="url(#g14f)"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>G15. Светлый трек под градиентом</h2>
+    <p class="variant__cap">Разметка уроков в бледно-фиолетовом.</p>
+    <div class="cont" style="background:#FFFFFF">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="g15" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8B3DFF"/><stop offset="1" stop-color="#FF8645"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(166,108,255,.22)" stroke-width="8" stroke-dasharray="13.06 5"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#g15)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>G16. Тёплый фон</h2>
+    <p class="variant__cap">Тот же градиент на Warm Neutral вместо белого.</p>
+    <div class="cont" style="background:#FFFCF5">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="g16" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A66CFF"/><stop offset="1" stop-color="#FF8645"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(32,32,32,.12)" stroke-width="8" stroke-dasharray="13.06 5"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#g16)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>G17. Две дуги встык</h2>
+    <p class="variant__cap">Половина пути одним цветом, половина другим — имитация конического перехода.</p>
+    <div class="cont" style="background:#FFFFFF">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(32,32,32,.12)" stroke-width="8" stroke-dasharray="13.06 5"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="#FF8645" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="#8B3DFF" stroke-width="8" stroke-linecap="round" stroke-dasharray="44.1 145"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>G18. Радуга по палитре</h2>
+    <p class="variant__cap">Пять брендовых цветов вдоль дуги.</p>
+    <div class="cont" style="background:#FFFFFF">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="g18" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A66CFF"/><stop offset="0.25" stop-color="#FF96C8"/><stop offset="0.5" stop-color="#FF8645"/><stop offset="0.75" stop-color="#FFDD31"/><stop offset="1" stop-color="#CCEF40"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(32,32,32,.12)" stroke-width="8" stroke-dasharray="13.06 5"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#g18)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>G19. Толстая дуга</h2>
+    <p class="variant__cap">10px: градиент читается заметно сильнее.</p>
+    <div class="cont" style="background:#FFFFFF">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="g19" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8B3DFF"/><stop offset="1" stop-color="#FF8645"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="22" fill="none" stroke="rgba(32,32,32,.12)" stroke-width="10" stroke-dasharray="12.28 5"/><circle cx="28.0" cy="28.0" r="22" fill="none" stroke="url(#g19)" stroke-width="10" stroke-linecap="round" stroke-dasharray="138.2" stroke-dashoffset="53.9"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>G20. Тонкая дуга</h2>
+    <p class="variant__cap">5px: цвет звучит тише, кольцо становится деталью.</p>
+    <div class="cont" style="background:#FFFFFF">
+      <div class="cont__row">
+        <span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="g20" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8B3DFF"/><stop offset="1" stop-color="#FF8645"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="25" fill="none" stroke="rgba(32,32,32,.12)" stroke-width="5" stroke-dasharray="15.63 4"/><circle cx="28.0" cy="28.0" r="25" fill="none" stroke="url(#g20)" stroke-width="5" stroke-linecap="round" stroke-dasharray="157.1" stroke-dashoffset="61.3"/></svg></span>
+        <div class="cont__body">
+          <span class="cont__title">Стратегии торговли на вторичном рынке</span>
+          <div class="cont__foot">
+            <span class="cont__sub">Осталось 2 урока</span>
+            <button class="pill" style="background:#202020;color:#fff">Продолжить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="note">Скажи код — поставлю в приложение. Если ни один не идеален, назови два соседних, сведу промежуточный.</p>
+
+</div>
