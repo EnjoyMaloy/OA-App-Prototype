@@ -47,22 +47,15 @@ const Navbar = () => {
 
   const streakButton = (
     <button className="flex items-center gap-1.5 md:gap-2 text-foreground hover:opacity-80 transition-opacity">
-      <Flame className="w-5 h-5" style={{ color: "#F65C39" }} />
+      <Flame className="w-5 h-5" fill="#F65C39" stroke="#F65C39" />
       <span className="text-[18px] md:text-[20px] font-semibold">56</span>
     </button>
   );
 
   const balanceBlock = (
-    <div className="flex items-center bg-muted border border-border rounded-[10px] gap-1.5 md:gap-3 cursor-pointer hover:brightness-95 transition-all h-9 px-2 md:h-12 md:px-4">
-      <div className="flex items-center gap-1 md:gap-2">
-        <CrystalIcon className="w-[18px] h-[18px] md:w-6 md:h-6" color="#924CFE" />
-        <span className="font-normal text-foreground text-[13px] md:text-base">212,384</span>
-      </div>
-      <div className="w-px h-3 md:h-4 bg-border" />
-      <div className="flex items-center gap-1 md:gap-2">
-        <CrystalIcon className="w-[18px] h-[18px] md:w-6 md:h-6" color="#FF7D60" />
-        <span className="font-normal text-foreground text-[13px] md:text-base">2,126,771</span>
-      </div>
+    <div className="flex items-center gap-1.5 md:gap-2 cursor-pointer hover:opacity-80 transition-opacity">
+      <CrystalIcon className="w-5 h-5 md:w-6 md:h-6" color="#924CFE" />
+      <span className="font-normal text-foreground text-[15px] md:text-base">212,384</span>
     </div>
   );
 
