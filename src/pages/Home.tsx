@@ -3,6 +3,7 @@ import { ChevronRight, Play } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { usePurchaseStore } from "@/hooks/usePurchaseStore";
 import CourseCard from "@/components/CourseCard";
+import BannerCarousel from "@/components/BannerCarousel";
 import { categories, courses, getCategoryLabel } from "@/data/courses";
 import { lessonsData, courseProgress, currentLessonIndex } from "@/data/lessons";
 
@@ -69,10 +70,15 @@ const Home = () => {
     <div className="min-h-screen bg-background">
       <div className="max-w-6xl mx-auto px-4 py-6 md:py-10">
         {/* Greeting */}
-        <div className="mb-6">
+        <div className="mb-5">
           <h1 className="text-h1 text-foreground mb-2">{t("home.greeting")}</h1>
           <p className="text-[16px] text-muted-foreground">{t("home.subtitle")}</p>
         </div>
+
+        {/* Промо-баннеры */}
+        <section className="mb-8">
+          <BannerCarousel />
+        </section>
 
         {/* Continue learning */}
         <section className="mb-8">
