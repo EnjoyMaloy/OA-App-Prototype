@@ -40,27 +40,36 @@ const BannerCarousel = () => {
           <button
             key={banner.id}
             onClick={() => navigate(banner.to)}
-            className="relative flex-shrink-0 snap-center w-full h-[164px] rounded-[20px] overflow-hidden text-left p-4 pr-28"
-            style={{ background: banner.background }}
+            className={`relative flex-shrink-0 snap-center w-full h-[164px] rounded-[20px] overflow-hidden text-left ${
+              banner.imageFull ? "" : "p-4 pr-28"
+            }`}
+            style={banner.background ? { background: banner.background } : undefined}
           >
-            <img
-              src={banner.image}
-              alt=""
-              aria-hidden
-              className="absolute -right-3 -bottom-3 w-32 h-32 object-contain pointer-events-none"
-            />
-            <span className="relative flex flex-col h-full justify-between">
-              <span className="block text-[12px] font-medium uppercase tracking-[0.06em] text-white/75">
-                {lang === "ru" ? banner.eyebrowRu : banner.eyebrowEn}
-              </span>
-              <span className="block text-white text-[20px] font-medium leading-[1.15] line-clamp-3">
-                {lang === "ru" ? banner.titleRu : banner.titleEn}
-              </span>
-              <span className="inline-flex items-center gap-0.5 text-[14px] font-medium text-white">
-                {lang === "ru" ? banner.ctaRu : banner.ctaEn}
-                <ChevronRight className="w-4 h-4" />
-              </span>
-            </span>
+            {banner.imageFull ? (
+              // Готовый макет: показываем как есть, ничего сверху не накладываем
+              <img src={banner.imageFull} alt="" className="absolute inset-0 w-full h-full object-cover" />
+            ) : (
+              <>
+                <img
+                  src={banner.image}
+                  alt=""
+                  aria-hidden
+                  className="absolute -right-3 -bottom-3 w-32 h-32 object-contain pointer-events-none"
+                />
+                <span className="relative flex flex-col h-full justify-between">
+                  <span className="block text-[12px] font-medium uppercase tracking-[0.06em] text-white/75">
+                    {lang === "ru" ? banner.eyebrowRu : banner.eyebrowEn}
+                  </span>
+                  <span className="block text-white text-[20px] font-medium leading-[1.15] line-clamp-3">
+                    {lang === "ru" ? banner.titleRu : banner.titleEn}
+                  </span>
+                  <span className="inline-flex items-center gap-0.5 text-[14px] font-medium text-white">
+                    {lang === "ru" ? banner.ctaRu : banner.ctaEn}
+                    <ChevronRight className="w-4 h-4" />
+                  </span>
+                </span>
+              </>
+            )}
           </button>
         ))}
       </div>

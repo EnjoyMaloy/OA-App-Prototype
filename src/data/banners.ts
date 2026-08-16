@@ -1,23 +1,31 @@
 import imgCoin from "@/assets/3d-coin.png";
 import imgRocket from "@/assets/3d-rocket.png";
 import imgNft from "@/assets/3d-nft.png";
+import bannerOpenClaw from "@/assets/banner-openclaw.jpg";
+import bannerIllustrator from "@/assets/banner-illustrator.jpg";
+import bannerCard from "@/assets/banner-card.jpg";
 
 export interface Banner {
   id: string;
-  eyebrowRu: string;
-  eyebrowEn: string;
-  titleRu: string;
-  titleEn: string;
-  ctaRu: string;
-  ctaEn: string;
   /** Куда ведёт баннер */
   to: string;
-  background: string;
-  /** 3D-объект справа; лежит в проекте, поэтому виден и без сети */
-  image: string;
+  /** Готовый баннер картинкой: текст уже внутри, поверх ничего не рисуем */
+  imageFull?: string;
+  /** Поля ниже нужны только баннерам, которые собираются версткой */
+  eyebrowRu?: string;
+  eyebrowEn?: string;
+  titleRu?: string;
+  titleEn?: string;
+  ctaRu?: string;
+  ctaEn?: string;
+  background?: string;
+  image?: string;
 }
 
 export const banners: Banner[] = [
+  { id: "openclaw", to: "/catalog", imageFull: bannerOpenClaw },
+  { id: "illustrator", to: "/catalog", imageFull: bannerIllustrator },
+  { id: "payment-card", to: "/catalog", imageFull: bannerCard },
   {
     id: "premium",
     eyebrowRu: "Премиум",
