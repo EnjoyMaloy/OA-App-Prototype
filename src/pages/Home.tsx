@@ -90,7 +90,8 @@ const Home = () => {
           <button
             onClick={() => navigate("/my-courses")}
             className="w-full flex items-center gap-3.5 rounded-2xl p-4 text-left hover:brightness-[0.98] transition-all"
-            style={{ background: "linear-gradient(120deg, #FFEDE3 0%, #FFFFFF 75%)" }}
+            // Персик держится почти до правого края и растворяется у самой стрелки
+            style={{ background: "linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)" }}
           >
             <span className="flex-shrink-0 w-14 h-14">
               <svg width="56" height="56" viewBox="0 0 56 56" className="-rotate-90">
