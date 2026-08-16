@@ -1,12 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import { ChevronRight, Play } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { usePurchaseStore } from "@/hooks/usePurchaseStore";
 import CourseCard from "@/components/CourseCard";
 import BannerCarousel from "@/components/BannerCarousel";
-import continueCover from "@/assets/continue-cover.jpg";
 import { categories, courses, getCategoryLabel } from "@/data/courses";
 import { lessonsData, courseProgress, currentLessonIndex } from "@/data/lessons";
+import { pluralRu } from "@/lib/utils";
+
+// Длина окружности кольца прогресса: r = 24
+const RING_LENGTH = 2 * Math.PI * 24;
 
 const SectionHeader = ({
   title,
@@ -37,6 +40,11 @@ const Home = () => {
   const store = usePurchaseStore();
 
   const currentLesson = lessonsData[currentLessonIndex];
+  const lessonsRemaining = lessonsData.filter((l) => l.progress < 100).length;
+  const lessonsLeft =
+    lang === "ru"
+      ? `Осталось ${lessonsRemaining} ${pluralRu(lessonsRemaining, ["урок", "урока", "уроков"])}`
+      : `${lessonsRemaining} ${lessonsRemaining === 1 ? "lesson" : "lessons"} left`;
   const newCourses = courses.filter((c) => c.isNew);
   const trendingCourses = courses.filter((c) => c.trending);
 
@@ -75,51 +83,41 @@ const Home = () => {
           <BannerCarousel />
         </section>
 
-        {/* Continue learning — афиша: обложка курса на весь блок, подписи поверх затемнения */}
+        {/* Continue learning — строка с кольцом прогресса, вся карточка кликабельна */}
         <section className="mb-8">
           <SectionHeader title={t("home.continueTitle")} />
           <button
             onClick={() => navigate("/my-courses")}
-            className="group relative w-full h-[220px] md:h-[280px] rounded-2xl overflow-hidden text-left"
+            className="w-full flex items-center gap-3.5 rounded-2xl bg-card p-4 text-left hover:brightness-95 transition-all"
           >
-            <img
-              src={continueCover}
-              alt=""
-              aria-hidden
-              className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
-            />
-            <span
-              className="absolute inset-0"
-              style={{
-                // Обложка светлая, поэтому затемнение плотнее обычного
-                background:
-                  "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.78) 42%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0) 100%)",
-              }}
-            />
-
-            <span className="absolute inset-x-0 bottom-0 p-4 flex flex-col gap-2.5">
-              <span
-                className="block text-white text-[20px] font-medium leading-[1.15]"
-                style={{ textShadow: "0 1px 12px rgba(0,0,0,0.45)" }}
-              >
-                {currentLesson.title}
-              </span>
-              <span className="block h-1.5 w-full rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.3)" }}>
-                <span className="block h-full rounded-full bg-white" style={{ width: `${courseProgress}%` }} />
-              </span>
-              <span
-                className="inline-flex items-center justify-center gap-2 h-11 rounded-xl text-white text-[16px] font-medium"
-                style={{
-                  background: "rgba(255,255,255,0.22)",
-                  backdropFilter: "blur(12px)",
-                  WebkitBackdropFilter: "blur(12px)",
-                  border: "1px solid rgba(255,255,255,0.25)",
-                }}
-              >
-                <Play className="w-4 h-4" fill="#FFFFFF" />
-                {t("index.continue")} · {courseProgress}%
+            <span className="relative flex-shrink-0 w-14 h-14">
+              <svg width="56" height="56" viewBox="0 0 56 56" className="-rotate-90">
+                <circle cx="28" cy="28" r="24" fill="none" stroke="hsl(var(--border))" strokeWidth="5" />
+                <circle
+                  cx="28"
+                  cy="28"
+                  r="24"
+                  fill="none"
+                  stroke="#924CFE"
+                  strokeWidth="5"
+                  strokeLinecap="round"
+                  strokeDasharray={RING_LENGTH}
+                  strokeDashoffset={RING_LENGTH * (1 - courseProgress / 100)}
+                />
+              </svg>
+              <span className="absolute inset-0 flex items-center justify-center text-[14px] font-semibold text-foreground">
+                {courseProgress}%
               </span>
             </span>
+
+            <span className="min-w-0 flex-1 flex flex-col gap-1.5">
+              <span className="block text-[17px] font-medium leading-[1.2] text-foreground">
+                {currentLesson.title}
+              </span>
+              <span className="block text-[13px] text-muted-foreground">{lessonsLeft}</span>
+            </span>
+
+            <ChevronRight className="w-5 h-5 flex-shrink-0 text-muted-foreground" />
           </button>
         </section>
 
