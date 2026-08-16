@@ -113,7 +113,7 @@ const Home = () => {
                   cy="28"
                   r={GLOSS_R}
                   fill="none"
-                  stroke="rgba(255,255,255,0.55)"
+                  stroke="rgba(255,255,255,0.35)"
                   strokeWidth="1.5"
                   strokeLinecap="round"
                   strokeDasharray={GLOSS_LENGTH}
