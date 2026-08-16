@@ -10,22 +10,20 @@ export interface CategoryItem {
   id: string;
   labelRu: string;
   labelEn: string;
-  countRu: string;
-  countEn: string;
-  countColor: string;
+  labelColor: string;
   icon: React.ElementType;
   iconColor: string;
   bg: string;
 }
 
 export const categories: CategoryItem[] = [
-  { id: "ai", labelRu: "AI-навыки", labelEn: "AI Skills", countRu: "Скоро", countEn: "Soon", countColor: "hsl(var(--cat-ai))", icon: Sparkles, iconColor: "hsl(var(--cat-ai-icon))", bg: "hsl(var(--cat-ai-bg))" },
-  { id: "crypto", labelRu: "Основы\nкрипты", labelEn: "Crypto\nBasics", countRu: "2 курса", countEn: "2 courses", countColor: "hsl(var(--cat-crypto))", icon: Bitcoin, iconColor: "hsl(var(--cat-crypto))", bg: "hsl(var(--cat-crypto-bg))" },
-  { id: "security", labelRu: "Безопасность", labelEn: "Security", countRu: "1 курс", countEn: "1 course", countColor: "hsl(var(--cat-security))", icon: ShieldCheck, iconColor: "hsl(var(--cat-security))", bg: "hsl(var(--cat-security-bg))" },
-  { id: "trading", labelRu: "Трейдинг", labelEn: "Trading", countRu: "3 курса", countEn: "3 courses", countColor: "hsl(var(--cat-ai))", icon: BarChart3, iconColor: "hsl(var(--cat-trading-icon))", bg: "hsl(var(--cat-trading-bg))" },
-  { id: "invest", labelRu: "Инвестиции", labelEn: "Investments", countRu: "4 курса", countEn: "4 courses", countColor: "hsl(var(--cat-invest))", icon: PieChart, iconColor: "hsl(var(--cat-invest))", bg: "hsl(var(--cat-invest-bg))" },
-  { id: "web3", labelRu: "Web3 и DeFi", labelEn: "Web3 & DeFi", countRu: "4 курса", countEn: "4 courses", countColor: "hsl(var(--cat-web3))", icon: Snowflake, iconColor: "hsl(var(--cat-web3))", bg: "hsl(var(--cat-web3-bg))" },
-  { id: "tools", labelRu: "Инструменты", labelEn: "Tools", countRu: "1 курс", countEn: "1 course", countColor: "hsl(var(--cat-tools))", icon: Wrench, iconColor: "hsl(var(--cat-tools))", bg: "hsl(var(--cat-tools-bg))" },
+  { id: "ai", labelRu: "AI-навыки", labelEn: "AI Skills", labelColor: "hsl(var(--cat-ai))", icon: Sparkles, iconColor: "hsl(var(--cat-ai-icon))", bg: "hsl(var(--cat-ai-bg))" },
+  { id: "crypto", labelRu: "Основы\nкрипты", labelEn: "Crypto\nBasics", labelColor: "hsl(var(--cat-crypto))", icon: Bitcoin, iconColor: "hsl(var(--cat-crypto))", bg: "hsl(var(--cat-crypto-bg))" },
+  { id: "security", labelRu: "Безопасность", labelEn: "Security", labelColor: "hsl(var(--cat-security))", icon: ShieldCheck, iconColor: "hsl(var(--cat-security))", bg: "hsl(var(--cat-security-bg))" },
+  { id: "trading", labelRu: "Трейдинг", labelEn: "Trading", labelColor: "hsl(var(--cat-ai))", icon: BarChart3, iconColor: "hsl(var(--cat-trading-icon))", bg: "hsl(var(--cat-trading-bg))" },
+  { id: "invest", labelRu: "Инвестиции", labelEn: "Investments", labelColor: "hsl(var(--cat-invest))", icon: PieChart, iconColor: "hsl(var(--cat-invest))", bg: "hsl(var(--cat-invest-bg))" },
+  { id: "web3", labelRu: "Web3 и DeFi", labelEn: "Web3 & DeFi", labelColor: "hsl(var(--cat-web3))", icon: Snowflake, iconColor: "hsl(var(--cat-web3))", bg: "hsl(var(--cat-web3-bg))" },
+  { id: "tools", labelRu: "Инструменты", labelEn: "Tools", labelColor: "hsl(var(--cat-tools))", icon: Wrench, iconColor: "hsl(var(--cat-tools))", bg: "hsl(var(--cat-tools-bg))" },
 ];
 
 export interface CourseData {

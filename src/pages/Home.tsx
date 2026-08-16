@@ -159,16 +159,14 @@ const Home = () => {
                   className="flex-shrink-0 flex flex-col justify-between rounded-2xl p-3 transition-all hover:scale-[1.03]"
                   style={{ background: cat.bg, width: 116, height: 116 }}
                 >
-                  <Icon style={{ color: cat.iconColor }} className="w-6 h-6" />
+                  <Icon style={{ color: cat.iconColor }} className="w-9 h-9" />
                   <div className="text-left w-full">
-                    <span className="text-[14px] font-medium leading-[1.15] text-foreground block whitespace-pre-line">
-                      {label}
-                    </span>
+                    {/* Название категории живёт в акцентном цвете самой категории */}
                     <span
-                      className="text-[12px] font-medium mt-1 block"
-                      style={{ color: cat.countColor }}
+                      className="text-[14px] font-medium leading-[1.15] block whitespace-pre-line"
+                      style={{ color: cat.labelColor }}
                     >
-                      {lang === "ru" ? cat.countRu : cat.countEn}
+                      {label}
                     </span>
                   </div>
                 </button>
