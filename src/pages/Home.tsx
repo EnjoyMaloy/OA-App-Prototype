@@ -4,6 +4,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { usePurchaseStore } from "@/hooks/usePurchaseStore";
 import CourseCard from "@/components/CourseCard";
 import BannerCarousel from "@/components/BannerCarousel";
+import continueCover from "@/assets/continue-cover.jpg";
 import { categories, courses, getCategoryLabel } from "@/data/courses";
 import { lessonsData, courseProgress, currentLessonIndex } from "@/data/lessons";
 
@@ -77,52 +78,52 @@ const Home = () => {
           <BannerCarousel />
         </section>
 
-        {/* Continue learning */}
+        {/* Continue learning — афиша: обложка курса на весь блок, подписи поверх затемнения */}
         <section className="mb-8">
           <SectionHeader title={t("home.continueTitle")} />
-          <div
-            className="relative rounded-2xl overflow-hidden p-4"
-            style={{
-              background:
-                "linear-gradient(180deg, hsl(270 60% 88% / 0.7) 0%, hsl(270 70% 85% / 1) 50%, hsl(270 60% 88% / 0.7) 100%)",
-            }}
+          <button
+            onClick={() => navigate("/my-courses")}
+            className="group relative w-full h-[220px] md:h-[280px] rounded-2xl overflow-hidden text-left"
           >
-            {/* Dot pattern — same texture as the lesson map */}
-            <div
-              className="absolute inset-0 opacity-15 pointer-events-none"
+            <img
+              src={continueCover}
+              alt=""
+              aria-hidden
+              className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
+            />
+            <span
+              className="absolute inset-0"
               style={{
-                backgroundImage:
-                  "radial-gradient(circle, hsl(var(--violet-primary) / 0.3) 1px, transparent 1px)",
-                backgroundSize: "16px 16px",
+                // Обложка светлая, поэтому затемнение плотнее обычного
+                background:
+                  "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.78) 42%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0) 100%)",
               }}
             />
 
-            <div className="relative z-10 bg-background rounded-xl p-4">
-              <h3 className="text-[20px] font-normal leading-[110%] text-foreground">
+            <span className="absolute inset-x-0 bottom-0 p-4 flex flex-col gap-2.5">
+              <span
+                className="block text-white text-[20px] font-medium leading-[1.15]"
+                style={{ textShadow: "0 1px 12px rgba(0,0,0,0.45)" }}
+              >
                 {currentLesson.title}
-              </h3>
-
-              <div className="flex items-center justify-between mt-4 mb-2">
-                <span className="text-[14px] text-muted-foreground">{t("index.completed")}</span>
-                <span className="text-[14px] font-semibold text-foreground">{courseProgress}%</span>
-              </div>
-              <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-primary rounded-full transition-all"
-                  style={{ width: `${courseProgress}%` }}
-                />
-              </div>
-
-              <button
-                onClick={() => navigate("/my-courses")}
-                className="w-full md:w-[260px] mt-4 inline-flex items-center justify-center gap-2 text-[16px] font-medium tracking-[0.01em] hover:opacity-90 transition-opacity"
-                style={{ background: "#232323", color: "#FFFFFF", borderRadius: 12, height: 52 }}
+              </span>
+              <span className="block h-1.5 w-full rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.3)" }}>
+                <span className="block h-full rounded-full bg-white" style={{ width: `${courseProgress}%` }} />
+              </span>
+              <span
+                className="inline-flex items-center justify-center gap-2 h-11 rounded-xl text-white text-[16px] font-medium"
+                style={{
+                  background: "rgba(255,255,255,0.22)",
+                  backdropFilter: "blur(12px)",
+                  WebkitBackdropFilter: "blur(12px)",
+                  border: "1px solid rgba(255,255,255,0.25)",
+                }}
               >
                 <Play className="w-4 h-4" fill="#FFFFFF" />
-                {t("index.continue")}
-              </button>
-            </div>
-          </div>
+                {t("index.continue")} · {courseProgress}%
+              </span>
+            </span>
+          </button>
         </section>
 
         {/* Categories */}
