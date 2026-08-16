@@ -1,0 +1,180 @@
+<title>Тёмный блок · 30</title>
+
+<style>
+  .cont { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; border: 0; cursor: pointer; padding: 16px; border-radius: 16px; }
+  .cont__title { font-size: 17px; font-weight: 500; line-height: 1.2 }
+  .cont__sub { font-size: 13px }
+  .cont__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px }
+  .chev { flex: 0 0 auto; font-size: 22px; color: rgba(255,255,255,.5); line-height: 1 }
+  .ring { flex: 0 0 auto; position: relative }
+  .ring svg { transform: rotate(-90deg) }
+  .ring__label { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-weight: 600 }
+  .pill { flex: 0 0 auto; height: 40px; padding: 0 18px; border-radius: 999px; background: hsl(var(--primary)); color: #fff; font-size: 15px; font-weight: 500; display: flex; align-items: center; white-space: nowrap; border: 0 }
+  .play { flex: 0 0 auto; width: 44px; height: 44px; border-radius: 999px; background: hsl(var(--primary)); color: #fff; display: flex; align-items: center; justify-content: center }
+  .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #C9A6FF }
+  .variant { display: flex; flex-direction: column; gap: 10px }
+  .variant__cap { font-size: 13px; color: hsl(var(--muted-foreground)) }
+  .variant h2 { font-size: 17px; font-weight: 600; margin: 0 }
+</style>
+
+<div class="screen stack stack-8">
+
+  <div class="stack stack-2">
+    <h1 class="text-h1">Тёмная карточка · 30</h1>
+    <p class="text-caption-14">Тёмный блок с градиентной дугой и треком, размеченным по урокам. Везде 61 % курса, пятый урок из восьми.</p>
+  </div>
+
+  <section class="variant">
+    <h2>E1. Базовая комбинация</h2>
+    <p class="variant__cap">Графит, градиентная дуга, трек размечен по восьми урокам.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge1)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E2. Дуга по сегментам</h2>
+    <p class="variant__cap">Пройденные уроки — отдельными штрихами, а не сплошной дугой.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge2)" stroke-width="8" stroke-linecap="round" stroke-dasharray="13.06 5.00 13.06 5.00 13.06 5.00 13.06 5.00 13.06 145"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E3. Фиолетовый → оранжевый</h2>
+    <p class="variant__cap">Конец дуги подхватывает цвет наград.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A66CFF"/><stop offset="1" stop-color="#FF7D60"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge3)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E4. Неоновое свечение</h2>
+    <p class="variant__cap">Почти чёрная карточка, дуга светится.</p>
+    <button class="cont" style="background:#151515"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A66CFF"/><stop offset="1" stop-color="#E2D0FF"/></linearGradient><filter id="fe4" x="-60%" y="-60%" width="220%" height="220%"><feDropShadow dx="0" dy="0" stdDeviation="3.2" flood-color="#A66CFF" flood-opacity=".9"/></filter></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge4)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4" filter="url(#fe4)"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E5. Тёмно-фиолетовая</h2>
+    <p class="variant__cap">Фон из брендового тёмного тона.</p>
+    <button class="cont" style="background:#2C0B45"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C9A6FF"/><stop offset="1" stop-color="#F0E6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge5)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E6. Тёмный градиент</h2>
+    <p class="variant__cap">Графит уходит в фиолетовый по диагонали.</p>
+    <button class="cont" style="background:linear-gradient(120deg,#232323 0%,#3A2456 100%)"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge6)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E7. Шесть сегментов</h2>
+    <p class="variant__cap">Разметка по модулям, а не по урокам.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge7" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="19.09 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge7)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E8. Тонкий трек</h2>
+    <p class="variant__cap">Трек 4px под дугой 8px — разметка не спорит с прогрессом.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge8" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="8" stroke-dasharray="12.06 6.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge8)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E9. С процентом</h2>
+    <p class="variant__cap">В центре — процент курса.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge9" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="7" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge9)" stroke-width="7" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="ring__label" style="font-size:13px;color:#fff">61%</span></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E10. С номером урока</h2>
+    <p class="variant__cap">В центре — место в курсе.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge10" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="7" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge10)" stroke-width="7" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="ring__label" style="font-size:13px;color:#fff">5<span style="color:rgba(255,255,255,.45)">/8</span></span></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E11. С бликом</h2>
+    <p class="variant__cap">Светлая нить по внешнему краю дуги.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge11" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge11)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/><circle cx="28.0" cy="28.0" r="26.0" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="163.4" stroke-dashoffset="63.7"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E12. Со светлой пилюлей</h2>
+    <p class="variant__cap">Действие названо словом.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge12" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge12)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="pill" style="background:#fff;color:#232323">Продолжить</span></button>
+  </section>
+  <section class="variant">
+    <h2>E13. С круглой кнопкой</h2>
+    <p class="variant__cap">Play вместо шеврона.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge13" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge13)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="play">▶</span></button>
+  </section>
+  <section class="variant">
+    <h2>E14. Подпись про урок</h2>
+    <p class="variant__cap">Вместо остатка — место в курсе.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge14" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge14)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Урок 5 из 8</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E15. Без трека</h2>
+    <p class="variant__cap">Только пройденные сегменты, остаток не показан.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge15" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="transparent" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge15)" stroke-width="8" stroke-linecap="round" stroke-dasharray="13.06 5.00 13.06 5.00 13.06 5.00 13.06 5.00 13.06 145"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E16. Светлый → насыщенный</h2>
+    <p class="variant__cap">Дуга набирает плотность к текущей точке.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge16" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E2D0FF"/><stop offset="1" stop-color="#7E3FD8"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge16)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E17. Почти невидимый трек</h2>
+    <p class="variant__cap">Разметка едва читается — акцент только на пройденном.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge17" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge17)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E18. Фиолетовый трек</h2>
+    <p class="variant__cap">Трек в приглушённом фиолетовом вместо серого.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge18" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(166,108,255,.25)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge18)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E19. Стеклянный блик</h2>
+    <p class="variant__cap">Сверху карточки светлая полоса.</p>
+    <button class="cont" style="background:linear-gradient(180deg,#333 0%,#232323 45%)"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge19" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge19)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/><circle cx="28.0" cy="28.0" r="26.0" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="163.4" stroke-dashoffset="63.7"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E20. Фиолетовая рамка</h2>
+    <p class="variant__cap">Тонкий контур отделяет карточку от тёмной темы.</p>
+    <button class="cont" style="background:#1C1C1E;border:1px solid rgba(166,108,255,.45)"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge20" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge20)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E21. Крупное кольцо</h2>
+    <p class="variant__cap">64px: прогресс становится главным элементом.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:64px;height:64px"><svg width="64" height="64" viewBox="0 0 64 64"><defs><linearGradient id="ge21" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="32.0" cy="32.0" r="27" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="9" stroke-dasharray="16.21 5.00"/><circle cx="32.0" cy="32.0" r="27" fill="none" stroke="url(#ge21)" stroke-width="9" stroke-linecap="round" stroke-dasharray="169.6" stroke-dashoffset="66.2"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E22. Мелкое кольцо и пилюля</h2>
+    <p class="variant__cap">48px освобождает место под кнопку.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:48px;height:48px"><svg width="48" height="48" viewBox="0 0 48 48"><defs><linearGradient id="ge22" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="24.0" cy="24.0" r="19" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="7" stroke-dasharray="10.92 4.00"/><circle cx="24.0" cy="24.0" r="19" fill="none" stroke="url(#ge22)" stroke-width="7" stroke-linecap="round" stroke-dasharray="119.4" stroke-dashoffset="46.6"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="pill" style="background:#fff;color:#232323">Продолжить</span></button>
+  </section>
+  <section class="variant">
+    <h2>E23. Курс надзаголовком</h2>
+    <p class="variant__cap">Сверху капсом — курс, ниже урок.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge23" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge23)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span><span class="cont__body"><span class="eyebrow">Telegram Gifts</span><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Урок 5 из 8</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E24. Зеркально</h2>
+    <p class="variant__cap">Кольцо справа, текст слева.</p>
+    <button class="cont" style="background:#232323"><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge24" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge24)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span></button>
+  </section>
+  <section class="variant">
+    <h2>E25. Оранжевый финиш</h2>
+    <p class="variant__cap">Дуга и подпись сходятся в цвете наград.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge25" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="0.7" stop-color="#A66CFF"/><stop offset="1" stop-color="#FF9E7D"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge25)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E26. Двойной слой</h2>
+    <p class="variant__cap">Снаружи сегменты уроков, внутри тонкая дуга курса.</p>
+    <button class="cont" style="background:#232323"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge26" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="25" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="6" stroke-dasharray="15.63 4.00"/><circle cx="28.0" cy="28.0" r="25" fill="none" stroke="url(#ge26)" stroke-width="6" stroke-linecap="round" stroke-dasharray="157.1" stroke-dashoffset="61.3"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E27. Полоса вместо кольца</h2>
+    <p class="variant__cap">Сегменты вытянуты в линию под текстом.</p>
+    <button class="cont" style="background:#232323;flex-direction:column;align-items:stretch;gap:12px"><span style="display:flex;align-items:center;gap:14px"><span class="cont__body"><span class="cont__title" style="color:#fff">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Урок 5 из 8</span></span><span class="play">▶</span></span><span style="display:flex;gap:4px"><span style="flex:1;height:6px;border-radius:999px;background:linear-gradient(90deg,#7E63A8,#C9A6FF)"></span><span style="flex:1;height:6px;border-radius:999px;background:linear-gradient(90deg,#7E63A8,#C9A6FF)"></span><span style="flex:1;height:6px;border-radius:999px;background:linear-gradient(90deg,#7E63A8,#C9A6FF)"></span><span style="flex:1;height:6px;border-radius:999px;background:linear-gradient(90deg,#7E63A8,#C9A6FF)"></span><span style="flex:1;height:6px;border-radius:999px;background:linear-gradient(90deg,#7E63A8,#C9A6FF)"></span><span style="flex:1;height:6px;border-radius:999px;background:rgba(255,255,255,.15)"></span><span style="flex:1;height:6px;border-radius:999px;background:rgba(255,255,255,.15)"></span><span style="flex:1;height:6px;border-radius:999px;background:rgba(255,255,255,.15)"></span></span></button>
+  </section>
+  <section class="variant">
+    <h2>E28. Со свечением карточки</h2>
+    <p class="variant__cap">Мягкая фиолетовая тень под блоком.</p>
+    <div style="filter: drop-shadow(0 10px 24px rgba(146,76,254,.35))"><button class="cont" style="background:#232323"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge28" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge28)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button></div>
+  </section>
+  <section class="variant">
+    <h2>E29. С текстурой</h2>
+    <p class="variant__cap">Точечная текстура карты уроков на тёмном фоне.</p>
+    <button class="cont" style="background:#232323;background-image:radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 1px);background-size:14px 14px"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge29" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7E63A8"/><stop offset="1" stop-color="#C9A6FF"/></linearGradient></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge29)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="chev">›</span></button>
+  </section>
+  <section class="variant">
+    <h2>E30. Всё вместе</h2>
+    <p class="variant__cap">Сегменты, градиент, блик, свечение и пилюля.</p>
+    <button class="cont" style="background:linear-gradient(120deg,#1C1C1E 0%,#33204D 100%)"><span class="ring" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ge30" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A66CFF"/><stop offset="1" stop-color="#E2D0FF"/></linearGradient><filter id="fe30" x="-60%" y="-60%" width="220%" height="220%"><feDropShadow dx="0" dy="0" stdDeviation="3.2" flood-color="#A66CFF" flood-opacity=".9"/></filter></defs><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="8" stroke-dasharray="13.06 5.00"/><circle cx="28.0" cy="28.0" r="23" fill="none" stroke="url(#ge30)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4" filter="url(#fe30)"/><circle cx="28.0" cy="28.0" r="26.0" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="163.4" stroke-dashoffset="63.7"/></svg></span><span class="cont__body"><span class="cont__title" style="color:#fff;">Стратегии торговли на вторичном рынке</span><span class="cont__sub" style="color:rgba(255,255,255,.6)">Осталось 2 урока</span></span><span class="pill" style="background:#fff;color:#232323">Продолжить</span></button>
+  </section>
+
+  <p class="note">Скажи код — перенесу в приложение. Можно комбинировать: например, карточка из E19 с кольцом из E25 и кнопкой из E12.</p>
+
+</div>
