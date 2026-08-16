@@ -8,8 +8,11 @@ import { categories, courses, getCategoryLabel } from "@/data/courses";
 import { lessonsData, courseProgress, currentLessonIndex } from "@/data/lessons";
 import { pluralRu } from "@/lib/utils";
 
-// Длина окружности кольца прогресса: r = 24
-const RING_LENGTH = 2 * Math.PI * 24;
+// Кольцо прогресса: основная дуга и тонкий блик по её внешнему краю
+const RING_R = 23;
+const RING_LENGTH = 2 * Math.PI * RING_R;
+const GLOSS_R = 25;
+const GLOSS_LENGTH = 2 * Math.PI * GLOSS_R;
 
 const SectionHeader = ({
   title,
@@ -90,24 +93,33 @@ const Home = () => {
             onClick={() => navigate("/my-courses")}
             className="w-full flex items-center gap-3.5 rounded-2xl bg-card p-4 text-left hover:brightness-95 transition-all"
           >
-            <span className="relative flex-shrink-0 w-14 h-14">
+            <span className="flex-shrink-0 w-14 h-14">
               <svg width="56" height="56" viewBox="0 0 56 56" className="-rotate-90">
-                <circle cx="28" cy="28" r="24" fill="none" stroke="hsl(var(--border))" strokeWidth="5" />
+                <circle cx="28" cy="28" r={RING_R} fill="none" stroke="hsl(var(--border))" strokeWidth="8" />
                 <circle
                   cx="28"
                   cy="28"
-                  r="24"
+                  r={RING_R}
                   fill="none"
-                  stroke="#924CFE"
-                  strokeWidth="5"
+                  stroke="hsl(var(--primary))"
+                  strokeWidth="8"
                   strokeLinecap="round"
                   strokeDasharray={RING_LENGTH}
                   strokeDashoffset={RING_LENGTH * (1 - courseProgress / 100)}
                 />
+                {/* Блик: светлая нить по внешнему краю дуги */}
+                <circle
+                  cx="28"
+                  cy="28"
+                  r={GLOSS_R}
+                  fill="none"
+                  stroke="rgba(255,255,255,0.55)"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeDasharray={GLOSS_LENGTH}
+                  strokeDashoffset={GLOSS_LENGTH * (1 - courseProgress / 100)}
+                />
               </svg>
-              <span className="absolute inset-0 flex items-center justify-center text-[14px] font-semibold text-foreground">
-                {courseProgress}%
-              </span>
             </span>
 
             <span className="min-w-0 flex-1 flex flex-col gap-1.5">
