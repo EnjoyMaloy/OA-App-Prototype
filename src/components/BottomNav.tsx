@@ -11,9 +11,15 @@ interface NavItem {
   action?: () => void;
 }
 
-/** Стеклянная подложка «пилюли» и круглых кнопок — одна на все элементы. */
+/**
+ * Стеклянная подложка «пилюли» и круглых кнопок.
+ * Контур собран как у Apple: внешняя тонкая тёмная грань и внутренняя светлая —
+ * вместе они отделяют стекло от любой подложки под ним.
+ */
 const GLASS =
-  "backdrop-blur-2xl backdrop-saturate-150 bg-background/85 border border-black/[0.06] dark:border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.10)]";
+  "backdrop-blur-2xl backdrop-saturate-150 bg-background/75 border border-black/[0.08] dark:border-white/15 " +
+  "shadow-[0_10px_30px_rgba(0,0,0,0.12),inset_0_0_0_1px_rgba(255,255,255,0.55),inset_0_1px_0_rgba(255,255,255,0.9)] " +
+  "dark:shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_0_0_1px_rgba(255,255,255,0.08)]";
 
 const BottomNav = () => {
   const location = useLocation();
@@ -113,8 +119,9 @@ const BottomNav = () => {
                 />
               );
 
-              const className = `flex items-center justify-center w-12 h-12 rounded-[18px] transition-all flex-shrink-0 ${
-                active ? "bg-foreground/[0.07]" : ""
+              // Выбранный пункт — широкая капсула вокруг иконки
+              const className = `flex items-center justify-center h-12 rounded-full transition-all flex-shrink-0 ${
+                active ? "w-[74px] bg-foreground/[0.12]" : "w-12"
               }`;
 
               if (item.action) {
