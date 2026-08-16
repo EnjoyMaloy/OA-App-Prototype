@@ -138,16 +138,18 @@ const Home = () => {
               </span>
             </div>
 
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                navigate("/my-courses");
-              }}
-              className="mt-3.5 h-9 px-4 rounded-full bg-white text-[14px] font-medium hover:opacity-90 transition-opacity"
-              style={{ color: "#232323" }}
-            >
-              {t("index.continue")}
-            </button>
+            <div className="flex justify-end mt-3">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate("/my-courses");
+                }}
+                className="h-8 px-3.5 rounded-full bg-white text-[13px] font-medium hover:opacity-90 transition-opacity"
+                style={{ color: "#232323" }}
+              >
+                {t("index.continue")}
+              </button>
+            </div>
           </div>
         </section>
 
