@@ -1,4 +1,10 @@
 import { Sparkles, Bitcoin, ShieldCheck, BarChart3, PieChart, Snowflake, Wrench } from "lucide-react";
+import imgRocket from "@/assets/3d-rocket.png";
+import imgCoin from "@/assets/3d-coin.png";
+import imgNft from "@/assets/3d-nft.png";
+import imgSecurity from "@/assets/3d-security.png";
+import imgMascot from "@/assets/mascot-success.png";
+import imgLogo from "@/assets/logo.png";
 
 export interface CategoryItem {
   id: string;
@@ -29,7 +35,10 @@ export interface CourseData {
   categoryId: string;
   rating: number;
   students: number;
+  /** 3D-объект обложки: лежит в проекте, поэтому грузится и без сети */
   image: string;
+  /** Подложка под объектом — градиент в цветах категории. Без неё картинка заполняет обложку целиком */
+  imageBg?: string;
   premium?: boolean;
   price?: number;
   isNew?: boolean;
@@ -37,12 +46,12 @@ export interface CourseData {
 }
 
 export const courses: CourseData[] = [
-  { id: "1", titleRu: "1 курс — Бесплатный", titleEn: "1 — Free course", categoryId: "web3", rating: 4.9, students: 371, image: "https://images.unsplash.com/photo-1621504450181-5d356f61d307?w=400&h=300&fit=crop", isNew: true },
-  { id: "2", titleRu: "2 курс — В подписке без триала", titleEn: "2 — Subscription, no trial", categoryId: "invest", rating: 4.9, students: 35419, image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop", premium: true, price: 49, trending: true },
-  { id: "6", titleRu: "3 курс — В подписке с триалом", titleEn: "3 — Subscription with trial", categoryId: "crypto", rating: 4.7, students: 1024, image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop", premium: true, price: 49, isNew: true },
-  { id: "7", titleRu: "4 курс — Платный без триала", titleEn: "4 — Paid, no trial", categoryId: "tools", rating: 4.6, students: 512, image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop", premium: true, price: 79, isNew: true },
-  { id: "8", titleRu: "5 курс — Платный с триалом", titleEn: "5 — Paid with trial", categoryId: "tools", rating: 4.7, students: 640, image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=400&h=300&fit=crop", premium: true, price: 89, isNew: true },
-  { id: "9", titleRu: "Экспериментальная стр курса", titleEn: "Experimental course page", categoryId: "web3", rating: 4.95, students: 2480, image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=300&fit=crop", premium: true, price: 59, isNew: true, trending: true },
+  { id: "1", titleRu: "1 курс — Бесплатный", titleEn: "1 — Free course", categoryId: "web3", rating: 4.9, students: 371, image: imgRocket, imageBg: "linear-gradient(135deg, #E8DCFB 0%, #A66CFF 100%)", isNew: true },
+  { id: "2", titleRu: "2 курс — В подписке без триала", titleEn: "2 — Subscription, no trial", categoryId: "invest", rating: 4.9, students: 35419, image: imgCoin, imageBg: "linear-gradient(135deg, #FFF1CC 0%, #F5B02E 100%)", premium: true, price: 49, trending: true },
+  { id: "6", titleRu: "3 курс — В подписке с триалом", titleEn: "3 — Subscription with trial", categoryId: "crypto", rating: 4.7, students: 1024, image: imgNft, imageBg: "linear-gradient(135deg, #FFDFD1 0%, #FF7D60 100%)", premium: true, price: 49, isNew: true },
+  { id: "7", titleRu: "4 курс — Платный без триала", titleEn: "4 — Paid, no trial", categoryId: "tools", rating: 4.6, students: 512, image: imgSecurity, imageBg: "linear-gradient(135deg, #FFD6EC 0%, #EE49A4 100%)", premium: true, price: 79, isNew: true },
+  { id: "8", titleRu: "5 курс — Платный с триалом", titleEn: "5 — Paid with trial", categoryId: "tools", rating: 4.7, students: 640, image: imgMascot, imageBg: "linear-gradient(135deg, #CFF3E9 0%, #34C8A0 100%)", premium: true, price: 89, isNew: true },
+  { id: "9", titleRu: "Экспериментальная стр курса", titleEn: "Experimental course page", categoryId: "web3", rating: 4.95, students: 2480, image: imgLogo, imageBg: "linear-gradient(135deg, #FFFFFF 0%, #EFECF7 100%)", premium: true, price: 59, isNew: true, trending: true },
 ];
 
 export const getCategoryLabel = (catId: string, lang: "ru" | "en") => {

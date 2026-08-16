@@ -53,6 +53,7 @@ const Home = () => {
             rating={course.rating}
             students={course.students}
             image={course.image}
+            imageBg={course.imageBg}
             premium={course.premium}
             price={course.price}
             isNew={course.isNew}

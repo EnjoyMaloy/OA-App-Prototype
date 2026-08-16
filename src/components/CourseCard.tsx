@@ -11,6 +11,8 @@ interface CourseCardProps {
   rating: number;
   students: number;
   image: string;
+  /** Градиент под 3D-объектом обложки */
+  imageBg?: string;
   premium?: boolean;
   price?: number;
   isNew?: boolean;
@@ -26,6 +28,7 @@ const CourseCard = ({
   rating,
   students,
   image,
+  imageBg,
   premium,
   isNew,
   trending,
@@ -41,11 +44,16 @@ const CourseCard = ({
       className="flex flex-col gap-3 cursor-pointer group"
     >
       {/* Image container */}
-      <div className="relative w-full aspect-[328/181] rounded-[10px] overflow-hidden bg-muted">
+      <div
+        className="relative w-full aspect-[328/181] rounded-[10px] overflow-hidden bg-muted"
+        style={imageBg ? { background: imageBg } : undefined}
+      >
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          className={`w-full h-full group-hover:scale-105 transition-transform duration-300 ${
+            imageBg ? "object-contain p-4" : "object-cover"
+          }`}
           loading="lazy"
         />
 
