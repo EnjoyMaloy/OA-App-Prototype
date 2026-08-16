@@ -130,25 +130,25 @@ const Home = () => {
                 </svg>
               </span>
 
-              <span className="min-w-0 flex-1 flex flex-col gap-1.5">
+              <div className="min-w-0 flex-1 flex flex-col gap-2">
                 <span className="block text-white text-[17px] font-medium leading-[1.2]">
                   {currentLesson.title}
                 </span>
-                <span className="block text-[13px] text-white/60">{lessonsLeft}</span>
-              </span>
-            </div>
-
-            <div className="flex justify-end mt-3">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  navigate("/my-courses");
-                }}
-                className="h-8 px-3.5 rounded-full bg-white text-[13px] font-medium hover:opacity-90 transition-opacity"
-                style={{ color: "#232323" }}
-              >
-                {t("index.continue")}
-              </button>
+                {/* Остаток уроков и действие — в одной строке */}
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-[13px] text-white/60">{lessonsLeft}</span>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate("/my-courses");
+                    }}
+                    className="flex-shrink-0 h-8 px-3.5 rounded-full bg-white text-[13px] font-medium hover:opacity-90 transition-opacity"
+                    style={{ color: "#232323" }}
+                  >
+                    {t("index.continue")}
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </section>
