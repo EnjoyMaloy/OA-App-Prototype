@@ -20,8 +20,8 @@ const SectionHeader = ({
   actionLabel?: string;
   onAction?: () => void;
 }) => (
-  <div className="flex items-center justify-between mb-3">
-    <h2 className="text-h3 text-foreground">{title}</h2>
+  <div className="flex items-center justify-between gap-3 mb-4">
+    <h2 className="text-[24px] font-semibold leading-[1.1] tracking-[-0.01em] text-foreground">{title}</h2>
     {actionLabel && (
       <button
         onClick={onAction}

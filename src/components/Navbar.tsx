@@ -43,6 +43,24 @@ const Navbar = () => {
   }, []);
 
   const userInitials = user?.email ? user.email.substring(0, 2).toUpperCase() : "U";
+
+  // Шапка прячется при листании вниз и возвращается при движении вверх.
+  // Страница скроллится не окном, а <main>, поэтому слушаем именно его.
+  const [hidden, setHidden] = useState(false);
+  useEffect(() => {
+    const scroller = document.querySelector("main");
+    if (!scroller) return;
+    let last = scroller.scrollTop;
+    const onScroll = () => {
+      const y = scroller.scrollTop;
+      const delta = y - last;
+      if (Math.abs(delta) < 6) return; // игнорируем дрожь пальца
+      setHidden(y > 80 && delta > 0);
+      last = y;
+    };
+    scroller.addEventListener("scroll", onScroll, { passive: true });
+    return () => scroller.removeEventListener("scroll", onScroll);
+  }, []);
   const showStreak = isHome || isInstructions || isCatalog || isCourseView;
 
   const streakButton = (
@@ -84,7 +102,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`sticky top-0 z-50 bg-background h-16 md:h-20 relative ${isArticleView || isMyCourses || isProfile ? 'hidden md:block' : ''}`}
+      className={`sticky top-0 z-50 bg-background h-16 md:h-20 relative transition-transform duration-300 ease-out ${hidden ? '-translate-y-full' : 'translate-y-0'} ${isArticleView || isMyCourses || isProfile ? 'hidden md:block' : ''}`}
       // Брендовый градиент: сверху фиолетовый, к низу растворяется в фоне страницы
       style={{
         background:
@@ -96,7 +114,7 @@ const Navbar = () => {
       {/* Хвост градиента: уводит фиолетовый в страницу, чтобы граница шапки не читалась линией */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-0 right-0 top-full h-12"
+        className={`pointer-events-none absolute left-0 right-0 top-full h-12 transition-opacity duration-300 ${hidden ? "opacity-0" : "opacity-100"}`}
         style={{
           background:
             "linear-gradient(180deg, hsl(var(--violet-super-light) / 0.5) 0%, hsl(var(--violet-super-light) / 0) 100%)",
