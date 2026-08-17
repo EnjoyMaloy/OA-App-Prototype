@@ -44,23 +44,6 @@ const Navbar = () => {
 
   const userInitials = user?.email ? user.email.substring(0, 2).toUpperCase() : "U";
 
-  // Шапка прячется при листании вниз и возвращается при движении вверх.
-  // Страница скроллится не окном, а <main>, поэтому слушаем именно его.
-  const [hidden, setHidden] = useState(false);
-  useEffect(() => {
-    const scroller = document.querySelector("main");
-    if (!scroller) return;
-    let last = scroller.scrollTop;
-    const onScroll = () => {
-      const y = scroller.scrollTop;
-      const delta = y - last;
-      if (Math.abs(delta) < 6) return; // игнорируем дрожь пальца
-      setHidden(y > 80 && delta > 0);
-      last = y;
-    };
-    scroller.addEventListener("scroll", onScroll, { passive: true });
-    return () => scroller.removeEventListener("scroll", onScroll);
-  }, []);
   const showStreak = isHome || isInstructions || isCatalog || isCourseView;
 
   const streakButton = (
@@ -102,13 +85,14 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`sticky top-0 z-50 h-16 md:h-20 relative transition-transform duration-300 ease-out ${hidden ? '-translate-y-full' : 'translate-y-0'} ${isArticleView || isMyCourses || isProfile ? 'hidden md:block' : ''}`}
+      // На мобильном шапка уезжает вверх вместе с контентом, на десктопе остаётся липкой
+      className={`relative md:sticky md:top-0 z-50 h-16 md:h-20 ${isArticleView || isMyCourses || isProfile ? 'hidden md:block' : ''}`}
     >
       {/* Стекло шапки: размытие и фиолетовый градиент гаснут к низу по маске,
           поэтому у шапки нет чёткой нижней границы — контент под ней просто расфокусирован */}
       <div
         aria-hidden
-        className={`pointer-events-none absolute inset-x-0 top-0 h-[calc(100%+44px)] transition-opacity duration-300 ${hidden ? "opacity-0" : "opacity-100"}`}
+        className="pointer-events-none absolute inset-x-0 top-0 h-[calc(100%+44px)]"
         style={{
           backdropFilter: "blur(16px) saturate(1.5)",
           WebkitBackdropFilter: "blur(16px) saturate(1.5)",
