@@ -148,8 +148,8 @@ const Home = () => {
             actionLabel={t("instructions.all")}
             onAction={() => navigate("/catalog")}
           />
-          {/* Компактные пилюли: переносятся строками, все категории видны без скролла */}
-          <div className="flex flex-wrap gap-3">
+          {/* Пилюли в два ряда: лента листается вбок */}
+          <div className="grid grid-rows-2 grid-flow-col auto-cols-max justify-start gap-2.5 overflow-x-auto scrollbar-hide -mx-4 px-4 pb-1">
             {categories.map((cat) => {
               const Icon = cat.icon;
               const label = (lang === "ru" ? cat.labelRu : cat.labelEn).replace("\n", " ");
@@ -157,10 +157,10 @@ const Home = () => {
                 <button
                   key={cat.id}
                   onClick={() => navigate(`/catalog?cat=${cat.id}`)}
-                  className="inline-flex items-center gap-[9px] h-[45px] px-[15px] rounded-full text-[19px] font-medium whitespace-nowrap transition-all hover:brightness-95"
+                  className="inline-flex items-center gap-2 h-[40px] px-[14px] rounded-full text-[17px] font-medium whitespace-nowrap transition-all hover:brightness-95"
                   style={{ background: cat.bg, color: cat.labelColor }}
                 >
-                  <Icon style={{ color: cat.iconColor }} className="w-[21px] h-[21px] flex-shrink-0" />
+                  <Icon style={{ color: cat.iconColor }} className="w-[19px] h-[19px] flex-shrink-0" />
                   {label}
                 </button>
               );
