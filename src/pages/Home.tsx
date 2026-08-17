@@ -149,7 +149,7 @@ const Home = () => {
             onAction={() => navigate("/catalog")}
           />
           {/* Компактные пилюли: переносятся строками, все категории видны без скролла */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-3">
             {categories.map((cat) => {
               const Icon = cat.icon;
               const label = (lang === "ru" ? cat.labelRu : cat.labelEn).replace("\n", " ");
@@ -157,10 +157,10 @@ const Home = () => {
                 <button
                   key={cat.id}
                   onClick={() => navigate(`/catalog?cat=${cat.id}`)}
-                  className="inline-flex items-center gap-1.5 h-[30px] px-2.5 rounded-full text-[13px] font-medium whitespace-nowrap transition-all hover:brightness-95"
+                  className="inline-flex items-center gap-[9px] h-[45px] px-[15px] rounded-full text-[19px] font-medium whitespace-nowrap transition-all hover:brightness-95"
                   style={{ background: cat.bg, color: cat.labelColor }}
                 >
-                  <Icon style={{ color: cat.iconColor }} className="w-3.5 h-3.5 flex-shrink-0" />
+                  <Icon style={{ color: cat.iconColor }} className="w-[21px] h-[21px] flex-shrink-0" />
                   {label}
                 </button>
               );
