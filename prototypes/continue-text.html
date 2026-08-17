@@ -1,0 +1,228 @@
+<title>Продолжить обучение · текст</title>
+
+<style>
+  .variant { display: flex; flex-direction: column; gap: 10px }
+  .variant__cap { font-size: 13px; color: hsl(var(--muted-foreground)); margin: 0 }
+  .variant h2 { font-size: 17px; font-weight: 600; margin: 0 }
+
+  .cont { display: flex; align-items: center; gap: 14px; width: 100%; padding: 16px; border-radius: 16px;
+    background: linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%); cursor: pointer }
+  .ring { position: relative; flex: 0 0 auto; width: 56px; height: 56px }
+  .ring svg { transform: rotate(-90deg) }
+  .pct { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 700; background-image: linear-gradient(120deg,#FF5C1A,#FFB088);
+    -webkit-background-clip: text; background-clip: text; color: transparent }
+  .body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px }
+  .chev { flex: 0 0 auto; font-size: 22px; color: rgba(32,32,32,.35); line-height: 1 }
+
+  .ln { display: block; line-height: 1.25 }
+  .t17 { font-size: 17px } .t16 { font-size: 16px } .t15 { font-size: 15px }
+  .t14 { font-size: 14px } .t13 { font-size: 13px } .t11 { font-size: 11px }
+  .big-row { display: flex; align-items: baseline; gap: 8px }
+
+  /* четыре плотности одного цвета — приём Apple */
+  .s { color: rgba(32,32,32,1);   font-weight: 500 }
+  .m { color: rgba(32,32,32,.62); font-weight: 500 }
+  .l { color: rgba(32,32,32,.45); font-weight: 400 }
+  .x { color: rgba(32,32,32,.32); font-weight: 400 }
+  .warm { color: rgba(255,92,26,.5); font-weight: 500; font-size: inherit }
+
+  .bold { font-weight: 700 }
+  .big { font-size: 34px; font-weight: 700; line-height: 1 }
+  .big2 { font-size: 30px; font-weight: 700; line-height: 1 }
+  .aside { font-size: 15px }
+  .caps { letter-spacing: .1em; font-weight: 600 }
+  .one { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden }
+</style>
+
+<div class="screen stack stack-8">
+
+  <div class="stack stack-2">
+    <h1 class="text-h1">Текст в блоке · 20</h1>
+    <p class="text-caption-14">Карточка, кольцо и процент везде одинаковые — меняется только текст: слова разной плотности в одной строке, как в приложениях Apple.</p>
+  </div>
+
+  <section class="variant">
+    <h2>T1. Как сейчас</h2>
+    <p class="variant__cap">Заголовок плотный, подпись серая — для сравнения.</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln t17"><span class="s ">Стратегии торговли на вторичном рынке</span></span><span class="ln t13"><span class="l ">Осталось 2 урока</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>T2. Цифра плотная</h2>
+    <p class="variant__cap">В подписи выделен только счёт — приём «10 Days Journaled».</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln t17"><span class="s ">Стратегии торговли на вторичном рынке</span></span><span class="ln t14"><span class="l ">Осталось</span> <span class="s ">2 урока</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>T3. Урок 5 из 8</h2>
+    <p class="variant__cap">Служебные слова уходят в прозрачность, цифры остаются.</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln t17"><span class="s ">Стратегии торговли на вторичном рынке</span></span><span class="ln t14"><span class="l ">Урок</span> <span class="s ">5</span> <span class="l ">из</span> <span class="s ">8</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>T4. Инверсия</h2>
+    <p class="variant__cap">Плотное — то, что осталось; «Осталось» тихо.</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln t17"><span class="s ">Стратегии торговли на вторичном рынке</span></span><span class="ln t15"><span class="x ">Осталось</span> <span class="s ">2 урока</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>T5. Заголовок в две плотности</h2>
+    <p class="variant__cap">Первое слово держит, хвост уходит в полутон.</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln t17"><span class="s ">Стратегии</span> <span class="m ">торговли на вторичном рынке</span></span><span class="ln t13"><span class="l ">Осталось 2 урока</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>T6. Общее смягчение</h2>
+    <p class="variant__cap">Заголовок 85%, подпись 40% — вся карточка тише.</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln t17"><span class="m ">Стратегии торговли на вторичном рынке</span></span><span class="ln t13"><span class="x ">Осталось 2 урока</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>T7. Как «Entry This Year»</h2>
+    <p class="variant__cap">Крупное число, под ним слово плотное и слово прозрачное.</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln big-row"><span class="s big">2</span></span><span class="ln t15"><span class="s ">урока</span> <span class="x ">осталось</span></span><span class="ln t13"><span class="x ">Стратегии торговли</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>T8. Категория сверху</h2>
+    <p class="variant__cap">Мелкая тихая рубрика над плотным заголовком.</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln t11"><span class="x caps">ТРЕЙДИНГ</span></span><span class="ln t17"><span class="s ">Стратегии торговли на вторичном рынке</span></span><span class="ln t13"><span class="l ">Осталось 2 урока</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>T9. Через точку</h2>
+    <p class="variant__cap">Метрики одной строкой, прозрачность держит иерархию.</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln t17"><span class="s ">Стратегии торговли на вторичном рынке</span></span><span class="ln t14"><span class="s ">61%</span> <span class="x ">·</span> <span class="l ">осталось</span> <span class="s ">2 урока</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>T10. Цифры и единицы</h2>
+    <p class="variant__cap">Числа плотные, единицы измерения прозрачные.</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln t17"><span class="s ">Стратегии торговли на вторичном рынке</span></span><span class="ln t14"><span class="s ">2</span> <span class="l ">урока</span> <span class="x ">·</span> <span class="s ">12</span> <span class="l ">мин</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>T11. Три уровня</h2>
+    <p class="variant__cap">Один размер, три плотности: 100 / 60 / 35.</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln t16"><span class="s ">Стратегии торговли</span></span><span class="ln t16"><span class="m ">на вторичном рынке</span></span><span class="ln t16"><span class="x ">осталось 2 урока</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>T12. Затухание к концу</h2>
+    <p class="variant__cap">Строка гаснет слева направо.</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln t17"><span class="s ">Стратегии торговли на вторичном рынке</span></span><span class="ln t14"><span class="m ">Осталось</span> <span class="l ">2 урока</span> <span class="x ">· 12 минут</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>T13. Вес плюс прозрачность</h2>
+    <p class="variant__cap">Полужирное плотное и обычное полупрозрачное рядом.</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln t16"><span class="s bold">Урок 5</span> <span class="l ">из 8 — вторичный рынок</span></span><span class="ln t13"><span class="x ">12 минут до конца</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>T14. Глагол тихо</h2>
+    <p class="variant__cap">«Продолжить» уходит в фон, название держит.</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln t17"><span class="x ">Продолжить</span> <span class="s ">Стратегии торговли</span></span><span class="ln t14"><span class="l ">Урок 5 из 8</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>T15. Две подписи</h2>
+    <p class="variant__cap">Плотная строка прогресса и тихая строка времени.</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln t17"><span class="s ">Стратегии торговли на вторичном рынке</span></span><span class="ln t14"><span class="m ">Урок 5 из 8</span></span><span class="ln t13"><span class="x ">осталось 12 минут</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>T16. Процент словами</h2>
+    <p class="variant__cap">Число плотное, «пройдено» прозрачное.</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln t17"><span class="s ">Стратегии торговли на вторичном рынке</span></span><span class="ln t14"><span class="s ">61%</span> <span class="l ">пройдено</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>T17. Одна строка и контекст</h2>
+    <p class="variant__cap">Заголовок в одну строку, под ним тихий контекст.</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln t17"><span class="s one">Стратегии торговли на вторичном рынке</span></span><span class="ln t13"><span class="x ">Трейдинг · 8 уроков · 3 часа</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>T18. Крупное число</h2>
+    <p class="variant__cap">Приём Apple: цифра большая, пояснение мелкое и тихое.</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln big-row"><span class="s big2">2</span> <span class="l aside">урока</span></span><span class="ln t13"><span class="x one">Стратегии торговли на вторичном рынке</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>T19. Цветная прозрачность</h2>
+    <p class="variant__cap">Полутон не серый, а оранжевый — в тон дуге.</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln t17"><span class="s ">Стратегии торговли на вторичном рынке</span></span><span class="ln t14"><span class="warm">Осталось</span> <span class="s ">2 урока</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>T20. Метка и хвост</h2>
+    <p class="variant__cap">Плотная метка урока и прозрачный хвост со временем.</p>
+    <div class="cont">
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+      <span class="body"><span class="ln t17"><span class="s ">Стратегии торговли на вторичном рынке</span></span><span class="ln t14"><span class="s ">Урок 5 из 8</span> <span class="x ">· 12 мин</span></span></span>
+      <span class="chev">›</span>
+    </div>
+  </section>
+
+  <p class="note">Плотности: 100% — то, что важно; 62% — контекст; 45% — служебное; 32% — совсем тихое. Скажи код — поставлю в приложение.</p>
+
+</div>
