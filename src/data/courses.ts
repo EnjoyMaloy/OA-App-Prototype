@@ -20,7 +20,7 @@ export const categories: CategoryItem[] = [
   { id: "ai", labelRu: "AI-навыки", labelEn: "AI Skills", labelColor: "hsl(var(--cat-ai))", icon: Sparkles, iconColor: "hsl(var(--cat-ai-icon))", bg: "hsl(var(--cat-ai-bg))" },
   { id: "crypto", labelRu: "Основы\nкрипты", labelEn: "Crypto\nBasics", labelColor: "hsl(var(--cat-crypto))", icon: Bitcoin, iconColor: "hsl(var(--cat-crypto))", bg: "hsl(var(--cat-crypto-bg))" },
   { id: "security", labelRu: "Безопасность", labelEn: "Security", labelColor: "hsl(var(--cat-security))", icon: ShieldCheck, iconColor: "hsl(var(--cat-security))", bg: "hsl(var(--cat-security-bg))" },
-  { id: "trading", labelRu: "Трейдинг", labelEn: "Trading", labelColor: "hsl(var(--cat-ai))", icon: BarChart3, iconColor: "hsl(var(--cat-trading-icon))", bg: "hsl(var(--cat-trading-bg))" },
+  { id: "trading", labelRu: "Трейдинг", labelEn: "Trading", labelColor: "hsl(var(--cat-trading))", icon: BarChart3, iconColor: "hsl(var(--cat-trading-icon))", bg: "hsl(var(--cat-trading-bg))" },
   { id: "invest", labelRu: "Инвестиции", labelEn: "Investments", labelColor: "hsl(var(--cat-invest))", icon: PieChart, iconColor: "hsl(var(--cat-invest))", bg: "hsl(var(--cat-invest-bg))" },
   { id: "web3", labelRu: "Web3 и DeFi", labelEn: "Web3 & DeFi", labelColor: "hsl(var(--cat-web3))", icon: Snowflake, iconColor: "hsl(var(--cat-web3))", bg: "hsl(var(--cat-web3-bg))" },
   { id: "tools", labelRu: "Инструменты", labelEn: "Tools", labelColor: "hsl(var(--cat-tools))", icon: Wrench, iconColor: "hsl(var(--cat-tools))", bg: "hsl(var(--cat-tools-bg))" },
