@@ -90,8 +90,12 @@ const Home = () => {
           <button
             onClick={() => navigate("/my-courses")}
             className="w-full flex items-center gap-3.5 rounded-2xl p-4 text-left hover:brightness-[0.98] transition-all"
-            // Персик держится почти до правого края и растворяется у самой стрелки
-            style={{ background: "linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)" }}
+            // Персик держится почти до правого края и растворяется у самой стрелки.
+            // isolate нужен тексту: он смешивается с подложкой в режиме multiply
+            style={{
+              background: "linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)",
+              isolation: "isolate",
+            }}
           >
             <span className="relative flex-shrink-0 w-14 h-14">
               <svg width="56" height="56" viewBox="0 0 56 56" className="-rotate-90">
@@ -128,16 +132,27 @@ const Home = () => {
               </span>
             </span>
 
+            {/* Текст замешан в подложку: тёплый цвет плюс multiply вместо серого */}
             <span className="min-w-0 flex-1 flex flex-col gap-1.5">
-              <span className="block text-[17px] font-medium leading-[1.2]" style={{ color: "#202020" }}>
+              <span
+                className="block text-[17px] font-medium leading-[1.2]"
+                style={{ color: "#C24E14", mixBlendMode: "multiply" }}
+              >
                 {currentLesson.title}
               </span>
-              <span className="block text-[13px]" style={{ color: "rgba(32,32,32,0.5)" }}>
+              <span
+                className="block text-[13px]"
+                style={{ color: "#D2703A", mixBlendMode: "multiply" }}
+              >
                 {lessonsLeft}
               </span>
             </span>
 
-            <ChevronRight className="w-5 h-5 flex-shrink-0" style={{ color: "rgba(32,32,32,0.35)" }} />
+            <ChevronRight
+              className="w-6 h-6 flex-shrink-0"
+              strokeWidth={2.5}
+              style={{ color: "rgba(32,32,32,0.4)" }}
+            />
           </button>
         </section>
 
