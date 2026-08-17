@@ -12,11 +12,6 @@ import { pluralRu } from "@/lib/utils";
 const RING_R = 23;
 const RING_LENGTH = 2 * Math.PI * RING_R;
 
-// Плитка категории: заливка от цвета категории к белому в три стопа
-const tileFill = (accent: string) =>
-  `linear-gradient(160deg, color-mix(in srgb, ${accent} 32%, #fff) 0%,` +
-  ` color-mix(in srgb, ${accent} 12%, #fff) 55%, #fff 100%)`;
-
 const SectionHeader = ({
   title,
   actionLabel,
@@ -153,38 +148,20 @@ const Home = () => {
             actionLabel={t("instructions.all")}
             onAction={() => navigate("/catalog")}
           />
-          <div className="flex gap-3 overflow-x-auto scrollbar-hide -mx-4 px-4 pb-1">
+          {/* Компактные пилюли: переносятся строками, все категории видны без скролла */}
+          <div className="flex flex-wrap gap-2">
             {categories.map((cat) => {
               const Icon = cat.icon;
-              const label = lang === "ru" ? cat.labelRu : cat.labelEn;
+              const label = (lang === "ru" ? cat.labelRu : cat.labelEn).replace("\n", " ");
               return (
                 <button
                   key={cat.id}
                   onClick={() => navigate(`/catalog?cat=${cat.id}`)}
-                  className="relative overflow-hidden flex-shrink-0 flex flex-col justify-between rounded-2xl p-3 transition-all hover:scale-[1.03]"
-                  style={{ background: tileFill(cat.labelColor), width: 148, height: 126 }}
+                  className="inline-flex items-center gap-1.5 h-[30px] px-2.5 rounded-full text-[13px] font-medium whitespace-nowrap transition-all hover:brightness-95"
+                  style={{ background: cat.bg, color: cat.labelColor }}
                 >
-                  {/* Точечная текстура как на карте уроков: тает кверху, чтобы иконка стояла на чистом */}
-                  <span
-                    aria-hidden
-                    className="absolute inset-0 pointer-events-none"
-                    style={{
-                      backgroundImage: `radial-gradient(color-mix(in srgb, ${cat.labelColor} 40%, #fff) 1.6px, transparent 1.7px)`,
-                      backgroundSize: "16px 16px",
-                      WebkitMaskImage: "linear-gradient(transparent 16%, #000 76%)",
-                      maskImage: "linear-gradient(transparent 16%, #000 76%)",
-                    }}
-                  />
-                  <Icon style={{ color: cat.iconColor }} className="relative w-12 h-12" />
-                  <div className="relative text-left w-full">
-                    {/* Название категории живёт в акцентном цвете самой категории */}
-                    <span
-                      className="text-[18px] font-medium leading-[1.15] block whitespace-pre-line"
-                      style={{ color: cat.labelColor }}
-                    >
-                      {label}
-                    </span>
-                  </div>
+                  <Icon style={{ color: cat.iconColor }} className="w-3.5 h-3.5 flex-shrink-0" />
+                  {label}
                 </button>
               );
             })}
