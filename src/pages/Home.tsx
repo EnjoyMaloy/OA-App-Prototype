@@ -135,13 +135,13 @@ const Home = () => {
             {/* Текст замешан в подложку: тёплый цвет плюс multiply вместо серого */}
             <span className="min-w-0 flex-1 flex flex-col gap-1.5">
               <span
-                className="block text-[17px] font-medium leading-[1.2]"
+                className="block text-[19px] font-medium leading-[1.2]"
                 style={{ color: "#C24E14", mixBlendMode: "multiply" }}
               >
                 {currentLesson.title}
               </span>
               <span
-                className="block text-[13px]"
+                className="block text-[15px]"
                 style={{ color: "#D2703A", mixBlendMode: "multiply" }}
               >
                 {lessonsLeft}
