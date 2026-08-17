@@ -135,16 +135,15 @@ const Home = () => {
             </span>
 
             {/* Текст замешан в подложку: тёплый цвет плюс multiply вместо серого */}
-            {/* Интерлиньяж поджат так, чтобы три строки текста были ровно в высоту кольца */}
-            <span className="min-w-0 flex-1 flex flex-col gap-px">
+            <span className="min-w-0 flex-1 flex flex-col gap-1.5">
               <span
-                className="block text-[19px] font-medium leading-[1.05]"
+                className="block text-[19px] font-medium leading-[1.2]"
                 style={{ color: "#5A3A2E", mixBlendMode: "multiply" }}
               >
                 {currentLesson.title}
               </span>
               <span
-                className="block text-[15px] leading-[1]"
+                className="block text-[15px]"
                 style={{ color: "#8C6553", mixBlendMode: "multiply" }}
               >
                 {lessonsLeft}
