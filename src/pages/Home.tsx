@@ -138,13 +138,13 @@ const Home = () => {
             <span className="min-w-0 flex-1 flex flex-col gap-1.5">
               <span
                 className="block text-[19px] font-medium leading-[1.2]"
-                style={{ color: "#C24E14", mixBlendMode: "multiply" }}
+                style={{ color: "#5A3A2E", mixBlendMode: "multiply" }}
               >
                 {currentLesson.title}
               </span>
               <span
                 className="block text-[15px]"
-                style={{ color: "#D2703A", mixBlendMode: "multiply" }}
+                style={{ color: "#8C6553", mixBlendMode: "multiply" }}
               >
                 {lessonsLeft}
               </span>
