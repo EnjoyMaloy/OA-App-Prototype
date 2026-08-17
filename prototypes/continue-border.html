@@ -1,0 +1,305 @@
+<title>Продолжить · рамки</title>
+
+<style>
+  .variant { display: flex; flex-direction: column; gap: 10px }
+  .variant__cap { font-size: 13px; color: hsl(var(--muted-foreground)); margin: 0 }
+  .variant h2 { font-size: 17px; font-weight: 600; margin: 0 }
+
+  .cont { position: relative; display: flex; align-items: center; gap: 14px; width: 100%; padding: 16px;
+    border-radius: 16px; cursor: pointer; isolation: isolate }
+  .ring { position: relative; flex: 0 0 auto; width: 56px; height: 56px }
+  .ring svg { transform: rotate(-90deg) }
+  .pct { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 700; background-image: linear-gradient(120deg,#FF5C1A,#FFB088);
+    -webkit-background-clip: text; background-clip: text; color: transparent }
+  .body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px }
+  .ttl { display: block; font-size: 19px; font-weight: 500; line-height: 1.2; color: #C24E14; mix-blend-mode: multiply }
+  .sub { display: block; font-size: 15px; line-height: 1.25; color: #D2703A; mix-blend-mode: multiply }
+  .chev { flex: 0 0 auto }
+  .bed { background: linear-gradient(120deg,#A66CFF,#FF8645); padding: 14px; border-radius: 20px }
+
+  /* --- рамки --- */
+  .b-hair   { box-shadow: inset 0 0 0 1px rgba(255,255,255,.85) }
+  .b-peach  { border: 1px solid #FFD0B6 }
+  .b-orange { border: 1.5px solid rgba(255,92,26,.35) }
+  .b-double { border: 1px solid #FFCDB1; box-shadow: inset 0 0 0 2px rgba(255,255,255,.9) }
+  .b-thick  { border: 3px solid #FFD5BE }
+  .b-dash   { border: 1.5px dashed rgba(255,92,26,.45) }
+  .b-bottom { box-shadow: 0 3px 0 0 #FFC3A4 }
+  .b-left   { border-left: 4px solid #FF5C1A; border-radius: 6px 16px 16px 6px }
+  .b-shadow { border: 1px solid rgba(255,92,26,.25); box-shadow: 0 12px 24px rgba(255,124,60,.28) }
+  .b-outline{ outline: 1.5px solid rgba(255,92,26,.3); outline-offset: 3px }
+  .b-emboss { box-shadow: inset 0 1.5px 0 rgba(255,255,255,.95), inset 0 -1.5px 0 rgba(194,78,20,.18),
+              0 6px 14px rgba(194,78,20,.12) }
+  .b-neutral{ border: 1px solid #EFE3DC }
+  .b-inset  { box-shadow: 0 0 0 6px hsl(var(--background)), 0 0 0 7px #FFD9C4 }
+  .b-updown { border-top: 1.5px solid #FFCDB1; border-bottom: 1.5px solid #FFCDB1; border-radius: 0 }
+
+  /* градиентные рамки: маска вырезает середину */
+  .b-grad1::before, .b-grad2::before, .b-grad3::before {
+    content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; pointer-events: none;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude }
+  .b-grad1::before { background: linear-gradient(120deg,#A66CFF,#FF8645) }
+  .b-grad2::before { background: linear-gradient(120deg,#FF5C1A,#FFB088) }
+  .b-grad3::before { background: linear-gradient(100deg,#FF5C1A,rgba(255,176,136,0)) }
+
+  /* стекло */
+  .b-glass { backdrop-filter: blur(18px) saturate(1.6); -webkit-backdrop-filter: blur(18px) saturate(1.6);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.75) }
+  .b-glass .ttl, .b-glass .sub { mix-blend-mode: normal }
+  .b-glass .ttl { color: #7A2E06 } .b-glass .sub { color: rgba(122,46,6,.65) }
+  .b-glassorange { box-shadow: inset 0 0 0 1.5px rgba(255,92,26,.5) }
+</style>
+
+<div class="screen stack stack-8">
+
+  <div class="stack stack-2">
+    <h1 class="text-h1">Рамки блока · 20</h1>
+    <p class="text-caption-14">Содержимое везде одинаковое — меняется только рамка: волосяные канты, цветные контуры, градиентные обводки и стекло.</p>
+  </div>
+
+  <section class="variant">
+    <h2>W1. Белый волосяной кант</h2>
+    <p class="variant__cap">Внутренняя линия 1px — карточка выглядит как стекло.</p>
+    <div class="cont b-hair" style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%);">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+  </section>
+  <section class="variant">
+    <h2>W2. Персиковый контур</h2>
+    <p class="variant__cap">Тонкая рамка на тон темнее подложки.</p>
+    <div class="cont b-peach" style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%);">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+  </section>
+  <section class="variant">
+    <h2>W3. Контур цвета дуги</h2>
+    <p class="variant__cap">Оранжевый 35% — рамка перекликается с прогрессом.</p>
+    <div class="cont b-orange" style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%);">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+  </section>
+  <section class="variant">
+    <h2>W4. Двойной кант</h2>
+    <p class="variant__cap">Светлая рамка снаружи, белая линия внутри.</p>
+    <div class="cont b-double" style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%);">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+  </section>
+  <section class="variant">
+    <h2>W5. Толстая рамка</h2>
+    <p class="variant__cap">3px персика — плотная и заметная.</p>
+    <div class="cont b-thick" style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%);">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+  </section>
+  <section class="variant">
+    <h2>W6. Градиент Purple + Orange</h2>
+    <p class="variant__cap">Фирменная пара по контуру.</p>
+    <div class="cont b-grad1" style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%);">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+  </section>
+  <section class="variant">
+    <h2>W7. Оранжевый градиент</h2>
+    <p class="variant__cap">Контур в тех же цветах, что дуга.</p>
+    <div class="cont b-grad2" style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%);">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+  </section>
+  <section class="variant">
+    <h2>W8. Градиент с растворением</h2>
+    <p class="variant__cap">Рамка гаснет слева направо, как и подложка.</p>
+    <div class="cont b-grad3" style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%);">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+  </section>
+  <section class="variant">
+    <h2>W9. Стекло</h2>
+    <p class="variant__cap">Полупрозрачная карточка с размытием на цветном фоне.</p>
+    <div class="bed"><div class="cont b-glass" style="background:rgba(255,255,255,.45);">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div></div>
+  </section>
+  <section class="variant">
+    <h2>W10. Стекло с тёплым кантом</h2>
+    <p class="variant__cap">То же стекло, но кант оранжевый.</p>
+    <div class="bed"><div class="cont b-glass b-glassorange" style="background:rgba(255,255,255,.4);">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div></div>
+  </section>
+  <section class="variant">
+    <h2>W11. Кромка снизу</h2>
+    <p class="variant__cap">Цветная линия по низу — как у кнопки.</p>
+    <div class="cont b-bottom" style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%);">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+  </section>
+  <section class="variant">
+    <h2>W12. Кайма слева</h2>
+    <p class="variant__cap">Вертикальная полоса 4px в цвет дуги.</p>
+    <div class="cont b-left" style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%);">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+  </section>
+  <section class="variant">
+    <h2>W13. Пунктир</h2>
+    <p class="variant__cap">Штриховая рамка — черновой, «в процессе» вид.</p>
+    <div class="cont b-dash" style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%);">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+  </section>
+  <section class="variant">
+    <h2>W14. Рамка и тень в тон</h2>
+    <p class="variant__cap">Контур плюс мягкая оранжевая тень.</p>
+    <div class="cont b-shadow" style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%);">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+  </section>
+  <section class="variant">
+    <h2>W15. Внешняя обводка</h2>
+    <p class="variant__cap">Контур с отступом от карточки.</p>
+    <div class="cont b-outline" style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%);">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+  </section>
+  <section class="variant">
+    <h2>W16. Выпуклая</h2>
+    <p class="variant__cap">Светлый кант сверху, тень снизу — объём.</p>
+    <div class="cont b-emboss" style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%);">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+  </section>
+  <section class="variant">
+    <h2>W17. Нейтральная на белом</h2>
+    <p class="variant__cap">Без персика: белая карточка и тёплая серая рамка.</p>
+    <div class="cont b-neutral" style="background:#FFFFFF;">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+  </section>
+  <section class="variant">
+    <h2>W18. Градиент и белый кант</h2>
+    <p class="variant__cap">Внешний градиент плюс внутренняя белая линия.</p>
+    <div class="cont b-grad2 b-hair" style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%);">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+  </section>
+  <section class="variant">
+    <h2>W19. Врезка</h2>
+    <p class="variant__cap">Толстая рамка цвета фона экрана — карточка как будто утоплена.</p>
+    <div class="cont b-inset" style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%);">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+  </section>
+  <section class="variant">
+    <h2>W20. Только верх и низ</h2>
+    <p class="variant__cap">Две горизонтальные линии, боков нет.</p>
+    <div class="cont b-updown" style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%);">
+        <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct">61%</span></span>
+        <span class="body">
+          <span class="ttl">Стратегии торговли на вторичном рынке</span>
+          <span class="sub">Осталось 2 урока</span>
+        </span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(32,32,32,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+  </section>
+
+  <p class="note">Скажи код — поставлю в приложение.</p>
+
+</div>
