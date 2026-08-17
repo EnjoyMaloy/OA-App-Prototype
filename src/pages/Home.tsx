@@ -95,6 +95,8 @@ const Home = () => {
             style={{
               background: "linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)",
               isolation: "isolate",
+              // Белый кант 2px по внутреннему краю
+              boxShadow: "inset 0 0 0 2px rgba(255,255,255,0.85)",
             }}
           >
             <span className="relative flex-shrink-0 w-14 h-14">
