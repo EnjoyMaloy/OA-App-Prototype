@@ -1,0 +1,260 @@
+<title>Продолжить · прозрачный текст</title>
+
+<style>
+  .variant { display: flex; flex-direction: column; gap: 10px }
+  .variant__cap { font-size: 13px; color: hsl(var(--muted-foreground)); margin: 0 }
+  .variant h2 { font-size: 17px; font-weight: 600; margin: 0 }
+
+  .cont { position: relative; overflow: hidden; display: flex; align-items: center; gap: 14px;
+    width: 100%; padding: 16px; border-radius: 16px; cursor: pointer; isolation: isolate }
+  .ring { position: relative; flex: 0 0 auto; width: 56px; height: 56px }
+  .ring svg { transform: rotate(-90deg) }
+  .pct { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 700; background-image: linear-gradient(120deg,#FF5C1A,#FFB088);
+    -webkit-background-clip: text; background-clip: text; color: transparent }
+  .pct.on-deep { background: none; color: #fff }
+  .body { position: relative; flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px }
+  .chev { position: relative; flex: 0 0 auto; font-size: 22px; color: rgba(32,32,32,.35); line-height: 1 }
+  .chev--w { color: rgba(255,255,255,.7) }
+
+  .ttl { display: block; font-size: 17px; font-weight: 500; line-height: 1.2; color: #202020 }
+  .sub { display: block; font-size: 13px; line-height: 1.25; color: rgba(32,32,32,.5) }
+
+  /* оранжевый цвета дуги с разной прозрачностью */
+  .c-or-100 { color: #FF5C1A } .c-or-50 { color: rgba(255,92,26,.5) }
+  .c-or-45 { color: rgba(255,92,26,.45) } .c-or-40 { color: rgba(255,92,26,.4) }
+  .c-or-28 { color: rgba(255,92,26,.28) }
+  /* тон-в-тон с персиковой подложкой */
+  .c-tone { color: #E7A886 } .c-tone-strong { color: #D98A5F }
+  .c-deep { color: #B2541F } .c-deep-85 { color: rgba(178,84,31,.85) }
+  .c-deep-45 { color: rgba(178,84,31,.45) } .c-deep-35 { color: rgba(178,84,31,.35) }
+  .c-graph-85 { color: rgba(32,32,32,.85) }
+  .c-w { color: #fff } .c-w-65 { color: rgba(255,255,255,.65) } .c-w-55 { color: rgba(255,255,255,.55) }
+
+  .grad { background-image: linear-gradient(100deg,#FF5C1A,#FFB088);
+    -webkit-background-clip: text; background-clip: text; color: transparent }
+  .fade { -webkit-mask-image: linear-gradient(90deg,#000 55%,transparent 100%);
+    mask-image: linear-gradient(90deg,#000 55%,transparent 100%) }
+  .one { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden }
+  .bl-mul { mix-blend-mode: multiply; color: #C24E14 }
+  .bl-ovl { mix-blend-mode: overlay; color: #7A2A00 }
+  .sub--tone { color: #D2703A }
+
+  /* водяные знаки цветом подложки */
+  .wm { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 82px; font-weight: 800;
+    line-height: 1; color: rgba(255,255,255,.75); z-index: 0 }
+  .wm--pct { font-size: 56px; color: rgba(255,138,90,.16) }
+  .wm--out { color: transparent; -webkit-text-stroke: 2px rgba(255,138,90,.35) }
+</style>
+
+<div class="screen stack stack-8">
+
+  <div class="stack stack-2">
+    <h1 class="text-h1">Прозрачность и тон-в-тон · 20</h1>
+    <p class="text-caption-14">Текст не серый: либо цвет дуги с прозрачностью, либо оттенок самой подложки, либо белый на насыщенном персике. Карточка и кольцо везде одинаковые.</p>
+  </div>
+
+  <section class="variant">
+    <h2>U1. Подпись оранжевая 45%</h2>
+    <p class="variant__cap">Полутон не серый, а цвет дуги с прозрачностью.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)">
+      
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct ">61%</span></span>
+      <span class="body"><span class="ttl ">Стратегии торговли на вторичном рынке</span><span class="sub c-or-45">Осталось 2 урока</span></span>
+      <span class="chev ">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>U2. Подпись оранжевая 28%</h2>
+    <p class="variant__cap">Ещё тише — почти растворяется в персике.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)">
+      
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct ">61%</span></span>
+      <span class="body"><span class="ttl ">Стратегии торговли на вторичном рынке</span><span class="sub c-or-28">Осталось 2 урока</span></span>
+      <span class="chev ">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>U3. Подпись в цвет подложки</h2>
+    <p class="variant__cap">Тон-в-тон: тёплый оттенок самой карточки, без серого.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)">
+      
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct ">61%</span></span>
+      <span class="body"><span class="ttl ">Стратегии торговли на вторичном рынке</span><span class="sub c-tone">Осталось 2 урока</span></span>
+      <span class="chev ">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>U4. Весь текст тёплый</h2>
+    <p class="variant__cap">Заголовок глубокий терракотовый, подпись — он же на 45%.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)">
+      
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct ">61%</span></span>
+      <span class="body"><span class="ttl c-deep">Стратегии торговли на вторичном рынке</span><span class="sub c-deep-45">Осталось 2 урока</span></span>
+      <span class="chev ">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>U5. Заголовок градиентом</h2>
+    <p class="variant__cap">Заливка текста тем же градиентом, что у дуги и процента.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)">
+      
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct ">61%</span></span>
+      <span class="body"><span class="ttl grad">Стратегии торговли на вторичном рынке</span><span class="sub c-or-45">Осталось 2 урока</span></span>
+      <span class="chev ">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>U6. Градиент и затухание</h2>
+    <p class="variant__cap">Градиент в тексте плюс прозрачность к правому краю.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)">
+      
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct ">61%</span></span>
+      <span class="body"><span class="ttl grad fade">Стратегии торговли на вторичном рынке</span><span class="sub c-or-40">Осталось 2 урока</span></span>
+      <span class="chev ">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>U7. Цифра водяным знаком</h2>
+    <p class="variant__cap">Крупная «2» цветом подложки лежит за текстом.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)">
+      <span class="wm">2</span>
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct ">61%</span></span>
+      <span class="body"><span class="ttl ">Стратегии торговли на вторичном рынке</span><span class="sub c-or-45">Осталось 2 урока</span></span>
+      <span class="chev ">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>U8. Процент водяным знаком</h2>
+    <p class="variant__cap">За текстом — крупные 61% в тон карточке.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)">
+      <span class="wm wm--pct">61%</span>
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct ">61%</span></span>
+      <span class="body"><span class="ttl ">Стратегии торговли на вторичном рынке</span><span class="sub c-or-45">Осталось 2 урока</span></span>
+      <span class="chev ">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>U9. Умножение</h2>
+    <p class="variant__cap">mix-blend-mode: multiply — текст замешан в подложку.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)">
+      
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct ">61%</span></span>
+      <span class="body"><span class="ttl bl-mul">Стратегии торговли на вторичном рынке</span><span class="sub bl-mul sub--tone">Осталось 2 урока</span></span>
+      <span class="chev ">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>U10. Наложение</h2>
+    <p class="variant__cap">mix-blend-mode: overlay — текст живёт внутри градиента.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)">
+      
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct ">61%</span></span>
+      <span class="body"><span class="ttl bl-ovl">Стратегии торговли на вторичном рынке</span><span class="sub bl-ovl">Осталось 2 урока</span></span>
+      <span class="chev ">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>U11. Белый по персику</h2>
+    <p class="variant__cap">Насыщенная подложка, текст белый с прозрачностью — как у Apple.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FF8F5A 0%, #FFA97C 55%, #FFC7A8 100%)">
+      
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#gw)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct on-deep">61%</span></span>
+      <span class="body"><span class="ttl c-w">Стратегии торговли на вторичном рынке</span><span class="sub c-w-65">Осталось 2 урока</span></span>
+      <span class="chev chev--w">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>U12. Белый, два уровня</h2>
+    <p class="variant__cap">Заголовок белый 100%, подпись 55% — тот же приём, тише.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FF8F5A 0%, #FFA97C 55%, #FFC7A8 100%)">
+      
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#gw)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct on-deep">61%</span></span>
+      <span class="body"><span class="ttl c-w">Стратегии торговли на вторичном рынке</span><span class="sub c-w-55">Осталось 2 урока</span></span>
+      <span class="chev chev--w">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>U13. Только оттенки персика</h2>
+    <p class="variant__cap">Ни серого, ни чёрного: заголовок и подпись — два оттенка фона.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)">
+      
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct ">61%</span></span>
+      <span class="body"><span class="ttl c-tone-strong">Стратегии торговли на вторичном рынке</span><span class="sub c-tone">Осталось 2 урока</span></span>
+      <span class="chev ">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>U14. Тон-в-тон и плотная цифра</h2>
+    <p class="variant__cap">Слова растворяются, число остаётся читаемым.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)">
+      
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct ">61%</span></span>
+      <span class="body"><span class="ttl ">Стратегии торговли на вторичном рынке</span><span class="sub "><span class="c-tone">Осталось</span> <span class="c-deep">2 урока</span></span></span>
+      <span class="chev ">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>U15. Мягкая терракота</h2>
+    <p class="variant__cap">Заголовок 85% терракоты, подпись 35% — карточка звучит одним цветом.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)">
+      
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct ">61%</span></span>
+      <span class="body"><span class="ttl c-deep-85">Стратегии торговли на вторичном рынке</span><span class="sub c-deep-35">Осталось 2 урока</span></span>
+      <span class="chev ">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>U16. Подпись гаснет вправо</h2>
+    <p class="variant__cap">Маска: строка растворяется к концу.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)">
+      
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct ">61%</span></span>
+      <span class="body"><span class="ttl ">Стратегии торговли на вторичном рынке</span><span class="sub c-or-50 fade">Осталось 2 урока · 12 минут</span></span>
+      <span class="chev ">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>U17. Заголовок гаснет вправо</h2>
+    <p class="variant__cap">Хвост длинного названия уходит в подложку.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)">
+      
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct ">61%</span></span>
+      <span class="body"><span class="ttl fade one">Стратегии торговли на вторичном рынке</span><span class="sub c-or-45">Осталось 2 урока</span></span>
+      <span class="chev ">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>U18. Подпись в цвет дуги</h2>
+    <p class="variant__cap">Полная плотность оранжевого — подпись становится акцентом.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)">
+      
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct ">61%</span></span>
+      <span class="body"><span class="ttl c-graph-85">Стратегии торговли на вторичном рынке</span><span class="sub c-or-100">Осталось 2 урока</span></span>
+      <span class="chev ">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>U19. Контурная цифра</h2>
+    <p class="variant__cap">Крупная «2» только обводкой в тон подложке.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)">
+      <span class="wm wm--out">2</span>
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct ">61%</span></span>
+      <span class="body"><span class="ttl ">Стратегии торговли на вторичном рынке</span><span class="sub c-or-45">Осталось 2 урока</span></span>
+      <span class="chev ">›</span>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>U20. Три оттенка персика</h2>
+    <p class="variant__cap">Заголовок, число и слово — три плотности одного тёплого цвета.</p>
+    <div class="cont " style="background:linear-gradient(105deg, #FFE7DA 0%, #FFEDE3 55%, #FFFFFF 100%)">
+      
+      <span class="ring"><svg width="56" height="56" viewBox="0 0 56 56"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5C1A"/><stop offset="1" stop-color="#FFB088"/></linearGradient><linearGradient id="gw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="rgba(255,255,255,.7)"/></linearGradient></defs><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(32,32,32,.10)" stroke-width="8"/><circle cx="28" cy="28" r="23" fill="none" stroke="url(#ga)" stroke-width="8" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="56.4"/></svg><span class="pct ">61%</span></span>
+      <span class="body"><span class="ttl c-deep-85">Стратегии торговли на вторичном рынке</span><span class="sub "><span class="c-deep">2 урока</span> <span class="c-deep-35">осталось</span></span></span>
+      <span class="chev ">›</span>
+    </div>
+  </section>
+
+  <p class="note">Скажи код — поставлю в приложение.</p>
+
+</div>
