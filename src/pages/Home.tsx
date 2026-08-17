@@ -148,23 +148,32 @@ const Home = () => {
             actionLabel={t("instructions.all")}
             onAction={() => navigate("/catalog")}
           />
-          {/* Пилюли в два ряда: лента листается вбок */}
-          <div className="grid grid-rows-2 grid-flow-col auto-cols-max justify-start gap-2.5 overflow-x-auto scrollbar-hide -mx-4 px-4 pb-1">
-            {categories.map((cat) => {
-              const Icon = cat.icon;
-              const label = (lang === "ru" ? cat.labelRu : cat.labelEn).replace("\n", " ");
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => navigate(`/catalog?cat=${cat.id}`)}
-                  className="inline-flex items-center gap-2 h-[40px] px-[14px] rounded-full text-[17px] font-medium whitespace-nowrap transition-all hover:brightness-95"
-                  style={{ background: cat.bg, color: cat.labelColor }}
-                >
-                  <Icon style={{ color: cat.iconColor }} className="w-[19px] h-[19px] flex-shrink-0" />
-                  {label}
-                </button>
-              );
-            })}
+          {/* Две строки в обычном порядке чтения, обе листаются вбок вместе */}
+          <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 pb-1">
+            <div className="w-max flex flex-col gap-2.5">
+              {[
+                categories.slice(0, Math.ceil(categories.length / 2)),
+                categories.slice(Math.ceil(categories.length / 2)),
+              ].map((row, rowIndex) => (
+                <div key={rowIndex} className="flex gap-2.5">
+                  {row.map((cat) => {
+                    const Icon = cat.icon;
+                    const label = (lang === "ru" ? cat.labelRu : cat.labelEn).replace("\n", " ");
+                    return (
+                      <button
+                        key={cat.id}
+                        onClick={() => navigate(`/catalog?cat=${cat.id}`)}
+                        className="inline-flex items-center gap-2 h-[40px] px-[14px] rounded-full text-[17px] font-medium whitespace-nowrap transition-all hover:brightness-95"
+                        style={{ background: cat.bg, color: cat.labelColor }}
+                      >
+                        <Icon style={{ color: cat.iconColor }} className="w-[19px] h-[19px] flex-shrink-0" />
+                        {label}
+                      </button>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
