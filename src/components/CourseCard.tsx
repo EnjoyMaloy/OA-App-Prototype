@@ -1,14 +1,12 @@
 import { MoreVertical } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useNavigate } from "react-router-dom";
-import { categories } from "@/data/courses";
 import { pluralRu } from "@/lib/utils";
 
 interface CourseCardProps {
   id: string;
   titleRu: string;
   titleEn: string;
-  categoryId: string;
   categoryLabel: string;
   rating: number;
   students: number;
@@ -33,7 +31,6 @@ const CourseCard = ({
   id,
   titleRu,
   titleEn,
-  categoryId,
   categoryLabel,
   rating,
   students,
@@ -46,8 +43,6 @@ const CourseCard = ({
   const { lang } = useLanguage();
   const navigate = useNavigate();
   const title = lang === "ru" ? titleRu : titleEn;
-  const cat = categories.find((c) => c.id === categoryId);
-  const Icon = cat?.icon;
 
   // Плашка в углу обложки — на месте длительности ролика
   const corner = isOwned
@@ -87,16 +82,8 @@ const CourseCard = ({
         </span>
       </div>
 
-      {/* Строка под обложкой: аватар категории, заголовок, метаданные, три точки */}
+      {/* Строка под обложкой: заголовок, метаданные, три точки */}
       <div className="flex gap-3 px-1.5 pt-3">
-        {Icon && (
-          <span
-            className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center"
-            style={{ background: cat?.bg, color: cat?.iconColor }}
-          >
-            <Icon className="w-[18px] h-[18px]" />
-          </span>
-        )}
         <div className="min-w-0 flex-1 flex flex-col gap-0.5">
           <h3 className="text-[16px] font-semibold leading-[1.3] line-clamp-2" style={{ color: "hsl(0 0% 6%)" }}>
             {title}

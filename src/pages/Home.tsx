@@ -53,15 +53,14 @@ const Home = () => {
     store.purchasedCourses.includes(courseId) || (!!premium && !!store.subscription?.active);
 
   const renderRail = (list: typeof courses) => (
-    <div className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory -mx-4 px-4 pb-1">
+    <div className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-pl-4 -mx-4 px-4 pb-1">
       {list.map((course) => (
         <div key={course.id} className="flex-shrink-0 snap-start w-[260px] sm:w-[300px]">
           <CourseCard
             id={course.id}
             titleRu={course.titleRu}
             titleEn={course.titleEn}
-            categoryId={course.categoryId}
-                categoryLabel={getCategoryLabel(course.categoryId, lang)}
+            categoryLabel={getCategoryLabel(course.categoryId, lang)}
             rating={course.rating}
             students={course.students}
             image={course.image}
