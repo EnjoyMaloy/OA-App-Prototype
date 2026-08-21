@@ -1,4 +1,4 @@
-import { History, LayoutGrid, MoreVertical, Users } from "lucide-react";
+import { History, MoreVertical, Users } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useNavigate } from "react-router-dom";
 import { agoLabel } from "@/lib/utils";
@@ -26,7 +26,6 @@ const CourseCard = ({
   id,
   titleRu,
   titleEn,
-  categoryLabel,
   rating,
   students,
   image,
@@ -75,15 +74,8 @@ const CourseCard = ({
         </button>
       </div>
 
-      {/* Под заголовком: категория, рейтинг, ученики и когда обновляли */}
-      <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5 px-1.5 pt-2.5">
-        <span className="inline-flex items-center gap-1.5 px-2 py-[5px] rounded-lg bg-background">
-          <LayoutGrid className="w-2.5 h-2.5 text-foreground" strokeWidth={2} />
-          <span className="text-[14px]" style={{ color: "hsl(0 0% 27.5%)" }}>
-            {categoryLabel}
-          </span>
-        </span>
-
+      {/* Под заголовком: компактный ряд иконок с цифрами, без плашек */}
+      <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 px-1.5 pt-2.5">
         <span className="inline-flex items-center gap-1 text-[14px] text-foreground">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
             <path
@@ -94,15 +86,13 @@ const CourseCard = ({
           {rating}
         </span>
 
-        <span className="inline-flex items-center gap-1.5 px-1.5 py-1 rounded-full bg-background">
-          <Users className="w-[18px] h-[18px]" style={{ color: "hsl(0 0% 27.5%)" }} strokeWidth={1.25} />
-          <span className="text-[14px]" style={{ color: "hsl(0 0% 27.5%)" }}>
-            {students.toLocaleString("ru-RU")}
-          </span>
+        <span className="inline-flex items-center gap-1 text-[14px]" style={{ color: "hsl(0 0% 42%)" }}>
+          <Users className="w-4 h-4" strokeWidth={1.5} />
+          {students.toLocaleString("ru-RU")}
         </span>
 
         {/* Когда курс обновляли — как «2 недели назад» на YouTube */}
-        <span className="inline-flex items-center gap-1 text-[14px]" style={{ color: "hsl(0 0% 45%)" }}>
+        <span className="inline-flex items-center gap-1 text-[14px]" style={{ color: "hsl(0 0% 42%)" }}>
           <History className="w-[15px] h-[15px]" strokeWidth={1.6} />
           {agoLabel(updatedDaysAgo, lang)}
         </span>

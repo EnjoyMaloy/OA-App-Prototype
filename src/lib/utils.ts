@@ -15,7 +15,9 @@ export function agoLabel(days: number, lang: "ru" | "en") {
   if (days < 7) return lang === "ru" ? `${days} ${pluralRu(days, ["день", "дня", "дней"])} назад` : `${days} days ago`;
   if (days < 31) {
     const w = Math.round(days / 7);
-    return lang === "ru" ? `${w} ${pluralRu(w, ["неделю", "недели", "недель"])} назад` : `${w} week${w > 1 ? "s" : ""} ago`;
+    return lang === "ru"
+      ? w === 1 ? "неделю назад" : `${w} ${pluralRu(w, ["неделю", "недели", "недель"])} назад`
+      : `${w} week${w > 1 ? "s" : ""} ago`;
   }
   if (days < 365) {
     const m = Math.round(days / 30);
