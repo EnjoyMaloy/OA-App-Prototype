@@ -138,6 +138,7 @@ const Catalog = () => {
                 id={course.id}
                 titleRu={course.titleRu}
                 titleEn={course.titleEn}
+                categoryId={course.categoryId}
                 categoryLabel={getCategoryLabel(course.categoryId, lang)}
                 rating={course.rating}
                 students={course.students}

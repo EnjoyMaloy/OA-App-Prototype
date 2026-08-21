@@ -60,7 +60,8 @@ const Home = () => {
             id={course.id}
             titleRu={course.titleRu}
             titleEn={course.titleEn}
-            categoryLabel={getCategoryLabel(course.categoryId, lang)}
+            categoryId={course.categoryId}
+                categoryLabel={getCategoryLabel(course.categoryId, lang)}
             rating={course.rating}
             students={course.students}
             image={course.image}
