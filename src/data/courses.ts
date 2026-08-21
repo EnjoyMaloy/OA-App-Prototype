@@ -41,15 +41,17 @@ export interface CourseData {
   price?: number;
   isNew?: boolean;
   trending?: boolean;
+  /** Сколько дней назад курс обновляли — из этого считается «2 недели назад» */
+  updatedDaysAgo: number;
 }
 
 export const courses: CourseData[] = [
-  { id: "1", titleRu: "1 курс — Бесплатный", titleEn: "1 — Free course", categoryId: "web3", rating: 4.9, students: 371, image: imgRocket, imageBg: "linear-gradient(135deg, #E8DCFB 0%, #A66CFF 100%)", isNew: true },
-  { id: "2", titleRu: "2 курс — В подписке без триала", titleEn: "2 — Subscription, no trial", categoryId: "invest", rating: 4.9, students: 35419, image: imgCoin, imageBg: "linear-gradient(135deg, #FFF1CC 0%, #F5B02E 100%)", premium: true, price: 49, trending: true },
-  { id: "6", titleRu: "3 курс — В подписке с триалом", titleEn: "3 — Subscription with trial", categoryId: "crypto", rating: 4.7, students: 1024, image: imgNft, imageBg: "linear-gradient(135deg, #FFDFD1 0%, #FF7D60 100%)", premium: true, price: 49, isNew: true },
-  { id: "7", titleRu: "4 курс — Платный без триала", titleEn: "4 — Paid, no trial", categoryId: "tools", rating: 4.6, students: 512, image: imgSecurity, imageBg: "linear-gradient(135deg, #FFD6EC 0%, #EE49A4 100%)", premium: true, price: 79, isNew: true },
-  { id: "8", titleRu: "5 курс — Платный с триалом", titleEn: "5 — Paid with trial", categoryId: "tools", rating: 4.7, students: 640, image: imgMascot, imageBg: "linear-gradient(135deg, #CFF3E9 0%, #34C8A0 100%)", premium: true, price: 89, isNew: true },
-  { id: "9", titleRu: "Экспериментальная стр курса", titleEn: "Experimental course page", categoryId: "web3", rating: 4.95, students: 2480, image: imgLogo, imageBg: "linear-gradient(135deg, #FFFFFF 0%, #EFECF7 100%)", premium: true, price: 59, isNew: true, trending: true },
+  { id: "1", titleRu: "1 курс — Бесплатный", titleEn: "1 — Free course", categoryId: "web3", rating: 4.9, students: 371, image: imgRocket, imageBg: "linear-gradient(135deg, #E8DCFB 0%, #A66CFF 100%)", isNew: true, updatedDaysAgo: 2 },
+  { id: "2", titleRu: "2 курс — В подписке без триала", titleEn: "2 — Subscription, no trial", categoryId: "invest", rating: 4.9, students: 35419, image: imgCoin, imageBg: "linear-gradient(135deg, #FFF1CC 0%, #F5B02E 100%)", premium: true, price: 49, trending: true, updatedDaysAgo: 9 },
+  { id: "6", titleRu: "3 курс — В подписке с триалом", titleEn: "3 — Subscription with trial", categoryId: "crypto", rating: 4.7, students: 1024, image: imgNft, imageBg: "linear-gradient(135deg, #FFDFD1 0%, #FF7D60 100%)", premium: true, price: 49, isNew: true, updatedDaysAgo: 21 },
+  { id: "7", titleRu: "4 курс — Платный без триала", titleEn: "4 — Paid, no trial", categoryId: "tools", rating: 4.6, students: 512, image: imgSecurity, imageBg: "linear-gradient(135deg, #FFD6EC 0%, #EE49A4 100%)", premium: true, price: 79, isNew: true, updatedDaysAgo: 45 },
+  { id: "8", titleRu: "5 курс — Платный с триалом", titleEn: "5 — Paid with trial", categoryId: "tools", rating: 4.7, students: 640, image: imgMascot, imageBg: "linear-gradient(135deg, #CFF3E9 0%, #34C8A0 100%)", premium: true, price: 89, isNew: true, updatedDaysAgo: 120 },
+  { id: "9", titleRu: "Экспериментальная стр курса", titleEn: "Experimental course page", categoryId: "web3", rating: 4.95, students: 2480, image: imgLogo, imageBg: "linear-gradient(135deg, #FFFFFF 0%, #EFECF7 100%)", premium: true, price: 59, isNew: true, trending: true, updatedDaysAgo: 400 },
 ];
 
 export const getCategoryLabel = (catId: string, lang: "ru" | "en") => {

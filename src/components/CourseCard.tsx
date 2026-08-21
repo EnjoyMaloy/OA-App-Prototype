@@ -1,7 +1,7 @@
-import { MoreVertical } from "lucide-react";
+import { History, LayoutGrid, MoreVertical, Users } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useNavigate } from "react-router-dom";
-import { pluralRu } from "@/lib/utils";
+import { agoLabel } from "@/lib/utils";
 
 interface CourseCardProps {
   id: string;
@@ -18,14 +18,9 @@ interface CourseCardProps {
   isNew?: boolean;
   trending?: boolean;
   isOwned?: boolean;
+  /** Сколько дней назад обновляли курс */
+  updatedDaysAgo: number;
 }
-
-// Крупные числа сокращаются, как счётчик просмотров: 35 419 → 35 тыс.
-const shortCount = (n: number, lang: "ru" | "en") => {
-  if (n < 1000) return String(n);
-  const k = (n / 1000).toFixed(n < 10000 ? 1 : 0).replace(/[.,]0$/, "");
-  return lang === "ru" ? `${k.replace(".", ",")} тыс.` : `${k}K`;
-};
 
 const CourseCard = ({
   id,
@@ -36,28 +31,11 @@ const CourseCard = ({
   students,
   image,
   imageBg,
-  premium,
-  price,
-  isOwned,
+  updatedDaysAgo,
 }: CourseCardProps) => {
   const { lang } = useLanguage();
   const navigate = useNavigate();
   const title = lang === "ru" ? titleRu : titleEn;
-
-  // Плашка в углу обложки — на месте длительности ролика
-  const corner = isOwned
-    ? lang === "ru" ? "Куплен" : "Owned"
-    : premium
-      ? lang === "ru" ? "Премиум" : "Premium"
-      : price
-        ? `${price} $`
-        : lang === "ru" ? "Бесплатно" : "Free";
-
-  const counted =
-    lang === "ru"
-      // У сокращённых чисел («35 тыс.») склонение всегда множественное
-      ? `${shortCount(students, lang)} ${students < 1000 ? pluralRu(students, ["ученик", "ученика", "учеников"]) : "учеников"}`
-      : `${shortCount(students, lang)} students`;
 
   return (
     <div
@@ -77,21 +55,16 @@ const CourseCard = ({
           }`}
           loading="lazy"
         />
-        <span className="absolute right-1.5 bottom-1.5 px-1.5 py-[2px] rounded-[4px] bg-black/80 text-white text-[12px] font-semibold leading-[16px]">
-          {corner}
-        </span>
       </div>
 
-      {/* Строка под обложкой: заголовок, метаданные, три точки */}
+      {/* Заголовок всегда занимает две строки, чтобы карточки в ленте были одной высоты */}
       <div className="flex gap-3 px-1.5 pt-3">
-        <div className="min-w-0 flex-1 flex flex-col gap-0.5">
-          <h3 className="text-[16px] font-semibold leading-[1.3] line-clamp-2" style={{ color: "hsl(0 0% 6%)" }}>
-            {title}
-          </h3>
-          <p className="text-[13px] leading-[1.35] truncate" style={{ color: "hsl(0 0% 38%)" }}>
-            {categoryLabel} · {counted} · ★ {rating}
-          </p>
-        </div>
+        <h3
+          className="min-w-0 flex-1 text-[16px] font-medium leading-[1.3] line-clamp-2 min-h-[42px]"
+          style={{ color: "hsl(0 0% 6%)" }}
+        >
+          {title}
+        </h3>
         <button
           onClick={(e) => e.stopPropagation()}
           aria-label="Ещё"
@@ -100,6 +73,39 @@ const CourseCard = ({
         >
           <MoreVertical className="w-[18px] h-[18px]" />
         </button>
+      </div>
+
+      {/* Под заголовком: категория, рейтинг, ученики и когда обновляли */}
+      <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5 px-1.5 pt-2.5">
+        <span className="inline-flex items-center gap-1.5 px-2 py-[5px] rounded-lg bg-background">
+          <LayoutGrid className="w-2.5 h-2.5 text-foreground" strokeWidth={2} />
+          <span className="text-[14px]" style={{ color: "hsl(0 0% 27.5%)" }}>
+            {categoryLabel}
+          </span>
+        </span>
+
+        <span className="inline-flex items-center gap-1 text-[14px] text-foreground">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
+            <path
+              d="M7 1L8.854 4.756L13 5.362L10 8.284L10.708 12.412L7 10.468L3.292 12.412L4 8.284L1 5.362L5.146 4.756L7 1Z"
+              fill="#FF7D60"
+            />
+          </svg>
+          {rating}
+        </span>
+
+        <span className="inline-flex items-center gap-1.5 px-1.5 py-1 rounded-full bg-background">
+          <Users className="w-[18px] h-[18px]" style={{ color: "hsl(0 0% 27.5%)" }} strokeWidth={1.25} />
+          <span className="text-[14px]" style={{ color: "hsl(0 0% 27.5%)" }}>
+            {students.toLocaleString("ru-RU")}
+          </span>
+        </span>
+
+        {/* Когда курс обновляли — как «2 недели назад» на YouTube */}
+        <span className="inline-flex items-center gap-1 text-[14px]" style={{ color: "hsl(0 0% 45%)" }}>
+          <History className="w-[15px] h-[15px]" strokeWidth={1.6} />
+          {agoLabel(updatedDaysAgo, lang)}
+        </span>
       </div>
     </div>
   );

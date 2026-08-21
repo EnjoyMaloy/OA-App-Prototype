@@ -69,6 +69,7 @@ const Home = () => {
             price={course.price}
             isNew={course.isNew}
             trending={course.trending}
+            updatedDaysAgo={course.updatedDaysAgo}
             isOwned={isOwned(course.id, course.premium)}
           />
         </div>
