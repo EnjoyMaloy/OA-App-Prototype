@@ -65,10 +65,13 @@ const CourseCard = ({
       : `${shortCount(students, lang)} students`;
 
   return (
-    <div onClick={() => navigate(`/course/${id}`)} className="flex flex-col gap-3 cursor-pointer group">
-      {/* Обложка 16:9 со скруглением */}
+    <div
+      onClick={() => navigate(`/course/${id}`)}
+      className="flex flex-col cursor-pointer group rounded-[20px] p-2 pb-3.5 bg-muted"
+    >
+      {/* Обложка 16:9 со скруглением, внутри общей подложки */}
       <div
-        className="relative w-full aspect-video rounded-xl overflow-hidden bg-muted"
+        className="relative w-full aspect-video rounded-[14px] overflow-hidden bg-background"
         style={imageBg ? { background: imageBg } : undefined}
       >
         <img
@@ -85,7 +88,7 @@ const CourseCard = ({
       </div>
 
       {/* Строка под обложкой: аватар категории, заголовок, метаданные, три точки */}
-      <div className="flex gap-3">
+      <div className="flex gap-3 px-1.5 pt-3">
         {Icon && (
           <span
             className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center"
