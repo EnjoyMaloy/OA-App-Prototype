@@ -1,4 +1,4 @@
-import { History, MoreVertical, Users } from "lucide-react";
+import { History, Users } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useNavigate } from "react-router-dom";
 import { agoLabel } from "@/lib/utils";
@@ -39,7 +39,7 @@ const CourseCard = ({
   return (
     <div
       onClick={() => navigate(`/course/${id}`)}
-      className="flex flex-col cursor-pointer group rounded-[20px] p-2 pb-3.5 bg-muted"
+      className="flex flex-col cursor-pointer group rounded-[20px] p-1.5 pb-3.5 bg-muted"
     >
       {/* Обложка 16:9 со скруглением, внутри общей подложки */}
       <div
@@ -57,22 +57,12 @@ const CourseCard = ({
       </div>
 
       {/* Заголовок всегда занимает две строки, чтобы карточки в ленте были одной высоты */}
-      <div className="flex gap-3 px-1.5 pt-3">
-        <h3
-          className="min-w-0 flex-1 text-[16px] font-medium leading-[1.3] line-clamp-2 min-h-[42px]"
-          style={{ color: "hsl(0 0% 6%)" }}
-        >
-          {title}
-        </h3>
-        <button
-          onClick={(e) => e.stopPropagation()}
-          aria-label="Ещё"
-          className="flex-shrink-0 -mr-1 self-start"
-          style={{ color: "hsl(0 0% 38%)" }}
-        >
-          <MoreVertical className="w-[18px] h-[18px]" />
-        </button>
-      </div>
+      <h3
+        className="px-1.5 pt-3 text-[17px] font-medium leading-[1.3] line-clamp-2 min-h-[45px]"
+        style={{ color: "hsl(0 0% 6%)" }}
+      >
+        {title}
+      </h3>
 
       {/* Под заголовком: компактный ряд иконок с цифрами, без плашек */}
       <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 px-1.5 pt-2.5">
