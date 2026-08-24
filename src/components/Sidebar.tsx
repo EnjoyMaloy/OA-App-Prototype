@@ -1,9 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, LayoutGrid, BookOpen, ClipboardList, Coins, Users, FileText, PanelLeftClose, PanelLeft, RotateCcw, Diamond } from "lucide-react";
+import { Home, LayoutGrid, BookOpen, ClipboardList, Coins, Users, FileText, PanelLeftClose, PanelLeft, RotateCcw, Diamond, Smartphone } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { resetPurchaseStore } from "@/hooks/usePurchaseStore";
 import logo from "@/assets/main_full_logo_color_light.png.asset.json";
+import DownloadAppPopover from "@/components/DownloadAppPopover";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -19,7 +20,7 @@ const Sidebar = () => {
 
   const menuGroup2 = [
     { label: t("sidebar.tasks"), icon: ClipboardList, path: "/tasks", badge: 12, disabled: true },
-    { label: t("sidebar.myToken"), icon: Coins, path: "/token", disabled: true },
+    { label: t("sidebar.myToken"), icon: Coins, path: "/token" },
     { label: t("sidebar.referral"), icon: Users, path: "/referral", disabled: true },
   ];
 
@@ -114,7 +115,24 @@ const Sidebar = () => {
           </div>
         </div>
 
-        <div className="mt-auto pb-6">
+        <div className="mt-auto pb-6 flex flex-col gap-4">
+          {/* Мобильное приложение */}
+          <DownloadAppPopover side="right" align="end">
+            <button
+              type="button"
+              className={`flex items-center gap-3 h-12 rounded-[10px] border border-primary/40 text-primary hover:bg-primary/5 transition-colors w-full ${
+                collapsed ? "justify-center px-0" : "px-3"
+              }`}
+            >
+              <Smartphone className="w-5 h-5 flex-shrink-0" />
+              {!collapsed && (
+                <span className="text-[15px] font-medium truncate">
+                  {lang === "ru" ? "Скачать приложение" : "Get the app"}
+                </span>
+              )}
+            </button>
+          </DownloadAppPopover>
+
           <button
             onClick={() => {
               if (window.confirm(lang === "ru" ? "Сбросить данные подписок и курсов?" : "Reset subscriptions and courses data?")) {

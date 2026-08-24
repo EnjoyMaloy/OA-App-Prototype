@@ -8,6 +8,7 @@ import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/Navbar";
 import BottomNav from "@/components/BottomNav";
 import Sidebar from "@/components/Sidebar";
+import Footer from "@/components/Footer";
 import Index from "./pages/Index.tsx";
 import Articles from "./pages/Articles.tsx";
 import ArticleEditor from "./pages/ArticleEditor.tsx";
@@ -19,6 +20,8 @@ import CourseView from "./pages/CourseView.tsx";
 import CourseLessons from "./pages/CourseLessons.tsx";
 import Profile from "./pages/Profile.tsx";
 import BrandResources from "./pages/BrandResources.tsx";
+import MyToken from "./pages/MyToken.tsx";
+import AirdropVariants from "./pages/AirdropVariants.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -48,10 +51,13 @@ const App = () => (
                     <Route path="/course/:id/lessons" element={<Index />} />
                     <Route path="/instructions" element={<Instructions />} />
                     <Route path="/instructions/:id" element={<ArticleView />} />
+                    <Route path="/token" element={<MyToken />} />
+                    <Route path="/token-variants" element={<AirdropVariants />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/brand" element={<BrandResources />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
+                  <Footer />
                 </main>
               </div>
             </div>

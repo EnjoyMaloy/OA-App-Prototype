@@ -1,149 +1,122 @@
-import { Link } from "react-router-dom";
-import { Send, Youtube, Github, Twitter } from "lucide-react";
+import { MessageCircle, Send, Linkedin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { STORE_LINKS } from "@/lib/storeLinks";
+import logo from "@/assets/main_full_logo_color_light.png.asset.json";
 
-type Col = {
-  titleRu: string;
-  titleEn: string;
-  links: { ru: string; en: string; to: string }[];
-};
+const XIcon = ({ className = "" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+    <path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.22-6.82-5.97 6.82H1.66l7.73-8.84L1.25 2.25h6.82l4.71 6.23 5.46-6.23Zm-1.16 17.52h1.83L7.01 4.13H5.05l12.03 15.64Z" />
+  </svg>
+);
 
-const columns: Col[] = [
+type LinkItem = { ru: string; en: string; href: string; badge?: string };
+
+const columns: { titleRu: string; titleEn: string; links: LinkItem[] }[] = [
   {
-    titleRu: "Продукт",
-    titleEn: "Product",
+    titleRu: "Приложение",
+    titleEn: "App",
     links: [
-      { ru: "Каталог", en: "Catalog", to: "/catalog" },
-      { ru: "Мои курсы", en: "My courses", to: "/my-courses" },
-      { ru: "Инструкции", en: "Guides", to: "/instructions" },
-      { ru: "Профиль", en: "Profile", to: "/profile" },
+      { ru: "Telegram Mini App", en: "Telegram Mini App", href: "#" },
+      { ru: "App Store", en: "App Store", href: STORE_LINKS.appStore },
+      { ru: "Google Play", en: "Google Play", href: STORE_LINKS.googlePlay },
     ],
   },
   {
-    titleRu: "Обучение",
-    titleEn: "Learn",
+    titleRu: "Продукты",
+    titleEn: "Products",
     links: [
-      { ru: "Категории", en: "Categories", to: "/catalog" },
-      { ru: "Новые курсы", en: "New courses", to: "/catalog" },
-      { ru: "Гайды", en: "Guides", to: "/instructions" },
-      { ru: "FAQ", en: "FAQ", to: "/instructions" },
+      { ru: "Обзор", en: "Overview", href: "#" },
+      { ru: "Studio", en: "Studio", href: "#", badge: "JOIN WL" },
+      { ru: "The Early Squirrels", en: "The Early Squirrels", href: "https://squirrels.open-academy.app/" },
     ],
   },
   {
-    titleRu: "Компания",
-    titleEn: "Company",
+    titleRu: "Документы",
+    titleEn: "Documents",
     links: [
-      { ru: "О нас", en: "About", to: "#" },
-      { ru: "Блог", en: "Blog", to: "#" },
-      { ru: "Ресурсы бренда", en: "Brand resources", to: "/brand" },
-      { ru: "Партнёрство", en: "Partners", to: "#" },
+      { ru: "Вайтпейпер", en: "Whitepaper", href: "#" },
+      { ru: "Токеномика", en: "Tokenomics", href: "#" },
+      { ru: "Политика конфиденциальности", en: "Privacy Policy", href: "#" },
+      { ru: "Условия использования", en: "Terms of Use", href: "#" },
+      { ru: "Политика cookie", en: "Cookie Policy", href: "#" },
     ],
   },
   {
-    titleRu: "Поддержка",
-    titleEn: "Support",
+    titleRu: "Контакты",
+    titleEn: "Contacts",
     links: [
-      { ru: "Помощь", en: "Help center", to: "#" },
-      { ru: "Контакты", en: "Contact", to: "#" },
-      { ru: "Статус", en: "Status", to: "#" },
-      { ru: "Сообщество", en: "Community", to: "#" },
+      { ru: "Поддержка", en: "Support", href: "#" },
+      { ru: "Обратная связь", en: "Feedback", href: "#" },
+      { ru: "Партнёрство", en: "Partnership", href: "#" },
     ],
   },
 ];
 
+const socials = [
+  { label: "Chat", Icon: MessageCircle, href: "#" },
+  { label: "Telegram", Icon: Send, href: "#" },
+  { label: "X", Icon: XIcon, href: "#" },
+  { label: "LinkedIn", Icon: Linkedin, href: "#" },
+];
+
 const Footer = () => {
   const { lang } = useLanguage();
+  const ru = lang === "ru";
 
   return (
-    <footer role="contentinfo" className="bg-background border-t border-border mt-20">
-      <h2 className="sr-only">Footer</h2>
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16">
-        {/* Top: brand + columns */}
-        <div className="grid gap-12 lg:grid-cols-[1fr_2fr]">
-          <div className="max-w-sm">
-            <div className="text-h2 text-foreground mb-3">Lovable</div>
-            <p className="text-body-14 text-muted-foreground leading-relaxed">
-              {lang === "ru"
-                ? "Платформа коротких курсов о крипте, AI и Web3. Учись в своём темпе."
-                : "Short, focused courses on crypto, AI and Web3. Learn at your own pace."}
-            </p>
+    <footer className="hidden md:block border-t border-border mt-10">
+      <div className="px-4 md:px-9 py-10 md:py-12">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 md:grid-cols-[150px_0.9fr_1fr_1.5fr_1fr_1fr] md:gap-x-8">
+          {/* Логотип */}
+          <div className="col-span-2 md:col-span-1">
+            <img src={logo.url} alt="Open Academy" className="h-12 object-contain" />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
-            {columns.map((col) => (
-              <div key={col.titleEn}>
-                <div className="text-caption-12-caps text-muted-foreground mb-5">
-                  {lang === "ru" ? col.titleRu : col.titleEn}
-                </div>
-                <ul className="space-y-3">
-                  {col.links.map((l) => (
-                    <li key={l.en}>
-                      <Link
-                        to={l.to}
-                        className="text-body-14 text-foreground/80 hover:text-foreground transition-colors relative inline-block after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:bg-[#B889FF] after:origin-left after:scale-x-0 after:rotate-[-3.5deg] hover:after:scale-x-100 after:transition-transform after:duration-300 after:ease-out"
-                      >
-                        {lang === "ru" ? l.ru : l.en}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="h-px bg-border my-12" />
-
-        {/* Big contacts + socials */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-          <div className="space-y-3">
-            <div className="text-caption-12-caps text-muted-foreground">
-              {lang === "ru" ? "Связаться" : "Get in touch"}
+          {/* Колонки со ссылками */}
+          {columns.map((col) => (
+            <div key={col.titleEn}>
+              <p className="text-[13px] font-medium uppercase tracking-[0.06em] text-muted-foreground mb-5">
+                {ru ? col.titleRu : col.titleEn}
+              </p>
+              <ul className="flex flex-col gap-5">
+                {col.links.map((link) => (
+                  <li key={link.en}>
+                    <a
+                      href={link.href}
+                      target={link.href.startsWith("http") ? "_blank" : undefined}
+                      rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="inline-flex items-center gap-2 text-[16px] text-foreground hover:text-primary transition-colors"
+                    >
+                      {ru ? link.ru : link.en}
+                      {link.badge && (
+                        <span className="text-[10px] font-semibold tracking-wide text-primary-foreground bg-primary px-1.5 py-0.5 rounded">
+                          {link.badge}
+                        </span>
+                      )}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <a
-              href="mailto:hello@lovable.app"
-              className="block text-h2 text-foreground hover:underline underline-offset-4"
-            >
-              hello@lovable.app
-            </a>
-            <a
-              href="https://t.me/lovable"
-              className="block text-h3 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              @lovable
-            </a>
-          </div>
+          ))}
 
-          <div className="flex items-center gap-2">
-            {[
-              { href: "#", Icon: Twitter, label: "Twitter" },
-              { href: "#", Icon: Send, label: "Telegram" },
-              { href: "#", Icon: Youtube, label: "Youtube" },
-              { href: "#", Icon: Github, label: "Github" },
-            ].map(({ href, Icon, label }) => (
-              <a
-                key={label}
-                href={href}
-                aria-label={label}
-                className="w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-              >
-                <Icon size={18} strokeWidth={1.75} />
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <div className="h-px bg-border my-12" />
-
-        {/* Bottom bar */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <div className="text-caption-12 text-muted-foreground">
-            © {new Date().getFullYear()} Lovable. {lang === "ru" ? "Все права защищены." : "All rights reserved."}
-          </div>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-caption-12 text-muted-foreground">
-            <a href="#" className="hover:text-foreground transition-colors">{lang === "ru" ? "Политика конфиденциальности" : "Privacy"}</a>
-            <a href="#" className="hover:text-foreground transition-colors">{lang === "ru" ? "Условия" : "Terms"}</a>
-            <a href="#" className="hover:text-foreground transition-colors">Cookies</a>
+          {/* Соцсети */}
+          <div>
+            <p className="text-[13px] font-medium uppercase tracking-[0.06em] text-muted-foreground mb-5">
+              {ru ? "Мы в соцсетях" : "Follow us"}
+            </p>
+            <div className="flex items-center gap-2.5">
+              {socials.map(({ label, Icon, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="w-11 h-11 rounded-[10px] border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                >
+                  <Icon className="w-[18px] h-[18px]" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
