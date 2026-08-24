@@ -171,7 +171,7 @@ const STREAK = { days: 56, rate: 20 };
 const REVIEWS = { count: 23, rate: 5 };
 const PURCHASES = { spentUsd: 412, usdPerOa: 10 };
 const ROYALE_SC = 250;
-const ROYALE_MMR = 180;
+const ROYALE_MMR = 0;
 
 /** Начисление по каждой номинации. Сумма этих строк = что уходит на баланс. */
 const rewardRules: Rule[] = [
@@ -784,16 +784,24 @@ const MyToken = () => {
             </AlertDialogTitle>
           </AlertDialogHeader>
 
-          <div className="sm:max-h-[50vh] sm:overflow-y-auto sm:-mr-2 sm:pr-2">
+          <div>
             {sortedRewardRules.map((rule) => (
               <div
                 key={rule.id}
                 className="flex items-center justify-between gap-4 py-4 border-b border-border"
               >
-                <p className="text-[17px] md:text-[18px] font-medium text-foreground leading-snug">
+                <p
+                  className={`text-[17px] md:text-[18px] font-medium leading-snug ${
+                    rule.oa === 0 ? "text-muted-foreground/60" : "text-foreground"
+                  }`}
+                >
                   {ru ? rule.titleRu : rule.titleEn}
                 </p>
-                <p className="text-[17px] md:text-[18px] text-muted-foreground whitespace-nowrap flex-shrink-0 tabular-nums">
+                <p
+                  className={`text-[17px] md:text-[18px] whitespace-nowrap flex-shrink-0 tabular-nums ${
+                    rule.oa === 0 ? "text-muted-foreground/60" : "text-muted-foreground"
+                  }`}
+                >
                   {formatNumber(rule.oa)} $OA
                 </p>
               </div>
