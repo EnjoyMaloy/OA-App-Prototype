@@ -1,0 +1,152 @@
+<title>Кнопка каталога · 20</title>
+
+<style>
+  .variant { display: flex; flex-direction: column; gap: 10px }
+  .variant__cap { font-size: 13px; color: hsl(var(--muted-foreground)); margin: 0 }
+  .variant h2 { font-size: 17px; font-weight: 600; margin: 0 }
+
+  .btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 52px;
+    border: 1px solid hsl(var(--border)); border-radius: 12px; background: hsl(var(--background));
+    color: hsl(var(--foreground)); font: inherit; font-size: 16px; font-weight: 500; letter-spacing: .01em; cursor: pointer }
+  .inline { display: inline-flex; align-items: center; gap: 6px }
+
+  .r-full { border-radius: 999px }
+  .solid-muted { background: hsl(var(--muted)); border-color: transparent }
+  .solid-dark { background: #202020; color: #fff; border-color: transparent }
+  .solid-brand { background: hsl(var(--primary)); color: #fff; border-color: transparent }
+  .soft-brand { background: #EFE6FF; color: #7B2EFF; border-color: transparent }
+  .grad { background: linear-gradient(100deg, #A66CFF, #FF8645); color: #fff; border-color: transparent }
+  .grad-border { position: relative; border: 0 }
+  .grad-border::before { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1.6px;
+    background: linear-gradient(100deg, #A66CFF, #FF8645);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude }
+  .count { min-width: 26px; height: 22px; padding: 0 7px; border-radius: 999px; background: hsl(var(--muted));
+    display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;
+    color: hsl(0 0% 35%) }
+  .bed { background: linear-gradient(120deg, #A66CFF, #FF8645); padding: 14px; border-radius: 16px }
+  .glassy { border: 0; background: rgba(255,255,255,.42); color: #fff;
+    -webkit-backdrop-filter: blur(24px) saturate(180%); backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.9), inset 0 0 0 1px rgba(255,255,255,.5), 0 8px 24px rgba(17,12,34,.2) }
+  .shadowed { border-color: transparent; box-shadow: 0 8px 20px rgba(32,32,32,.12) }
+  .deep { box-shadow: 0 4px 0 0 #7B2EFF }
+  .big { height: 60px; font-size: 18px; border-radius: 14px }
+  .small { height: 44px; font-size: 15px; border-radius: 10px }
+  .ghost { border-color: transparent; background: transparent; color: #7B2EFF; font-weight: 500 }
+  .dashed { border-style: dashed; border-color: rgba(32,32,32,.22) }
+  .rule { display: flex; align-items: center; gap: 12px }
+  .rule span { flex: 1; height: 1px; background: hsl(var(--border)) }
+  .inline-btn { width: auto; height: auto; padding: 6px 2px }
+</style>
+
+<div class="screen stack stack-8">
+
+  <div class="stack stack-2">
+    <h1 class="text-h1">Кнопка «Весь каталог» · 20</h1>
+    <p class="text-caption-14">Кнопка стоит в конце главной, под лентами курсов. Ширина везде во весь экран.</p>
+  </div>
+
+  <section class="variant">
+    <h2>K1. Как сейчас</h2>
+    <p class="variant__cap">Контур 1px, скругление 12, текст 16.</p>
+    <button class="btn " style="">Весь каталог</button>
+  </section>
+  <section class="variant">
+    <h2>K2. Пилюля</h2>
+    <p class="variant__cap">То же, но полностью скруглённая.</p>
+    <button class="btn r-full" style="">Весь каталог</button>
+  </section>
+  <section class="variant">
+    <h2>K3. Серая заливка</h2>
+    <p class="variant__cap">Без контура, фон muted.</p>
+    <button class="btn solid-muted" style="">Весь каталог</button>
+  </section>
+  <section class="variant">
+    <h2>K4. Графит</h2>
+    <p class="variant__cap">Тёмная кнопка — главное действие экрана.</p>
+    <button class="btn solid-dark" style="">Весь каталог</button>
+  </section>
+  <section class="variant">
+    <h2>K5. Бренд-фиолет</h2>
+    <p class="variant__cap">Заливка OA Purple, белый текст.</p>
+    <button class="btn solid-brand" style="">Весь каталог</button>
+  </section>
+  <section class="variant">
+    <h2>K6. Светлый фиолет</h2>
+    <p class="variant__cap">Мягкая фиолетовая заливка и цветной текст.</p>
+    <button class="btn soft-brand" style="">Весь каталог</button>
+  </section>
+  <section class="variant">
+    <h2>K7. Бренд-градиент</h2>
+    <p class="variant__cap">Purple → Orange из брендбука.</p>
+    <button class="btn grad" style="">Весь каталог</button>
+  </section>
+  <section class="variant">
+    <h2>K8. Градиентный контур</h2>
+    <p class="variant__cap">Заливка белая, рамка из бренд-пары.</p>
+    <button class="btn grad-border" style="">Весь каталог</button>
+  </section>
+  <section class="variant">
+    <h2>K9. Со стрелкой</h2>
+    <p class="variant__cap">Стрелка справа подсказывает переход.</p>
+    <button class="btn " style=""><span>Весь каталог</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+  </section>
+  <section class="variant">
+    <h2>K10. Стрелка у текста</h2>
+    <p class="variant__cap">Иконка стоит вплотную к подписи по центру.</p>
+    <button class="btn " style=""><span class="inline">Весь каталог <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></button>
+  </section>
+  <section class="variant">
+    <h2>K11. С иконкой каталога</h2>
+    <p class="variant__cap">Сетка слева от подписи.</p>
+    <button class="btn " style=""><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Весь каталог</span></button>
+  </section>
+  <section class="variant">
+    <h2>K12. Со счётчиком</h2>
+    <p class="variant__cap">Сколько курсов ждёт в каталоге.</p>
+    <button class="btn " style=""><span>Весь каталог</span><span class="count">24</span></button>
+  </section>
+  <section class="variant">
+    <h2>K13. Стеклянная</h2>
+    <p class="variant__cap">Тот же стиль, что у таб-бара.</p>
+    <div class="bed"><button class="btn glassy" style="">Весь каталог</button></div>
+  </section>
+  <section class="variant">
+    <h2>K14. С тенью</h2>
+    <p class="variant__cap">Белая кнопка приподнята над фоном.</p>
+    <button class="btn shadowed" style="">Весь каталог</button>
+  </section>
+  <section class="variant">
+    <h2>K15. Кнопочное дно</h2>
+    <p class="variant__cap">Цветная кромка снизу — тактильная.</p>
+    <button class="btn solid-brand deep" style="">Весь каталог</button>
+  </section>
+  <section class="variant">
+    <h2>K16. Крупная</h2>
+    <p class="variant__cap">Высота 60 и текст 18 — заметнее.</p>
+    <button class="btn big" style="">Весь каталог</button>
+  </section>
+  <section class="variant">
+    <h2>K17. Компактная</h2>
+    <p class="variant__cap">Высота 44, текст 15.</p>
+    <button class="btn small" style="">Весь каталог</button>
+  </section>
+  <section class="variant">
+    <h2>K18. Только текст</h2>
+    <p class="variant__cap">Ссылка без рамки, по центру.</p>
+    <button class="btn ghost" style=""><span class="inline">Весь каталог <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></button>
+  </section>
+  <section class="variant">
+    <h2>K19. Пунктирная</h2>
+    <p class="variant__cap">Штриховая рамка — «здесь ещё есть».</p>
+    <button class="btn dashed" style="">Весь каталог</button>
+  </section>
+  <section class="variant">
+    <h2>K20. Строкой с разделителями</h2>
+    <p class="variant__cap">Линии по бокам, как «показать ещё».</p>
+    <div class="rule"><span></span><button class="btn ghost inline-btn" style="">Весь каталог</button><span></span></div>
+  </section>
+
+  <p class="note">Скажи код — поставлю в приложение.</p>
+
+</div>

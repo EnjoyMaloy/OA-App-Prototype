@@ -40,17 +40,17 @@ const Collection = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Стеклянная кнопка «назад» висит над контентом */}
-      <button
-        onClick={() => navigate(-1)}
-        aria-label={lang === "ru" ? "Назад" : "Back"}
-        className="glass fixed left-4 top-[max(12px,env(safe-area-inset-top))] z-50 w-11 h-11 rounded-full flex items-center justify-center active:scale-95 transition-transform md:hidden"
-      >
-        <ArrowLeft strokeWidth={2.2} className="w-[22px] h-[22px] text-foreground" />
-      </button>
+      <div className="max-w-6xl mx-auto px-4 pt-[max(12px,env(safe-area-inset-top))] pb-6 md:pt-10 md:pb-10">
+        {/* Стеклянная кнопка «назад» липнет к верху при прокрутке */}
+        <button
+          onClick={() => navigate(-1)}
+          aria-label={lang === "ru" ? "Назад" : "Back"}
+          className="glass sticky top-[max(12px,env(safe-area-inset-top))] z-50 w-11 h-11 rounded-full flex items-center justify-center active:scale-95 transition-transform md:hidden"
+        >
+          <ArrowLeft strokeWidth={2.2} className="w-[22px] h-[22px] text-foreground" />
+        </button>
 
-      <div className="max-w-6xl mx-auto px-4 pt-[calc(max(12px,env(safe-area-inset-top))+64px)] pb-6 md:pt-10 md:pb-10">
-        <h1 className="text-[28px] font-semibold leading-[1.1] tracking-[-0.01em] text-foreground mb-5">{title}</h1>
+        <h1 className="text-[28px] font-semibold leading-[1.1] tracking-[-0.01em] text-foreground mt-3 mb-4">{title}</h1>
 
         {/* Карточки идут столбиком и листаются вниз */}
         <div className="flex flex-col gap-4">
