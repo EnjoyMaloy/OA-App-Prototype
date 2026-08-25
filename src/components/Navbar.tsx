@@ -7,7 +7,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import SubscriptionModal from "@/components/SubscriptionModal";
 import PremiumAvatarWrapper from "@/components/PremiumAvatarWrapper";
-import CrystalIcon from "@/components/icons/CrystalIcon";
+import PointsStar from "@/components/icons/PointsStar";
 import StreakFlame from "@/components/icons/StreakFlame";
 import { usePurchaseStore } from "@/hooks/usePurchaseStore";
 import defaultAvatar from "@/assets/default-avatar.jpg";
@@ -55,11 +55,14 @@ const Navbar = () => {
     </button>
   );
 
-  // Баланс набран так же, как стрик: иконка и цифра одного размера
+  // Баллы: светлая фиолетовая пилюля с числом и объёмной звездой
   const balanceBlock = (
-    <div className="flex items-center gap-1.5 md:gap-2 cursor-pointer hover:opacity-80 transition-opacity">
-      <CrystalIcon className="w-6 h-6 md:w-7 md:h-7" color="#924CFE" />
-      <span className="text-[18px] md:text-[20px] font-semibold text-foreground">142</span>
+    <div
+      className="inline-flex items-center gap-2 h-9 pl-3.5 pr-2.5 rounded-full cursor-pointer"
+      style={{ background: "hsl(var(--violet-super-light))" }}
+    >
+      <span className="text-[18px] font-semibold text-foreground">142</span>
+      <PointsStar className="w-[22px] h-[22px]" />
     </div>
   );
 

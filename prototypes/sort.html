@@ -1,0 +1,268 @@
+<title>Сортировка · 20</title>
+
+<style>
+  .variant { display: flex; flex-direction: column; gap: 10px }
+  .variant__cap { font-size: 13px; color: hsl(var(--muted-foreground)); margin: 0 }
+  .variant h2 { font-size: 17px; font-weight: 600; margin: 0 }
+  button { font: inherit; border: 0; background: none; cursor: pointer; color: inherit }
+
+  .right { display: flex; justify-content: flex-end }
+  .rel { position: relative }
+  .row { display: flex; gap: 8px; overflow-x: auto; margin: 0 -16px; padding: 0 16px 2px; scrollbar-width: none }
+  .row::-webkit-scrollbar { display: none }
+  .bar, .panel, .sticky { display: flex; align-items: center; justify-content: space-between; gap: 10px }
+  .muted { font-size: 15px; color: hsl(var(--muted-foreground)) }
+
+  .ghost { display: inline-flex; align-items: center; gap: 4px; font-size: 15px }
+  .quiet { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: hsl(var(--muted-foreground)) }
+  .sel { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 12px 0 14px;
+    border-radius: 999px; background: hsl(var(--muted)); font-size: 15px; font-weight: 500; white-space: nowrap }
+  .sel--sm { height: 34px; font-size: 14px }
+  .sel--open { background: hsl(var(--background)); box-shadow: 0 0 0 1px hsl(var(--border)) }
+  .icobtn { width: 40px; height: 40px; border-radius: 12px; background: hsl(var(--muted));
+    display: inline-flex; align-items: center; justify-content: center }
+  .icobtn--pair { border-radius: 999px }
+  .badge { font-style: normal; padding: 3px 8px; border-radius: 999px; background: hsl(var(--background));
+    font-size: 13px; font-weight: 600 }
+
+  .chip { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 14px;
+    border-radius: 999px; background: hsl(var(--muted)); font-size: 15px; font-weight: 500; white-space: nowrap }
+  .chip--on { background: #0F0F0F; color: #fff }
+
+  .seg { display: flex; gap: 4px; padding: 4px; border-radius: 14px; background: hsl(var(--muted)) }
+  .seg--two { max-width: 260px }
+  .seg--icons { padding: 3px; border-radius: 12px }
+  .seg__i { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 36px;
+    padding: 0 12px; border-radius: 10px; font-size: 15px; font-weight: 500; color: hsl(var(--muted-foreground));
+    white-space: nowrap }
+  .seg--icons .seg__i { flex: 0 0 auto; width: 38px; height: 32px; padding: 0 }
+  .seg__i--on { background: hsl(var(--background)); color: hsl(var(--foreground)); box-shadow: 0 1px 3px rgba(15,15,15,.14) }
+
+  .tabs { display: flex; gap: 18px; border-bottom: 1px solid hsl(var(--border)) }
+  .tab { padding: 8px 0 10px; font-size: 16px; font-weight: 500; color: hsl(var(--muted-foreground));
+    border-bottom: 2.5px solid transparent }
+  .tab--on { color: hsl(var(--foreground)); border-color: hsl(var(--primary)) }
+
+  .menu { position: absolute; top: 46px; right: 0; min-width: 220px; padding: 6px; border-radius: 14px;
+    background: hsl(var(--background)); box-shadow: 0 12px 30px rgba(15,15,15,.16), 0 0 0 1px hsl(var(--border)) }
+  .menu__i { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%;
+    padding: 10px 10px; border-radius: 10px; font-size: 15px; text-align: left }
+  .menu__i--on { color: hsl(var(--primary)); font-weight: 500; background: hsl(var(--primary) / .08) }
+
+  .sheet { display: flex; flex-direction: column; gap: 10px; padding: 10px 14px 14px;
+    border-radius: 22px 22px 16px 16px; background: hsl(var(--background));
+    box-shadow: 0 -8px 30px rgba(15,15,15,.14), 0 0 0 1px hsl(var(--border)) }
+  .sheet--as { background: none; box-shadow: none; padding: 0; gap: 8px }
+  .grabber { width: 40px; height: 4px; border-radius: 999px; background: rgba(15,15,15,.18); align-self: center }
+  .sheet__t { font-size: 20px; font-weight: 600; margin-bottom: 2px }
+  .li { display: flex; align-items: center; justify-content: space-between; padding: 12px 2px; font-size: 16px;
+    border-bottom: 1px solid hsl(var(--border)) }
+  .li:last-child { border-bottom: 0 }
+  .li--on { color: hsl(var(--primary)); font-weight: 500 }
+  .radio { width: 20px; height: 20px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px rgba(15,15,15,.25) }
+  .radio--on { box-shadow: inset 0 0 0 6px hsl(var(--primary)) }
+
+  .as { display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; background: hsl(var(--muted)) }
+  .as__t { padding: 12px; font-size: 13px; color: hsl(var(--muted-foreground)); text-align: center }
+  .as__i { padding: 15px; font-size: 17px; border-top: 1px solid hsl(var(--background)) }
+  .as__i--on { color: hsl(var(--primary)); font-weight: 600 }
+  .as__cancel { padding: 15px; border-radius: 16px; background: hsl(var(--background));
+    box-shadow: 0 0 0 1px hsl(var(--border)); font-size: 17px; font-weight: 600 }
+
+  .search { display: flex; align-items: center; gap: 10px; height: 52px; padding: 0 8px 0 16px;
+    border-radius: 999px; background: hsl(var(--muted)) }
+  .search__i { color: hsl(var(--muted-foreground)); display: inline-flex }
+  .search__p { flex: 1; font-size: 16px; color: hsl(var(--muted-foreground)) }
+  .search__b { width: 38px; height: 38px; border-radius: 999px; background: hsl(var(--background));
+    display: inline-flex; align-items: center; justify-content: center }
+
+  .panel { padding: 10px 14px; border-radius: 14px; background: hsl(var(--muted)) }
+  .dot { width: 4px; height: 4px; border-radius: 999px; background: rgba(15,15,15,.25) }
+
+  .sticky { padding: 10px 12px; border-radius: 14px; background: hsl(var(--background));
+    box-shadow: 0 6px 18px rgba(15,15,15,.10), 0 0 0 1px hsl(var(--border)) }
+  .ghostcards { display: flex; flex-direction: column; gap: 10px }
+  .ghostcards span { display: block; height: 84px; border-radius: 16px; background: hsl(var(--muted)) }
+  .ghostcards--sm span { height: 56px; margin-top: 10px }
+
+  .floatbed { position: relative }
+  .float { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
+    display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 18px; border-radius: 999px;
+    font-size: 16px; font-weight: 500; color: #0F0F0F }
+  .glassy { background: rgba(255,255,255,.6); -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: 0 10px 28px rgba(15,15,15,.18), inset 0 1px 0 rgba(255,255,255,.9), inset 0 0 0 1px rgba(255,255,255,.5) }
+</style>
+
+<div class="screen stack stack-8">
+
+  <div class="stack stack-2">
+    <h1 class="text-h1">Сортировка · 20</h1>
+    <p class="text-caption-14">Двадцать способов переключить порядок курсов в каталоге: от тихой ссылки до нижнего листа.</p>
+  </div>
+
+  <section class="variant">
+    <h2>S1. Как сейчас</h2>
+    <p class="variant__cap">Текстовая ссылка со стрелкой у правого края.</p>
+    <div class="right"><button class="ghost">Сначала новые<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div>
+  </section>
+  <section class="variant">
+    <h2>S2. Пилюля-селект</h2>
+    <p class="variant__cap">Значение в плашке — заметнее и попадаешь пальцем.</p>
+    <div class="right"><button class="sel"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v16"/><path d="m3 8 4-4 4 4"/><path d="M17 20V4"/><path d="m13 16 4 4 4-4"/></svg><span>Сначала новые</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div>
+  </section>
+  <section class="variant">
+    <h2>S3. Сегмент-контрол</h2>
+    <p class="variant__cap">Три режима сразу на виду, переключение в один тап.</p>
+    <div class="seg">
+      <button class="seg__i seg__i--on">Новые</button>
+      <button class="seg__i">Популярные</button>
+      <button class="seg__i">Дешевле</button>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>S4. Чипы сортировки</h2>
+    <p class="variant__cap">Тот же язык, что у фильтров-чипов.</p>
+    <div class="row">
+      <button class="chip chip--on"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Новые</button>
+      <button class="chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3.5-1.5 4.5-2.5 6.5C8.3 10.9 9 13 11 13c1.6 0 2-1.3 1.8-2.6 2 1.4 3.2 3.2 3.2 5.1 0 3-2.5 5.5-5.5 5.5S5 18.5 5 15.5c0-4.5 5.5-6.5 7-13.5z"/></svg>Популярные</button>
+      <button class="chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.61.1 6.5-5.8-3-5.8 3 1.1-6.5L2.6 9.3l6.5-.9z"/></svg>По рейтингу</button>
+      <button class="chip">Дешевле</button>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>S5. Только иконка</h2>
+    <p class="variant__cap">Минимум места: иконка сортировки без подписи.</p>
+    <div class="right"><button class="icobtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v16"/><path d="m3 8 4-4 4 4"/><path d="M17 20V4"/><path d="m13 16 4 4 4-4"/></svg></button></div>
+  </section>
+  <section class="variant">
+    <h2>S6. Результат и сортировка</h2>
+    <p class="variant__cap">Слева сколько нашлось, справа порядок.</p>
+    <div class="bar"><span class="muted">24 курса</span><button class="ghost">Сначала новые<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div>
+  </section>
+  <section class="variant">
+    <h2>S7. Открытое меню</h2>
+    <p class="variant__cap">Выпадающий список с галочкой у текущего значения.</p>
+    <div class="right rel">
+      <button class="sel sel--open">Сначала новые<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="menu">
+        <button class="menu__i menu__i--on">Сначала новые<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></button>
+        <button class="menu__i">Сначала популярные</button>
+        <button class="menu__i">По рейтингу</button>
+        <button class="menu__i">Сначала дешёвые</button>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>S8. Лист сортировки</h2>
+    <p class="variant__cap">Нижний лист с радио-списком — удобно большим пальцем.</p>
+    <div class="sheet">
+      <span class="grabber"></span>
+      <span class="sheet__t">Сортировка</span>
+      <button class="li li--on"><span>Сначала новые</span><i class="radio radio--on"></i></button>
+      <button class="li"><span>Сначала популярные</span><i class="radio"></i></button>
+      <button class="li"><span>По рейтингу</span><i class="radio"></i></button>
+      <button class="li"><span>Сначала дешёвые</span><i class="radio"></i></button>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>S9. Поле и направление</h2>
+    <p class="variant__cap">Отдельно «по чему», отдельно «в какую сторону».</p>
+    <div class="row">
+      <button class="sel">По дате<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <button class="icobtn icobtn--pair"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m6 13 6 6 6-6"/></svg></button>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>S10. Табы</h2>
+    <p class="variant__cap">Сортировка как вкладки над списком.</p>
+    <div class="tabs">
+      <button class="tab tab--on">Новые</button>
+      <button class="tab">Популярные</button>
+      <button class="tab">По рейтингу</button>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>S11. В поле поиска</h2>
+    <p class="variant__cap">Иконка сортировки живёт справа в строке поиска.</p>
+    <div class="search">
+      <span class="search__i">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </span>
+      <span class="search__p">Найти курс...</span>
+      <button class="search__b"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v16"/><path d="m3 8 4-4 4 4"/><path d="M17 20V4"/><path d="m13 16 4 4 4-4"/></svg></button>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>S12. Одной плашкой</h2>
+    <p class="variant__cap">Количество и сортировка в общей серой панели.</p>
+    <div class="panel"><span class="muted">Найдено 24</span><span class="dot"></span><button class="ghost">Сначала новые<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div>
+  </section>
+  <section class="variant">
+    <h2>S13. Со сбросом</h2>
+    <p class="variant__cap">Активная сортировка снимается крестиком.</p>
+    <div class="right"><button class="chip chip--on">Сначала дешёвые<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  </section>
+  <section class="variant">
+    <h2>S14. Тихая подпись</h2>
+    <p class="variant__cap">Мелкий серый текст с иконкой — почти незаметно.</p>
+    <div class="right"><button class="quiet"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v16"/><path d="m3 8 4-4 4 4"/><path d="M17 20V4"/><path d="m13 16 4 4 4-4"/></svg><span>сначала новые</span></button></div>
+  </section>
+  <section class="variant">
+    <h2>S15. Двухпозиционный</h2>
+    <p class="variant__cap">Переключатель на два состояния — если вариантов всего два.</p>
+    <div class="seg seg--two">
+      <button class="seg__i seg__i--on">Новые</button>
+      <button class="seg__i">Популярные</button>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>S16. Экшен-шит</h2>
+    <p class="variant__cap">Список действий в стиле iOS с кнопкой «Отмена».</p>
+    <div class="sheet sheet--as">
+      <div class="as">
+        <span class="as__t">Сортировать по</span>
+        <button class="as__i as__i--on">Дате добавления</button>
+        <button class="as__i">Популярности</button>
+        <button class="as__i">Рейтингу</button>
+      </div>
+      <button class="as__cancel">Отмена</button>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>S17. Стеклянная пилюля</h2>
+    <p class="variant__cap">Плавает над списком, как таб-бар.</p>
+    <div class="floatbed">
+      <div class="ghostcards"><span></span><span></span></div>
+      <button class="float glassy"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v16"/><path d="m3 8 4-4 4 4"/><path d="M17 20V4"/><path d="m13 16 4 4 4-4"/></svg><span>Сначала новые</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>S18. Липкая полоса</h2>
+    <p class="variant__cap">Панель прилипает к верху при прокрутке.</p>
+    <div class="sticky">
+      <span class="muted">24 курса</span>
+      <button class="sel sel--sm">Новые<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+    <div class="ghostcards ghostcards--sm"><span></span></div>
+  </section>
+  <section class="variant">
+    <h2>S19. Кнопка с бейджем</h2>
+    <p class="variant__cap">Подпись «Сортировка», текущее значение — бейджем.</p>
+    <div class="right"><button class="sel">Сортировка<i class="badge">Новые</i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div>
+  </section>
+  <section class="variant">
+    <h2>S20. Направление в сегменте</h2>
+    <p class="variant__cap">Стрелки задают порядок внутри выбранного поля.</p>
+    <div class="row">
+      <button class="sel">По рейтингу<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="seg seg--icons">
+        <button class="seg__i seg__i--on"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg></button>
+        <button class="seg__i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m6 13 6 6 6-6"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <p class="note">Скажи код — соберу в каталоге.</p>
+
+</div>

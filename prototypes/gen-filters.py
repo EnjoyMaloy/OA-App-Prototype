@@ -1,0 +1,327 @@
+# 20 вариантов модуля фильтров для каталога
+OUT = '/home/user/OA-App-Prototype/prototypes/filters.html'
+
+CATS = [
+ ("ai", "AI-навыки", 5), ("crypto", "Основы крипты", 8), ("security", "Безопасность", 3),
+ ("trading", "Трейдинг", 6), ("invest", "Инвестиции", 4), ("web3", "Web3 и DeFi", 7), ("tools", "Инструменты", 2),
+]
+ICO = {
+ "ai": '<path d="M9.9 15.5A2 2 0 0 0 8.5 14L2.4 12.5a.5.5 0 0 1 0-1L8.5 9.9A2 2 0 0 0 9.9 8.5l1.6-6.1a.5.5 0 0 1 1 0L14 8.5A2 2 0 0 0 15.5 9.9l6.1 1.6a.5.5 0 0 1 0 1L15.5 14a2 2 0 0 0-1.4 1.4l-1.6 6.1a.5.5 0 0 1-1 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/>',
+ "crypto": '<path d="M11.8 19.1c4.9.9 6.1-6 1.2-6.9m-1.2 6.9L5.9 18m5.9 1.1-.3 2m1.5-8.9c4.9.9 6.1-6 1.2-6.9m-1.2 6.9-3.9-.7m5.1-6.2L8.3 4.3m5.9 1 .3-2M7.5 20.4l3.1-17.7"/>',
+ "security": '<path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.7 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.5 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
+ "trading": '<path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>',
+ "invest": '<path d="M21 12c.6 0 1-.4 1-1a10 10 0 0 0-9-9c-.5 0-1 .4-1 1v8a1 1 0 0 0 1 1z"/><path d="M21.2 15.9A10 10 0 1 1 8 2.8"/>',
+ "web3": '<path d="M2 12h20"/><path d="M12 2v20"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/>',
+ "tools": '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9l-3.8 3.8z"/>',
+}
+def ico(k, s=18, sw=2):
+    return (f'<svg width="{s}" height="{s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+            f'stroke-width="{sw}" stroke-linecap="round" stroke-linejoin="round">{ICO[k]}</svg>')
+
+def c(k):  return f"hsl(var(--cat-{k}))"
+def bg(k): return f"hsl(var(--cat-{k}-bg))"
+
+SLIDERS = ('<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+           'stroke-linecap="round"><path d="M4 6h11M19 6h1M4 12h4M12 12h8M4 18h11M19 18h1"/>'
+           '<circle cx="17" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></svg>')
+X = ('<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" '
+     'stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>')
+CHECK = ('<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" '
+         'stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>')
+CHEV = ('<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" '
+        'stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>')
+
+BUF = []
+def block(code, name, cap, html, src=""):
+    note = f'<p class="src">{src}</p>' if src else ""
+    BUF.append(f'''  <section class="variant">
+    <h2>{code}. {name}</h2>
+    <p class="variant__cap">{cap}</p>
+{html}
+    {note}
+  </section>
+''')
+
+def chips(active=None, multi=(), counts=False, wrap=False, cls=""):
+    out = []
+    for k, l, n in CATS:
+        on = k == active or k in multi
+        style = (f'background:{c(k)};color:#fff' if on else f'background:{bg(k)};color:{c(k)}')
+        cnt = f'<i class="cnt">{n}</i>' if counts else ""
+        out.append(f'<button class="chip {cls}" style="{style}">{ico(k)}<span>{l}</span>{cnt}</button>')
+    return f'<div class="{"cloud" if wrap else "row"}">' + "".join(out) + '</div>'
+
+# =====================================================================
+block("F1", "Чипы в строку", "Как сейчас в каталоге: горизонтальная лента, выбор одной категории.",
+      f'    {chips(active="crypto")}')
+
+block("F2", "Мультивыбор и сброс", "Можно выбрать несколько, справа появляется «Сбросить».",
+      f'''    <div class="head"><span class="head__t">Категории</span><button class="reset">Сбросить</button></div>
+    {chips(multi=("crypto", "web3"))}''')
+
+block("F3", "Со счётчиками", "У каждой категории число курсов — сразу видно, что найдётся.",
+      f'    {chips(active="trading", counts=True)}')
+
+block("F4", "Кнопка «Фильтры» и активные чипы", "Приём Airbnb: кнопка с бейджем, под ней — применённые фильтры.",
+      '''    <div class="row">
+      <button class="fbtn">''' + SLIDERS + '''<span>Фильтры</span><i class="badge">3</i></button>
+      <button class="chip chip--n">Крипта''' + X + '''</button>
+      <button class="chip chip--n">Бесплатные''' + X + '''</button>
+      <button class="chip chip--n">До 5 ч''' + X + '''</button>
+    </div>''')
+
+block("F5", "Сегмент-контрол", "iOS-переключатель для взаимоисключающих подборок.",
+      '''    <div class="seg">
+      <button class="seg__i seg__i--on">Все</button>
+      <button class="seg__i">Новое</button>
+      <button class="seg__i">В тренде</button>
+      <button class="seg__i">Бесплатно</button>
+    </div>''')
+
+block("F6", "Сегмент с иконками", "То же, но с иконками и белым «пузырём» под активным.",
+      '''    <div class="seg">
+      <button class="seg__i seg__i--on">''' + ico("web3", 16) + '''Все</button>
+      <button class="seg__i">''' + ico("ai", 16) + '''Новое</button>
+      <button class="seg__i">''' + ico("trading", 16) + '''Топ</button>
+    </div>''')
+
+block("F7", "Табы с подчёркиванием", "Классические вкладки — фильтр как навигация.",
+      '''    <div class="tabs">
+      <button class="tab tab--on">Все курсы</button>
+      <button class="tab">Новые</button>
+      <button class="tab">Популярные</button>
+      <button class="tab">Бесплатные</button>
+    </div>''')
+
+block("F8", "Строка «сортировка + фильтр»", "Слева результат и сортировка, справа иконка фильтров.",
+      '''    <div class="bar">
+      <span class="bar__l">24 курса</span>
+      <div class="bar__r">
+        <button class="ghost">Сначала новые''' + CHEV + '''</button>
+        <button class="icobtn">''' + SLIDERS + '''<i class="badge badge--dot"></i></button>
+      </div>
+    </div>''')
+
+block("F9", "Лист фильтров", "Bottom sheet — основной паттерн 2026: секции и кнопка с числом результатов.",
+      '''    <div class="sheet">
+      <span class="grabber"></span>
+      <div class="sheet__head"><span class="sheet__t">Фильтры</span><button class="reset">Сбросить</button></div>
+      <span class="lbl">Категория</span>
+      ''' + chips(active="crypto") + '''
+      <span class="lbl">Уровень</span>
+      <div class="row"><button class="chip chip--n chip--on">Начальный</button><button class="chip chip--n">Средний</button><button class="chip chip--n">Продвинутый</button></div>
+      <span class="lbl">Длительность</span>
+      <div class="row"><button class="chip chip--n">До 2 ч</button><button class="chip chip--n chip--on">2–5 ч</button><button class="chip chip--n">5+ ч</button></div>
+      <button class="apply">Показать 24 курса</button>
+    </div>''')
+
+block("F10", "Лист с ценой", "Компактный лист: чипы плюс диапазон цены.",
+      '''    <div class="sheet">
+      <span class="grabber"></span>
+      <div class="sheet__head"><span class="sheet__t">Цена и доступ</span><button class="reset">Сбросить</button></div>
+      <div class="row"><button class="chip chip--n chip--on">Бесплатно</button><button class="chip chip--n">В подписке</button><button class="chip chip--n">Разовая покупка</button></div>
+      <span class="lbl">Стоимость, $</span>
+      <div class="range"><span class="range__t"><i style="left:12%;right:38%"></i></span><span class="range__h" style="left:12%"></span><span class="range__h" style="left:62%"></span></div>
+      <div class="range__v"><span>12 $</span><span>62 $</span></div>
+      <button class="apply">Показать 11 курсов</button>
+    </div>''')
+
+block("F11", "Аккордеон", "Секции раскрываются по очереди — экономит высоту при длинных списках.",
+      '''    <div class="acc">
+      <button class="acc__h acc__h--on">Категория<span class="acc__v">Крипта, Web3''' + CHEV + '''</span></button>
+      <div class="acc__b">''' + chips(multi=("crypto", "web3")) + '''</div>
+      <button class="acc__h">Уровень<span class="acc__v">Любой''' + CHEV + '''</span></button>
+      <button class="acc__h">Длительность<span class="acc__v">Любая''' + CHEV + '''</span></button>
+    </div>''')
+
+block("F12", "Слайдер диапазона", "Две ручки для длительности курса.",
+      '''    <span class="lbl">Длительность, часы</span>
+    <div class="range"><span class="range__t"><i style="left:20%;right:25%"></i></span><span class="range__h" style="left:20%"></span><span class="range__h" style="left:75%"></span></div>
+    <div class="range__v"><span>2 ч</span><span>8 ч</span></div>''')
+
+block("F13", "Тумблеры", "Булевы условия списком — как в настройках iOS.",
+      '''    <div class="list">
+      <label class="li"><span>Только бесплатные</span><span class="sw sw--on"><i></i></span></label>
+      <label class="li"><span>С сертификатом</span><span class="sw"><i></i></span></label>
+      <label class="li"><span>Есть практика</span><span class="sw sw--on"><i></i></span></label>
+    </div>''')
+
+block("F14", "Список с галочкой", "Одиночный выбор строкой — привычно и доступно.",
+      '''    <div class="list">
+      <button class="li li--on"><span class="li__l">''' + ico("crypto", 18) + '''Основы крипты</span>''' + CHECK + '''</button>
+      <button class="li"><span class="li__l">''' + ico("web3", 18) + '''Web3 и DeFi</span></button>
+      <button class="li"><span class="li__l">''' + ico("invest", 18) + '''Инвестиции</span></button>
+    </div>''')
+
+block("F15", "Плитки-чекбоксы", "Сетка 2×: крупные цели для пальца, мультивыбор.",
+      '''    <div class="grid2">
+      <button class="tile tile--on">''' + ico("crypto", 22) + '''<span>Основы крипты</span><i class="tick">''' + CHECK + '''</i></button>
+      <button class="tile">''' + ico("web3", 22) + '''<span>Web3 и DeFi</span></button>
+      <button class="tile tile--on">''' + ico("invest", 22) + '''<span>Инвестиции</span><i class="tick">''' + CHECK + '''</i></button>
+      <button class="tile">''' + ico("tools", 22) + '''<span>Инструменты</span></button>
+    </div>''')
+
+block("F16", "Выпадающие списки", "Два компактных селекта вместо длинных лент.",
+      '''    <div class="row">
+      <button class="sel">Категория: Крипта''' + CHEV + '''</button>
+      <button class="sel">Сортировка: Новые''' + CHEV + '''</button>
+    </div>''')
+
+block("F17", "Облако чипов", "Чипы переносятся строками — видно все категории сразу.",
+      f'    {chips(multi=("ai", "invest"), wrap=True, cls="chip--sm")}')
+
+block("F18", "Два уровня", "Сегмент сверху задаёт раздел, чипы уточняют категорию.",
+      '''    <div class="seg seg--tight">
+      <button class="seg__i seg__i--on">Курсы</button>
+      <button class="seg__i">Статьи</button>
+      <button class="seg__i">Инструкции</button>
+    </div>
+    ''' + chips(active="ai"))
+
+block("F19", "Панель применённых", "Что уже выбрано — всегда на виду, каждый чип снимается крестиком.",
+      '''    <div class="applied">
+      <span class="applied__t">Найдено 11 курсов</span>
+      <div class="row">
+        <button class="chip chip--n">Крипта''' + X + '''</button>
+        <button class="chip chip--n">Начальный''' + X + '''</button>
+        <button class="chip chip--n">До 5 ч''' + X + '''</button>
+        <button class="reset">Очистить всё</button>
+      </div>
+    </div>''')
+
+block("F20", "Плавающая кнопка", "Стеклянная кнопка висит над списком и открывает лист фильтров.",
+      '''    <div class="floatbed">
+      <div class="ghostcards"><span></span><span></span></div>
+      <button class="float glassy">''' + SLIDERS + '''<span>Фильтры</span><i class="badge">3</i></button>
+    </div>''')
+
+CSS = '''
+<style>
+  .variant { display: flex; flex-direction: column; gap: 10px }
+  .variant__cap { font-size: 13px; color: hsl(var(--muted-foreground)); margin: 0 }
+  .variant h2 { font-size: 17px; font-weight: 600; margin: 0 }
+  .src { font-size: 12px; color: hsl(var(--muted-foreground)); margin: 0 }
+  button { font: inherit; border: 0; background: none; cursor: pointer; color: inherit }
+
+  .row { display: flex; gap: 8px; overflow-x: auto; margin: 0 -16px; padding: 0 16px 2px }
+  .row::-webkit-scrollbar { display: none }
+  .cloud { display: flex; flex-wrap: wrap; gap: 8px }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px }
+
+  .chip { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px;
+    border-radius: 999px; font-size: 16px; font-weight: 500; white-space: nowrap }
+  .chip--sm { height: 34px; font-size: 14px; padding: 0 12px; gap: 6px }
+  .chip--n { background: hsl(var(--muted)); color: hsl(var(--foreground)) }
+  .chip--on { background: #0F0F0F; color: #fff }
+  .cnt { font-style: normal; font-size: 13px; opacity: .65 }
+
+  .head { display: flex; align-items: center; justify-content: space-between }
+  .head__t { font-size: 15px; font-weight: 600 }
+  .reset { font-size: 14px; color: hsl(var(--primary)); font-weight: 500 }
+
+  .fbtn { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px;
+    border-radius: 999px; background: #0F0F0F; color: #fff; font-size: 16px; font-weight: 500 }
+  .badge { font-style: normal; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px;
+    background: hsl(var(--primary)); color: #fff; font-size: 12px; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center }
+  .badge--dot { position: absolute; top: 6px; right: 6px; min-width: 8px; height: 8px; padding: 0 }
+
+  .seg { display: flex; gap: 4px; padding: 4px; border-radius: 14px; background: hsl(var(--muted)) }
+  .seg--tight { margin-bottom: 12px }
+  .seg__i { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 38px;
+    border-radius: 10px; font-size: 15px; font-weight: 500; color: hsl(var(--muted-foreground)); white-space: nowrap }
+  .seg__i--on { background: hsl(var(--background)); color: hsl(var(--foreground));
+    box-shadow: 0 1px 3px rgba(15,15,15,.14) }
+
+  .tabs { display: flex; gap: 18px; overflow-x: auto; margin: 0 -16px; padding: 0 16px;
+    border-bottom: 1px solid hsl(var(--border)) }
+  .tab { padding: 8px 0 10px; font-size: 16px; font-weight: 500; color: hsl(var(--muted-foreground));
+    border-bottom: 2.5px solid transparent; white-space: nowrap }
+  .tab--on { color: hsl(var(--foreground)); border-color: hsl(var(--primary)) }
+
+  .bar { display: flex; align-items: center; justify-content: space-between }
+  .bar__l { font-size: 15px; color: hsl(var(--muted-foreground)) }
+  .bar__r { display: flex; align-items: center; gap: 10px }
+  .ghost { display: inline-flex; align-items: center; gap: 4px; font-size: 15px; color: hsl(var(--foreground)) }
+  .icobtn { position: relative; width: 40px; height: 40px; border-radius: 12px; background: hsl(var(--muted));
+    display: inline-flex; align-items: center; justify-content: center }
+
+  .sheet { display: flex; flex-direction: column; gap: 12px; padding: 10px 14px 14px; border-radius: 22px 22px 16px 16px;
+    background: hsl(var(--background)); box-shadow: 0 -8px 30px rgba(15,15,15,.14), 0 0 0 1px hsl(var(--border)) }
+  .grabber { width: 40px; height: 4px; border-radius: 999px; background: rgba(15,15,15,.18); align-self: center }
+  .sheet__head { display: flex; align-items: center; justify-content: space-between }
+  .sheet__t { font-size: 20px; font-weight: 600 }
+  .lbl { font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+    color: hsl(var(--muted-foreground)) }
+  .apply { height: 52px; border-radius: 14px; background: hsl(var(--primary)); color: #fff;
+    font-size: 16px; font-weight: 500; margin-top: 4px }
+
+  .range { position: relative; height: 24px; display: flex; align-items: center }
+  .range__t { position: relative; display: block; width: 100%; height: 5px; border-radius: 999px; background: hsl(var(--muted)) }
+  .range__t i { position: absolute; top: 0; bottom: 0; background: hsl(var(--primary)); border-radius: 999px }
+  .range__h { position: absolute; width: 22px; height: 22px; margin-left: -11px; border-radius: 999px;
+    background: #fff; box-shadow: 0 2px 6px rgba(15,15,15,.25), 0 0 0 1px rgba(15,15,15,.06) }
+  .range__v { display: flex; justify-content: space-between; font-size: 14px; color: hsl(var(--muted-foreground)) }
+
+  .list { display: flex; flex-direction: column; border-radius: 14px; overflow: hidden; background: hsl(var(--muted)) }
+  .li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 14px;
+    font-size: 16px; border-bottom: 1px solid hsl(var(--background)) }
+  .li:last-child { border-bottom: 0 }
+  .li--on { color: hsl(var(--primary)); font-weight: 500 }
+  .li__l { display: inline-flex; align-items: center; gap: 10px }
+  .sw { width: 46px; height: 28px; border-radius: 999px; background: rgba(15,15,15,.18); position: relative; flex: 0 0 auto }
+  .sw i { position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 999px; background: #fff;
+    box-shadow: 0 1px 3px rgba(15,15,15,.3); transition: left .2s }
+  .sw--on { background: hsl(var(--primary)) }
+  .sw--on i { left: 21px }
+
+  .tile { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+    padding: 14px; border-radius: 16px; background: hsl(var(--muted)); font-size: 15px; font-weight: 500; text-align: left }
+  .tile--on { background: hsl(var(--primary) / .12); color: hsl(var(--primary));
+    box-shadow: inset 0 0 0 1.5px hsl(var(--primary)) }
+  .tick { position: absolute; right: 10px; top: 10px; color: hsl(var(--primary)) }
+
+  .sel { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 14px;
+    border-radius: 12px; border: 1px solid hsl(var(--border)); font-size: 15px; white-space: nowrap }
+
+  .acc { display: flex; flex-direction: column; border-radius: 14px; overflow: hidden; border: 1px solid hsl(var(--border)) }
+  .acc__h { display: flex; align-items: center; justify-content: space-between; padding: 14px;
+    font-size: 16px; font-weight: 500; border-bottom: 1px solid hsl(var(--border)) }
+  .acc__h--on { color: hsl(var(--foreground)) }
+  .acc__v { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 400;
+    color: hsl(var(--muted-foreground)) }
+  .acc__b { padding: 12px 14px 14px; border-bottom: 1px solid hsl(var(--border)) }
+  .acc__b .row { margin: 0 -14px; padding: 0 14px }
+
+  .applied { display: flex; flex-direction: column; gap: 10px }
+  .applied__t { font-size: 15px; font-weight: 600 }
+
+  .floatbed { position: relative; padding-bottom: 8px }
+  .ghostcards { display: flex; flex-direction: column; gap: 10px }
+  .ghostcards span { display: block; height: 84px; border-radius: 16px; background: hsl(var(--muted)) }
+  .float { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
+    display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 18px; border-radius: 999px;
+    font-size: 16px; font-weight: 500; color: #0F0F0F }
+  .glassy { background: rgba(255,255,255,.6); -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: 0 10px 28px rgba(15,15,15,.18), inset 0 1px 0 rgba(255,255,255,.9), inset 0 0 0 1px rgba(255,255,255,.5) }
+</style>
+'''
+
+HEAD = '''<title>Фильтры · 20</title>
+''' + CSS + '''
+<div class="screen stack stack-8">
+
+  <div class="stack stack-2">
+    <h1 class="text-h1">Фильтры · 20</h1>
+    <p class="text-caption-14">Собрано по актуальным разборам фильтров 2026: чипы, сегмент-контролы, нижние листы, слайдеры, тумблеры и панель применённых фильтров.</p>
+  </div>
+
+'''
+TAIL = '''
+  <p class="note">Скажи код — соберу в каталоге. Можно комбинировать: например F4 сверху и F9 листом по кнопке.</p>
+
+</div>
+'''
+open(OUT, 'w').write(HEAD + "".join(BUF) + TAIL)
+print("вариантов:", sum(1 for b in BUF if b.strip().startswith("<section")))
