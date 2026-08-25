@@ -201,7 +201,7 @@ const Home = () => {
             <SectionHeader
               title={t("home.new")}
               actionLabel={t("instructions.all")}
-              onAction={() => navigate("/catalog")}
+              onAction={() => navigate("/collection/new")}
             />
             {renderRail(newCourses)}
           </section>
@@ -213,7 +213,7 @@ const Home = () => {
             <SectionHeader
               title={t("home.trending")}
               actionLabel={t("instructions.all")}
-              onAction={() => navigate("/catalog")}
+              onAction={() => navigate("/collection/trending")}
             />
             {renderRail(trendingCourses)}
           </section>

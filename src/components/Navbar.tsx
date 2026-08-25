@@ -28,6 +28,8 @@ const Navbar = () => {
   const isCatalog = location.pathname === "/catalog";
   const isCourseView = location.pathname.startsWith("/course/");
   const isProfile = location.pathname === "/profile";
+  // У подборки своя стеклянная кнопка «назад», шапка на мобильном не нужна
+  const isCollection = location.pathname.startsWith("/collection/");
   const searchValue = searchParams.get("q") || "";
   const { lang, setLang, t } = useLanguage();
   const { theme, setTheme } = useTheme();
@@ -86,7 +88,7 @@ const Navbar = () => {
   return (
     <nav
       // На мобильном шапка уезжает вверх вместе с контентом, на десктопе остаётся липкой
-      className={`relative md:sticky md:top-0 z-50 h-16 md:h-20 ${isArticleView || isMyCourses || isProfile ? 'hidden md:block' : ''}`}
+      className={`relative md:sticky md:top-0 z-50 h-16 md:h-20 ${isArticleView || isMyCourses || isProfile || isCollection ? 'hidden md:block' : ''}`}
     >
       {/* Стекло шапки: размытие и фиолетовый градиент гаснут к низу по маске,
           поэтому у шапки нет чёткой нижней границы — контент под ней просто расфокусирован */}
