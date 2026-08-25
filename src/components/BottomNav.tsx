@@ -11,15 +11,8 @@ interface NavItem {
   action?: () => void;
 }
 
-/**
- * Стеклянная подложка «пилюли» и круглых кнопок.
- * Контур собран как у Apple: внешняя тонкая тёмная грань и внутренняя светлая —
- * вместе они отделяют стекло от любой подложки под ним.
- */
-const GLASS =
-  "backdrop-blur-2xl backdrop-saturate-150 bg-background/55 border border-black/[0.08] dark:border-white/15 " +
-  "shadow-[0_10px_30px_rgba(0,0,0,0.12),inset_0_0_0_1px_rgba(255,255,255,0.55),inset_0_1px_0_rgba(255,255,255,0.9)] " +
-  "dark:shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_0_0_1px_rgba(255,255,255,0.08)]";
+/** Стеклянная подложка «пилюли» и круглых кнопок — описана в index.css */
+const GLASS = "glass";
 
 const BottomNav = () => {
   const location = useLocation();
@@ -147,8 +140,6 @@ const BottomNav = () => {
                 <Icon
                   strokeWidth={2.2}
                   fill={active ? "currentColor" : "none"}
-                  // Заливка полупрозрачная, иначе контурная иконка превращается в пятно
-                  style={active ? { fillOpacity: 0.22 } : undefined}
                   className={`w-[22px] h-[22px] flex-shrink-0 transition-colors ${
                     item.disabled ? "text-foreground/25" : active ? "text-primary" : "text-foreground"
                   }`}
