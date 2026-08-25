@@ -58,7 +58,7 @@ const CourseCard = ({
 
       {/* Заголовок всегда занимает две строки, чтобы карточки в ленте были одной высоты */}
       <h3
-        className="px-1.5 pt-3 text-[17px] font-medium leading-[1.3] line-clamp-2 min-h-[45px]"
+        className="px-1.5 pt-3 text-[17px] font-medium leading-[1.2] line-clamp-2 min-h-[41px]"
         style={{ color: "hsl(0 0% 6%)" }}
       >
         {title}
