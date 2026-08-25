@@ -5,6 +5,11 @@ import imgNft from "@/assets/3d-nft.png";
 import imgSecurity from "@/assets/3d-security.png";
 import imgMascot from "@/assets/mascot-success.png";
 import imgLogo from "@/assets/logo.png";
+// Обложки-иллюстрации: занимают всю карточку, поэтому без градиентной подложки
+import coverGifts from "@/assets/cover-gifts.jpg";
+import coverInvest from "@/assets/cover-invest.jpg";
+import coverHamster from "@/assets/cover-hamster.jpg";
+import coverTools from "@/assets/cover-tools.jpg";
 
 export interface CategoryItem {
   id: string;
@@ -46,11 +51,11 @@ export interface CourseData {
 }
 
 export const courses: CourseData[] = [
-  { id: "1", titleRu: "1 курс — Бесплатный. Основы Web3 и DeFi", titleEn: "1 — Free course. Web3 and DeFi basics", categoryId: "web3", rating: 4.9, students: 371, image: imgRocket, imageBg: "linear-gradient(135deg, #E8DCFB 0%, #A66CFF 100%)", isNew: true, updatedDaysAgo: 2 },
-  { id: "2", titleRu: "2 курс — В подписке без триала. Инвестиции с нуля", titleEn: "2 — Subscription, no trial. Investing from scratch", categoryId: "invest", rating: 4.9, students: 35419, image: imgCoin, imageBg: "linear-gradient(135deg, #FFF1CC 0%, #F5B02E 100%)", premium: true, price: 49, trending: true, updatedDaysAgo: 9 },
-  { id: "6", titleRu: "3 курс — В подписке с триалом. Криптовалюты с нуля", titleEn: "3 — Subscription with trial. Crypto from scratch", categoryId: "crypto", rating: 4.7, students: 1024, image: imgNft, imageBg: "linear-gradient(135deg, #FFDFD1 0%, #FF7D60 100%)", premium: true, price: 49, isNew: true, updatedDaysAgo: 21 },
+  { id: "1", titleRu: "1 курс — Бесплатный. Основы Web3 и DeFi", titleEn: "1 — Free course. Web3 and DeFi basics", categoryId: "web3", rating: 4.9, students: 371, image: coverGifts, isNew: true, updatedDaysAgo: 2 },
+  { id: "2", titleRu: "2 курс — В подписке без триала. Инвестиции с нуля", titleEn: "2 — Subscription, no trial. Investing from scratch", categoryId: "invest", rating: 4.9, students: 35419, image: coverInvest, premium: true, price: 49, trending: true, updatedDaysAgo: 9 },
+  { id: "6", titleRu: "3 курс — В подписке с триалом. Криптовалюты с нуля", titleEn: "3 — Subscription with trial. Crypto from scratch", categoryId: "crypto", rating: 4.7, students: 1024, image: coverHamster, premium: true, price: 49, isNew: true, updatedDaysAgo: 21 },
   { id: "7", titleRu: "4 курс — Платный без триала. Безопасность кошелька", titleEn: "4 — Paid, no trial. Wallet security", categoryId: "tools", rating: 4.6, students: 512, image: imgSecurity, imageBg: "linear-gradient(135deg, #FFD6EC 0%, #EE49A4 100%)", premium: true, price: 79, isNew: true, updatedDaysAgo: 45 },
-  { id: "8", titleRu: "5 курс — Платный с триалом. Инструменты трейдера", titleEn: "5 — Paid with trial. Trader tools", categoryId: "tools", rating: 4.7, students: 640, image: imgMascot, imageBg: "linear-gradient(135deg, #CFF3E9 0%, #34C8A0 100%)", premium: true, price: 89, isNew: true, updatedDaysAgo: 120 },
+  { id: "8", titleRu: "5 курс — Платный с триалом. Инструменты трейдера", titleEn: "5 — Paid with trial. Trader tools", categoryId: "tools", rating: 4.7, students: 640, image: coverTools, premium: true, price: 89, isNew: true, updatedDaysAgo: 120 },
   { id: "9", titleRu: "Экспериментальная страница курса про Telegram Gifts", titleEn: "Experimental course page about Telegram Gifts", categoryId: "web3", rating: 4.95, students: 2480, image: imgLogo, imageBg: "linear-gradient(135deg, #FFFFFF 0%, #EFECF7 100%)", premium: true, price: 59, isNew: true, trending: true, updatedDaysAgo: 400 },
 ];
 
