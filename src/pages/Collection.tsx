@@ -50,7 +50,7 @@ const Collection = () => {
           <ArrowLeft strokeWidth={2.2} className="w-[22px] h-[22px] text-foreground" />
         </button>
 
-        <h1 className="text-[28px] font-semibold leading-[1.1] tracking-[-0.01em] text-foreground mt-3 mb-4">{title}</h1>
+        <h1 className="text-[28px] font-semibold leading-[1.1] tracking-[-0.01em] text-foreground mt-5 mb-4">{title}</h1>
 
         {/* Карточки идут столбиком и листаются вниз */}
         <div className="flex flex-col gap-4">

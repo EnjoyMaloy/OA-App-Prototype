@@ -219,13 +219,15 @@ const Home = () => {
           </section>
         )}
 
-        {/* All courses */}
+        {/* All courses — рядом с подписью счётчик курсов в каталоге */}
         <button
           onClick={() => navigate("/catalog")}
-          className="w-full text-[16px] font-medium tracking-[0.01em] border border-border rounded-xl text-foreground active:bg-muted transition-colors"
-          style={{ height: 52 }}
+          className="w-full h-[52px] flex items-center justify-center gap-2 text-[16px] font-medium tracking-[0.01em] border border-border rounded-xl text-foreground active:bg-muted transition-colors"
         >
           {t("home.allCourses")}
+          <span className="inline-flex items-center justify-center min-w-[26px] h-[22px] px-[7px] rounded-full bg-muted text-[13px] font-semibold" style={{ color: "hsl(0 0% 35%)" }}>
+            {courses.length}
+          </span>
         </button>
       </div>
     </div>

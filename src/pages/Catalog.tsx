@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ChevronDown, Search, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -16,6 +16,16 @@ const Catalog = () => {
   const [sortOpen, setSortOpen] = useState(false);
   const [sortBy, setSortBy] = useState<"newest" | "popular">("newest");
   const store = usePurchaseStore();
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  // Кнопка поиска в таб-баре присылает сюда ?focus=1 — фокусируем поле и убираем флаг
+  useEffect(() => {
+    if (!searchParams.get("focus")) return;
+    searchRef.current?.focus();
+    const next = new URLSearchParams(searchParams);
+    next.delete("focus");
+    setSearchParams(next, { replace: true });
+  }, [searchParams, setSearchParams]);
 
   // Запрос живёт в адресе: его же выставляет поиск из таб-бара
   const setQuery = (value: string) => {
@@ -45,6 +55,7 @@ const Catalog = () => {
         <div className="relative mb-5">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none" />
           <input
+            ref={searchRef}
             type="text"
             value={searchQuery}
             onChange={(e) => setQuery(e.target.value)}
@@ -62,28 +73,40 @@ const Catalog = () => {
           )}
         </div>
 
-        {/* Категории */}
-        <div className="flex gap-2 overflow-x-auto scrollbar-hide -mx-4 px-4 pb-1 mb-6">
-          {categories.map((cat) => {
-            const Icon = cat.icon;
-            const active = selectedCategory === cat.id;
-            return (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(active ? null : cat.id)}
-                className={`flex-shrink-0 inline-flex items-center gap-2 h-11 pl-3 pr-4 rounded-full border transition-all ${
-                  active
-                    ? "border-transparent bg-foreground text-background"
-                    : "border-border bg-background text-foreground"
-                }`}
-              >
-                <Icon className="w-4 h-4" style={active ? undefined : { color: cat.iconColor }} />
-                <span className="text-[15px] whitespace-nowrap">
-                  {(lang === "ru" ? cat.labelRu : cat.labelEn).replace("\n", " ")}
-                </span>
-              </button>
-            );
-          })}
+        {/* Категории — те же пилюли, что на главной; активной может быть только одна */}
+        <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 pb-1 mb-6">
+          <div className="w-max flex flex-col gap-2.5">
+            {[
+              categories.slice(0, Math.ceil(categories.length / 2)),
+              categories.slice(Math.ceil(categories.length / 2)),
+            ].map((row, rowIndex) => (
+              <div key={rowIndex} className="flex gap-2.5">
+                {row.map((cat) => {
+                  const Icon = cat.icon;
+                  const active = selectedCategory === cat.id;
+                  const label = (lang === "ru" ? cat.labelRu : cat.labelEn).replace("\n", " ");
+                  return (
+                    <button
+                      key={cat.id}
+                      onClick={() => setSelectedCategory(active ? null : cat.id)}
+                      className="inline-flex items-center gap-2 h-[40px] px-[14px] rounded-full text-[17px] font-medium whitespace-nowrap transition-colors"
+                      // Выбранная категория заливается своим цветом целиком, остальные — пастелью
+                      style={{
+                        background: active ? cat.labelColor : cat.bg,
+                        color: active ? "#fff" : cat.labelColor,
+                      }}
+                    >
+                      <Icon
+                        className="w-[19px] h-[19px] flex-shrink-0"
+                        style={{ color: active ? "#fff" : cat.iconColor }}
+                      />
+                      {label}
+                    </button>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Сортировка */}

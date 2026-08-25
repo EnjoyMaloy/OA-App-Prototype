@@ -1,5 +1,5 @@
 import { Link, useLocation, useSearchParams } from "react-router-dom";
-import { LogIn, Search, Sun, Moon, ChevronDown, Flame } from "lucide-react";
+import { LogIn, Search, Sun, Moon, ChevronDown } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
 import type { User as SupaUser } from "@supabase/supabase-js";
@@ -8,6 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import SubscriptionModal from "@/components/SubscriptionModal";
 import PremiumAvatarWrapper from "@/components/PremiumAvatarWrapper";
 import CrystalIcon from "@/components/icons/CrystalIcon";
+import StreakFlame from "@/components/icons/StreakFlame";
 import { usePurchaseStore } from "@/hooks/usePurchaseStore";
 import defaultAvatar from "@/assets/default-avatar.jpg";
 import { useTheme } from "next-themes";
@@ -49,9 +50,8 @@ const Navbar = () => {
   const showStreak = isHome || isInstructions || isCatalog || isCourseView;
 
   const streakButton = (
-    <button className="flex items-center gap-1.5 md:gap-2 text-foreground hover:opacity-80 transition-opacity">
-      <Flame className="w-6 h-6 md:w-7 md:h-7" fill="#F65C39" stroke="#F65C39" />
-      <span className="text-[18px] md:text-[20px] font-semibold">56</span>
+    <button className="flex items-center" aria-label="Стрик">
+      <StreakFlame value={56} />
     </button>
   );
 
@@ -88,7 +88,7 @@ const Navbar = () => {
   return (
     <nav
       // На мобильном шапка уезжает вверх вместе с контентом, на десктопе остаётся липкой
-      className={`relative md:sticky md:top-0 z-50 h-16 md:h-20 ${isArticleView || isMyCourses || isProfile || isCollection ? 'hidden md:block' : ''}`}
+      className={`relative md:sticky md:top-0 z-50 h-16 md:h-20 ${isArticleView || isMyCourses || isProfile || isCollection || isCatalog ? 'hidden md:block' : ''}`}
     >
       {/* Стекло шапки: размытие и фиолетовый градиент гаснут к низу по маске,
           поэтому у шапки нет чёткой нижней границы — контент под ней просто расфокусирован */}
