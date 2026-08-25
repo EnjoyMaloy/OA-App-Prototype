@@ -39,7 +39,7 @@ const CourseCard = ({
   return (
     <div
       onClick={() => navigate(`/course/${id}`)}
-      className="flex flex-col cursor-pointer group rounded-[20px] p-1.5 pb-3.5 bg-muted"
+      className="flex flex-col cursor-pointer group rounded-[20px] p-1 pb-3.5 bg-muted"
     >
       {/* Обложка 16:9 со скруглением, внутри общей подложки */}
       <div

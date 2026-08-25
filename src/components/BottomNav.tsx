@@ -17,7 +17,7 @@ interface NavItem {
  * вместе они отделяют стекло от любой подложки под ним.
  */
 const GLASS =
-  "backdrop-blur-2xl backdrop-saturate-150 bg-background/75 border border-black/[0.08] dark:border-white/15 " +
+  "backdrop-blur-2xl backdrop-saturate-150 bg-background/55 border border-black/[0.08] dark:border-white/15 " +
   "shadow-[0_10px_30px_rgba(0,0,0,0.12),inset_0_0_0_1px_rgba(255,255,255,0.55),inset_0_1px_0_rgba(255,255,255,0.9)] " +
   "dark:shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_0_0_1px_rgba(255,255,255,0.08)]";
 
@@ -137,24 +137,28 @@ const BottomNav = () => {
       {/* Плавающая панель: «пилюля» с разделами + отдельная кнопка поиска */}
       <div className="fixed inset-x-0 bottom-0 z-50 md:hidden pointer-events-none px-3 pb-[max(12px,env(safe-area-inset-bottom))]">
         <div className="flex items-end gap-2 pointer-events-auto">
-          <nav className={`flex-1 min-w-0 flex items-center justify-around gap-1 h-16 px-2 rounded-full ${GLASS}`}>
+          <nav className={`flex-1 min-w-0 flex items-stretch gap-1 h-16 p-1 rounded-full ${GLASS}`}>
             {items.map((item) => {
               const active = isActive(item);
               const Icon = item.icon;
 
-              // Без подписей: активный раздел помечается только светлой капсулой
+              // Активный раздел — брендовый фиолетовый и залитая иконка
               const content = (
                 <Icon
                   strokeWidth={2.2}
-                  className={`w-[22px] h-[22px] flex-shrink-0 ${
-                    item.disabled ? "text-foreground/25" : "text-foreground"
+                  fill={active ? "currentColor" : "none"}
+                  // Заливка полупрозрачная, иначе контурная иконка превращается в пятно
+                  style={active ? { fillOpacity: 0.22 } : undefined}
+                  className={`w-[22px] h-[22px] flex-shrink-0 transition-colors ${
+                    item.disabled ? "text-foreground/25" : active ? "text-primary" : "text-foreground"
                   }`}
                 />
               );
 
-              // Выбранный пункт — широкая капсула вокруг иконки
-              const className = `flex items-center justify-center h-12 rounded-full transition-all flex-shrink-0 ${
-                active ? "w-[74px] bg-foreground/[0.12]" : "w-12"
+              // Ячейки одной ширины, поэтому иконки не сдвигаются при переключении,
+              // а подсветка занимает всю высоту пилюли
+              const className = `flex-1 basis-0 min-w-0 flex items-center justify-center h-full rounded-full transition-colors ${
+                active ? "bg-primary/[0.14]" : ""
               }`;
 
               if (item.action) {

@@ -51,12 +51,12 @@ export interface CourseData {
 }
 
 export const courses: CourseData[] = [
-  { id: "1", titleRu: "1 курс — Бесплатный. Основы Web3 и DeFi", titleEn: "1 — Free course. Web3 and DeFi basics", categoryId: "web3", rating: 4.9, students: 371, image: coverGifts, isNew: true, updatedDaysAgo: 2 },
-  { id: "2", titleRu: "2 курс — В подписке без триала. Инвестиции с нуля", titleEn: "2 — Subscription, no trial. Investing from scratch", categoryId: "invest", rating: 4.9, students: 35419, image: coverInvest, premium: true, price: 49, trending: true, updatedDaysAgo: 9 },
-  { id: "6", titleRu: "3 курс — В подписке с триалом. Криптовалюты с нуля", titleEn: "3 — Subscription with trial. Crypto from scratch", categoryId: "crypto", rating: 4.7, students: 1024, image: coverHamster, premium: true, price: 49, isNew: true, updatedDaysAgo: 21 },
-  { id: "7", titleRu: "4 курс — Платный без триала. Безопасность кошелька", titleEn: "4 — Paid, no trial. Wallet security", categoryId: "tools", rating: 4.6, students: 512, image: imgSecurity, imageBg: "linear-gradient(135deg, #FFD6EC 0%, #EE49A4 100%)", premium: true, price: 79, isNew: true, updatedDaysAgo: 45 },
-  { id: "8", titleRu: "5 курс — Платный с триалом. Инструменты трейдера", titleEn: "5 — Paid with trial. Trader tools", categoryId: "tools", rating: 4.7, students: 640, image: coverTools, premium: true, price: 89, isNew: true, updatedDaysAgo: 120 },
-  { id: "9", titleRu: "Экспериментальная страница курса про Telegram Gifts", titleEn: "Experimental course page about Telegram Gifts", categoryId: "web3", rating: 4.95, students: 2480, image: imgLogo, imageBg: "linear-gradient(135deg, #FFFFFF 0%, #EFECF7 100%)", premium: true, price: 59, isNew: true, trending: true, updatedDaysAgo: 400 },
+  { id: "1", titleRu: "Telegram Gifts: как зарабатывать на подарках", titleEn: "Telegram Gifts: how to earn on digital gifts", categoryId: "web3", rating: 4.9, students: 371, image: coverGifts, isNew: true, updatedDaysAgo: 2 },
+  { id: "2", titleRu: "Инвестиции с нуля: собираем первый портфель", titleEn: "Investing from scratch: building your first portfolio", categoryId: "invest", rating: 4.9, students: 35419, image: coverInvest, premium: true, price: 49, trending: true, updatedDaysAgo: 9 },
+  { id: "6", titleRu: "Криптовалюты с нуля: биржи, кошельки, сделки", titleEn: "Crypto from scratch: exchanges, wallets, trades", categoryId: "crypto", rating: 4.7, students: 1024, image: coverHamster, premium: true, price: 49, isNew: true, updatedDaysAgo: 21 },
+  { id: "7", titleRu: "Безопасность кошелька: как не потерять деньги", titleEn: "Wallet security: how not to lose your funds", categoryId: "tools", rating: 4.6, students: 512, image: coverTools, premium: true, price: 79, isNew: true, updatedDaysAgo: 45 },
+  { id: "8", titleRu: "Трейдинг на споте: стратегии и риск-менеджмент", titleEn: "Spot trading: strategies and risk management", categoryId: "tools", rating: 4.7, students: 640, image: coverHamster, premium: true, price: 89, isNew: true, updatedDaysAgo: 120 },
+  { id: "9", titleRu: "Web3-карьера: как войти в индустрию", titleEn: "Web3 career: how to enter the industry", categoryId: "web3", rating: 4.95, students: 2480, image: coverGifts, premium: true, price: 59, isNew: true, trending: true, updatedDaysAgo: 400 },
 ];
 
 export const getCategoryLabel = (catId: string, lang: "ru" | "en") => {
