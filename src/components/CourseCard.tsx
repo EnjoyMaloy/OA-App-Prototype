@@ -66,8 +66,8 @@ const CourseCard = ({
 
       {/* Под заголовком: компактный ряд иконок с цифрами, без плашек */}
       <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 px-1.5 pt-2.5">
-        <span className="inline-flex items-center gap-1 text-[14px] text-foreground">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
+        <span className="inline-flex items-center gap-1 text-[15px] text-foreground">
+          <svg width="15" height="15" viewBox="0 0 14 14" fill="none" aria-hidden>
             <path
               d="M7 1L8.854 4.756L13 5.362L10 8.284L10.708 12.412L7 10.468L3.292 12.412L4 8.284L1 5.362L5.146 4.756L7 1Z"
               fill="#FF7D60"
@@ -76,14 +76,14 @@ const CourseCard = ({
           {rating}
         </span>
 
-        <span className="inline-flex items-center gap-1 text-[14px]" style={{ color: "hsl(0 0% 42%)" }}>
-          <Users className="w-4 h-4" strokeWidth={1.5} />
+        <span className="inline-flex items-center gap-1 text-[15px]" style={{ color: "hsl(0 0% 42%)" }}>
+          <Users className="w-[17px] h-[17px]" strokeWidth={1.5} />
           {students.toLocaleString("ru-RU")}
         </span>
 
         {/* Когда курс обновляли — как «2 недели назад» на YouTube */}
-        <span className="inline-flex items-center gap-1 text-[14px]" style={{ color: "hsl(0 0% 42%)" }}>
-          <History className="w-[15px] h-[15px]" strokeWidth={1.6} />
+        <span className="inline-flex items-center gap-1 text-[15px]" style={{ color: "hsl(0 0% 42%)" }}>
+          <History className="w-4 h-4" strokeWidth={1.6} />
           {agoLabel(updatedDaysAgo, lang)}
         </span>
       </div>
