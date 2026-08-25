@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { ChevronDown, Search, X } from "lucide-react";
+import { Check, ChevronDown, Search, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { usePurchaseStore } from "@/hooks/usePurchaseStore";
 import CourseCard from "@/components/CourseCard";
@@ -120,29 +120,29 @@ const Catalog = () => {
               <ChevronDown className={`w-4 h-4 transition-transform ${sortOpen ? "rotate-180" : ""}`} />
             </button>
             {sortOpen && (
-              <div className="absolute top-full right-0 mt-1 bg-background border border-border rounded-lg shadow-lg z-20 min-w-[200px] py-1">
-                <button
-                  onClick={() => {
-                    setSortBy("newest");
-                    setSortOpen(false);
-                  }}
-                  className={`w-full text-left px-4 py-2 text-[14px] active:bg-muted transition-colors ${
-                    sortBy === "newest" ? "text-primary font-medium" : "text-foreground"
-                  }`}
-                >
-                  {t("instructions.newest")}
-                </button>
-                <button
-                  onClick={() => {
-                    setSortBy("popular");
-                    setSortOpen(false);
-                  }}
-                  className={`w-full text-left px-4 py-2 text-[14px] active:bg-muted transition-colors ${
-                    sortBy === "popular" ? "text-primary font-medium" : "text-foreground"
-                  }`}
-                >
-                  {t("instructions.popular")}
-                </button>
+              // Меню как в S7: скруглённая карточка с тенью, у выбранного пункта галочка
+              <div className="absolute top-full right-0 mt-2 z-20 min-w-[220px] p-1.5 rounded-2xl bg-background shadow-[0_12px_30px_rgba(15,15,15,0.16)] ring-1 ring-border">
+                {([
+                  ["newest", t("instructions.newest")],
+                  ["popular", t("instructions.popular")],
+                ] as const).map(([value, label]) => {
+                  const active = sortBy === value;
+                  return (
+                    <button
+                      key={value}
+                      onClick={() => {
+                        setSortBy(value);
+                        setSortOpen(false);
+                      }}
+                      className={`w-full flex items-center justify-between gap-2.5 px-2.5 py-2.5 rounded-xl text-[15px] text-left transition-colors ${
+                        active ? "bg-primary/[0.08] text-primary font-medium" : "text-foreground active:bg-muted"
+                      }`}
+                    >
+                      {label}
+                      {active && <Check className="w-4 h-4 flex-shrink-0" strokeWidth={2.6} />}
+                    </button>
+                  );
+                })}
               </div>
             )}
           </div>
