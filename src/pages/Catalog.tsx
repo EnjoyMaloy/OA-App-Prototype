@@ -74,7 +74,7 @@ const Catalog = () => {
                 className={`flex-shrink-0 inline-flex items-center gap-2 h-11 pl-3 pr-4 rounded-full border transition-all ${
                   active
                     ? "border-transparent bg-foreground text-background"
-                    : "border-border bg-background text-foreground hover:bg-muted"
+                    : "border-border bg-background text-foreground"
                 }`}
               >
                 <Icon className="w-4 h-4" style={active ? undefined : { color: cat.iconColor }} />
@@ -91,7 +91,7 @@ const Catalog = () => {
           <div className="relative">
             <button
               onClick={() => setSortOpen(!sortOpen)}
-              className="inline-flex items-center gap-1 text-[14px] text-muted-foreground hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-1 text-[14px] text-muted-foreground"
             >
               {sortBy === "newest" ? t("instructions.newest") : t("instructions.popular")}
               <ChevronDown className={`w-4 h-4 transition-transform ${sortOpen ? "rotate-180" : ""}`} />
@@ -103,7 +103,7 @@ const Catalog = () => {
                     setSortBy("newest");
                     setSortOpen(false);
                   }}
-                  className={`w-full text-left px-4 py-2 text-[14px] hover:bg-muted transition-colors ${
+                  className={`w-full text-left px-4 py-2 text-[14px] active:bg-muted transition-colors ${
                     sortBy === "newest" ? "text-primary font-medium" : "text-foreground"
                   }`}
                 >
@@ -114,7 +114,7 @@ const Catalog = () => {
                     setSortBy("popular");
                     setSortOpen(false);
                   }}
-                  className={`w-full text-left px-4 py-2 text-[14px] hover:bg-muted transition-colors ${
+                  className={`w-full text-left px-4 py-2 text-[14px] active:bg-muted transition-colors ${
                     sortBy === "popular" ? "text-primary font-medium" : "text-foreground"
                   }`}
                 >

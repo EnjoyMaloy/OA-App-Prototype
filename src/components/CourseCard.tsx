@@ -39,7 +39,7 @@ const CourseCard = ({
   return (
     <div
       onClick={() => navigate(`/course/${id}`)}
-      className="flex flex-col cursor-pointer group rounded-[20px] p-1 pb-3.5 bg-muted"
+      className="flex flex-col cursor-pointer rounded-[20px] p-1 pb-3.5 bg-muted"
     >
       {/* Обложка 16:9 со скруглением, внутри общей подложки */}
       <div
@@ -49,7 +49,7 @@ const CourseCard = ({
         <img
           src={image}
           alt={title}
-          className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${
+          className={`w-full h-full ${
             imageBg ? "object-contain p-4" : "object-cover"
           }`}
           loading="lazy"

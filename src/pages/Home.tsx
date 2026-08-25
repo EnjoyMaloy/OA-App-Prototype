@@ -26,7 +26,7 @@ const SectionHeader = ({
     {actionLabel && (
       <button
         onClick={onAction}
-        className="inline-flex items-center gap-0.5 text-[14px] text-muted-foreground hover:text-foreground transition-colors"
+        className="inline-flex items-center gap-0.5 text-[14px] text-muted-foreground"
       >
         {actionLabel}
         <ChevronRight className="w-4 h-4" />
@@ -90,7 +90,7 @@ const Home = () => {
           <SectionHeader title={t("home.continueTitle")} />
           <button
             onClick={() => navigate("/my-courses")}
-            className="w-full flex items-center gap-3.5 rounded-2xl p-4 text-left hover:brightness-[0.98] transition-all"
+            className="w-full flex items-center gap-3.5 rounded-2xl p-4 text-left active:brightness-[0.97] transition-[filter]"
             // Персик держится почти до правого края и растворяется у самой стрелки.
             // isolate нужен тексту: он смешивается с подложкой в режиме multiply
             style={{
@@ -181,7 +181,7 @@ const Home = () => {
                       <button
                         key={cat.id}
                         onClick={() => navigate(`/catalog?cat=${cat.id}`)}
-                        className="inline-flex items-center gap-2 h-[40px] px-[14px] rounded-full text-[17px] font-medium whitespace-nowrap transition-all hover:brightness-95"
+                        className="inline-flex items-center gap-2 h-[40px] px-[14px] rounded-full text-[17px] font-medium whitespace-nowrap active:brightness-95 transition-[filter]"
                         style={{ background: cat.bg, color: cat.labelColor }}
                       >
                         <Icon style={{ color: cat.iconColor }} className="w-[19px] h-[19px] flex-shrink-0" />
@@ -222,7 +222,7 @@ const Home = () => {
         {/* All courses */}
         <button
           onClick={() => navigate("/catalog")}
-          className="w-full text-[16px] font-medium tracking-[0.01em] border border-border rounded-xl text-foreground hover:bg-muted transition-colors"
+          className="w-full text-[16px] font-medium tracking-[0.01em] border border-border rounded-xl text-foreground active:bg-muted transition-colors"
           style={{ height: 52 }}
         >
           {t("home.allCourses")}
