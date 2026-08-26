@@ -418,35 +418,29 @@ const CourseExperimental = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* HERO во всю ширину: обложка от самого верха, под ней градиентная подложка курса */}
-      <div
-        className="relative"
-        style={{
-          backgroundColor: COURSE_COLOR.superLight,
-          backgroundImage: `radial-gradient(120% 90% at 100% 0%, ${COURSE_COLOR.light} 0%, transparent 60%), radial-gradient(120% 80% at 0% 100%, ${COURSE_COLOR.base}2E 0%, transparent 55%)`,
-        }}
-      >
-        {/* Обложка: нижний край растворяется в подложке */}
-        <div className="relative aspect-[4/3] md:aspect-[21/9]">
-          <img
-            src={IMG}
-            alt={title}
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{
-              maskImage: "linear-gradient(to bottom, #000 72%, transparent 100%)",
-              WebkitMaskImage: "linear-gradient(to bottom, #000 72%, transparent 100%)",
-            }}
-          />
-
-          {/* Стеклянная кнопка «назад» прямо на картинке */}
-          <button
-            onClick={() => navigate(-1)}
-            aria-label={lang === "ru" ? "Назад" : "Back"}
-            className="glass absolute left-4 top-[max(14px,env(safe-area-inset-top))] w-11 h-11 rounded-full flex items-center justify-center active:scale-95 transition-transform"
-          >
-            <ArrowLeft strokeWidth={2.2} className="w-[22px] h-[22px] text-foreground" />
-          </button>
+      {/* HERO: обложка с градиентом сверху, ниже — обычный белый фон страницы */}
+      <div className="relative">
+        {/* И картинка, и её градиентная подложка растворяются книзу по общей маске */}
+        <div
+          className="relative aspect-[4/3] md:aspect-[21/9]"
+          style={{
+            backgroundColor: COURSE_COLOR.superLight,
+            backgroundImage: `radial-gradient(120% 90% at 100% 0%, ${COURSE_COLOR.light} 0%, transparent 60%), radial-gradient(120% 80% at 0% 100%, ${COURSE_COLOR.base}2E 0%, transparent 55%)`,
+            maskImage: "linear-gradient(to bottom, #000 68%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, #000 68%, transparent 100%)",
+          }}
+        >
+          <img src={IMG} alt={title} className="absolute inset-0 w-full h-full object-cover" />
         </div>
+
+        {/* Стеклянная кнопка «назад» — вне маски, поэтому не растворяется */}
+        <button
+          onClick={() => navigate(-1)}
+          aria-label={lang === "ru" ? "Назад" : "Back"}
+          className="glass absolute left-4 top-[max(14px,env(safe-area-inset-top))] w-11 h-11 rounded-full flex items-center justify-center active:scale-95 transition-transform"
+        >
+          <ArrowLeft strokeWidth={2.2} className="w-[22px] h-[22px] text-foreground" />
+        </button>
 
         {/* Заголовок, чип с информацией и кнопка — по центру */}
         <div className="px-6 pb-9 -mt-4 md:-mt-10 flex flex-col items-center text-center">
@@ -458,7 +452,7 @@ const CourseExperimental = () => {
           </p>
 
           {/* Чип с информацией о курсе */}
-          <div className="mt-5 inline-flex items-center gap-2 h-[38px] px-4 rounded-full bg-background/70 backdrop-blur-md text-[14px] text-muted-foreground">
+          <div className="mt-5 inline-flex items-center gap-2 h-[38px] px-4 rounded-full bg-muted text-[14px] text-muted-foreground">
             <Star className="w-[15px] h-[15px] fill-orange-400 text-orange-400" />
             <span className="font-semibold text-foreground">{config.rating}</span>
             <span aria-hidden className="opacity-40">·</span>

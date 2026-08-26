@@ -286,51 +286,53 @@
   100% { background-position: 200% center; }
 }
 
-/* Стекло как в iOS: сильное размытие с подъёмом насыщенности,
-   светлая грань по верхнему краю и блик по поверхности. */
-.glass {
-  position: relative;
-  background: rgba(255, 255, 255, 0.42);
-  -webkit-backdrop-filter: blur(28px) saturate(180%) brightness(1.06);
-  backdrop-filter: blur(28px) saturate(180%) brightness(1.06);
-  box-shadow:
-    0 10px 34px rgba(17, 12, 34, 0.18),
-    0 1px 2px rgba(17, 12, 34, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.5),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.3);
-}
+@layer components {
+  /* Стекло как в iOS: сильное размытие с подъёмом насыщенности,
+     светлая грань по верхнему краю и блик по поверхности. */
+  .glass {
+    position: relative;
+    background: rgba(255, 255, 255, 0.42);
+    -webkit-backdrop-filter: blur(28px) saturate(180%) brightness(1.06);
+    backdrop-filter: blur(28px) saturate(180%) brightness(1.06);
+    box-shadow:
+      0 10px 34px rgba(17, 12, 34, 0.18),
+      0 1px 2px rgba(17, 12, 34, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.5),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+  }
 
-/* Блик лежит на поверхности стекла, поэтому содержимое поднимаем над ним */
-.glass::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.5) 0%,
-    rgba(255, 255, 255, 0.12) 38%,
-    rgba(255, 255, 255, 0) 62%
-  );
-}
+  /* Блик лежит на поверхности стекла, поэтому содержимое поднимаем над ним */
+  .glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.12) 38%,
+      rgba(255, 255, 255, 0) 62%
+    );
+  }
 
-.glass > * {
-  position: relative;
-  z-index: 1;
-}
+  .glass > * {
+    position: relative;
+    z-index: 1;
+  }
 
-.dark .glass {
-  background: rgba(24, 24, 28, 0.45);
-  box-shadow:
-    0 10px 34px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.14),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-}
+  .dark .glass {
+    background: rgba(24, 24, 28, 0.45);
+    box-shadow:
+      0 10px 34px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.14),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
 
-.dark .glass::before {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 55%);
+  .dark .glass::before {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 55%);
+  }
 }
 
 /* Ленты листаются жестом, поэтому системную полосу прокрутки прячем.
