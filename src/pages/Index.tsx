@@ -6,6 +6,7 @@ import { useTheme } from "next-themes";
 import rehcVideo from "@/assets/rehc.mp4.asset.json";
 import verticalVideo from "@/assets/vertical-video.mov.asset.json";
 import { lessonsData, lessonState, type Inline } from "@/data/lessons";
+import mascotSuccess from "@/assets/mascot-success.png";
 
 
 const IconActive = ({ className }: { className?: string }) => (
@@ -63,15 +64,16 @@ const LockIcon = ({ cx, cy }: { cx: number; cy: number }) => (
 );
 
 // 8-node S-snake positions (ported from /course/1/lessons)
+// Между первым рядом и вторым оставлено место под маскота, поэтому всё ниже опущено на 130
 const NODES_8 = [
   { cx: 120.922, cy: 32 },
   { cx: 285.922, cy: 32 },
-  { cx: 285.922, cy: 161 },
-  { cx: 120.922, cy: 161 },
-  { cx: 120.922, cy: 292 },
-  { cx: 120.922, cy: 421 },
-  { cx: 120.922, cy: 550 },
-  { cx: 285.922, cy: 550 },
+  { cx: 285.922, cy: 291 },
+  { cx: 120.922, cy: 291 },
+  { cx: 120.922, cy: 422 },
+  { cx: 120.922, cy: 551 },
+  { cx: 120.922, cy: 680 },
+  { cx: 285.922, cy: 680 },
 ];
 
 // Decorative locked-icon variant for nodes beyond real lessons (matches CourseLessons)
@@ -82,8 +84,8 @@ const LOCKED_VARIANTS: LockedIconVariant[] = ["checklist", "sparkle", "lock", "l
 const COMPLETED_PATHS = [
   "",
   "M106.701 32H285.922",
-  "M106.701 32H350.286C384.922 32 413 60.08 413 94.7184V99.1983C413 133.837 384.922 161.917 350.286 161.917H285.922",
-  "M106.701 32H350.286C384.922 32 413 60.08 413 94.7184V99.1983C413 133.837 384.922 161.917 350.286 161.917H106.701",
+  "M106.701 32H350.286C384.922 32 413 60.08 413 94.7184V229.1983C413 263.837 384.922 291.917 350.286 291.917H285.922",
+  "M106.701 32H350.286C384.922 32 413 60.08 413 94.7184V229.1983C413 263.837 384.922 291.917 350.286 291.917H106.701",
 ];
 
 
@@ -196,7 +198,15 @@ const Index = () => {
           "linear-gradient(180deg, hsl(270 60% 89%) 0%, hsl(270 70% 86%) 45%, hsl(270 60% 89%) 100%)",
       }}
     >
-      {/* Точечная фактура карты теперь лежит на всём экране */}
+      {/* Клетка и точки: фактура карты на всём экране */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(hsl(var(--violet-dark) / 0.07) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--violet-dark) / 0.07) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+        }}
+      />
       <div
         className="absolute inset-0 opacity-20 pointer-events-none"
         style={{
@@ -255,7 +265,16 @@ const Index = () => {
             <div className="relative">
                 {/* SVG map */}
                 <div className="relative z-10 w-full flex justify-center">
-                  <svg viewBox="0 0 418 600" fill="none" preserveAspectRatio="xMidYMid meet" className="w-full max-w-[480px] h-auto block">
+                  <svg viewBox="0 0 418 730" fill="none" preserveAspectRatio="xMidYMid meet" className="w-full max-w-[480px] h-auto block">
+                    {/* Маскот в разрыве между первым и вторым рядом уроков */}
+                    <image
+                      href={mascotSuccess}
+                      x="96"
+                      y="108"
+                      width="190"
+                      height="150"
+                      preserveAspectRatio="xMidYMid meet"
+                    />
 
 
                     <defs>
@@ -292,7 +311,7 @@ const Index = () => {
 
                     {/* Dashed white path (full S-snake, 8 nodes) */}
                     <path
-                      d="M106.701 32H350.286C384.922 32 413 60.08 413 94.7184V99.1983C413 133.837 384.922 161.917 350.286 161.917H64.7139C30.078 161.917 2 189.997 2 224.635V229.115C2 263.753 30.078 291.833 64.7139 291.833H174.23C208.866 291.833 236.944 319.905 236.944 354.543V359.028C236.944 393.667 208.874 421.75 174.238 421.75H64.7014C30.0655 421.75 2 449.83 2 484.468V488.948C2 523.587 30.078 551.667 64.7139 551.667H266.5"
+                      d="M106.701 32H350.286C384.922 32 413 60.08 413 94.7184V229.1983C413 263.837 384.922 291.917 350.286 291.917H64.7139C30.078 291.917 2 319.997 2 354.635V359.115C2 393.753 30.078 421.833 64.7139 421.833H174.23C208.866 421.833 236.944 449.905 236.944 484.543V489.028C236.944 523.667 208.874 551.75 174.238 551.75H64.7014C30.0655 551.75 2 579.83 2 614.468V618.948C2 653.587 30.078 681.667 64.7139 681.667H266.5"
                       stroke="white"
                       strokeWidth="4"
                       strokeLinecap="round"
