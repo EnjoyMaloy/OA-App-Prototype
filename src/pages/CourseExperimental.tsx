@@ -373,6 +373,13 @@ const ReviewsRail = ({ reviews, lang }: { reviews: Review[]; lang: "ru" | "en" }
   );
 };
 
+/** Плей со скруглёнными углами: треугольник обводится сам собой с round-стыками */
+const PlayRounded = ({ className = "" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="currentColor" stroke="currentColor" strokeWidth={3.6} strokeLinejoin="round" strokeLinecap="round">
+    <path d="M9 6.2v11.6L18.4 12z" />
+  </svg>
+);
+
 const CourseExperimental = () => {
   const navigate = useNavigate();
   const { lang } = useLanguage();
@@ -466,12 +473,23 @@ const CourseExperimental = () => {
             <span>{totalMin} {lang === "ru" ? "мин" : "min"}</span>
           </div>
 
-          <Button
-            onClick={startCourse}
-            className="mt-6 w-full max-w-[420px] h-[56px] rounded-2xl text-[17px] font-medium"
+          {/* Кнопка с переливающимся бордюром — как у премиума в шапке */}
+          <div
+            className="mt-6 w-full max-w-[420px] p-[3px] rounded-[22px] animate-gradient-border"
+            style={{
+              background: "linear-gradient(270deg, #924CFE, #BF96FF, #D9C0FF, #A66CFF, #924CFE)",
+              backgroundSize: "300% 300%",
+            }}
           >
-            {lang === "ru" ? "Начать курс" : "Start course"}
-          </Button>
+            <button
+              onClick={startCourse}
+              className="w-full h-[56px] rounded-[19px] text-white text-[19px] font-medium inline-flex items-center justify-center gap-2.5 active:brightness-95 transition-[filter]"
+              style={{ background: "linear-gradient(180deg, #9B5CFF 0%, #7B2EFF 100%)" }}
+            >
+              <PlayRounded className="w-[20px] h-[20px]" />
+              {lang === "ru" ? "Начать курс" : "Start course"}
+            </button>
+          </div>
         </div>
       </div>
 
