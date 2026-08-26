@@ -378,45 +378,75 @@ const ReviewsRail = ({ reviews, lang }: { reviews: Review[]; lang: "ru" | "en" }
   );
 };
 
-/** Цветные чипы форматов урока: градиентная заливка, белый текст и иконка */
-const TYPE_CHIP: Record<LessonType, { ru: string; en: string; bg: string; Icon: typeof Play }> = {
+/** Формат урока: градиент кружка, пастельная подложка и цвет подписи */
+const TYPE_CHIP: Record<LessonType, {
+  ru: string;
+  en: string;
+  grad: string;
+  ink: string;
+  light: string;
+  Icon: typeof Play;
+}> = {
   video: {
-    ru: "Видео",
-    en: "Video",
-    bg: "linear-gradient(135deg, #6FA8FF 0%, #2C6BD6 100%)",
+    ru: "видео",
+    en: "video",
+    grad: "linear-gradient(135deg, #38BDF8 0%, #4F46E5 100%)",
+    ink: "#3730C9",
+    light: "#8AB4FF",
     Icon: Play,
   },
   quiz: {
-    ru: "Квиз",
-    en: "Quiz",
-    bg: "linear-gradient(135deg, #F5A26A 0%, #E4712A 100%)",
+    ru: "квиз",
+    en: "quiz",
+    grad: "linear-gradient(135deg, #FBBF24 0%, #FB5607 100%)",
+    ink: "#C2480B",
+    light: "#FFC08A",
     Icon: Sparkles,
   },
   guide: {
-    ru: "Инструкция",
-    en: "Guide",
-    bg: "linear-gradient(135deg, #B98CFF 0%, #7B2EFF 100%)",
+    ru: "инструкция",
+    en: "guide",
+    grad: "linear-gradient(135deg, #8B5CF6 0%, #D946EF 100%)",
+    ink: "#8B2FBE",
+    light: "#DDA6FF",
     Icon: BookOpen,
   },
 };
 
-/** Чип формата — им же помечаем бесплатные уроки платного курса */
+const FREE_CHIP = {
+  ru: "бесплатно",
+  en: "free",
+  grad: "linear-gradient(135deg, #A3E635 0%, #10B981 100%)",
+  ink: "#0B7A55",
+  light: "#7FE3B8",
+  Icon: Unlock,
+};
+
 const FormatChip = ({
   label,
-  bg,
+  grad,
+  ink,
+  light,
   Icon,
   filled = false,
 }: {
   label: string;
-  bg: string;
+  grad: string;
+  ink: string;
+  light: string;
   Icon: typeof Play;
   filled?: boolean;
 }) => (
   <span
-    className="inline-flex items-center gap-1.5 h-[28px] pl-2 pr-3 rounded-full text-[13px] font-medium text-white"
-    style={{ background: bg }}
+    className="fmt-chip inline-flex items-center gap-1.5 h-[24px] pl-[3px] pr-2.5 rounded-full text-[12px] font-semibold lowercase"
+    style={{ "--fmt": ink, "--fmt-ink": ink, "--fmt-light": light } as React.CSSProperties}
   >
-    <Icon className="w-[14px] h-[14px]" strokeWidth={2.2} fill={filled ? "currentColor" : "none"} />
+    <span
+      className="inline-flex items-center justify-center w-[18px] h-[18px] rounded-full text-white"
+      style={{ background: grad }}
+    >
+      <Icon className="w-[11px] h-[11px]" strokeWidth={2.4} fill={filled ? "currentColor" : "none"} />
+    </span>
     {label}
   </span>
 );
@@ -649,7 +679,7 @@ const CourseExperimental = () => {
                         </span>
 
                         <div className="min-w-0 flex-1">
-                          <p className="text-[16px] font-medium leading-[1.25] text-foreground">
+                          <p className="text-[18px] font-medium leading-[1.25] text-foreground">
                             {lang === "ru" ? l.titleRu : l.titleEn}
                           </p>
 
@@ -659,16 +689,20 @@ const CourseExperimental = () => {
                               <FormatChip
                                 key={t}
                                 label={lang === "ru" ? TYPE_CHIP[t].ru : TYPE_CHIP[t].en}
-                                bg={TYPE_CHIP[t].bg}
+                                grad={TYPE_CHIP[t].grad}
+                                ink={TYPE_CHIP[t].ink}
+                                light={TYPE_CHIP[t].light}
                                 Icon={TYPE_CHIP[t].Icon}
                                 filled={t === "video"}
                               />
                             ))}
                             {isFreeLesson && !isFree && (
                               <FormatChip
-                                label={lang === "ru" ? "Бесплатно" : "Free"}
-                                bg="linear-gradient(135deg, #5FD3A6 0%, #12A06E 100%)"
-                                Icon={Unlock}
+                                label={lang === "ru" ? FREE_CHIP.ru : FREE_CHIP.en}
+                                grad={FREE_CHIP.grad}
+                                ink={FREE_CHIP.ink}
+                                light={FREE_CHIP.light}
+                                Icon={FREE_CHIP.Icon}
                               />
                             )}
                           </div>

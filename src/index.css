@@ -343,3 +343,14 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* Чип формата урока: пастельная пилюля и плотный градиентный кружок с иконкой.
+   Цвета приходят инлайном, поэтому тёмная тема переопределяется здесь. */
+.fmt-chip {
+  background: color-mix(in srgb, var(--fmt) 13%, transparent);
+  color: var(--fmt-ink);
+}
+.dark .fmt-chip {
+  background: color-mix(in srgb, var(--fmt) 26%, transparent);
+  color: var(--fmt-light);
+}
