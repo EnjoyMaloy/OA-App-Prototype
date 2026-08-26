@@ -1,0 +1,506 @@
+<title>Программа курса · вторая серия</title>
+
+<style>
+  .variant { display: flex; flex-direction: column; gap: 10px }
+  .variant__cap { font-size: 13px; color: hsl(var(--muted-foreground)); margin: 0 }
+  .variant h2 { font-size: 17px; font-weight: 600; margin: 0 }
+  .fam { font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+         color: hsl(var(--muted-foreground)); margin: 14px 0 -10px }
+
+  .l { display: flex; flex-direction: column }
+  .l--card { background: hsl(var(--muted)); border-radius: 16px; padding: 4px 0 }
+  .l--div .li + .li, .l--rule .li + .li { border-top: 1px solid hsl(var(--border) / .7) }
+  .l--gap { gap: 10px }
+
+  .li { display: flex; align-items: center; gap: 12px; min-height: 62px; padding: 10px 14px }
+  .li--card { background: hsl(var(--muted)); border-radius: 14px }
+  .li--air { min-height: 72px }
+  .li--tight { min-height: 44px; padding: 6px 14px }
+  .li--plain { min-height: 44px; padding: 8px 0 }
+  .li--dim { opacity: .62 }
+  .li--dash { background: none; border: 1px dashed hsl(var(--border)) }
+  .li--edge { position: relative }
+  .li--edge::before { content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 3px;
+                      border-radius: 0 3px 3px 0; background: hsl(152 55% 45%) }
+  .li--lead { padding: 9px 0; min-height: 0 }
+  .li--grid { align-items: flex-start; padding: 12px }
+  .li--ghost { position: relative; overflow: hidden }
+
+  .ttl { flex: 1; min-width: 0; font-size: 16px; font-weight: 500; line-height: 1.25 }
+  .ttl--dim { color: hsl(var(--muted-foreground)) }
+  .ttl--sm { font-size: 15px }
+  .ttl--lg { font-size: 18px }
+  .col { flex: 1; min-width: 0; display: flex; flex-direction: column }
+  .sub { font-size: 13px; color: hsl(var(--muted-foreground)); margin-top: 3px }
+  .over { font-size: 12px; letter-spacing: .04em; text-transform: uppercase;
+          color: hsl(var(--muted-foreground)); margin-bottom: 3px }
+
+  .numbox { flex: 0 0 auto; width: 42px; height: 42px; border-radius: 12px; background: hsl(var(--background));
+            display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 500 }
+  .numbox--ghost { background: transparent; color: hsl(var(--muted-foreground)); width: 28px }
+  .numbox--sm { width: 32px; height: 32px; border-radius: 9px; font-size: 13px }
+  .numbox--lock { color: hsl(var(--muted-foreground)) }
+  .numdot { flex: 0 0 auto; width: 34px; font-size: 14px; font-weight: 500;
+            color: hsl(var(--muted-foreground)) }
+  .plainnum { flex: 0 0 auto; width: 26px; font-size: 15px; color: hsl(var(--muted-foreground)) }
+  .ghostnum { position: absolute; right: 14px; bottom: -8px; font-size: 52px; font-weight: 700;
+              color: hsl(var(--foreground) / .06); line-height: 1 }
+
+  .dur { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 6px; font-size: 14px;
+         color: hsl(var(--muted-foreground)) }
+  .dur--lock { color: hsl(var(--muted-foreground) / .75) }
+  .tnum { flex: 0 0 auto; width: 46px; text-align: right; font-size: 18px; font-weight: 600 }
+  .tnum i { font-style: normal; font-size: 11px; font-weight: 400; color: hsl(var(--muted-foreground));
+            margin-left: 3px }
+  .tcell { flex: 0 0 auto; width: 58px; text-align: right; font-size: 14px;
+           color: hsl(var(--muted-foreground)) }
+
+  .free { flex: 0 0 auto; font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px;
+          background: hsl(152 55% 92%); color: hsl(152 55% 30%) }
+  .prev { display: inline-flex; align-self: flex-start; font-size: 12px; font-weight: 500; padding: 3px 8px;
+          border-radius: 999px; background: hsl(var(--background)); color: hsl(var(--muted-foreground));
+          margin-top: 5px }
+  .btn { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 500;
+         padding: 13px 22px; border-radius: 999px; background: hsl(var(--foreground));
+         color: hsl(var(--background)) }
+
+  .ghead { padding: 12px 14px 6px; font-size: 13px; letter-spacing: .04em; text-transform: uppercase;
+           color: hsl(var(--muted-foreground)); display: flex; align-items: center; gap: 6px }
+  .ghead--lock { border-top: 1px solid hsl(var(--border) / .7); margin-top: 4px; padding-top: 14px }
+  .phead { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px 10px;
+           font-size: 13px; color: hsl(var(--muted-foreground));
+           border-bottom: 1px solid hsl(var(--border) / .7) }
+  .phead__l { display: inline-flex; align-items: center; gap: 6px }
+
+  /* оглавление с выноской */
+  .lead { display: flex; align-items: baseline; gap: 10px; width: 100%; font-size: 16px }
+  .lead b { font-weight: 500; color: hsl(var(--muted-foreground)); font-size: 14px }
+  .lead__t { font-weight: 500 }
+  .lead__d { flex: 1; border-bottom: 1.5px dotted hsl(var(--border)); transform: translateY(-4px) }
+  .lead__v { font-size: 14px; color: hsl(var(--muted-foreground)) }
+
+  /* шторка */
+  .veil__w { position: relative }
+  .veil__w .li { filter: blur(3px); opacity: .5 }
+  .veil__w .li + .li { border-top: 1px solid hsl(var(--border) / .7) }
+  .veil__b { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center }
+
+  /* таймлайн */
+  .l--tl { padding-left: 2px }
+  .li--tl { align-items: flex-start; padding: 12px 14px 12px 0; min-height: 0 }
+  .tl { position: relative; flex: 0 0 auto; width: 32px; align-self: stretch; display: flex; justify-content: center }
+  .tl::before { content: ''; position: absolute; top: -14px; bottom: -14px; width: 2px; background: hsl(var(--border)) }
+  .li--tl:first-child .tl::before { top: 10px }
+  .li--tl:last-child .tl::before { bottom: calc(100% - 10px) }
+  .tl i { position: relative; width: 10px; height: 10px; margin-top: 5px; border-radius: 50%;
+          background: hsl(var(--background)); box-shadow: 0 0 0 2px hsl(var(--border)) }
+
+  /* аккордеон */
+  .acc { display: flex; flex-direction: column; gap: 10px }
+  .acc__i { background: hsl(var(--muted)); border-radius: 16px; overflow: hidden }
+  .acc__h { display: flex; align-items: center; gap: 12px; padding: 14px }
+  .acc__n { width: 30px; height: 30px; border-radius: 9px; background: hsl(var(--background));
+            display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600 }
+  .acc__c { color: hsl(var(--muted-foreground)) }
+  .acc__b { border-top: 1px solid hsl(var(--border) / .7) }
+  .acc__b .li + .li { border-top: 1px solid hsl(var(--border) / .7) }
+
+  /* прочее */
+  .kind { flex: 0 0 auto; width: 38px; height: 38px; border-radius: 11px; background: hsl(var(--background));
+          display: flex; align-items: center; justify-content: center; color: hsl(var(--muted-foreground)) }
+  .kind--sm { width: 30px; height: 30px; border-radius: 9px; background: none }
+  .thumb { flex: 0 0 auto; width: 72px; height: 48px; border-radius: 10px; display: flex; align-items: center;
+           justify-content: center; font-size: 14px; font-weight: 600; color: hsl(var(--foreground) / .55) }
+  .li--thumb { padding: 10px }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px }
+  .grid2 .ttl { font-size: 15px }
+  .rail2 { display: flex; gap: 12px; overflow-x: auto; margin: 0 -16px; padding: 0 16px 4px; scrollbar-width: none }
+  .rail2::-webkit-scrollbar { display: none }
+  .rcard { flex: 0 0 auto; width: 190px; background: hsl(var(--muted)); border-radius: 16px; padding: 12px;
+           display: flex; flex-direction: column }
+  .rcard__i { width: 100%; height: 84px; border-radius: 12px; display: flex; align-items: center;
+              justify-content: center; color: hsl(var(--foreground) / .5); margin-bottom: 10px }
+  .rcard__n { font-size: 12px; letter-spacing: .04em; text-transform: uppercase;
+              color: hsl(var(--muted-foreground)) }
+  .rcard__t { font-size: 15px; font-weight: 500; line-height: 1.25; margin-top: 3px }
+</style>
+
+<div class="screen stack stack-8">
+
+  <div class="stack stack-2">
+    <h1 class="text-h1">Программа курса · ещё 30</h1>
+    <p class="text-caption-14">Без прогресса: уроки не «пройдены» и не «текущие». Состояний два — урок открыт
+      или закрыт замком у частично платного курса. Курс в примере платный: первые два урока открыты, четыре под замком.</p>
+  </div>
+
+  <h2 class="fam">A. Раскладка и типографика — без состояний</h2>
+  <section class="variant">
+    <h2>R1. Ровный список</h2>
+    <p class="variant__cap">Номер, название, длительность. Ничего лишнего — базовая строка.</p>
+    <div class="l l--card l--div">
+      <div class="li "><span class="numbox ">01</span><span class="ttl ">Что такое Telegram Gifts</span><span class="dur">6 мин</span></div>
+      <div class="li "><span class="numbox ">02</span><span class="ttl ">Создаём первый подарок</span><span class="dur">10 мин</span></div>
+      <div class="li "><span class="numbox ">03</span><span class="ttl ">Коллекции и редкость</span><span class="dur">12 мин</span></div>
+      <div class="li "><span class="numbox ">04</span><span class="ttl ">Монетизация подарков</span><span class="dur">14 мин</span></div>
+      <div class="li "><span class="numbox ">05</span><span class="ttl ">Продажа на маркетплейсах</span><span class="dur">9 мин</span></div>
+      <div class="li "><span class="numbox ">06</span><span class="ttl ">Ошибки новичков</span><span class="dur">7 мин</span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R2. Номер над названием</h2>
+    <p class="variant__cap">Номер уходит в надстрочную подпись, название начинается от левого края.</p>
+    <div class="l l--rule">
+      <div class="li li--air"><span class="col"><span class="over">Урок 01</span><span class="ttl ">Что такое Telegram Gifts</span></span><span class="dur">6 мин</span></div>
+      <div class="li li--air"><span class="col"><span class="over">Урок 02</span><span class="ttl ">Создаём первый подарок</span></span><span class="dur">10 мин</span></div>
+      <div class="li li--air"><span class="col"><span class="over">Урок 03</span><span class="ttl ">Коллекции и редкость</span></span><span class="dur">12 мин</span></div>
+      <div class="li li--air"><span class="col"><span class="over">Урок 04</span><span class="ttl ">Монетизация подарков</span></span><span class="dur">14 мин</span></div>
+      <div class="li li--air"><span class="col"><span class="over">Урок 05</span><span class="ttl ">Продажа на маркетплейсах</span></span><span class="dur">9 мин</span></div>
+      <div class="li li--air"><span class="col"><span class="over">Урок 06</span><span class="ttl ">Ошибки новичков</span></span><span class="dur">7 мин</span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R3. Формат в подписи</h2>
+    <p class="variant__cap">Под названием строка «Видео · 6 мин» — тип урока виден без иконок.</p>
+    <div class="l l--card l--div">
+      <div class="li li--air"><span class="numbox ">01</span><span class="col"><span class="ttl ">Что такое Telegram Gifts</span><span class="sub">Видео · 6 мин</span></span></div>
+      <div class="li li--air"><span class="numbox ">02</span><span class="col"><span class="ttl ">Создаём первый подарок</span><span class="sub">Видео · 10 мин</span></span></div>
+      <div class="li li--air"><span class="numbox ">03</span><span class="col"><span class="ttl ">Коллекции и редкость</span><span class="sub">Квиз · 12 мин</span></span></div>
+      <div class="li li--air"><span class="numbox ">04</span><span class="col"><span class="ttl ">Монетизация подарков</span><span class="sub">Конспект · 14 мин</span></span></div>
+      <div class="li li--air"><span class="numbox ">05</span><span class="col"><span class="ttl ">Продажа на маркетплейсах</span><span class="sub">Видео · 9 мин</span></span></div>
+      <div class="li li--air"><span class="numbox ">06</span><span class="col"><span class="ttl ">Ошибки новичков</span><span class="sub">Конспект · 7 мин</span></span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R4. Колонка времени справа</h2>
+    <p class="variant__cap">Длительности выровнены в колонку — программу можно просканировать по времени.</p>
+    <div class="l l--rule">
+      <div class="li "><span class="numbox numbox--ghost">01</span><span class="ttl ">Что такое Telegram Gifts</span><span class="tnum">6<i>мин</i></span></div>
+      <div class="li "><span class="numbox numbox--ghost">02</span><span class="ttl ">Создаём первый подарок</span><span class="tnum">10<i>мин</i></span></div>
+      <div class="li "><span class="numbox numbox--ghost">03</span><span class="ttl ">Коллекции и редкость</span><span class="tnum">12<i>мин</i></span></div>
+      <div class="li "><span class="numbox numbox--ghost">04</span><span class="ttl ">Монетизация подарков</span><span class="tnum">14<i>мин</i></span></div>
+      <div class="li "><span class="numbox numbox--ghost">05</span><span class="ttl ">Продажа на маркетплейсах</span><span class="tnum">9<i>мин</i></span></div>
+      <div class="li "><span class="numbox numbox--ghost">06</span><span class="ttl ">Ошибки новичков</span><span class="tnum">7<i>мин</i></span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R5. Оглавление книги</h2>
+    <p class="variant__cap">Название и время связаны точечной выноской, как в содержании книги.</p>
+    <div class="l">
+      <div class="li li--lead"><span class="lead"><b>01</b><span class="lead__t">Что такое Telegram Gifts</span><span class="lead__d"></span><span class="lead__v">6 мин</span></span></div>
+      <div class="li li--lead"><span class="lead"><b>02</b><span class="lead__t">Создаём первый подарок</span><span class="lead__d"></span><span class="lead__v">10 мин</span></span></div>
+      <div class="li li--lead"><span class="lead"><b>03</b><span class="lead__t">Коллекции и редкость</span><span class="lead__d"></span><span class="lead__v">12 мин</span></span></div>
+      <div class="li li--lead"><span class="lead"><b>04</b><span class="lead__t">Монетизация подарков</span><span class="lead__d"></span><span class="lead__v">14 мин</span></span></div>
+      <div class="li li--lead"><span class="lead"><b>05</b><span class="lead__t">Продажа на маркетплейсах</span><span class="lead__d"></span><span class="lead__v">9 мин</span></span></div>
+      <div class="li li--lead"><span class="lead"><b>06</b><span class="lead__t">Ошибки новичков</span><span class="lead__d"></span><span class="lead__v">7 мин</span></span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R6. Без номеров</h2>
+    <p class="variant__cap">Только названия и время: программа читается как список тем, а не как нумерованный план.</p>
+    <div class="l l--rule">
+      <div class="li "><span class="ttl ">Что такое Telegram Gifts</span><span class="dur">6 мин</span></div>
+      <div class="li "><span class="ttl ">Создаём первый подарок</span><span class="dur">10 мин</span></div>
+      <div class="li "><span class="ttl ">Коллекции и редкость</span><span class="dur">12 мин</span></div>
+      <div class="li "><span class="ttl ">Монетизация подарков</span><span class="dur">14 мин</span></div>
+      <div class="li "><span class="ttl ">Продажа на маркетплейсах</span><span class="dur">9 мин</span></div>
+      <div class="li "><span class="ttl ">Ошибки новичков</span><span class="dur">7 мин</span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R7. «Урок 1» словами</h2>
+    <p class="variant__cap">Номер подписан словом — понятнее для новичка, чем голая цифра.</p>
+    <div class="l l--card l--div">
+      <div class="li li--air"><span class="col"><span class="ttl">Что такое Telegram Gifts</span><span class="sub">Урок 1 · 6 мин</span></span></div>
+      <div class="li li--air"><span class="col"><span class="ttl">Создаём первый подарок</span><span class="sub">Урок 2 · 10 мин</span></span></div>
+      <div class="li li--air"><span class="col"><span class="ttl">Коллекции и редкость</span><span class="sub">Урок 3 · 12 мин</span></span></div>
+      <div class="li li--air"><span class="col"><span class="ttl">Монетизация подарков</span><span class="sub">Урок 4 · 14 мин</span></span></div>
+      <div class="li li--air"><span class="col"><span class="ttl">Продажа на маркетплейсах</span><span class="sub">Урок 5 · 9 мин</span></span></div>
+      <div class="li li--air"><span class="col"><span class="ttl">Ошибки новичков</span><span class="sub">Урок 6 · 7 мин</span></span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R8. Крупные заголовки</h2>
+    <p class="variant__cap">18px и много воздуха: программа выглядит как оглавление лонгрида.</p>
+    <div class="l l--rule">
+      <div class="li li--air"><span class="col"><span class="ttl ttl--lg">Что такое Telegram Gifts</span><span class="sub">6 мин</span></span><span class="numbox numbox--ghost">01</span></div>
+      <div class="li li--air"><span class="col"><span class="ttl ttl--lg">Создаём первый подарок</span><span class="sub">10 мин</span></span><span class="numbox numbox--ghost">02</span></div>
+      <div class="li li--air"><span class="col"><span class="ttl ttl--lg">Коллекции и редкость</span><span class="sub">12 мин</span></span><span class="numbox numbox--ghost">03</span></div>
+      <div class="li li--air"><span class="col"><span class="ttl ttl--lg">Монетизация подарков</span><span class="sub">14 мин</span></span><span class="numbox numbox--ghost">04</span></div>
+      <div class="li li--air"><span class="col"><span class="ttl ttl--lg">Продажа на маркетплейсах</span><span class="sub">9 мин</span></span><span class="numbox numbox--ghost">05</span></div>
+      <div class="li li--air"><span class="col"><span class="ttl ttl--lg">Ошибки новичков</span><span class="sub">7 мин</span></span><span class="numbox numbox--ghost">06</span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R9. Иконка формата</h2>
+    <p class="variant__cap">Слева иконка видео, конспекта или квиза — строки перестают быть одинаковыми.</p>
+    <div class="l l--card l--div">
+      <div class="li "><span class="kind"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="2" y="5" width="14" height="14" rx="3"/><path d="m16 12 6-4v8z"/></svg></span><span class="ttl ">Что такое Telegram Gifts</span><span class="dur">6 мин</span></div>
+      <div class="li "><span class="kind"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="2" y="5" width="14" height="14" rx="3"/><path d="m16 12 6-4v8z"/></svg></span><span class="ttl ">Создаём первый подарок</span><span class="dur">10 мин</span></div>
+      <div class="li "><span class="kind"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3 2.4V13"/><path d="M12 16.5v.01"/></svg></span><span class="ttl ">Коллекции и редкость</span><span class="dur">12 мин</span></div>
+      <div class="li "><span class="kind"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M5 3h9l5 5v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v6h5"/><path d="M8 13h8M8 17h5"/></svg></span><span class="ttl ">Монетизация подарков</span><span class="dur">14 мин</span></div>
+      <div class="li "><span class="kind"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="2" y="5" width="14" height="14" rx="3"/><path d="m16 12 6-4v8z"/></svg></span><span class="ttl ">Продажа на маркетплейсах</span><span class="dur">9 мин</span></div>
+      <div class="li "><span class="kind"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M5 3h9l5 5v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v6h5"/><path d="M8 13h8M8 17h5"/></svg></span><span class="ttl ">Ошибки новичков</span><span class="dur">7 мин</span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R10. Миниатюра урока</h2>
+    <p class="variant__cap">Цветное превью слева: страница выглядит как плейлист.</p>
+    <div class="l l--gap">
+      <div class="li li--thumb"><span class="thumb" style="background:linear-gradient(135deg,#DCE9FB,#A9C7F5)">01</span><span class="col"><span class="ttl ">Что такое Telegram Gifts</span><span class="sub">Видео · 6 мин</span></span></div>
+      <div class="li li--thumb"><span class="thumb" style="background:linear-gradient(135deg,#DCE9FB,#A9C7F5)">02</span><span class="col"><span class="ttl ">Создаём первый подарок</span><span class="sub">Видео · 10 мин</span></span></div>
+      <div class="li li--thumb"><span class="thumb" style="background:linear-gradient(135deg,#FFE7DA,#FFB68F)">03</span><span class="col"><span class="ttl ">Коллекции и редкость</span><span class="sub">Квиз · 12 мин</span></span></div>
+      <div class="li li--thumb"><span class="thumb" style="background:linear-gradient(135deg,#E8DCFB,#C4A6FF)">04</span><span class="col"><span class="ttl ">Монетизация подарков</span><span class="sub">Конспект · 14 мин</span></span></div>
+      <div class="li li--thumb"><span class="thumb" style="background:linear-gradient(135deg,#DCE9FB,#A9C7F5)">05</span><span class="col"><span class="ttl ">Продажа на маркетплейсах</span><span class="sub">Видео · 9 мин</span></span></div>
+      <div class="li li--thumb"><span class="thumb" style="background:linear-gradient(135deg,#E8DCFB,#C4A6FF)">06</span><span class="col"><span class="ttl ">Ошибки новичков</span><span class="sub">Конспект · 7 мин</span></span></div>
+    </div>
+  </section>
+  <h2 class="fam">B. Частично платный курс: что открыто, что под замком</h2>
+  <section class="variant">
+    <h2>R11. Замок вместо времени</h2>
+    <p class="variant__cap">У закрытых уроков справа замок, у открытых — длительность.</p>
+    <div class="l l--card l--div">
+      <div class="li "><span class="numbox ">01</span><span class="ttl ">Что такое Telegram Gifts</span><span class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m6 3 14 9-14 9z"/></svg>6 мин</span></div>
+      <div class="li "><span class="numbox ">02</span><span class="ttl ">Создаём первый подарок</span><span class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m6 3 14 9-14 9z"/></svg>10 мин</span></div>
+      <div class="li "><span class="numbox ">03</span><span class="ttl ">Коллекции и редкость</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li "><span class="numbox ">04</span><span class="ttl ">Монетизация подарков</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li "><span class="numbox ">05</span><span class="ttl ">Продажа на маркетплейсах</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li "><span class="numbox ">06</span><span class="ttl ">Ошибки новичков</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R12. Плашка «Бесплатно»</h2>
+    <p class="variant__cap">Явно помечено то, что можно посмотреть сразу.</p>
+    <div class="l l--card l--div">
+      <div class="li "><span class="numbox ">01</span><span class="ttl ">Что такое Telegram Gifts</span><span class="free">Бесплатно</span></div>
+      <div class="li "><span class="numbox ">02</span><span class="ttl ">Создаём первый подарок</span><span class="free">Бесплатно</span></div>
+      <div class="li "><span class="numbox ">03</span><span class="ttl ">Коллекции и редкость</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li "><span class="numbox ">04</span><span class="ttl ">Монетизация подарков</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li "><span class="numbox ">05</span><span class="ttl ">Продажа на маркетплейсах</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li "><span class="numbox ">06</span><span class="ttl ">Ошибки новичков</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R13. Приглушённые закрытые</h2>
+    <p class="variant__cap">Закрытые уроки тише по контрасту — открытые сами притягивают взгляд.</p>
+    <div class="l l--card l--div">
+      <div class="li "><span class="numbox ">01</span><span class="ttl ">Что такое Telegram Gifts</span><span class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m6 3 14 9-14 9z"/></svg>6 мин</span></div>
+      <div class="li "><span class="numbox ">02</span><span class="ttl ">Создаём первый подарок</span><span class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m6 3 14 9-14 9z"/></svg>10 мин</span></div>
+      <div class="li li--dim"><span class="numbox numbox--ghost">03</span><span class="ttl ttl--dim">Коллекции и редкость</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--dim"><span class="numbox numbox--ghost">04</span><span class="ttl ttl--dim">Монетизация подарков</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--dim"><span class="numbox numbox--ghost">05</span><span class="ttl ttl--dim">Продажа на маркетплейсах</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--dim"><span class="numbox numbox--ghost">06</span><span class="ttl ttl--dim">Ошибки новичков</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R14. Две группы</h2>
+    <p class="variant__cap">Программа делится на «Открыто сейчас» и «После покупки» — граница платного очевидна.</p>
+    <div class="l l--card l--div">
+      <div class="ghead">Открыто сейчас</div>
+      <div class="li "><span class="numbox ">01</span><span class="ttl ">Что такое Telegram Gifts</span><span class="dur">6 мин</span></div>
+      <div class="li "><span class="numbox ">02</span><span class="ttl ">Создаём первый подарок</span><span class="dur">10 мин</span></div>
+      <div class="ghead ghead--lock"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>После покупки</div>
+      <div class="li "><span class="numbox numbox--ghost">03</span><span class="ttl ttl--dim">Коллекции и редкость</span><span class="dur">12 мин</span></div>
+      <div class="li "><span class="numbox numbox--ghost">04</span><span class="ttl ttl--dim">Монетизация подарков</span><span class="dur">14 мин</span></div>
+      <div class="li "><span class="numbox numbox--ghost">05</span><span class="ttl ttl--dim">Продажа на маркетплейсах</span><span class="dur">9 мин</span></div>
+      <div class="li "><span class="numbox numbox--ghost">06</span><span class="ttl ttl--dim">Ошибки новичков</span><span class="dur">7 мин</span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R15. Замок в номере</h2>
+    <p class="variant__cap">Вместо цифры у закрытых уроков — замок в той же плашке, ряд не сбивается.</p>
+    <div class="l l--card l--div">
+      <div class="li "><span class="numbox ">01</span><span class="ttl ">Что такое Telegram Gifts</span><span class="dur">6 мин</span></div>
+      <div class="li "><span class="numbox ">02</span><span class="ttl ">Создаём первый подарок</span><span class="dur">10 мин</span></div>
+      <div class="li "><span class="numbox numbox--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span class="ttl ">Коллекции и редкость</span><span class="dur">12 мин</span></div>
+      <div class="li "><span class="numbox numbox--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span class="ttl ">Монетизация подарков</span><span class="dur">14 мин</span></div>
+      <div class="li "><span class="numbox numbox--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span class="ttl ">Продажа на маркетплейсах</span><span class="dur">9 мин</span></div>
+      <div class="li "><span class="numbox numbox--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span class="ttl ">Ошибки новичков</span><span class="dur">7 мин</span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R16. Кромка у бесплатных</h2>
+    <p class="variant__cap">Зелёная полоска слева отмечает открытые уроки — тише, чем плашка.</p>
+    <div class="l l--card l--div">
+      <div class="li li--edge"><span class="numbox ">01</span><span class="ttl ">Что такое Telegram Gifts</span><span class="dur">6 мин</span></div>
+      <div class="li li--edge"><span class="numbox ">02</span><span class="ttl ">Создаём первый подарок</span><span class="dur">10 мин</span></div>
+      <div class="li "><span class="numbox ">03</span><span class="ttl ">Коллекции и редкость</span><span class="dur">12 мин</span></div>
+      <div class="li "><span class="numbox ">04</span><span class="ttl ">Монетизация подарков</span><span class="dur">14 мин</span></div>
+      <div class="li "><span class="numbox ">05</span><span class="ttl ">Продажа на маркетплейсах</span><span class="dur">9 мин</span></div>
+      <div class="li "><span class="numbox ">06</span><span class="ttl ">Ошибки новичков</span><span class="dur">7 мин</span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R17. Пунктир у закрытых</h2>
+    <p class="variant__cap">Закрытые уроки обведены пунктиром: видно, что содержимое ещё не ваше.</p>
+    <div class="l l--gap">
+      <div class="li li--card"><span class="numbox ">01</span><span class="ttl ">Что такое Telegram Gifts</span><span class="dur">6 мин</span></div>
+      <div class="li li--card"><span class="numbox ">02</span><span class="ttl ">Создаём первый подарок</span><span class="dur">10 мин</span></div>
+      <div class="li li--card li--dash"><span class="numbox ">03</span><span class="ttl ">Коллекции и редкость</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--card li--dash"><span class="numbox ">04</span><span class="ttl ">Монетизация подарков</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--card li--dash"><span class="numbox ">05</span><span class="ttl ">Продажа на маркетплейсах</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--card li--dash"><span class="numbox ">06</span><span class="ttl ">Ошибки новичков</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R18. Бейдж «Превью»</h2>
+    <p class="variant__cap">Открытые уроки помечены как превью курса — честная формулировка для платного курса.</p>
+    <div class="l l--card l--div">
+      <div class="li li--air"><span class="numbox ">01</span><span class="col"><span class="ttl ">Что такое Telegram Gifts</span><span class="prev">Превью</span></span><span class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m6 3 14 9-14 9z"/></svg>6 мин</span></div>
+      <div class="li li--air"><span class="numbox ">02</span><span class="col"><span class="ttl ">Создаём первый подарок</span><span class="prev">Превью</span></span><span class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m6 3 14 9-14 9z"/></svg>10 мин</span></div>
+      <div class="li li--air"><span class="numbox ">03</span><span class="col"><span class="ttl ">Коллекции и редкость</span></span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--air"><span class="numbox ">04</span><span class="col"><span class="ttl ">Монетизация подарков</span></span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--air"><span class="numbox ">05</span><span class="col"><span class="ttl ">Продажа на маркетплейсах</span></span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--air"><span class="numbox ">06</span><span class="col"><span class="ttl ">Ошибки новичков</span></span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R19. Шторка на закрытых</h2>
+    <p class="variant__cap">Названия закрытых уроков размыты, поверх — кнопка покупки.</p>
+    <div class="l l--card l--div veil">
+      <div class="li "><span class="numbox ">01</span><span class="ttl ">Что такое Telegram Gifts</span><span class="dur">6 мин</span></div>
+      <div class="li "><span class="numbox ">02</span><span class="ttl ">Создаём первый подарок</span><span class="dur">10 мин</span></div>
+      <div class="veil__w">
+        <div class="li "><span class="numbox ">03</span><span class="ttl ">Коллекции и редкость</span><span class="dur">12 мин</span></div>
+        <div class="li "><span class="numbox ">04</span><span class="ttl ">Монетизация подарков</span><span class="dur">14 мин</span></div>
+        <div class="li "><span class="numbox ">05</span><span class="ttl ">Продажа на маркетплейсах</span><span class="dur">9 мин</span></div>
+        <div class="li "><span class="numbox ">06</span><span class="ttl ">Ошибки новичков</span><span class="dur">7 мин</span></div>
+        <div class="veil__b"><span class="btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Открыть все 6 уроков</span></div>
+      </div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R20. Счётчик в шапке</h2>
+    <p class="variant__cap">Строка над списком говорит, сколько уроков открыто и сколько ждёт покупки.</p>
+    <div class="l l--card l--div">
+      <div class="phead"><span>2 урока открыты</span><span class="phead__l"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>4 после покупки</span></div>
+      <div class="li "><span class="numbox ">01</span><span class="ttl ">Что такое Telegram Gifts</span><span class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m6 3 14 9-14 9z"/></svg>6 мин</span></div>
+      <div class="li "><span class="numbox ">02</span><span class="ttl ">Создаём первый подарок</span><span class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m6 3 14 9-14 9z"/></svg>10 мин</span></div>
+      <div class="li "><span class="numbox ">03</span><span class="ttl ">Коллекции и редкость</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li "><span class="numbox ">04</span><span class="ttl ">Монетизация подарков</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li "><span class="numbox ">05</span><span class="ttl ">Продажа на маркетплейсах</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li "><span class="numbox ">06</span><span class="ttl ">Ошибки новичков</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+    </div>
+  </section>
+  <h2 class="fam">C. Модули, сетки и плотность</h2>
+  <section class="variant">
+    <h2>R21. Аккордеон модулей</h2>
+    <p class="variant__cap">Модули сворачиваются: программа из двадцати уроков помещается на экран.</p>
+    <div class="acc">
+      <div class="acc__i"><div class="acc__h"><span class="acc__n">1</span><span class="col"><span class="ttl">Основы</span><span class="sub">3 урока · 28 мин</span></span><span class="acc__c"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div><div class="acc__b"><div class="li "><span class="numbox ">01</span><span class="ttl ">Что такое Telegram Gifts</span><span class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m6 3 14 9-14 9z"/></svg>6 мин</span></div><div class="li "><span class="numbox ">02</span><span class="ttl ">Создаём первый подарок</span><span class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m6 3 14 9-14 9z"/></svg>10 мин</span></div><div class="li "><span class="numbox ">03</span><span class="ttl ">Коллекции и редкость</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div></div></div>
+      <div class="acc__i"><div class="acc__h"><span class="acc__n">2</span><span class="col"><span class="ttl">Практика</span><span class="sub">3 урока · 30 мин</span></span><span class="acc__c"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></div></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R22. Заголовки-разделители</h2>
+    <p class="variant__cap">Без аккордеона: модуль — просто подзаголовок над своей группой уроков.</p>
+    <div class="l l--card l--div">
+      <div class="ghead">Основы · 3 урока</div>
+      <div class="li "><span class="numbox ">01</span><span class="ttl ">Что такое Telegram Gifts</span><span class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m6 3 14 9-14 9z"/></svg>6 мин</span></div>
+      <div class="li "><span class="numbox ">02</span><span class="ttl ">Создаём первый подарок</span><span class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m6 3 14 9-14 9z"/></svg>10 мин</span></div>
+      <div class="li "><span class="numbox ">03</span><span class="ttl ">Коллекции и редкость</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="ghead">Практика · 3 урока</div>
+      <div class="li "><span class="numbox ">04</span><span class="ttl ">Монетизация подарков</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li "><span class="numbox ">05</span><span class="ttl ">Продажа на маркетплейсах</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li "><span class="numbox ">06</span><span class="ttl ">Ошибки новичков</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R23. Нумерация 1.1, 1.2</h2>
+    <p class="variant__cap">Номер показывает модуль и место в нём — удобно для больших программ.</p>
+    <div class="l l--rule">
+      <div class="li "><span class="numdot">1.1</span><span class="ttl ">Что такое Telegram Gifts</span><span class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m6 3 14 9-14 9z"/></svg>6 мин</span></div>
+      <div class="li "><span class="numdot">1.2</span><span class="ttl ">Создаём первый подарок</span><span class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m6 3 14 9-14 9z"/></svg>10 мин</span></div>
+      <div class="li "><span class="numdot">1.3</span><span class="ttl ">Коллекции и редкость</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li "><span class="numdot">2.1</span><span class="ttl ">Монетизация подарков</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li "><span class="numdot">2.2</span><span class="ttl ">Продажа на маркетплейсах</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li "><span class="numdot">2.3</span><span class="ttl ">Ошибки новичков</span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R24. Таймлайн</h2>
+    <p class="variant__cap">Вертикальная нить связывает уроки в маршрут, замок висит на закрытых.</p>
+    <div class="l l--tl">
+      <div class="li li--tl"><span class="tl"><i></i></span><span class="col"><span class="ttl ">Что такое Telegram Gifts</span><span class="sub">Видео · 6 мин</span></span></div>
+      <div class="li li--tl"><span class="tl"><i></i></span><span class="col"><span class="ttl ">Создаём первый подарок</span><span class="sub">Видео · 10 мин</span></span></div>
+      <div class="li li--tl"><span class="tl"><i></i></span><span class="col"><span class="ttl ">Коллекции и редкость</span><span class="sub">Квиз · 12 мин</span></span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--tl"><span class="tl"><i></i></span><span class="col"><span class="ttl ">Монетизация подарков</span><span class="sub">Конспект · 14 мин</span></span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--tl"><span class="tl"><i></i></span><span class="col"><span class="ttl ">Продажа на маркетплейсах</span><span class="sub">Видео · 9 мин</span></span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--tl"><span class="tl"><i></i></span><span class="col"><span class="ttl ">Ошибки новичков</span><span class="sub">Конспект · 7 мин</span></span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R25. Сетка 2×</h2>
+    <p class="variant__cap">Короткие названия ложатся в две колонки — программа занимает вдвое меньше высоты.</p>
+    <div class="grid2">
+      <div class="li li--card li--grid"><span class="col"><span class="over">Урок 01</span><span class="ttl ">Что такое Telegram Gifts</span><span class="sub">6 мин</span></span></div>
+      <div class="li li--card li--grid"><span class="col"><span class="over">Урок 02</span><span class="ttl ">Создаём первый подарок</span><span class="sub">10 мин</span></span></div>
+      <div class="li li--card li--grid"><span class="col"><span class="over">Урок 03</span><span class="ttl ">Коллекции и редкость</span><span class="sub">12 мин</span></span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--card li--grid"><span class="col"><span class="over">Урок 04</span><span class="ttl ">Монетизация подарков</span><span class="sub">14 мин</span></span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--card li--grid"><span class="col"><span class="over">Урок 05</span><span class="ttl ">Продажа на маркетплейсах</span><span class="sub">9 мин</span></span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--card li--grid"><span class="col"><span class="over">Урок 06</span><span class="ttl ">Ошибки новичков</span><span class="sub">7 мин</span></span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R26. Лента вбок</h2>
+    <p class="variant__cap">Уроки листаются карточками, как курсы на главной.</p>
+    <div class="rail2">
+      <div class="rcard"><span class="rcard__i" style="background:linear-gradient(135deg,#DCE9FB,#A9C7F5)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="2" y="5" width="14" height="14" rx="3"/><path d="m16 12 6-4v8z"/></svg></span><span class="rcard__n">Урок 01</span><span class="rcard__t">Что такое Telegram Gifts</span><span class="sub">Видео · 6 мин</span></div>
+      <div class="rcard"><span class="rcard__i" style="background:linear-gradient(135deg,#DCE9FB,#A9C7F5)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="2" y="5" width="14" height="14" rx="3"/><path d="m16 12 6-4v8z"/></svg></span><span class="rcard__n">Урок 02</span><span class="rcard__t">Создаём первый подарок</span><span class="sub">Видео · 10 мин</span></div>
+      <div class="rcard"><span class="rcard__i" style="background:linear-gradient(135deg,#FFE7DA,#FFB68F)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span class="rcard__n">Урок 03</span><span class="rcard__t">Коллекции и редкость</span><span class="sub">Квиз · 12 мин</span></div>
+      <div class="rcard"><span class="rcard__i" style="background:linear-gradient(135deg,#E8DCFB,#C4A6FF)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span class="rcard__n">Урок 04</span><span class="rcard__t">Монетизация подарков</span><span class="sub">Конспект · 14 мин</span></div>
+      <div class="rcard"><span class="rcard__i" style="background:linear-gradient(135deg,#DCE9FB,#A9C7F5)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span class="rcard__n">Урок 05</span><span class="rcard__t">Продажа на маркетплейсах</span><span class="sub">Видео · 9 мин</span></div>
+      <div class="rcard"><span class="rcard__i" style="background:linear-gradient(135deg,#E8DCFB,#C4A6FF)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span class="rcard__n">Урок 06</span><span class="rcard__t">Ошибки новичков</span><span class="sub">Конспект · 7 мин</span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R27. Компактный</h2>
+    <p class="variant__cap">Строки 44px: двадцать уроков видно без бесконечной прокрутки.</p>
+    <div class="l l--card l--div">
+      <div class="li li--tight"><span class="numbox numbox--sm">01</span><span class="ttl ttl--sm">Что такое Telegram Gifts</span><span class="dur">6 мин</span></div>
+      <div class="li li--tight"><span class="numbox numbox--sm">02</span><span class="ttl ttl--sm">Создаём первый подарок</span><span class="dur">10 мин</span></div>
+      <div class="li li--tight"><span class="numbox numbox--sm">03</span><span class="ttl ttl--sm">Коллекции и редкость</span><span class="dur dur--lock"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--tight"><span class="numbox numbox--sm">04</span><span class="ttl ttl--sm">Монетизация подарков</span><span class="dur dur--lock"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--tight"><span class="numbox numbox--sm">05</span><span class="ttl ttl--sm">Продажа на маркетплейсах</span><span class="dur dur--lock"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--tight"><span class="numbox numbox--sm">06</span><span class="ttl ttl--sm">Ошибки новичков</span><span class="dur dur--lock"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R28. Только текст</h2>
+    <p class="variant__cap">Ни плашек, ни подложек — номер, название и время одной строкой.</p>
+    <div class="l">
+      <div class="li li--plain"><span class="plainnum">01</span><span class="ttl ">Что такое Telegram Gifts</span><span class="dur">6 мин</span></div>
+      <div class="li li--plain"><span class="plainnum">02</span><span class="ttl ">Создаём первый подарок</span><span class="dur">10 мин</span></div>
+      <div class="li li--plain"><span class="plainnum">03</span><span class="ttl ">Коллекции и редкость</span><span class="dur dur--lock"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--plain"><span class="plainnum">04</span><span class="ttl ">Монетизация подарков</span><span class="dur dur--lock"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--plain"><span class="plainnum">05</span><span class="ttl ">Продажа на маркетплейсах</span><span class="dur dur--lock"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--plain"><span class="plainnum">06</span><span class="ttl ">Ошибки новичков</span><span class="dur dur--lock"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R29. Таблица</h2>
+    <p class="variant__cap">Три колонки: формат, название, время — самый информационный вариант.</p>
+    <div class="l l--card l--div">
+      <div class="li li--tight"><span class="kind kind--sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="2" y="5" width="14" height="14" rx="3"/><path d="m16 12 6-4v8z"/></svg></span><span class="ttl ttl--sm">Что такое Telegram Gifts</span><span class="tcell">6 мин</span></div>
+      <div class="li li--tight"><span class="kind kind--sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="2" y="5" width="14" height="14" rx="3"/><path d="m16 12 6-4v8z"/></svg></span><span class="ttl ttl--sm">Создаём первый подарок</span><span class="tcell">10 мин</span></div>
+      <div class="li li--tight"><span class="kind kind--sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3 2.4V13"/><path d="M12 16.5v.01"/></svg></span><span class="ttl ttl--sm">Коллекции и редкость</span><span class="tcell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--tight"><span class="kind kind--sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M5 3h9l5 5v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v6h5"/><path d="M8 13h8M8 17h5"/></svg></span><span class="ttl ttl--sm">Монетизация подарков</span><span class="tcell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--tight"><span class="kind kind--sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="2" y="5" width="14" height="14" rx="3"/><path d="m16 12 6-4v8z"/></svg></span><span class="ttl ttl--sm">Продажа на маркетплейсах</span><span class="tcell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--tight"><span class="kind kind--sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M5 3h9l5 5v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v6h5"/><path d="M8 13h8M8 17h5"/></svg></span><span class="ttl ttl--sm">Ошибки новичков</span><span class="tcell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+    </div>
+  </section>
+  <section class="variant">
+    <h2>R30. Цифра фоном</h2>
+    <p class="variant__cap">Крупный номер живёт подложкой карточки, замок — в правом верхнем углу.</p>
+    <div class="l l--gap">
+      <div class="li li--card li--ghost"><span class="ghostnum">01</span><span class="col"><span class="ttl ">Что такое Telegram Gifts</span><span class="sub">Видео · 6 мин</span></span></div>
+      <div class="li li--card li--ghost"><span class="ghostnum">02</span><span class="col"><span class="ttl ">Создаём первый подарок</span><span class="sub">Видео · 10 мин</span></span></div>
+      <div class="li li--card li--ghost"><span class="ghostnum">03</span><span class="col"><span class="ttl ">Коллекции и редкость</span><span class="sub">Квиз · 12 мин</span></span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--card li--ghost"><span class="ghostnum">04</span><span class="col"><span class="ttl ">Монетизация подарков</span><span class="sub">Конспект · 14 мин</span></span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--card li--ghost"><span class="ghostnum">05</span><span class="col"><span class="ttl ">Продажа на маркетплейсах</span><span class="sub">Видео · 9 мин</span></span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+      <div class="li li--card li--ghost"><span class="ghostnum">06</span><span class="col"><span class="ttl ">Ошибки новичков</span><span class="sub">Конспект · 7 мин</span></span><span class="dur dur--lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+    </div>
+  </section>
+
+  <p class="note">Скажи код — поставлю в приложение.</p>
+
+</div>
