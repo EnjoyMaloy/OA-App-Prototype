@@ -8,6 +8,7 @@ import {
   Calendar,
   ChevronRight,
   Play,
+  Lock,
   Send,
   Twitter,
   Youtube,
@@ -17,6 +18,7 @@ import PremiumStarIcon from "@/components/icons/PremiumStarIcon";
 import { Button } from "@/components/ui/button";
 import PaymentModal from "@/components/PaymentModal";
 import ReviewCard, { type Review } from "@/components/ReviewCard";
+import { pluralRu } from "@/lib/utils";
 import CourseCard from "@/components/CourseCard";
 import authorPhoto from "@/assets/author-photo.jpg";
 import { courses as allCourses, getCategoryLabel } from "@/data/courses";
@@ -32,6 +34,8 @@ import avatarDmitry from "@/assets/avatar-dmitry.jpg";
 import avatarSychev from "@/assets/avatar-sychev.jpg";
 
 type Scenario = "free" | "sub" | "sub-trial" | "paid" | "paid-trial";
+/** Из чего состоит урок: у одного урока может быть сразу видео, квиз и инструкция */
+type LessonType = "video" | "quiz" | "guide";
 
 interface CourseConfig {
   id: string;
@@ -54,7 +58,7 @@ interface CourseConfig {
   monthlyFrom?: number;        // shown for subscription scenarios
   trialLessons?: number;       // for *-trial scenarios
   color: { base: string; light: string; superLight: string; dark: string };
-  lessons: { titleRu: string; titleEn: string; min: number }[];
+  lessons: { titleRu: string; titleEn: string; min: number; types: LessonType[] }[];
   reviews: Review[];
 }
 
@@ -163,10 +167,10 @@ const COURSE_CONFIGS: Record<string, CourseConfig> = {
     price: null,
     color: COLORS.green,
     lessons: [
-      { titleRu: "Что такое Telegram Gifts", titleEn: "What are Telegram Gifts", min: 6 },
-      { titleRu: "Создание первого подарка", titleEn: "Creating your first gift", min: 10 },
-      { titleRu: "Коллекции и редкость", titleEn: "Collections & rarity", min: 12 },
-      { titleRu: "Монетизация подарков", titleEn: "Monetizing gifts", min: 14 },
+      { titleRu: "Что такое Telegram Gifts", titleEn: "What are Telegram Gifts", min: 6, types: ["video"] },
+      { titleRu: "Создание первого подарка", titleEn: "Creating your first gift", min: 10, types: ["video", "quiz"] },
+      { titleRu: "Коллекции и редкость", titleEn: "Collections & rarity", min: 12, types: ["video", "guide"] },
+      { titleRu: "Монетизация подарков", titleEn: "Monetizing gifts", min: 14, types: ["video", "quiz", "guide"] },
     ],
     reviews: REVIEWS_FREE,
   },
@@ -191,11 +195,11 @@ const COURSE_CONFIGS: Record<string, CourseConfig> = {
     monthlyFrom: 6,
     color: COLORS.blue,
     lessons: [
-      { titleRu: "Введение в анализ", titleEn: "Introduction to analysis", min: 10 },
-      { titleRu: "Чтение Whitepaper", titleEn: "Reading whitepapers", min: 18 },
-      { titleRu: "Токеномика", titleEn: "Tokenomics", min: 22 },
-      { titleRu: "Оценка команды", titleEn: "Evaluating the team", min: 16 },
-      { titleRu: "Чек-лист: красные флаги", titleEn: "Red flags checklist", min: 14 },
+      { titleRu: "Введение в анализ", titleEn: "Introduction to analysis", min: 10, types: ["video"] },
+      { titleRu: "Чтение Whitepaper", titleEn: "Reading whitepapers", min: 18, types: ["video", "quiz"] },
+      { titleRu: "Токеномика", titleEn: "Tokenomics", min: 22, types: ["video", "guide"] },
+      { titleRu: "Оценка команды", titleEn: "Evaluating the team", min: 16, types: ["video", "quiz", "guide"] },
+      { titleRu: "Чек-лист: красные флаги", titleEn: "Red flags checklist", min: 14, types: ["video"] },
     ],
     reviews: REVIEWS_INVEST,
   },
@@ -221,10 +225,10 @@ const COURSE_CONFIGS: Record<string, CourseConfig> = {
     trialLessons: 2,
     color: COLORS.purple,
     lessons: [
-      { titleRu: "Знакомство", titleEn: "Introduction", min: 8 },
-      { titleRu: "Основные концепции", titleEn: "Core concepts", min: 12 },
-      { titleRu: "Практика (Премиум)", titleEn: "Practice (Premium)", min: 18 },
-      { titleRu: "Продвинутые темы", titleEn: "Advanced topics", min: 22 },
+      { titleRu: "Знакомство", titleEn: "Introduction", min: 8, types: ["video"] },
+      { titleRu: "Основные концепции", titleEn: "Core concepts", min: 12, types: ["video", "quiz"] },
+      { titleRu: "Практика (Премиум)", titleEn: "Practice (Premium)", min: 18, types: ["video", "guide"] },
+      { titleRu: "Продвинутые темы", titleEn: "Advanced topics", min: 22, types: ["video", "quiz", "guide"] },
     ],
     reviews: REVIEWS_DEMO,
   },
@@ -248,11 +252,11 @@ const COURSE_CONFIGS: Record<string, CourseConfig> = {
     price: 79,
     color: COLORS.amber,
     lessons: [
-      { titleRu: "Введение", titleEn: "Introduction", min: 8 },
-      { titleRu: "Основы", titleEn: "Basics", min: 16 },
-      { titleRu: "Боевые кейсы", titleEn: "Real-world cases", min: 24 },
-      { titleRu: "Практика", titleEn: "Hands-on practice", min: 28 },
-      { titleRu: "Итог", titleEn: "Summary", min: 10 },
+      { titleRu: "Введение", titleEn: "Introduction", min: 8, types: ["video"] },
+      { titleRu: "Основы", titleEn: "Basics", min: 16, types: ["video", "quiz"] },
+      { titleRu: "Боевые кейсы", titleEn: "Real-world cases", min: 24, types: ["video", "guide"] },
+      { titleRu: "Практика", titleEn: "Hands-on practice", min: 28, types: ["video", "quiz", "guide"] },
+      { titleRu: "Итог", titleEn: "Summary", min: 10, types: ["video"] },
     ],
     reviews: REVIEWS_DEMO,
   },
@@ -277,11 +281,11 @@ const COURSE_CONFIGS: Record<string, CourseConfig> = {
     trialLessons: 3,
     color: COLORS.teal,
     lessons: [
-      { titleRu: "Урок 1 (бесплатно)", titleEn: "Lesson 1 (free)", min: 8 },
-      { titleRu: "Урок 2 (бесплатно)", titleEn: "Lesson 2 (free)", min: 12 },
-      { titleRu: "Урок 3 (бесплатно)", titleEn: "Lesson 3 (free)", min: 14 },
-      { titleRu: "Урок 4 (после покупки)", titleEn: "Lesson 4 (after purchase)", min: 18 },
-      { titleRu: "Урок 5 (после покупки)", titleEn: "Lesson 5 (after purchase)", min: 22 },
+      { titleRu: "Урок 1 (бесплатно)", titleEn: "Lesson 1 (free)", min: 8, types: ["video"] },
+      { titleRu: "Урок 2 (бесплатно)", titleEn: "Lesson 2 (free)", min: 12, types: ["video", "quiz"] },
+      { titleRu: "Урок 3 (бесплатно)", titleEn: "Lesson 3 (free)", min: 14, types: ["video", "guide"] },
+      { titleRu: "Урок 4 (после покупки)", titleEn: "Lesson 4 (after purchase)", min: 18, types: ["video", "quiz", "guide"] },
+      { titleRu: "Урок 5 (после покупки)", titleEn: "Lesson 5 (after purchase)", min: 22, types: ["video"] },
     ],
     reviews: REVIEWS_DEMO,
   },
@@ -306,15 +310,15 @@ const COURSE_CONFIGS: Record<string, CourseConfig> = {
     monthlyFrom: 6,
     color: COLORS.red,
     lessons: [
-      { titleRu: "Что такое эксперименты в Web3", titleEn: "What are Web3 experiments", min: 8 },
-      { titleRu: "Подготовка окружения", titleEn: "Setting up environment", min: 12 },
-      { titleRu: "Первый сценарий", titleEn: "First scenario", min: 12 },
-      { titleRu: "Архитектура решений", titleEn: "Solution architecture", min: 18 },
-      { titleRu: "Практика: запуск", titleEn: "Practice: launch", min: 22 },
-      { titleRu: "Разбор кейсов", titleEn: "Case studies", min: 30 },
-      { titleRu: "Постановка задачи", titleEn: "Define the task", min: 15 },
-      { titleRu: "Реализация", titleEn: "Build", min: 25 },
-      { titleRu: "Защита и фидбек", titleEn: "Review & feedback", min: 15 },
+      { titleRu: "Что такое эксперименты в Web3", titleEn: "What are Web3 experiments", min: 8, types: ["video"] },
+      { titleRu: "Подготовка окружения", titleEn: "Setting up environment", min: 12, types: ["video", "quiz"] },
+      { titleRu: "Первый сценарий", titleEn: "First scenario", min: 12, types: ["video", "guide"] },
+      { titleRu: "Архитектура решений", titleEn: "Solution architecture", min: 18, types: ["video", "quiz", "guide"] },
+      { titleRu: "Практика: запуск", titleEn: "Practice: launch", min: 22, types: ["video"] },
+      { titleRu: "Разбор кейсов", titleEn: "Case studies", min: 30, types: ["video", "quiz"] },
+      { titleRu: "Постановка задачи", titleEn: "Define the task", min: 15, types: ["video", "guide"] },
+      { titleRu: "Реализация", titleEn: "Build", min: 25, types: ["video", "quiz", "guide"] },
+      { titleRu: "Защита и фидбек", titleEn: "Review & feedback", min: 15, types: ["video"] },
     ],
     reviews: REVIEWS_DEMO,
   },
@@ -369,6 +373,13 @@ const ReviewsRail = ({ reviews, lang }: { reviews: Review[]; lang: "ru" | "en" }
       </div>
     </>
   );
+};
+
+/** Цветные чипы форматов урока */
+const TYPE_CHIP: Record<LessonType, { ru: string; en: string; cls: string }> = {
+  video: { ru: "Видео", en: "Video", cls: "bg-[#E5EFFE] text-[#1F63C7] dark:bg-[#1F63C7]/20 dark:text-[#9CC3FA]" },
+  quiz: { ru: "Квиз", en: "Quiz", cls: "bg-[#FFEBDF] text-[#C2560F] dark:bg-[#C2560F]/20 dark:text-[#FFB68F]" },
+  guide: { ru: "Инструкция", en: "Guide", cls: "bg-[#EDE4FF] text-[#7B2EFF] dark:bg-[#7B2EFF]/25 dark:text-[#C4A6FF]" },
 };
 
 const CourseExperimental = () => {
@@ -571,46 +582,59 @@ const CourseExperimental = () => {
                     {lang === "ru" ? "Программа курса" : "Curriculum"}
                   </h2>
                   <span className="text-[14px] text-muted-foreground">
-                    {totalLessons} {lang === "ru" ? "уроков · " : "lessons · "}{totalMin} {lang === "ru" ? "мин" : "min"}
+                    {totalLessons}{" "}
+                    {lang === "ru"
+                      ? `${pluralRu(totalLessons, ["урок", "урока", "уроков"])} · `
+                      : `${totalLessons === 1 ? "lesson" : "lessons"} · `}
+                    {totalMin} {lang === "ru" ? "мин" : "min"}
                   </span>
                 </div>
               </div>
 
               {filteredLessons.length > 0 ? (
-                <ul className="rounded-xl bg-sidebar overflow-hidden">
+                /* Сетка по две карточки: номер, название, форматы урока и длительность */
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                   {filteredLessons.map((l, i) => {
-                    const originalIndex = lessons.findIndex(orig => orig.titleRu === l.titleRu);
+                    const originalIndex = lessons.findIndex((orig) => orig.titleRu === l.titleRu);
                     const lessonNo = originalIndex !== -1 ? originalIndex + 1 : i + 1;
                     const isFreeLesson =
                       hasTrial && config.trialLessons ? lessonNo <= config.trialLessons : isFree;
+                    const open = isOwned || isFreeLesson;
                     return (
-                      <li
-                        key={i}
-                        className={`flex items-center gap-4 px-6 py-5 hover:bg-background/40 transition-colors ${i > 0 ? "border-t border-border/20" : ""}`}
-                      >
-                        <div className="w-10 h-10 rounded-md bg-background border border-border flex items-center justify-center text-[15px] font-medium text-foreground flex-shrink-0">
-                          {String(lessonNo).padStart(2, "0")}
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <p className="text-[17px] font-medium text-foreground truncate">
-                            {lang === "ru" ? l.titleRu : l.titleEn}
-                          </p>
-                        </div>
-                        {hasTrial && (
-                          <span className={`text-[12px] font-medium px-2 py-0.5 rounded ${isFreeLesson ? "bg-emerald-50 text-emerald-700" : "bg-muted text-muted-foreground"}`}>
-                            {isFreeLesson
-                              ? (lang === "ru" ? "Бесплатно" : "Free")
-                              : (lang === "ru" ? (isStandalone ? "После покупки" : "Премиум") : (isStandalone ? "After purchase" : "Premium"))}
+                      <div key={i} className="flex flex-col rounded-2xl bg-sidebar p-3.5">
+                        <div className="flex items-start justify-between gap-2">
+                          <span className="text-[12px] uppercase tracking-[0.04em] text-muted-foreground">
+                            {lang === "ru" ? "Урок" : "Lesson"} {String(lessonNo).padStart(2, "0")}
                           </span>
-                        )}
-                        <div className="flex items-center gap-2 text-[14px] text-muted-foreground flex-shrink-0">
-                          <Play className="w-4 h-4" />
-                          {l.min} {lang === "ru" ? "мин" : "min"}
+                          {!open && <Lock className="w-4 h-4 flex-shrink-0 text-muted-foreground" strokeWidth={1.8} />}
                         </div>
-                      </li>
+
+                        <p className="mt-1 text-[16px] font-medium leading-[1.25] text-foreground line-clamp-2 min-h-[40px]">
+                          {lang === "ru" ? l.titleRu : l.titleEn}
+                        </p>
+
+                        {/* Форматы урока — у одного урока их может быть сразу несколько */}
+                        <div className="flex flex-wrap gap-1.5 mt-2.5">
+                          {l.types.map((t) => (
+                            <span
+                              key={t}
+                              className={`inline-flex items-center h-[24px] px-2.5 rounded-full text-[12px] font-medium ${TYPE_CHIP[t].cls}`}
+                            >
+                              {lang === "ru" ? TYPE_CHIP[t].ru : TYPE_CHIP[t].en}
+                            </span>
+                          ))}
+                        </div>
+
+                        <span className="mt-3 text-[13px] text-muted-foreground">
+                          {l.min} {lang === "ru" ? "мин" : "min"}
+                          {isFreeLesson && !isFree && (
+                            <span className="ml-2 text-[#1BA97A]">{lang === "ru" ? "Бесплатно" : "Free"}</span>
+                          )}
+                        </span>
+                      </div>
                     );
                   })}
-                </ul>
+                </div>
               ) : (
                 <div className="rounded-xl bg-sidebar p-8 text-center text-muted-foreground text-[15px]">
                   {lang === "ru" ? "Уроки не найдены" : "No lessons found"}
