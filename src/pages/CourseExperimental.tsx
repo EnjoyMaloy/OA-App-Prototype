@@ -9,6 +9,9 @@ import {
   ChevronRight,
   Play,
   Lock,
+  Unlock,
+  Sparkles,
+  BookOpen,
   Send,
   Twitter,
   Youtube,
@@ -375,12 +378,48 @@ const ReviewsRail = ({ reviews, lang }: { reviews: Review[]; lang: "ru" | "en" }
   );
 };
 
-/** Цветные чипы форматов урока */
-const TYPE_CHIP: Record<LessonType, { ru: string; en: string; cls: string }> = {
-  video: { ru: "Видео", en: "Video", cls: "bg-[#E5EFFE] text-[#1F63C7] dark:bg-[#1F63C7]/20 dark:text-[#9CC3FA]" },
-  quiz: { ru: "Квиз", en: "Quiz", cls: "bg-[#FFEBDF] text-[#C2560F] dark:bg-[#C2560F]/20 dark:text-[#FFB68F]" },
-  guide: { ru: "Инструкция", en: "Guide", cls: "bg-[#EDE4FF] text-[#7B2EFF] dark:bg-[#7B2EFF]/25 dark:text-[#C4A6FF]" },
+/** Цветные чипы форматов урока: градиентная заливка, белый текст и иконка */
+const TYPE_CHIP: Record<LessonType, { ru: string; en: string; bg: string; Icon: typeof Play }> = {
+  video: {
+    ru: "Видео",
+    en: "Video",
+    bg: "linear-gradient(135deg, #6FA8FF 0%, #2C6BD6 100%)",
+    Icon: Play,
+  },
+  quiz: {
+    ru: "Квиз",
+    en: "Quiz",
+    bg: "linear-gradient(135deg, #F5A26A 0%, #E4712A 100%)",
+    Icon: Sparkles,
+  },
+  guide: {
+    ru: "Инструкция",
+    en: "Guide",
+    bg: "linear-gradient(135deg, #B98CFF 0%, #7B2EFF 100%)",
+    Icon: BookOpen,
+  },
 };
+
+/** Чип формата — им же помечаем бесплатные уроки платного курса */
+const FormatChip = ({
+  label,
+  bg,
+  Icon,
+  filled = false,
+}: {
+  label: string;
+  bg: string;
+  Icon: typeof Play;
+  filled?: boolean;
+}) => (
+  <span
+    className="inline-flex items-center gap-1.5 h-[28px] pl-2 pr-3 rounded-full text-[13px] font-medium text-white"
+    style={{ background: bg }}
+  >
+    <Icon className="w-[14px] h-[14px]" strokeWidth={2.2} fill={filled ? "currentColor" : "none"} />
+    {label}
+  </span>
+);
 
 const CourseExperimental = () => {
   const navigate = useNavigate();
@@ -617,17 +656,20 @@ const CourseExperimental = () => {
                           {/* Форматы урока — у одного урока их может быть сразу несколько */}
                           <div className="flex flex-wrap items-center gap-1.5 mt-2">
                             {l.types.map((t) => (
-                              <span
+                              <FormatChip
                                 key={t}
-                                className={`inline-flex items-center h-[24px] px-2.5 rounded-full text-[12px] font-medium ${TYPE_CHIP[t].cls}`}
-                              >
-                                {lang === "ru" ? TYPE_CHIP[t].ru : TYPE_CHIP[t].en}
-                              </span>
+                                label={lang === "ru" ? TYPE_CHIP[t].ru : TYPE_CHIP[t].en}
+                                bg={TYPE_CHIP[t].bg}
+                                Icon={TYPE_CHIP[t].Icon}
+                                filled={t === "video"}
+                              />
                             ))}
                             {isFreeLesson && !isFree && (
-                              <span className="inline-flex items-center h-[24px] px-2.5 rounded-full text-[12px] font-medium bg-[#DFF3EA] text-[#12805C] dark:bg-[#12805C]/25 dark:text-[#7FD9B8]">
-                                {lang === "ru" ? "Бесплатно" : "Free"}
-                              </span>
+                              <FormatChip
+                                label={lang === "ru" ? "Бесплатно" : "Free"}
+                                bg="linear-gradient(135deg, #5FD3A6 0%, #12A06E 100%)"
+                                Icon={Unlock}
+                              />
                             )}
                           </div>
                         </div>
