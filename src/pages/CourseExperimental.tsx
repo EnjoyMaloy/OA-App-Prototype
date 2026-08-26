@@ -18,7 +18,7 @@ import PremiumStarIcon from "@/components/icons/PremiumStarIcon";
 import { Button } from "@/components/ui/button";
 import PaymentModal from "@/components/PaymentModal";
 import CourseCard from "@/components/CourseCard";
-import SegmentedTabs from "@/components/SegmentedTabs";
+import authorPhoto from "@/assets/author-photo.jpg";
 import { courses as allCourses, getCategoryLabel } from "@/data/courses";
 import courseHeroAsset from "@/assets/course-experimental-hero.png.asset.json";
 // Картинки берём из проекта: внешние ссылки в прототипе не грузятся
@@ -315,7 +315,6 @@ const CourseExperimental = () => {
   const { lang } = useLanguage();
   const store = usePurchaseStore();
   const [paymentOpen, setPaymentOpen] = useState(false);
-  const [authorTab, setAuthorTab] = useState<"courses" | "about">("courses");
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get("q") || "";
   const { id: routeId } = useParams<{ id: string }>();
@@ -500,7 +499,7 @@ const CourseExperimental = () => {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-[1fr_360px] gap-8">
+        <div>
           {/* MAIN COL */}
           <div className="min-w-0 space-y-10">
             {/* Lessons */}
@@ -606,6 +605,48 @@ const CourseExperimental = () => {
               </div>
             </section>
 
+            {/* Кто создал курс: фото 1:1 слева, имя, строка описания и соцсети справа */}
+            <section>
+              <h2 className="text-[28px] md:text-[32px] font-semibold tracking-tight text-foreground mb-6">
+                {lang === "ru" ? "Кто создал курс" : "Who made this course"}
+              </h2>
+
+              <div className="flex items-start gap-5">
+                <img
+                  src={authorPhoto}
+                  alt="OpenCore Club"
+                  className="w-[108px] h-[108px] flex-shrink-0 rounded-[24px] object-cover border border-border"
+                />
+
+                <div className="min-w-0 flex-1">
+                  <p className="text-[21px] font-medium text-foreground">OpenCore Club</p>
+                  <p className="mt-1.5 text-[15px] leading-[1.4] text-muted-foreground">
+                    {lang === "ru"
+                      ? "Практики Web3 и инвестиций"
+                      : "Web3 and investing practitioners"}
+                  </p>
+
+                  <div className="flex items-center gap-2 mt-4">
+                    {[
+                      { Icon: Send, label: "Telegram" },
+                      { Icon: Twitter, label: "X" },
+                      { Icon: Youtube, label: "YouTube" },
+                      { Icon: Instagram, label: "Instagram" },
+                    ].map(({ Icon, label }) => (
+                      <a
+                        key={label}
+                        href="#"
+                        aria-label={label}
+                        className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground active:bg-muted transition-colors"
+                      >
+                        <Icon className="w-[17px] h-[17px]" strokeWidth={1.8} />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+
             {/* Больше от автора и похожие курсы — ленты листаются вбок, как на главной */}
             {[
               {
@@ -656,91 +697,6 @@ const CourseExperimental = () => {
             )}
           </div>
 
-          {/* SIDEBAR */}
-          <aside className="space-y-5 lg:sticky lg:top-6 self-start">
-            {/* Author — без подложки, на фоне страницы остаётся только переключатель */}
-            <div className="space-y-5">
-              <SegmentedTabs
-                className="mb-1"
-                value={authorTab}
-                onChange={(id) => setAuthorTab(id as "courses" | "about")}
-                tabs={[
-                  { id: "courses", label: lang === "ru" ? "Создал курс" : "Created course" },
-                  { id: "about", label: lang === "ru" ? "Об авторе" : "About author" },
-                ]}
-              />
-
-              {authorTab === "courses" ? (
-                <div className="flex items-center gap-4 py-1">
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#A66CFF] to-[#FF7D60] flex items-center justify-center text-white font-bold text-[22px] flex-shrink-0">
-                    O
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-[19px] font-medium text-foreground truncate">OpenCore Club</p>
-                    <div className="flex items-center gap-1.5 mt-1.5">
-                      <Star className="w-4 h-4 fill-orange-400 text-orange-400" />
-                      <span className="text-[15px] font-medium text-foreground">4.9</span>
-                      <span className="text-[14px] text-muted-foreground">· 12 {lang === "ru" ? "курсов" : "courses"}</span>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-[21px] font-semibold text-foreground">OpenCore Club</p>
-                  </div>
-                  <p className="text-[15px] text-muted-foreground leading-relaxed">
-                    {lang === "ru"
-                      ? "OpenCore Club — независимое сообщество исследователей Web3, DeFi и новых форматов образования. С 2021 года выпускаем курсы, в которых сочетаем боевую практику и доступную подачу."
-                      : "OpenCore Club is an independent community of researchers in Web3, DeFi and new educational formats. Since 2021 we publish courses combining hands-on practice with accessible delivery."}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {(lang === "ru"
-                      ? [
-                          { text: "5 лет в Web3", style: "bg-[#E8DCFB] text-[#924CFE] dark:bg-[#460466]/40 dark:text-[#BF96FF]" },
-                          { text: "12 курсов", style: "bg-blue-50 text-blue-700 dark:bg-blue-950/30 dark:text-blue-300" },
-                          { text: "40k+ учеников", style: "bg-orange-50 text-orange-700 dark:bg-orange-950/30 dark:text-orange-300" },
-                          { text: "Топ-автор 2025", style: "bg-amber-50 text-amber-700 dark:bg-amber-950/30 dark:text-amber-300" },
-                          { text: "On-chain эксперт", style: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-300" },
-                        ]
-                      : [
-                          { text: "5 years in Web3", style: "bg-[#E8DCFB] text-[#924CFE] dark:bg-[#460466]/40 dark:text-[#BF96FF]" },
-                          { text: "12 courses", style: "bg-blue-50 text-blue-700 dark:bg-blue-950/30 dark:text-blue-300" },
-                          { text: "40k+ students", style: "bg-orange-50 text-orange-700 dark:bg-orange-950/30 dark:text-orange-300" },
-                          { text: "Top author 2025", style: "bg-amber-50 text-amber-700 dark:bg-amber-950/30 dark:text-amber-300" },
-                          { text: "On-chain expert", style: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-300" },
-                        ]
-                    ).map((a) => (
-                      <span
-                        key={a.text}
-                        className={`inline-flex items-center px-3 py-1.5 rounded-full text-[13px] font-medium ${a.style}`}
-                      >
-                        {a.text}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-2.5 pt-1">
-                    {[
-                      { Icon: Send, label: "Telegram" },
-                      { Icon: Twitter, label: "X" },
-                      { Icon: Youtube, label: "YouTube" },
-                      { Icon: Instagram, label: "Instagram" },
-                    ].map(({ Icon, label }, i) => (
-                      <a
-                        key={i}
-                        href="#"
-                        aria-label={label}
-                        className="w-10 h-10 rounded-lg border border-border/20 bg-background flex items-center justify-center text-muted-foreground hover:bg-[#924CFE] hover:text-white hover:border-transparent transition-all"
-                      >
-                        <Icon className="w-3.5 h-3.5" />
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-          </aside>
         </div>
       </div>
 
