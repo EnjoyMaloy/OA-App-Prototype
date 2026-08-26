@@ -8,7 +8,6 @@ import {
   Calendar,
   ChevronRight,
   Play,
-  Lock,
   Send,
   Twitter,
   Youtube,
@@ -590,9 +589,6 @@ const CourseExperimental = () => {
                   {filteredLessons.map((l, i) => {
                     const originalIndex = lessons.findIndex((orig) => orig.titleRu === l.titleRu);
                     const lessonNo = originalIndex !== -1 ? originalIndex + 1 : i + 1;
-                    const isFreeLesson =
-                      hasTrial && config.trialLessons ? lessonNo <= config.trialLessons : isFree;
-                    const open = isOwned || isFreeLesson;
                     return (
                       <div
                         key={i}
@@ -609,15 +605,9 @@ const CourseExperimental = () => {
 
                         </div>
 
-                        <div className="flex-shrink-0 flex items-center gap-2 pt-0.5 text-[14px] text-muted-foreground">
-                          {isFreeLesson && !isFree && (
-                            <span className="text-[#0E9A64] dark:text-[#7FE3B8]">
-                              {lang === "ru" ? "бесплатно" : "free"}
-                            </span>
-                          )}
+                        <span className="flex-shrink-0 pt-0.5 text-[14px] text-muted-foreground">
                           {l.min} {lang === "ru" ? "мин" : "min"}
-                          {!open && <Lock className="w-4 h-4" strokeWidth={1.8} />}
-                        </div>
+                        </span>
                       </div>
                     );
                   })}
