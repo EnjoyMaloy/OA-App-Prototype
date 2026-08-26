@@ -15,7 +15,11 @@ interface SegmentedTabsProps {
  * Активный — залитая пилюля; если пунктов много, ряд листается вбок.
  */
 const SegmentedTabs = ({ tabs, value, onChange, className = "" }: SegmentedTabsProps) => (
-  <div className={`overflow-x-auto scrollbar-hide rounded-full bg-muted ${className}`}>
+  <div
+    className={`overflow-x-auto scrollbar-hide rounded-full ${className}`}
+    // Лоток чуть темнее любой подложки, поэтому виден и на белом, и на карточке автора
+    style={{ background: "hsl(var(--foreground) / 0.06)" }}
+  >
     <div className="flex items-center gap-1 w-max min-w-full p-1">
       {tabs.map((tab) => {
         const active = tab.id === value;
@@ -23,8 +27,10 @@ const SegmentedTabs = ({ tabs, value, onChange, className = "" }: SegmentedTabsP
           <button
             key={tab.id}
             onClick={() => onChange(tab.id)}
-            className={`h-11 px-5 rounded-full text-[17px] font-medium whitespace-nowrap transition-colors ${
-              active ? "bg-background text-foreground shadow-sm" : "text-muted-foreground"
+            className={`h-[52px] px-6 rounded-full text-[20px] font-medium whitespace-nowrap transition-colors ${
+              active
+                ? "bg-background dark:bg-[hsl(var(--foreground)/0.14)] text-foreground shadow-sm"
+                : "text-muted-foreground"
             }`}
           >
             {tab.label}
