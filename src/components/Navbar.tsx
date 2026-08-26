@@ -91,7 +91,7 @@ const Navbar = () => {
   return (
     <nav
       // На мобильном шапка уезжает вверх вместе с контентом, на десктопе остаётся липкой
-      className={`relative md:sticky md:top-0 z-50 h-16 md:h-20 ${isArticleView || isMyCourses || isProfile || isCollection || isCatalog ? 'hidden md:block' : ''}`}
+      className={`relative md:sticky md:top-0 z-50 h-16 md:h-20 ${isArticleView || isMyCourses || isProfile || isCollection || isCatalog || isCourseView ? 'hidden md:block' : ''}`}
     >
       {/* Стекло шапки: размытие и фиолетовый градиент гаснут к низу по маске,
           поэтому у шапки нет чёткой нижней границы — контент под ней просто расфокусирован */}

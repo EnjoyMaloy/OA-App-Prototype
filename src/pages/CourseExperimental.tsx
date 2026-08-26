@@ -5,15 +5,10 @@ import { usePurchaseStore } from "@/hooks/usePurchaseStore";
 import {
   Star,
   Users,
-  Globe,
   Calendar,
   ChevronLeft,
   ChevronRight,
   Play,
-  Trophy,
-  Award,
-  Sparkles,
-  BadgeCheck,
   Send,
   Twitter,
   Youtube,
@@ -25,6 +20,15 @@ import PremiumStarIcon from "@/components/icons/PremiumStarIcon";
 import { Button } from "@/components/ui/button";
 import PaymentModal from "@/components/PaymentModal";
 import courseHeroAsset from "@/assets/course-experimental-hero.png.asset.json";
+// Картинки берём из проекта: внешние ссылки в прототипе не грузятся
+import coverGifts from "@/assets/cover-gifts.jpg";
+import coverInvest from "@/assets/cover-invest.jpg";
+import coverHamster from "@/assets/cover-hamster.jpg";
+import coverTools from "@/assets/cover-tools.jpg";
+import avatarAlex from "@/assets/avatar-alex.jpg";
+import avatarAnna from "@/assets/avatar-anna.jpg";
+import avatarDmitry from "@/assets/avatar-dmitry.jpg";
+import avatarSychev from "@/assets/avatar-sychev.jpg";
 
 type Scenario = "free" | "sub" | "sub-trial" | "paid" | "paid-trial";
 
@@ -75,7 +79,7 @@ const COLORS = {
 const REVIEWS_DEMO: Review[] = [
   {
     username: "Shahriyar2100",
-    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&h=150&q=80",
+    avatar: avatarAlex,
     rating: 5,
     timeRu: "1 неделю назад",
     timeEn: "1 week ago",
@@ -84,7 +88,7 @@ const REVIEWS_DEMO: Review[] = [
   },
   {
     username: "pawansatoshi",
-    avatar: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=150&h=150&q=80",
+    avatar: avatarAnna,
     rating: 5,
     timeRu: "1 неделю назад",
     timeEn: "1 week ago",
@@ -96,7 +100,7 @@ const REVIEWS_DEMO: Review[] = [
 const REVIEWS_FREE: Review[] = [
   {
     username: "crypto_fan",
-    avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&h=150&q=80",
+    avatar: avatarDmitry,
     rating: 5,
     timeRu: "2 месяца назад",
     timeEn: "2 months ago",
@@ -109,7 +113,7 @@ const REVIEWS_FREE: Review[] = [
 const REVIEWS_INVEST: Review[] = [
   {
     username: "elijah_andikan",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150&q=80",
+    avatar: avatarSychev,
     rating: 5,
     timeRu: "5 месяцев назад",
     timeEn: "5 months ago",
@@ -118,7 +122,7 @@ const REVIEWS_INVEST: Review[] = [
   },
   {
     username: "patr1ckk",
-    avatar: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=150&h=150&q=80",
+    avatar: avatarAlex,
     rating: 5,
     timeRu: "5 месяцев назад",
     timeEn: "5 months ago",
@@ -139,7 +143,7 @@ const COURSE_CONFIGS: Record<string, CourseConfig> = {
     categoryEn: "Web3 & DeFi",
     levelRu: "Начальный",
     levelEn: "Beginner",
-    image: "https://images.unsplash.com/photo-1621504450181-5d356f61d307?w=1200&h=800&fit=crop",
+    image: coverGifts,
     rating: 4.9,
     reviewCount: 85,
     students: 371,
@@ -166,7 +170,7 @@ const COURSE_CONFIGS: Record<string, CourseConfig> = {
     categoryEn: "Investments",
     levelRu: "Средний",
     levelEn: "Intermediate",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop",
+    image: coverInvest,
     rating: 4.9,
     reviewCount: 1010,
     students: 35419,
@@ -195,7 +199,7 @@ const COURSE_CONFIGS: Record<string, CourseConfig> = {
     categoryEn: "Crypto Basics",
     levelRu: "Начальный",
     levelEn: "Beginner",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=800&fit=crop",
+    image: coverHamster,
     rating: 4.7,
     reviewCount: 312,
     students: 1024,
@@ -224,7 +228,7 @@ const COURSE_CONFIGS: Record<string, CourseConfig> = {
     categoryEn: "Tools",
     levelRu: "Средний",
     levelEn: "Intermediate",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=800&fit=crop",
+    image: coverTools,
     rating: 4.6,
     reviewCount: 128,
     students: 512,
@@ -252,7 +256,7 @@ const COURSE_CONFIGS: Record<string, CourseConfig> = {
     categoryEn: "Tools",
     levelRu: "Продвинутый",
     levelEn: "Advanced",
-    image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=1200&h=800&fit=crop",
+    image: coverGifts,
     rating: 4.7,
     reviewCount: 156,
     students: 640,
@@ -304,13 +308,6 @@ const COURSE_CONFIGS: Record<string, CourseConfig> = {
     reviews: REVIEWS_DEMO,
   },
 };
-
-const rewards = [
-  { icon: Trophy, titleRu: "NFT-сертификат", titleEn: "NFT certificate", descRu: "Уникальный on-chain сертификат об окончании", descEn: "Unique on-chain certificate of completion" },
-  { icon: Award, titleRu: "Бейдж в профиле", titleEn: "Profile badge", descRu: "Постоянный бейдж выпускника курса", descEn: "Permanent course graduate badge" },
-  { icon: Sparkles, titleRu: "500 XP", titleEn: "500 XP", descRu: "Опыт идёт в общий рейтинг", descEn: "XP counts toward your global rating" },
-  { icon: BadgeCheck, titleRu: "Доступ в чат", titleEn: "Private chat", descRu: "Закрытый чат выпускников курса", descEn: "Closed chat for graduates" },
-];
 
 const CourseExperimental = () => {
   const navigate = useNavigate();
@@ -519,7 +516,7 @@ const CourseExperimental = () => {
             </div>
 
             {/* Right image */}
-            <div className="relative min-h-[280px] md:min-h-[460px]">
+            <div className="relative aspect-video md:aspect-auto md:min-h-[460px]">
               <img src={IMG} alt={title} className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
             </div>
@@ -529,43 +526,6 @@ const CourseExperimental = () => {
         <div className="grid lg:grid-cols-[1fr_360px] gap-8">
           {/* MAIN COL */}
           <div className="min-w-0 space-y-10">
-            {/* Rewards */}
-            <section>
-              <div className="flex items-end justify-between mb-6">
-                <h2 className="text-[28px] md:text-[32px] font-semibold tracking-tight text-foreground">
-                  {lang === "ru" ? "Награды за прохождение" : "Rewards for completion"}
-                </h2>
-              </div>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {rewards.map((r, i) => {
-                  const Icon = r.icon;
-                  return (
-                    <div
-                      key={i}
-                      className="group relative overflow-hidden rounded-xl bg-sidebar p-6 transition-colors"
-                    >
-                      <div className="flex items-start gap-4">
-                        <div
-                          className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
-                          style={{ background: "hsl(var(--violet-super-light))" }}
-                        >
-                          <Icon className="w-6 h-6 text-primary" />
-                        </div>
-                        <div className="min-w-0">
-                          <p className="text-[18px] font-semibold text-foreground mb-1.5 tracking-tight">
-                            {lang === "ru" ? r.titleRu : r.titleEn}
-                          </p>
-                          <p className="text-[15px] text-muted-foreground leading-relaxed">
-                            {lang === "ru" ? r.descRu : r.descEn}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
-
             {/* Lessons */}
             <section>
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
@@ -767,56 +727,6 @@ const CourseExperimental = () => {
               )}
             </div>
 
-            {/* Completion funnel */}
-            <div className="rounded-xl bg-sidebar p-5">
-              <div className="flex items-start justify-between mb-5">
-                <div>
-                  <p className="text-[19px] font-medium text-foreground leading-tight">
-                    {lang === "ru" ? "Уровень удержания внимания" : "Attention retention level"}
-                  </p>
-                </div>
-                <div className="text-right">
-                  <p className="text-[28px] leading-none font-medium text-violet-dark">39%</p>
-                  <p className="text-caption-12 mt-1">{lang === "ru" ? "Удержание" : "Retention"}</p>
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                {[
-                  { labelRu: "Начали курс", labelEn: "Started", value: config.students, pct: 100, bg: "bg-violet-super-dark" },
-                  { labelRu: "Прошли половину", labelEn: "Half-way", value: Math.round(config.students * 0.65), pct: 65, bg: "bg-violet-dark" },
-                  { labelRu: "Завершили", labelEn: "Completed", value: Math.round(config.students * 0.39), pct: 39, bg: "bg-violet-mid" },
-                ].map((s) => (
-                  <div key={s.labelEn}>
-                    <div className="flex items-baseline justify-between mb-1.5">
-                      <span className="text-body-12 text-foreground">{lang === "ru" ? s.labelRu : s.labelEn}</span>
-                      <span className="text-body-12 text-muted-foreground tabular-nums">
-                        <span className="text-foreground font-medium">{s.value.toLocaleString()}</span> · {s.pct}%
-                      </span>
-                    </div>
-                    <div className="relative h-7 rounded-md bg-background overflow-hidden">
-                      <div
-                        className={`absolute inset-y-0 left-0 ${s.bg} rounded-md transition-all duration-700 ease-out`}
-                        style={{ width: `${s.pct}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Languages */}
-            <div className="rounded-xl bg-sidebar p-5">
-              <p className="text-caption-12 mb-3">{lang === "ru" ? "Языки курса" : "Course languages"}</p>
-              <div className="flex flex-wrap gap-2">
-                {["English", "Русский"].map((l) => (
-                  <span key={l} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border/20 bg-background text-body-14 text-foreground">
-                    <Globe className="w-3.5 h-3.5 text-muted-foreground" />
-                    {l}
-                  </span>
-                ))}
-              </div>
-            </div>
           </aside>
         </div>
       </div>
