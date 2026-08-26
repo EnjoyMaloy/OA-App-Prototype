@@ -16,6 +16,7 @@ import {
 import PremiumStarIcon from "@/components/icons/PremiumStarIcon";
 import { Button } from "@/components/ui/button";
 import PaymentModal from "@/components/PaymentModal";
+import { pluralRu } from "@/lib/utils";
 import ReviewCard, { type Review } from "@/components/ReviewCard";
 import CourseCard from "@/components/CourseCard";
 import authorPhoto from "@/assets/author-photo.jpg";
@@ -436,7 +437,7 @@ const CourseExperimental = () => {
           <span className="text-caption-12 mb-1.5 tracking-wide uppercase">
             {lang === "ru" ? "Стоимость" : "Price"}
           </span>
-          <span className="text-[36px] font-light tracking-[-0.02em] leading-none text-foreground">
+          <span className="text-[32px] font-light tracking-[-0.02em] leading-none text-foreground">
             {lang === "ru" ? "Бесплатно" : "Free"}
           </span>
         </div>
@@ -450,7 +451,7 @@ const CourseExperimental = () => {
           </span>
           <div className="flex items-baseline gap-1 tabular-nums">
             <span className="text-[20px] font-normal text-muted-foreground leading-none">$</span>
-            <span className="text-[44px] font-light tracking-[-0.02em] leading-none text-foreground">{config.price}</span>
+            <span className="text-[38px] font-light tracking-[-0.02em] leading-none text-foreground">{config.price}</span>
           </div>
         </div>
       );
@@ -463,7 +464,7 @@ const CourseExperimental = () => {
         </span>
         <div className="flex items-baseline gap-1 tabular-nums">
           <span className="text-[20px] font-normal text-muted-foreground leading-none">$</span>
-          <span className="text-[44px] font-light tracking-[-0.02em] leading-none text-foreground">{config.monthlyFrom ?? 6}</span>
+          <span className="text-[38px] font-light tracking-[-0.02em] leading-none text-foreground">{config.monthlyFrom ?? 6}</span>
           <span className="text-[16px] font-normal text-muted-foreground leading-none ml-0.5">
             {lang === "ru" ? "/мес" : "/mo"}
           </span>
@@ -499,63 +500,62 @@ const CourseExperimental = () => {
             </div>
 
             {/* Текст под обложкой */}
-            <div className="px-6 md:px-10 pb-6 md:pb-10 -mt-6 md:-mt-10 flex flex-col justify-between gap-8">
-              <div>
-                <h1 className="text-[40px] md:text-[52px] leading-[0.95] font-medium tracking-tight text-foreground mb-5">
-                  {title}
-                </h1>
-                <p className="text-[18px] md:text-[20px] leading-relaxed text-muted-foreground max-w-[580px] mb-6">
-                  {description}
-                </p>
-              </div>
+            <div className="px-5 md:px-10 pb-6 md:pb-10 -mt-6 md:-mt-10">
+              <h1 className="text-[34px] md:text-[52px] leading-[1.02] font-medium tracking-[-0.02em] text-foreground">
+                {title}
+              </h1>
+              <p className="mt-3 text-[17px] md:text-[20px] leading-[1.45] text-muted-foreground max-w-[580px]">
+                {description}
+              </p>
 
-              {/* Stat row */}
-              <div className="flex flex-wrap items-center gap-x-8 gap-y-4 text-[16px] text-muted-foreground mb-4">
-                <div className="flex items-center gap-2">
-                  <Star className="w-5 h-5 fill-orange-400 text-orange-400" />
+              {/* Метрики одной строкой: точка-разделитель приклеена к элементу, поэтому переносится вместе с ним */}
+              <div className="mt-5 flex flex-wrap items-center gap-y-1.5 text-[15px] text-muted-foreground">
+                <span className="inline-flex items-center gap-1.5">
+                  <Star className="w-[17px] h-[17px] fill-orange-400 text-orange-400" />
                   <span className="font-semibold text-foreground">{config.rating}</span>
-                  <span>({config.reviewCount} {lang === "ru" ? "отзывов" : "reviews"})</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Users className="w-5 h-5" />
-                  <span>{config.students.toLocaleString()} {lang === "ru" ? "учеников" : "students"}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-5 h-5" />
-                  <span>{updated}</span>
-                </div>
+                </span>
+                <span className="before:content-['·'] before:mx-2">
+                  {config.reviewCount}{" "}
+                  {lang === "ru"
+                    ? pluralRu(config.reviewCount, ["отзыв", "отзыва", "отзывов"])
+                    : config.reviewCount === 1
+                      ? "review"
+                      : "reviews"}
+                </span>
+                <span className="before:content-['·'] before:mx-2">
+                  {config.students.toLocaleString("ru-RU")}{" "}
+                  {lang === "ru"
+                    ? pluralRu(config.students, ["ученик", "ученика", "учеников"])
+                    : "students"}
+                </span>
               </div>
+              <div className="mt-1.5 text-[15px] text-muted-foreground">{updated}</div>
 
-              {/* CTA */}
-              <div className="flex items-end gap-6 flex-wrap">
+              {/* Цена и кнопки: основная во всю ширину */}
+              <div className="mt-6 pt-5 border-t border-border/60">
                 <PriceBlock />
 
                 <Button
                   onClick={cta}
-                  className="h-12 px-7 rounded-lg text-[16px] font-medium gap-2 [&_svg]:size-5"
+                  className="mt-4 w-full h-[56px] rounded-2xl text-[17px] font-medium gap-2 [&_svg]:size-5"
                 >
                   {!isOwned && !isFree && !isStandalone && <PremiumStarIcon fill="currentColor" />}
                   {ctaLabel}
                 </Button>
 
-                {hasTrial && !isOwned && (
-                  <button
-                    onClick={startTrial}
-                    className="h-12 px-5 rounded-lg border border-border bg-background text-foreground text-[15px] font-medium inline-flex items-center gap-2 hover:bg-muted transition-colors"
-                  >
-                    <Play className="w-4 h-4 fill-foreground" />
-                    {lang === "ru" ? "Попробовать бесплатно" : "Try for free"}
-                  </button>
-                )}
-                {(!hasTrial || isOwned) && (
-                  <button
-                    onClick={cta}
-                    className="h-12 px-5 rounded-lg border border-border bg-background text-foreground text-[15px] font-medium inline-flex items-center gap-2 hover:bg-muted transition-colors"
-                  >
-                    <Play className="w-4 h-4 fill-foreground" />
-                    {lang === "ru" ? "Превью" : "Preview"}
-                  </button>
-                )}
+                <button
+                  onClick={hasTrial && !isOwned ? startTrial : cta}
+                  className="mt-2.5 w-full h-[52px] rounded-2xl border border-border bg-background text-foreground text-[16px] font-medium inline-flex items-center justify-center gap-2 active:bg-muted transition-colors"
+                >
+                  <Play className="w-4 h-4 fill-foreground" />
+                  {hasTrial && !isOwned
+                    ? lang === "ru"
+                      ? "Попробовать бесплатно"
+                      : "Try for free"
+                    : lang === "ru"
+                      ? "Превью"
+                      : "Preview"}
+                </button>
               </div>
             </div>
           </div>
