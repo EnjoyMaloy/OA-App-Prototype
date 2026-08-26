@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams, useParams } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { usePurchaseStore } from "@/hooks/usePurchaseStore";
@@ -6,7 +6,6 @@ import {
   Star,
   Users,
   Calendar,
-  ChevronLeft,
   ChevronRight,
   Play,
   Send,
@@ -95,7 +94,25 @@ const REVIEWS_DEMO: Review[] = [
     timeEn: "1 week ago",
     textRu: "Отличное введение. Курс четко объясняет ключевые понятия и даёт практические инсайты. Легко понять новичкам, при этом полезно и продвинутым.",
     textEn: "Great introduction. The course clearly explains the key concepts and gives practical insights. Easy to understand for beginners while still useful for advanced users."
-  }
+  },
+  {
+    username: "mgnt_eth",
+    avatar: avatarDmitry,
+    rating: 5,
+    timeRu: "2 недели назад",
+    timeEn: "2 weeks ago",
+    textRu: "Проходил в метро по 15 минут в день — за две недели закрыл весь курс. Формат уроков как раз под такой ритм.",
+    textEn: "Took it on the subway, 15 minutes a day, and finished in two weeks. The lesson format fits that rhythm perfectly.",
+  },
+  {
+    username: "lera.web3",
+    avatar: avatarSychev,
+    rating: 4,
+    timeRu: "3 недели назад",
+    timeEn: "3 weeks ago",
+    textRu: "Практики хотелось бы ещё больше, но база собрана отлично: после третьего блока наконец перестала бояться кошельков.",
+    textEn: "I'd love even more practice, but the basics are solid: after the third module I finally stopped being scared of wallets.",
+  },
 ];
 
 const REVIEWS_FREE: Review[] = [
@@ -109,6 +126,8 @@ const REVIEWS_FREE: Review[] = [
     textEn: "Great free course for beginners! Everything is explained clearly, I quickly figured out Telegram Gifts.",
   },
   REVIEWS_DEMO[1],
+  REVIEWS_DEMO[2],
+  REVIEWS_DEMO[3],
 ];
 
 const REVIEWS_INVEST: Review[] = [
@@ -308,6 +327,77 @@ const COURSE_CONFIGS: Record<string, CourseConfig> = {
     ],
     reviews: REVIEWS_DEMO,
   },
+};
+
+/** Отзывы лентой: листается вбок бесконечно, снизу точки текущей карточки */
+const ReviewsRail = ({ reviews, lang }: { reviews: Review[]; lang: "ru" | "en" }) => {
+  const railRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  // Три копии подряд: доходя до края, незаметно возвращаемся в среднюю — лента не кончается
+  const loop = [...reviews, ...reviews, ...reviews];
+
+  useEffect(() => {
+    const el = railRef.current;
+    if (el) el.scrollLeft = el.scrollWidth / 3;
+  }, [reviews]);
+
+  const onScroll = () => {
+    const el = railRef.current;
+    if (!el) return;
+    const set = el.scrollWidth / 3;
+    if (el.scrollLeft < set * 0.5) el.scrollLeft += set;
+    else if (el.scrollLeft > set * 1.5) el.scrollLeft -= set;
+    const card = set / reviews.length;
+    setActive(Math.round((el.scrollLeft % set) / card) % reviews.length);
+  };
+
+  return (
+    <>
+      <div
+        ref={railRef}
+        onScroll={onScroll}
+        className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-pl-4 -mx-4 px-4 md:mx-0 md:px-0 md:scroll-pl-0 pb-1"
+      >
+        {loop.map((r, i) => (
+          <div key={i} className="flex-shrink-0 snap-start w-[86%] md:w-[420px] rounded-xl bg-sidebar p-6">
+            <div className="flex gap-4 items-start mb-5">
+              <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0 border border-border/10">
+                <img src={r.avatar} alt={r.username} className="w-full h-full object-cover" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-[19px] font-semibold text-foreground tracking-tight leading-none mb-1.5">{r.username}</p>
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex gap-1">
+                    {Array.from({ length: r.rating }).map((_, si) => (
+                      <Star key={si} className="w-[15px] h-[15px] fill-[#FF6B57] text-[#FF6B57]" />
+                    ))}
+                  </div>
+                  <span className="text-[13px] text-muted-foreground/80 font-normal whitespace-nowrap">
+                    {lang === "ru" ? r.timeRu : r.timeEn}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <p className="text-[15px] leading-[1.65] font-normal text-foreground/90">
+              {lang === "ru" ? r.textRu : r.textEn}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* Точки: какая карточка сейчас перед глазами */}
+      <div className="flex justify-center items-center gap-2 pt-1">
+        {reviews.map((_, i) => (
+          <span
+            key={i}
+            className={`h-2 rounded-full transition-all ${
+              i === active ? "w-5 bg-foreground/70" : "w-2 bg-foreground/20"
+            }`}
+          />
+        ))}
+      </div>
+    </>
+  );
 };
 
 const CourseExperimental = () => {
@@ -569,40 +659,7 @@ const CourseExperimental = () => {
                 </button>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-4">
-                {reviews.map((r, i) => (
-                  <div key={i} className="rounded-xl bg-sidebar p-7">
-                    <div className="flex gap-4 items-start mb-6">
-                      <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0 border border-border/10">
-                        <img src={r.avatar} alt={r.username} className="w-full h-full object-cover" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-[19px] font-semibold text-foreground tracking-tight leading-none mb-1.5">{r.username}</p>
-                        <div className="flex items-center justify-between">
-                          <div className="flex gap-1">
-                            {Array.from({ length: r.rating }).map((_, si) => (
-                              <Star key={si} className="w-[15px] h-[15px] fill-[#FF6B57] text-[#FF6B57]" />
-                            ))}
-                          </div>
-                          <span className="text-[13px] text-muted-foreground/80 font-normal">{lang === "ru" ? r.timeRu : r.timeEn}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <p className="text-[15px] leading-[1.65] font-normal text-foreground/90">
-                      {lang === "ru" ? r.textRu : r.textEn}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex justify-end gap-2.5 pt-2">
-                <button className="w-10 h-10 rounded-full border border-border/40 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/10 transition-all">
-                  <ChevronLeft className="w-5 h-5 stroke-[1.5]" />
-                </button>
-                <button className="w-10 h-10 rounded-full border border-border/40 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/10 transition-all">
-                  <ChevronRight className="w-5 h-5 stroke-[1.5]" />
-                </button>
-              </div>
+              <ReviewsRail reviews={reviews} lang={lang} />
             </section>
 
             {/* Кто создал курс: фото 1:1 слева, имя, строка описания и соцсети справа */}
