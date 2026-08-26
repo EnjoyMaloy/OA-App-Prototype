@@ -219,16 +219,27 @@ const Home = () => {
           </section>
         )}
 
-        {/* All courses — рядом с подписью счётчик курсов в каталоге */}
-        <button
-          onClick={() => navigate("/catalog")}
-          className="w-full h-[52px] flex items-center justify-center gap-2 text-[16px] font-medium tracking-[0.01em] border border-border rounded-xl text-foreground active:bg-muted transition-colors"
-        >
-          {t("home.allCourses")}
-          <span className="inline-flex items-center justify-center min-w-[26px] h-[22px] px-[7px] rounded-full bg-muted text-[13px] font-semibold" style={{ color: "hsl(0 0% 35%)" }}>
-            {courses.length}
-          </span>
-        </button>
+        {/* Конец ленты: точка, где главная заканчивается и начинается каталог */}
+        <section className="pt-6 pb-4 text-center">
+          <h2 className="text-[30px] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground">
+            {lang === "ru" ? "Тут лента заканчивается" : "That\u2019s the end of the feed"}
+          </h2>
+          <p className="mx-auto mt-3 max-w-[300px] text-[16px] leading-[1.35] text-muted-foreground">
+            {lang === "ru"
+              ? "А каталог — нет. Там ещё курсы: от первых шагов до стратегий, которыми живут годами."
+              : "But not of the catalog. There are more courses there \u2014 from first steps to strategies you live by for years."}
+          </p>
+
+          <button
+            onClick={() => navigate("/catalog")}
+            className="mt-7 inline-flex items-center gap-2.5 h-[60px] px-9 rounded-full bg-foreground text-background text-[17px] font-medium active:brightness-125 transition-[filter]"
+          >
+            {lang === "ru" ? "В каталог" : "Open catalog"}
+            <span className="inline-flex items-center justify-center min-w-[26px] h-[24px] px-[7px] rounded-full bg-background/20 text-[14px] font-semibold">
+              {courses.length}
+            </span>
+          </button>
+        </section>
       </div>
     </div>
   );
