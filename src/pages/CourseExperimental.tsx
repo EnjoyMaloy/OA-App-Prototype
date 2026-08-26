@@ -483,8 +483,7 @@ const CourseExperimental = () => {
           >
             <button
               onClick={startCourse}
-              className="w-full h-[56px] rounded-[19px] text-white text-[19px] font-medium inline-flex items-center justify-center gap-2.5 active:brightness-95 transition-[filter]"
-              style={{ background: "linear-gradient(180deg, #9B5CFF 0%, #7B2EFF 100%)" }}
+              className="w-full h-[56px] rounded-[19px] bg-primary text-primary-foreground text-[19px] font-medium inline-flex items-center justify-center gap-2.5 active:brightness-95 transition-[filter]"
             >
               <PlayRounded className="w-[20px] h-[20px]" />
               {lang === "ru" ? "Начать курс" : "Start course"}
