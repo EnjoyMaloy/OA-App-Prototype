@@ -13,12 +13,12 @@ import {
   Twitter,
   Youtube,
   Instagram,
-  LayoutGrid,
-  BarChart,
 } from "lucide-react";
 import PremiumStarIcon from "@/components/icons/PremiumStarIcon";
 import { Button } from "@/components/ui/button";
 import PaymentModal from "@/components/PaymentModal";
+import CourseCard from "@/components/CourseCard";
+import { courses as allCourses, getCategoryLabel } from "@/data/courses";
 import courseHeroAsset from "@/assets/course-experimental-hero.png.asset.json";
 // Картинки берём из проекта: внешние ссылки в прототипе не грузятся
 import coverGifts from "@/assets/cover-gifts.jpg";
@@ -328,8 +328,6 @@ const CourseExperimental = () => {
 
   const title = lang === "ru" ? config.titleRu : config.titleEn;
   const description = lang === "ru" ? config.descriptionRu : config.descriptionEn;
-  const category = lang === "ru" ? config.categoryRu : config.categoryEn;
-  const level = lang === "ru" ? config.levelRu : config.levelEn;
   const updated = lang === "ru" ? config.updatedRu : config.updatedEn;
 
   const isPurchased = store.purchasedCourses.includes(COURSE_ID);
@@ -338,6 +336,11 @@ const CourseExperimental = () => {
   const isFree = config.scenario === "free";
   const hasTrial = config.scenario === "sub-trial" || config.scenario === "paid-trial";
   const isOwned = isFree || isPurchased || (!isStandalone && hasSubscription);
+
+  // Курсы для лент внизу страницы: остальные курсы автора и соседи по категории
+  const currentCategoryId = allCourses.find((c) => c.id === COURSE_ID)?.categoryId;
+  const otherCourses = allCourses.filter((c) => c.id !== COURSE_ID);
+  const similarCourses = otherCourses.filter((c) => c.categoryId === currentCategoryId);
 
   const cta = () => (isOwned ? navigate(`/course/${COURSE_ID}/lessons`) : setPaymentOpen(true));
   const startTrial = () => navigate(`/course/${COURSE_ID}/lessons`);
@@ -419,44 +422,23 @@ const CourseExperimental = () => {
               backgroundImage: `radial-gradient(120% 90% at 100% 0%, ${COURSE_COLOR.light} 0%, transparent 60%), radial-gradient(120% 90% at 0% 100%, ${COURSE_COLOR.base}33 0%, transparent 55%)`,
             }}
           />
-          <div className="relative grid md:grid-cols-[1.1fr_1fr] gap-0">
-            {/* Left text */}
-            <div className="p-6 md:p-10 flex flex-col justify-between gap-8">
-              <div>
-                <div className="flex items-center gap-2 mb-5 flex-wrap">
-                  {!isFree && !isStandalone && (
-                    <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-body-12 font-medium text-violet-super-dark border border-[rgba(146,76,254,0.15)] bg-[rgba(217,192,255,0.55)]">
-                      <PremiumStarIcon className="w-3.5 h-3.5" fill="currentColor" />
-                      {lang === "ru" ? "Премиум" : "Premium"}
-                    </span>
-                  )}
-                  {isFree && (
-                    <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-body-12 font-medium text-emerald-700 border border-emerald-200 bg-emerald-50">
-                      {lang === "ru" ? "Бесплатно" : "Free"}
-                    </span>
-                  )}
-                  {isStandalone && (
-                    <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-body-12 font-medium text-amber-800 border border-amber-200 bg-amber-50">
-                      {lang === "ru" ? "Отдельный курс" : "Standalone"}
-                    </span>
-                  )}
-                  {hasTrial && (
-                    <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-body-12 font-medium text-foreground border border-border bg-background">
-                      {lang === "ru"
-                        ? `Первые ${config.trialLessons} урока бесплатно`
-                        : `First ${config.trialLessons} lessons free`}
-                    </span>
-                  )}
-                  <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-body-12 font-medium text-foreground border border-border bg-background">
-                    <LayoutGrid className="w-3.5 h-3.5 text-muted-foreground" />
-                    {category}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-body-12 font-medium text-foreground border border-border bg-background">
-                    <BarChart className="w-3.5 h-3.5 text-muted-foreground" />
-                    {level}
-                  </span>
-                </div>
+          <div className="relative">
+            {/* Обложка сверху: нижний край растворяется в подложке карточки */}
+            <div className="relative aspect-video md:aspect-[21/9]">
+              <img
+                src={IMG}
+                alt={title}
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{
+                  maskImage: "linear-gradient(to bottom, #000 55%, transparent 100%)",
+                  WebkitMaskImage: "linear-gradient(to bottom, #000 55%, transparent 100%)",
+                }}
+              />
+            </div>
 
+            {/* Текст под обложкой */}
+            <div className="px-6 md:px-10 pb-6 md:pb-10 -mt-6 md:-mt-10 flex flex-col justify-between gap-8">
+              <div>
                 <h1 className="text-[40px] md:text-[52px] leading-[0.95] font-medium tracking-tight text-foreground mb-5">
                   {title}
                 </h1>
@@ -513,12 +495,6 @@ const CourseExperimental = () => {
                   </button>
                 )}
               </div>
-            </div>
-
-            {/* Right image */}
-            <div className="relative aspect-video md:aspect-auto md:min-h-[460px]">
-              <img src={IMG} alt={title} className="absolute inset-0 w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
             </div>
           </div>
         </div>
@@ -628,6 +604,55 @@ const CourseExperimental = () => {
                 </button>
               </div>
             </section>
+
+            {/* Больше от автора и похожие курсы — ленты листаются вбок, как на главной */}
+            {[
+              {
+                key: "author",
+                titleRu: "Больше от автора",
+                titleEn: "More from the author",
+                list: otherCourses,
+              },
+              {
+                key: "similar",
+                titleRu: "Похожие курсы",
+                titleEn: "Similar courses",
+                list: similarCourses,
+              },
+            ].map((rail) =>
+              rail.list.length === 0 ? null : (
+                <section key={rail.key}>
+                  <h2 className="text-[28px] md:text-[32px] font-semibold tracking-tight text-foreground mb-6">
+                    {lang === "ru" ? rail.titleRu : rail.titleEn}
+                  </h2>
+                  <div className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-pl-4 -mx-4 px-4 lg:mx-0 lg:px-0 lg:scroll-pl-0 pb-1">
+                    {rail.list.map((c) => (
+                      <div key={c.id} className="flex-shrink-0 snap-start w-[260px] sm:w-[300px]">
+                        <CourseCard
+                          id={c.id}
+                          titleRu={c.titleRu}
+                          titleEn={c.titleEn}
+                          categoryLabel={getCategoryLabel(c.categoryId, lang)}
+                          rating={c.rating}
+                          students={c.students}
+                          image={c.image}
+                          imageBg={c.imageBg}
+                          premium={c.premium}
+                          price={c.price}
+                          isNew={c.isNew}
+                          trending={c.trending}
+                          updatedDaysAgo={c.updatedDaysAgo}
+                          isOwned={
+                            store.purchasedCourses.includes(c.id) ||
+                            (!!c.premium && !!store.subscription?.active)
+                          }
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )
+            )}
           </div>
 
           {/* SIDEBAR */}
