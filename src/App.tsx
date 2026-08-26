@@ -17,6 +17,7 @@ import Instructions from "./pages/Instructions.tsx";
 import ArticleView from "./pages/ArticleView.tsx";
 import Catalog from "./pages/Catalog.tsx";
 import Collection from "./pages/Collection.tsx";
+import MyCourses from "./pages/MyCourses.tsx";
 import CourseView from "./pages/CourseView.tsx";
 import CourseLessons from "./pages/CourseLessons.tsx";
 import Profile from "./pages/Profile.tsx";
@@ -44,7 +45,7 @@ const App = () => (
                     <Route path="/" element={<Home />} />
                     <Route path="/catalog" element={<Catalog />} />
                     <Route path="/collection/:id" element={<Collection />} />
-                    <Route path="/my-courses" element={<Index />} />
+                    <Route path="/my-courses" element={<MyCourses />} />
                     <Route path="/articles" element={<Articles />} />
                     <Route path="/articles/new" element={<ArticleEditor />} />
                     <Route path="/articles/:id" element={<ArticleEditor />} />

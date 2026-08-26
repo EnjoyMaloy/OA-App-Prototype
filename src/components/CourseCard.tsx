@@ -20,6 +20,8 @@ interface CourseCardProps {
   isOwned?: boolean;
   /** Сколько дней назад обновляли курс */
   updatedDaysAgo: number;
+  /** Прогресс прохождения: рисуется полоской под метриками, если передан */
+  progress?: number;
 }
 
 const CourseCard = ({
@@ -31,6 +33,7 @@ const CourseCard = ({
   image,
   imageBg,
   updatedDaysAgo,
+  progress,
 }: CourseCardProps) => {
   const { lang } = useLanguage();
   const navigate = useNavigate();
@@ -87,6 +90,24 @@ const CourseCard = ({
           {agoLabel(updatedDaysAgo, lang)}
         </span>
       </div>
+
+      {/* Полоска прогресса — только там, где он передан (раздел «Мои курсы») */}
+      {typeof progress === "number" && (
+        <div className="flex items-center gap-2 px-1.5 pt-3">
+          <span className="flex-1 h-1.5 rounded-full bg-background overflow-hidden">
+            <span
+              className="block h-full rounded-full"
+              style={{
+                width: `${Math.min(100, Math.max(0, progress))}%`,
+                background: progress >= 100 ? "#1BB07A" : "hsl(var(--primary))",
+              }}
+            />
+          </span>
+          <span className="text-[13px]" style={{ color: "hsl(0 0% 42%)" }}>
+            {progress}%
+          </span>
+        </div>
+      )}
     </div>
   );
 };

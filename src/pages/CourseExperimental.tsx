@@ -18,6 +18,7 @@ import PremiumStarIcon from "@/components/icons/PremiumStarIcon";
 import { Button } from "@/components/ui/button";
 import PaymentModal from "@/components/PaymentModal";
 import CourseCard from "@/components/CourseCard";
+import SegmentedTabs from "@/components/SegmentedTabs";
 import { courses as allCourses, getCategoryLabel } from "@/data/courses";
 import courseHeroAsset from "@/assets/course-experimental-hero.png.asset.json";
 // Картинки берём из проекта: внешние ссылки в прототипе не грузятся
@@ -659,28 +660,15 @@ const CourseExperimental = () => {
           <aside className="space-y-5 lg:sticky lg:top-6 self-start">
             {/* Author */}
             <div className="rounded-xl bg-sidebar p-6 space-y-5">
-              <div className="flex items-center gap-1 p-1 rounded-lg bg-background mb-1">
-                <button
-                  onClick={() => setAuthorTab("courses")}
-                  className={`flex-1 h-10 rounded-md text-[15px] font-medium transition-colors ${
-                    authorTab === "courses"
-                      ? "bg-sidebar text-foreground"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {lang === "ru" ? "Создал курс" : "Created course"}
-                </button>
-                <button
-                  onClick={() => setAuthorTab("about")}
-                  className={`flex-1 h-10 rounded-md text-[15px] font-medium transition-colors ${
-                    authorTab === "about"
-                      ? "bg-sidebar text-foreground"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {lang === "ru" ? "Об авторе" : "About author"}
-                </button>
-              </div>
+              <SegmentedTabs
+                className="mb-1"
+                value={authorTab}
+                onChange={(id) => setAuthorTab(id as "courses" | "about")}
+                tabs={[
+                  { id: "courses", label: lang === "ru" ? "Создал курс" : "Created course" },
+                  { id: "about", label: lang === "ru" ? "Об авторе" : "About author" },
+                ]}
+              />
 
               {authorTab === "courses" ? (
                 <div className="flex items-center gap-4 py-1">

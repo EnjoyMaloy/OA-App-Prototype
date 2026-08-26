@@ -48,15 +48,19 @@ export interface CourseData {
   trending?: boolean;
   /** Сколько дней назад курс обновляли — из этого считается «2 недели назад» */
   updatedDaysAgo: number;
+  /** Прогресс прохождения: 0 — не начат, 100 — завершён. Нужен разделу «Мои курсы» */
+  progress?: number;
+  /** Курс в избранном пользователя */
+  favorite?: boolean;
 }
 
 export const courses: CourseData[] = [
-  { id: "1", titleRu: "Telegram Gifts: как зарабатывать на подарках", titleEn: "Telegram Gifts: how to earn on digital gifts", categoryId: "web3", rating: 4.9, students: 371, image: coverGifts, isNew: true, updatedDaysAgo: 2 },
-  { id: "2", titleRu: "Инвестиции с нуля: собираем первый портфель", titleEn: "Investing from scratch: building your first portfolio", categoryId: "invest", rating: 4.9, students: 35419, image: coverInvest, premium: true, price: 49, trending: true, updatedDaysAgo: 9 },
-  { id: "6", titleRu: "Криптовалюты с нуля: биржи, кошельки, сделки", titleEn: "Crypto from scratch: exchanges, wallets, trades", categoryId: "crypto", rating: 4.7, students: 1024, image: coverHamster, premium: true, price: 49, isNew: true, updatedDaysAgo: 21 },
-  { id: "7", titleRu: "Безопасность кошелька: как не потерять деньги", titleEn: "Wallet security: how not to lose your funds", categoryId: "tools", rating: 4.6, students: 512, image: coverTools, premium: true, price: 79, isNew: true, updatedDaysAgo: 45 },
-  { id: "8", titleRu: "Трейдинг на споте: стратегии и риск-менеджмент", titleEn: "Spot trading: strategies and risk management", categoryId: "tools", rating: 4.7, students: 640, image: coverHamster, premium: true, price: 89, isNew: true, updatedDaysAgo: 120 },
-  { id: "9", titleRu: "Web3-карьера: как войти в индустрию", titleEn: "Web3 career: how to enter the industry", categoryId: "web3", rating: 4.95, students: 2480, image: coverGifts, premium: true, price: 59, isNew: true, trending: true, updatedDaysAgo: 400 },
+  { id: "1", progress: 61, favorite: true, titleRu: "Telegram Gifts: как зарабатывать на подарках", titleEn: "Telegram Gifts: how to earn on digital gifts", categoryId: "web3", rating: 4.9, students: 371, image: coverGifts, isNew: true, updatedDaysAgo: 2 },
+  { id: "2", progress: 100, titleRu: "Инвестиции с нуля: собираем первый портфель", titleEn: "Investing from scratch: building your first portfolio", categoryId: "invest", rating: 4.9, students: 35419, image: coverInvest, premium: true, price: 49, trending: true, updatedDaysAgo: 9 },
+  { id: "6", progress: 24, titleRu: "Криптовалюты с нуля: биржи, кошельки, сделки", titleEn: "Crypto from scratch: exchanges, wallets, trades", categoryId: "crypto", rating: 4.7, students: 1024, image: coverHamster, premium: true, price: 49, isNew: true, updatedDaysAgo: 21 },
+  { id: "7", favorite: true, titleRu: "Безопасность кошелька: как не потерять деньги", titleEn: "Wallet security: how not to lose your funds", categoryId: "tools", rating: 4.6, students: 512, image: coverTools, premium: true, price: 79, isNew: true, updatedDaysAgo: 45 },
+  { id: "8", progress: 100, favorite: true, titleRu: "Трейдинг на споте: стратегии и риск-менеджмент", titleEn: "Spot trading: strategies and risk management", categoryId: "tools", rating: 4.7, students: 640, image: coverHamster, premium: true, price: 89, isNew: true, updatedDaysAgo: 120 },
+  { id: "9", progress: 8, titleRu: "Web3-карьера: как войти в индустрию", titleEn: "Web3 career: how to enter the industry", categoryId: "web3", rating: 4.95, students: 2480, image: coverGifts, premium: true, price: 59, isNew: true, trending: true, updatedDaysAgo: 400 },
 ];
 
 export const getCategoryLabel = (catId: string, lang: "ru" | "en") => {

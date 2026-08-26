@@ -17,7 +17,8 @@ const BottomNav = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useLanguage();
-  const isMyCourses = location.pathname === "/my-courses";
+  // Пункты курса нужны на карте уроков; сам раздел «Мои курсы» — обычный список
+  const isLessonMap = location.pathname.endsWith("/lessons");
   const currentTab = new URLSearchParams(location.search).get("tab");
 
   // Поиск живёт в каталоге: кнопка уводит туда и фокусирует поле сверху
@@ -32,17 +33,17 @@ const BottomNav = () => {
 
   const courseItems: NavItem[] = [
     { label: t("bottomNav.back"), icon: ArrowLeft, path: "back", action: () => navigate("/") },
-    { label: t("bottomNav.course"), icon: GraduationCap, path: "/my-courses" },
-    { label: t("sidebar.instructions"), icon: FileText, path: "/my-courses?tab=instructions" },
+    { label: t("bottomNav.course"), icon: GraduationCap, path: location.pathname },
+    { label: t("sidebar.instructions"), icon: FileText, path: `${location.pathname}?tab=instructions` },
     { label: t("bottomNav.quest"), icon: Trophy, path: "/quest", disabled: true },
   ];
 
-  const items = isMyCourses ? courseItems : defaultItems;
+  const items = isLessonMap ? courseItems : defaultItems;
 
   const isActive = (item: NavItem) => {
     if (item.disabled) return false;
-    if (isMyCourses && item.path === "/my-courses?tab=instructions") return currentTab === "instructions";
-    if (isMyCourses && item.path === "/my-courses") return !currentTab;
+    if (isLessonMap && item.path.endsWith("?tab=instructions")) return currentTab === "instructions";
+    if (isLessonMap && item.path === location.pathname) return !currentTab;
     if (item.path === "/") return location.pathname === "/";
     // Без авторизации профиль уводит на /auth — пункт остаётся выбранным
     if (item.path === "/profile") return location.pathname === "/profile" || location.pathname === "/auth";
