@@ -245,7 +245,7 @@ const Index = () => {
 
       <div className={`relative w-full px-4 md:px-8 pt-[max(14px,env(safe-area-inset-top))] pb-8 md:py-12 ${mobileTab === "instructions" ? "hidden md:block" : ""}`}>
         {/* Шапка: стеклянная кнопка «назад» и название курса */}
-        <div className="flex items-center gap-3 mb-6">
+        <div className="flex items-center gap-5 mb-6">
           <button
             onClick={() => navigate(-1)}
             aria-label={t("bottomNav.back")}
@@ -253,7 +253,7 @@ const Index = () => {
           >
             <ArrowLeft strokeWidth={2.2} className="w-[22px] h-[22px] text-foreground" />
           </button>
-          <h1 className="text-[24px] font-semibold leading-[1.15] tracking-[-0.01em] text-foreground">
+          <h1 className="text-[24px] font-semibold leading-[1.15] tracking-[-0.01em] text-white">
             {t("index.title")}
           </h1>
         </div>
