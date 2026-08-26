@@ -592,8 +592,8 @@ const CourseExperimental = () => {
               </div>
 
               {filteredLessons.length > 0 ? (
-                /* Сетка по две карточки: номер, название, форматы урока и длительность */
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                /* Полосы во всю ширину: номер, название, форматы урока и длительность */
+                <div className="rounded-2xl bg-sidebar overflow-hidden">
                   {filteredLessons.map((l, i) => {
                     const originalIndex = lessons.findIndex((orig) => orig.titleRu === l.titleRu);
                     const lessonNo = originalIndex !== -1 ? originalIndex + 1 : i + 1;
@@ -601,36 +601,41 @@ const CourseExperimental = () => {
                       hasTrial && config.trialLessons ? lessonNo <= config.trialLessons : isFree;
                     const open = isOwned || isFreeLesson;
                     return (
-                      <div key={i} className="flex flex-col rounded-2xl bg-sidebar p-3.5">
-                        <div className="flex items-start justify-between gap-2">
-                          <span className="text-[12px] uppercase tracking-[0.04em] text-muted-foreground">
-                            {lang === "ru" ? "Урок" : "Lesson"} {String(lessonNo).padStart(2, "0")}
-                          </span>
-                          {!open && <Lock className="w-4 h-4 flex-shrink-0 text-muted-foreground" strokeWidth={1.8} />}
-                        </div>
-
-                        <p className="mt-1 text-[16px] font-medium leading-[1.25] text-foreground line-clamp-2 min-h-[40px]">
-                          {lang === "ru" ? l.titleRu : l.titleEn}
-                        </p>
-
-                        {/* Форматы урока — у одного урока их может быть сразу несколько */}
-                        <div className="flex flex-wrap gap-1.5 mt-2.5">
-                          {l.types.map((t) => (
-                            <span
-                              key={t}
-                              className={`inline-flex items-center h-[24px] px-2.5 rounded-full text-[12px] font-medium ${TYPE_CHIP[t].cls}`}
-                            >
-                              {lang === "ru" ? TYPE_CHIP[t].ru : TYPE_CHIP[t].en}
-                            </span>
-                          ))}
-                        </div>
-
-                        <span className="mt-3 text-[13px] text-muted-foreground">
-                          {l.min} {lang === "ru" ? "мин" : "min"}
-                          {isFreeLesson && !isFree && (
-                            <span className="ml-2 text-[#1BA97A]">{lang === "ru" ? "Бесплатно" : "Free"}</span>
-                          )}
+                      <div
+                        key={i}
+                        className={`flex items-start gap-3 px-4 py-3.5 ${i > 0 ? "border-t border-border/40" : ""}`}
+                      >
+                        <span className="w-6 flex-shrink-0 pt-0.5 text-[15px] text-muted-foreground tabular-nums">
+                          {String(lessonNo).padStart(2, "0")}
                         </span>
+
+                        <div className="min-w-0 flex-1">
+                          <p className="text-[16px] font-medium leading-[1.25] text-foreground">
+                            {lang === "ru" ? l.titleRu : l.titleEn}
+                          </p>
+
+                          {/* Форматы урока — у одного урока их может быть сразу несколько */}
+                          <div className="flex flex-wrap items-center gap-1.5 mt-2">
+                            {l.types.map((t) => (
+                              <span
+                                key={t}
+                                className={`inline-flex items-center h-[24px] px-2.5 rounded-full text-[12px] font-medium ${TYPE_CHIP[t].cls}`}
+                              >
+                                {lang === "ru" ? TYPE_CHIP[t].ru : TYPE_CHIP[t].en}
+                              </span>
+                            ))}
+                            {isFreeLesson && !isFree && (
+                              <span className="inline-flex items-center h-[24px] px-2.5 rounded-full text-[12px] font-medium bg-[#DFF3EA] text-[#12805C] dark:bg-[#12805C]/25 dark:text-[#7FD9B8]">
+                                {lang === "ru" ? "Бесплатно" : "Free"}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="flex-shrink-0 flex items-center gap-2 pt-0.5 text-[14px] text-muted-foreground">
+                          {l.min} {lang === "ru" ? "мин" : "min"}
+                          {!open && <Lock className="w-4 h-4" strokeWidth={1.8} />}
+                        </div>
                       </div>
                     );
                   })}
