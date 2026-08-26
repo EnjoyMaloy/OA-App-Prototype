@@ -9,9 +9,6 @@ import {
   ChevronRight,
   Play,
   Lock,
-  Unlock,
-  Sparkles,
-  BookOpen,
   Send,
   Twitter,
   Youtube,
@@ -378,79 +375,6 @@ const ReviewsRail = ({ reviews, lang }: { reviews: Review[]; lang: "ru" | "en" }
   );
 };
 
-/** Формат урока: градиент кружка, пастельная подложка и цвет подписи */
-const TYPE_CHIP: Record<LessonType, {
-  ru: string;
-  en: string;
-  grad: string;
-  ink: string;
-  light: string;
-  Icon: typeof Play;
-}> = {
-  video: {
-    ru: "видео",
-    en: "video",
-    grad: "linear-gradient(135deg, #38BDF8 0%, #4F46E5 100%)",
-    ink: "#3730C9",
-    light: "#8AB4FF",
-    Icon: Play,
-  },
-  quiz: {
-    ru: "квиз",
-    en: "quiz",
-    grad: "linear-gradient(135deg, #FBBF24 0%, #FB5607 100%)",
-    ink: "#C2480B",
-    light: "#FFC08A",
-    Icon: Sparkles,
-  },
-  guide: {
-    ru: "инструкция",
-    en: "guide",
-    grad: "linear-gradient(135deg, #8B5CF6 0%, #D946EF 100%)",
-    ink: "#8B2FBE",
-    light: "#DDA6FF",
-    Icon: BookOpen,
-  },
-};
-
-const FREE_CHIP = {
-  ru: "бесплатно",
-  en: "free",
-  grad: "linear-gradient(135deg, #A3E635 0%, #10B981 100%)",
-  ink: "#0B7A55",
-  light: "#7FE3B8",
-  Icon: Unlock,
-};
-
-const FormatChip = ({
-  label,
-  grad,
-  ink,
-  light,
-  Icon,
-  filled = false,
-}: {
-  label: string;
-  grad: string;
-  ink: string;
-  light: string;
-  Icon: typeof Play;
-  filled?: boolean;
-}) => (
-  <span
-    className="fmt-chip inline-flex items-center gap-1.5 h-[24px] pl-[3px] pr-2.5 rounded-full text-[12px] font-semibold lowercase"
-    style={{ "--fmt": ink, "--fmt-ink": ink, "--fmt-light": light } as React.CSSProperties}
-  >
-    <span
-      className="inline-flex items-center justify-center w-[18px] h-[18px] rounded-full text-white"
-      style={{ background: grad }}
-    >
-      <Icon className="w-[11px] h-[11px]" strokeWidth={2.4} fill={filled ? "currentColor" : "none"} />
-    </span>
-    {label}
-  </span>
-);
-
 const CourseExperimental = () => {
   const navigate = useNavigate();
   const { lang } = useLanguage();
@@ -683,32 +607,14 @@ const CourseExperimental = () => {
                             {lang === "ru" ? l.titleRu : l.titleEn}
                           </p>
 
-                          {/* Форматы урока — у одного урока их может быть сразу несколько */}
-                          <div className="flex flex-wrap items-center gap-1.5 mt-2">
-                            {l.types.map((t) => (
-                              <FormatChip
-                                key={t}
-                                label={lang === "ru" ? TYPE_CHIP[t].ru : TYPE_CHIP[t].en}
-                                grad={TYPE_CHIP[t].grad}
-                                ink={TYPE_CHIP[t].ink}
-                                light={TYPE_CHIP[t].light}
-                                Icon={TYPE_CHIP[t].Icon}
-                                filled={t === "video"}
-                              />
-                            ))}
-                            {isFreeLesson && !isFree && (
-                              <FormatChip
-                                label={lang === "ru" ? FREE_CHIP.ru : FREE_CHIP.en}
-                                grad={FREE_CHIP.grad}
-                                ink={FREE_CHIP.ink}
-                                light={FREE_CHIP.light}
-                                Icon={FREE_CHIP.Icon}
-                              />
-                            )}
-                          </div>
                         </div>
 
                         <div className="flex-shrink-0 flex items-center gap-2 pt-0.5 text-[14px] text-muted-foreground">
+                          {isFreeLesson && !isFree && (
+                            <span className="text-[#0E9A64] dark:text-[#7FE3B8]">
+                              {lang === "ru" ? "бесплатно" : "free"}
+                            </span>
+                          )}
                           {l.min} {lang === "ru" ? "мин" : "min"}
                           {!open && <Lock className="w-4 h-4" strokeWidth={1.8} />}
                         </div>
