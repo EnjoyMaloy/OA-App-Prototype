@@ -658,8 +658,8 @@ const CourseExperimental = () => {
 
           {/* SIDEBAR */}
           <aside className="space-y-5 lg:sticky lg:top-6 self-start">
-            {/* Author */}
-            <div className="rounded-xl bg-sidebar p-6 space-y-5">
+            {/* Author — без подложки, на фоне страницы остаётся только переключатель */}
+            <div className="space-y-5">
               <SegmentedTabs
                 className="mb-1"
                 value={authorTab}
