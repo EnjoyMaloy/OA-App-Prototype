@@ -354,11 +354,11 @@ const ReviewsRail = ({ reviews, lang }: { reviews: Review[]; lang: "ru" | "en" }
       <div
         ref={railRef}
         onScroll={onScroll}
-        className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-pl-4 -mx-4 px-4 md:mx-0 md:px-0 md:scroll-pl-0 pb-1"
+        className="flex items-stretch gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-pl-4 -mx-4 px-4 md:mx-0 md:px-0 md:scroll-pl-0 pb-1"
       >
         {loop.map((r, i) => (
           <div key={i} className="flex-shrink-0 snap-start w-[86%] md:w-[420px]">
-            <ReviewCard review={r} lang={lang} />
+            <ReviewCard review={r} lang={lang} clamp />
           </div>
         ))}
       </div>

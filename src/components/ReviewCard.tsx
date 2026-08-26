@@ -11,8 +11,17 @@ export interface Review {
 }
 
 /** Карточка отзыва: одна и та же в ленте на странице курса и в списке «Все отзывы» */
-const ReviewCard = ({ review: r, lang }: { review: Review; lang: "ru" | "en" }) => (
-  <div className="rounded-xl bg-sidebar p-6">
+const ReviewCard = ({
+  review: r,
+  lang,
+  clamp = false,
+}: {
+  review: Review;
+  lang: "ru" | "en";
+  /** В ленте текст обрезается на пятой строке, чтобы карточки были одной высоты */
+  clamp?: boolean;
+}) => (
+  <div className="h-full rounded-xl bg-sidebar p-6">
     <div className="flex gap-4 items-start mb-5">
       <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0 border border-border/10">
         <img src={r.avatar} alt={r.username} className="w-full h-full object-cover" />
@@ -31,7 +40,7 @@ const ReviewCard = ({ review: r, lang }: { review: Review; lang: "ru" | "en" }) 
         </div>
       </div>
     </div>
-    <p className="text-[15px] leading-[1.65] font-normal text-foreground/90">
+    <p className={`text-[15px] leading-[1.65] font-normal text-foreground/90${clamp ? " line-clamp-5" : ""}`}>
       {lang === "ru" ? r.textRu : r.textEn}
     </p>
   </div>
