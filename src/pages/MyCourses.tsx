@@ -45,7 +45,7 @@ const MyCourses = () => {
         {list.length === 0 ? (
           <p className="text-[15px] text-muted-foreground py-10 text-center">{empty}</p>
         ) : (
-          <div className="flex flex-col gap-4">
+          <div className="grid grid-cols-2 gap-3 md:gap-4">
             {list.map((course) => (
               <CourseCard
                 key={course.id}
