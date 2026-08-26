@@ -42,35 +42,33 @@ const CourseCard = ({
   return (
     <div
       onClick={() => navigate(`/course/${id}`)}
-      className="flex flex-col cursor-pointer rounded-[20px] pb-3.5 bg-muted overflow-hidden"
+      className="flex flex-col cursor-pointer rounded-[20px] p-1 pb-3.5 bg-muted"
     >
-      {/* Обложка во всю ширину: книзу растворяется в подложке карточки */}
+      {/* Обложка 16:9 со скруглением, внутри общей подложки */}
       <div
-        className="relative w-full aspect-video"
+        className="relative w-full aspect-video rounded-[14px] overflow-hidden bg-background"
         style={imageBg ? { background: imageBg } : undefined}
       >
         <img
           src={image}
           alt={title}
-          className={`w-full h-full ${imageBg ? "object-contain p-4" : "object-cover"}`}
-          style={{
-            maskImage: "linear-gradient(to bottom, #000 62%, transparent 100%)",
-            WebkitMaskImage: "linear-gradient(to bottom, #000 62%, transparent 100%)",
-          }}
+          className={`w-full h-full ${
+            imageBg ? "object-contain p-4" : "object-cover"
+          }`}
           loading="lazy"
         />
       </div>
 
-      {/* Заголовок по центру, всегда в две строки — карточки в ленте одной высоты */}
+      {/* Заголовок всегда занимает две строки, чтобы карточки в ленте были одной высоты */}
       <h3
-        className="px-4 -mt-3 text-center text-[18px] font-medium leading-[1.2] line-clamp-2 min-h-[43px]"
+        className="px-1.5 pt-3 text-[18px] font-medium leading-[1.2] line-clamp-2 min-h-[43px]"
         style={{ color: "hsl(0 0% 6%)" }}
       >
         {title}
       </h3>
 
       {/* Под заголовком: компактный ряд иконок с цифрами, без плашек */}
-      <div className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 px-4 pt-2.5">
+      <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 px-1.5 pt-2.5">
         <span className="inline-flex items-center gap-1 text-[15px] text-foreground">
           <svg width="15" height="15" viewBox="0 0 14 14" fill="none" aria-hidden>
             <path
@@ -95,7 +93,7 @@ const CourseCard = ({
 
       {/* Полоска прогресса — только там, где он передан (раздел «Мои курсы») */}
       {typeof progress === "number" && (
-        <div className="flex items-center gap-2 px-4 pt-3">
+        <div className="flex items-center gap-2 px-1.5 pt-3">
           <span className="flex-1 h-1.5 rounded-full bg-background overflow-hidden">
             <span
               className="block h-full rounded-full"
