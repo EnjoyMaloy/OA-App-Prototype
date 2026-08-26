@@ -13,9 +13,7 @@ import {
   Youtube,
   Instagram,
 } from "lucide-react";
-import PremiumStarIcon from "@/components/icons/PremiumStarIcon";
 import { Button } from "@/components/ui/button";
-import PaymentModal from "@/components/PaymentModal";
 import { pluralRu } from "@/lib/utils";
 import ReviewCard, { type Review } from "@/components/ReviewCard";
 import CourseCard from "@/components/CourseCard";
@@ -378,7 +376,6 @@ const CourseExperimental = () => {
   const navigate = useNavigate();
   const { lang } = useLanguage();
   const store = usePurchaseStore();
-  const [paymentOpen, setPaymentOpen] = useState(false);
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get("q") || "";
   const { id: routeId } = useParams<{ id: string }>();
@@ -398,7 +395,7 @@ const CourseExperimental = () => {
   const hasSubscription = store.subscription?.active;
   const isStandalone = config.scenario === "paid" || config.scenario === "paid-trial";
   const isFree = config.scenario === "free";
-  const hasTrial = config.scenario === "sub-trial" || config.scenario === "paid-trial";
+  // Оплата и триал на странице пока не показываются, но статус нужен карточкам в лентах
   const isOwned = isFree || isPurchased || (!isStandalone && hasSubscription);
 
   // Курсы для лент внизу страницы: остальные курсы автора и соседи по категории
@@ -406,18 +403,7 @@ const CourseExperimental = () => {
   const otherCourses = allCourses.filter((c) => c.id !== COURSE_ID);
   const similarCourses = otherCourses.filter((c) => c.categoryId === currentCategoryId);
 
-  const cta = () => (isOwned ? navigate(`/course/${COURSE_ID}/lessons`) : setPaymentOpen(true));
-  const startTrial = () => navigate(`/course/${COURSE_ID}/lessons`);
-
-  // CTA label per scenario
-  let ctaLabel = lang === "ru" ? "Начать обучение" : "Start learning";
-  if (!isOwned) {
-    if (config.scenario === "paid" || config.scenario === "paid-trial") {
-      ctaLabel = lang === "ru" ? `Купить за $${config.price}` : `Buy for $${config.price}`;
-    } else {
-      ctaLabel = lang === "ru" ? "Открыть доступ" : "Get access";
-    }
-  }
+  const startCourse = () => navigate(`/course/${COURSE_ID}/lessons`);
 
   const filteredLessons = lessons.filter(l => {
     const q = searchQuery.toLowerCase();
@@ -430,49 +416,6 @@ const CourseExperimental = () => {
   const totalMin = filteredLessons.reduce((s, l) => s + l.min, 0);
 
   // Price block per scenario
-  const PriceBlock = () => {
-    if (isFree) {
-      return (
-        <div className="flex flex-col">
-          <span className="text-caption-12 mb-1.5 tracking-wide uppercase">
-            {lang === "ru" ? "Стоимость" : "Price"}
-          </span>
-          <span className="text-[32px] font-light tracking-[-0.02em] leading-none text-foreground">
-            {lang === "ru" ? "Бесплатно" : "Free"}
-          </span>
-        </div>
-      );
-    }
-    if (isStandalone) {
-      return (
-        <div className="flex flex-col">
-          <span className="text-caption-12 mb-1.5 tracking-wide uppercase">
-            {lang === "ru" ? "Разовая покупка" : "One-time"}
-          </span>
-          <div className="flex items-baseline gap-1 tabular-nums">
-            <span className="text-[20px] font-normal text-muted-foreground leading-none">$</span>
-            <span className="text-[38px] font-light tracking-[-0.02em] leading-none text-foreground">{config.price}</span>
-          </div>
-        </div>
-      );
-    }
-    // subscription
-    return (
-      <div className="flex flex-col">
-        <span className="text-caption-12 mb-1.5 tracking-wide uppercase">
-          {lang === "ru" ? "от" : "from"}
-        </span>
-        <div className="flex items-baseline gap-1 tabular-nums">
-          <span className="text-[20px] font-normal text-muted-foreground leading-none">$</span>
-          <span className="text-[38px] font-light tracking-[-0.02em] leading-none text-foreground">{config.monthlyFrom ?? 6}</span>
-          <span className="text-[16px] font-normal text-muted-foreground leading-none ml-0.5">
-            {lang === "ru" ? "/мес" : "/mo"}
-          </span>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div className="min-h-screen bg-background">
       <div className="w-full px-4 md:px-8 py-6 md:py-8">
@@ -531,32 +474,13 @@ const CourseExperimental = () => {
               </div>
               <div className="mt-1.5 text-[15px] text-muted-foreground">{updated}</div>
 
-              {/* Цена и кнопки: основная во всю ширину */}
-              <div className="mt-6 pt-5 border-t border-border/60">
-                <PriceBlock />
-
-                <Button
-                  onClick={cta}
-                  className="mt-4 w-full h-[56px] rounded-2xl text-[17px] font-medium gap-2 [&_svg]:size-5"
-                >
-                  {!isOwned && !isFree && !isStandalone && <PremiumStarIcon fill="currentColor" />}
-                  {ctaLabel}
-                </Button>
-
-                <button
-                  onClick={hasTrial && !isOwned ? startTrial : cta}
-                  className="mt-2.5 w-full h-[52px] rounded-2xl border border-border bg-background text-foreground text-[16px] font-medium inline-flex items-center justify-center gap-2 active:bg-muted transition-colors"
-                >
-                  <Play className="w-4 h-4 fill-foreground" />
-                  {hasTrial && !isOwned
-                    ? lang === "ru"
-                      ? "Попробовать бесплатно"
-                      : "Try for free"
-                    : lang === "ru"
-                      ? "Превью"
-                      : "Preview"}
-                </button>
-              </div>
+              {/* Одна кнопка: начать курс */}
+              <Button
+                onClick={startCourse}
+                className="mt-7 w-full h-[56px] rounded-2xl text-[17px] font-medium"
+              >
+                {lang === "ru" ? "Начать курс" : "Start course"}
+              </Button>
             </div>
           </div>
         </div>
@@ -727,16 +651,6 @@ const CourseExperimental = () => {
         </div>
       </div>
 
-      <PaymentModal
-        open={paymentOpen}
-        onOpenChange={setPaymentOpen}
-        courseId={COURSE_ID}
-        courseTitleRu={config.titleRu}
-        courseTitleEn={config.titleEn}
-        courseImage={IMG}
-        courseDescRu={config.descriptionRu}
-        courseDescEn={config.descriptionEn}
-      />
     </div>
   );
 };
