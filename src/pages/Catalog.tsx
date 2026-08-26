@@ -4,7 +4,6 @@ import { Check, ChevronDown, Search, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { usePurchaseStore } from "@/hooks/usePurchaseStore";
 import CourseCard from "@/components/CourseCard";
-import Footer from "@/components/Footer";
 import { categories, courses, getCategoryLabel } from "@/data/courses";
 
 const Catalog = () => {
@@ -181,7 +180,6 @@ const Catalog = () => {
           <div className="text-center py-16 text-muted-foreground text-[16px]">{t("instructions.notFound")}</div>
         )}
       </div>
-      <Footer />
     </div>
   );
 };
