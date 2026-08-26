@@ -244,19 +244,14 @@ const Index = () => {
       )}
 
       <div className={`relative w-full px-4 md:px-8 pt-[max(14px,env(safe-area-inset-top))] pb-8 md:py-12 ${mobileTab === "instructions" ? "hidden md:block" : ""}`}>
-        {/* Шапка: стеклянная кнопка «назад» и название курса */}
-        <div className="flex items-center gap-5 mb-6">
-          <button
-            onClick={() => navigate(-1)}
-            aria-label={t("bottomNav.back")}
-            className="glass w-11 h-11 flex-shrink-0 rounded-full flex items-center justify-center active:scale-95 transition-transform"
-          >
-            <ArrowLeft strokeWidth={2.2} className="w-[22px] h-[22px] text-foreground" />
-          </button>
-          <h1 className="text-[24px] font-semibold leading-[1.15] tracking-[-0.01em] text-white">
-            {t("index.title")}
-          </h1>
-        </div>
+        {/* Сверху только стеклянная кнопка «назад» */}
+        <button
+          onClick={() => navigate(-1)}
+          aria-label={t("bottomNav.back")}
+          className="glass w-11 h-11 mb-6 rounded-full flex items-center justify-center active:scale-95 transition-transform"
+        >
+          <ArrowLeft strokeWidth={2.2} className="w-[22px] h-[22px] text-foreground" />
+        </button>
 
         {/* Main layout */}
         <div className="flex flex-col md:flex-row gap-8">
