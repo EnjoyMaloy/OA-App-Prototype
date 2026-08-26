@@ -16,6 +16,7 @@ import {
 import PremiumStarIcon from "@/components/icons/PremiumStarIcon";
 import { Button } from "@/components/ui/button";
 import PaymentModal from "@/components/PaymentModal";
+import ReviewCard, { type Review } from "@/components/ReviewCard";
 import CourseCard from "@/components/CourseCard";
 import authorPhoto from "@/assets/author-photo.jpg";
 import { courses as allCourses, getCategoryLabel } from "@/data/courses";
@@ -31,16 +32,6 @@ import avatarDmitry from "@/assets/avatar-dmitry.jpg";
 import avatarSychev from "@/assets/avatar-sychev.jpg";
 
 type Scenario = "free" | "sub" | "sub-trial" | "paid" | "paid-trial";
-
-interface Review {
-  username: string;
-  avatar: string;
-  rating: number;
-  timeRu: string;
-  timeEn: string;
-  textRu: string;
-  textEn: string;
-}
 
 interface CourseConfig {
   id: string;
@@ -105,7 +96,7 @@ const REVIEWS_DEMO: Review[] = [
     textEn: "Took it on the subway, 15 minutes a day, and finished in two weeks. The lesson format fits that rhythm perfectly.",
   },
   {
-    username: "lera.web3",
+    username: "denis.web3",
     avatar: avatarSychev,
     rating: 4,
     timeRu: "3 недели назад",
@@ -359,28 +350,8 @@ const ReviewsRail = ({ reviews, lang }: { reviews: Review[]; lang: "ru" | "en" }
         className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-pl-4 -mx-4 px-4 md:mx-0 md:px-0 md:scroll-pl-0 pb-1"
       >
         {loop.map((r, i) => (
-          <div key={i} className="flex-shrink-0 snap-start w-[86%] md:w-[420px] rounded-xl bg-sidebar p-6">
-            <div className="flex gap-4 items-start mb-5">
-              <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0 border border-border/10">
-                <img src={r.avatar} alt={r.username} className="w-full h-full object-cover" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-[19px] font-semibold text-foreground tracking-tight leading-none mb-1.5">{r.username}</p>
-                <div className="flex items-center justify-between gap-2">
-                  <div className="flex gap-1">
-                    {Array.from({ length: r.rating }).map((_, si) => (
-                      <Star key={si} className="w-[15px] h-[15px] fill-[#FF6B57] text-[#FF6B57]" />
-                    ))}
-                  </div>
-                  <span className="text-[13px] text-muted-foreground/80 font-normal whitespace-nowrap">
-                    {lang === "ru" ? r.timeRu : r.timeEn}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <p className="text-[15px] leading-[1.65] font-normal text-foreground/90">
-              {lang === "ru" ? r.textRu : r.textEn}
-            </p>
+          <div key={i} className="flex-shrink-0 snap-start w-[86%] md:w-[420px]">
+            <ReviewCard review={r} lang={lang} />
           </div>
         ))}
       </div>
@@ -653,7 +624,10 @@ const CourseExperimental = () => {
                 <h2 className="text-[28px] md:text-[32px] font-semibold text-foreground tracking-tight">
                   {lang === "ru" ? `Отзывы (${config.reviewCount})` : `Reviews (${config.reviewCount})`}
                 </h2>
-                <button className="text-[15px] text-muted-foreground hover:text-foreground font-normal transition-colors inline-flex items-center gap-1">
+                <button
+                  onClick={() => navigate(`/course/${COURSE_ID}/reviews`)}
+                  className="text-[15px] text-muted-foreground font-normal transition-colors inline-flex items-center gap-1"
+                >
                   {lang === "ru" ? "Показать все" : "View All"}
                   <ChevronRight className="w-4 h-4" />
                 </button>
@@ -771,6 +745,10 @@ const CourseExperimental = () => {
     </div>
   );
 };
+
+/** Отзывы курса для страницы «Все отзывы» */
+export const getCourseReviews = (id?: string) =>
+  (COURSE_CONFIGS[id ?? "9"] ?? COURSE_CONFIGS["9"]).reviews;
 
 export const EXPERIMENTAL_COURSE_IDS = ["1", "2", "6", "7", "8", "9"];
 

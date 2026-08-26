@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,6 +19,7 @@ import ArticleView from "./pages/ArticleView.tsx";
 import Catalog from "./pages/Catalog.tsx";
 import Collection from "./pages/Collection.tsx";
 import MyCourses from "./pages/MyCourses.tsx";
+import CourseReviews from "./pages/CourseReviews.tsx";
 import CourseView from "./pages/CourseView.tsx";
 import CourseLessons from "./pages/CourseLessons.tsx";
 import Profile from "./pages/Profile.tsx";
@@ -25,6 +27,15 @@ import BrandResources from "./pages/BrandResources.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
+
+/** При переходе на другой экран прокрутка возвращается наверх */
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    document.querySelector("main")?.scrollTo({ top: 0 });
+  }, [pathname]);
+  return null;
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -34,6 +45,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <ScrollToTop />
             <div className="flex h-screen">
               <Sidebar />
               <div className="flex-1 min-w-0 flex flex-col">
@@ -52,6 +64,7 @@ const App = () => (
                     <Route path="/auth" element={<Auth />} />
                     <Route path="/course/:id" element={<CourseView />} />
                     <Route path="/course/:id/lessons" element={<Index />} />
+                    <Route path="/course/:id/reviews" element={<CourseReviews />} />
                     <Route path="/instructions" element={<Instructions />} />
                     <Route path="/instructions/:id" element={<ArticleView />} />
                     <Route path="/profile" element={<Profile />} />
