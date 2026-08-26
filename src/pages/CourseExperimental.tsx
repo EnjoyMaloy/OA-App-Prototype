@@ -17,7 +17,6 @@ import PremiumStarIcon from "@/components/icons/PremiumStarIcon";
 import { Button } from "@/components/ui/button";
 import PaymentModal from "@/components/PaymentModal";
 import ReviewCard, { type Review } from "@/components/ReviewCard";
-import { pluralRu } from "@/lib/utils";
 import CourseCard from "@/components/CourseCard";
 import authorPhoto from "@/assets/author-photo.jpg";
 import { courses as allCourses, getCategoryLabel } from "@/data/courses";
@@ -427,7 +426,6 @@ const CourseExperimental = () => {
     );
   });
 
-  const totalLessons = filteredLessons.length;
   const totalMin = filteredLessons.reduce((s, l) => s + l.min, 0);
 
   // Price block per scenario
@@ -574,10 +572,6 @@ const CourseExperimental = () => {
                     {lang === "ru" ? "Программа курса" : "Curriculum"}
                   </h2>
                   <span className="text-[14px] text-muted-foreground">
-                    {totalLessons}{" "}
-                    {lang === "ru"
-                      ? `${pluralRu(totalLessons, ["урок", "урока", "уроков"])} · `
-                      : `${totalLessons === 1 ? "lesson" : "lessons"} · `}
                     {totalMin} {lang === "ru" ? "мин" : "min"}
                   </span>
                 </div>
