@@ -5,7 +5,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useTheme } from "next-themes";
 import rehcVideo from "@/assets/rehc.mp4.asset.json";
 import verticalVideo from "@/assets/vertical-video.mov.asset.json";
-import { lessonsData, courseProgress, lessonState, type Inline } from "@/data/lessons";
+import { lessonsData, lessonState, type Inline } from "@/data/lessons";
 
 
 const IconActive = ({ className }: { className?: string }) => (
@@ -181,8 +181,6 @@ const Index = () => {
   const currentLesson = lessonsData[activeLesson];
   const navigate = useNavigate();
 
-  const totalProgress = courseProgress;
-
   const instructionItems = lessonsData
     .filter((l) => l.hasInstruction)
     .map((l) => ({
@@ -191,7 +189,22 @@ const Index = () => {
     }));
 
   return (
-    <div className="min-h-screen bg-background">
+    <div
+      className="relative min-h-screen"
+      style={{
+        background:
+          "linear-gradient(180deg, hsl(270 60% 89%) 0%, hsl(270 70% 86%) 45%, hsl(270 60% 89%) 100%)",
+      }}
+    >
+      {/* Точечная фактура карты теперь лежит на всём экране */}
+      <div
+        className="absolute inset-0 opacity-20 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle, hsl(var(--violet-dark) / 0.35) 1px, transparent 1px)",
+          backgroundSize: "16px 16px",
+        }}
+      />
+
       {/* Mobile: Instructions tab */}
       {mobileTab === "instructions" && (
         <div className="md:hidden px-4 py-6">
@@ -220,47 +233,26 @@ const Index = () => {
         </div>
       )}
 
-      <div className={`w-full px-4 md:px-8 py-8 md:py-12 ${mobileTab === "instructions" ? "hidden md:block" : ""}`}>
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-h1 text-foreground mb-3">{t("index.title")}</h1>
-          <p className="text-[16px] font-normal leading-relaxed text-muted-foreground max-w-3xl">
-            {t("index.description")}
-          </p>
+      <div className={`relative w-full px-4 md:px-8 pt-[max(14px,env(safe-area-inset-top))] pb-8 md:py-12 ${mobileTab === "instructions" ? "hidden md:block" : ""}`}>
+        {/* Шапка: стеклянная кнопка «назад» и название курса */}
+        <div className="flex items-center gap-3 mb-6">
+          <button
+            onClick={() => navigate(-1)}
+            aria-label={t("bottomNav.back")}
+            className="glass w-11 h-11 flex-shrink-0 rounded-full flex items-center justify-center active:scale-95 transition-transform"
+          >
+            <ArrowLeft strokeWidth={2.2} className="w-[22px] h-[22px] text-foreground" />
+          </button>
+          <h1 className="text-[24px] font-semibold leading-[1.15] tracking-[-0.01em] text-foreground">
+            {t("index.title")}
+          </h1>
         </div>
 
         {/* Main layout */}
         <div className="flex flex-col md:flex-row gap-8">
           <div className={`flex-1 min-w-0 ${mobileTab === "instructions" ? "hidden md:block" : ""}`}>
             {/* ============ LESSON MAP ============ */}
-            <div
-              className="relative rounded-2xl overflow-hidden p-6"
-                style={{
-                  background: "linear-gradient(180deg, hsl(270 60% 88% / 0.7) 0%, hsl(270 70% 85% / 1) 50%, hsl(270 60% 88% / 0.7) 100%)",
-                }}
-              >
-                {/* Dot pattern */}
-                <div
-                  className="absolute inset-0 opacity-15 pointer-events-none"
-                  style={{
-                    backgroundImage: "radial-gradient(circle, hsl(var(--violet-primary) / 0.3) 1px, transparent 1px)",
-                    backgroundSize: "16px 16px",
-                  }}
-                />
-
-                {/* Progress card */}
-                <div className="relative z-10 mb-4">
-                  <div className="bg-background rounded-xl px-5 py-3 inline-block min-w-[220px]">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-[14px] text-foreground font-medium">{t("index.completed")}</span>
-                      <span className="text-[14px] font-semibold text-foreground">{totalProgress}%</span>
-                    </div>
-                    <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
-                      <div className="h-full bg-primary rounded-full transition-all" style={{ width: `${totalProgress}%` }} />
-                    </div>
-                  </div>
-                </div>
-
+            <div className="relative">
                 {/* SVG map */}
                 <div className="relative z-10 w-full flex justify-center">
                   <svg viewBox="0 0 418 600" fill="none" preserveAspectRatio="xMidYMid meet" className="w-full max-w-[480px] h-auto block">
