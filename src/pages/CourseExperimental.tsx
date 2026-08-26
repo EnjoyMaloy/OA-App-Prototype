@@ -611,22 +611,23 @@ const CourseExperimental = () => {
                 {lang === "ru" ? "Кто создал курс" : "Who made this course"}
               </h2>
 
-              <div className="flex items-start gap-5">
+              {/* Высота строки задана аватаркой: описание помещается в три строки, соцсети прижаты к её низу */}
+              <div className="flex items-stretch gap-5">
                 <img
                   src={authorPhoto}
                   alt="OpenCore Club"
-                  className="w-[108px] h-[108px] flex-shrink-0 rounded-[24px] object-cover border border-border"
+                  className="w-[160px] h-[160px] flex-shrink-0 rounded-[24px] object-cover border border-border"
                 />
 
-                <div className="min-w-0 flex-1">
+                <div className="min-w-0 flex-1 flex flex-col">
                   <p className="text-[21px] font-medium text-foreground">OpenCore Club</p>
-                  <p className="mt-1.5 text-[15px] leading-[1.4] text-muted-foreground">
+                  <p className="mt-1.5 text-[15px] leading-[1.4] text-muted-foreground line-clamp-3">
                     {lang === "ru"
-                      ? "Практики Web3 и инвестиций"
-                      : "Web3 and investing practitioners"}
+                      ? "Практики Web3 и инвестиций. Объясняем сложное простым языком."
+                      : "Web3 and investing practitioners. Complex things in plain words."}
                   </p>
 
-                  <div className="flex items-center gap-2 mt-4">
+                  <div className="flex items-center gap-2 mt-auto pt-4">
                     {[
                       { Icon: Send, label: "Telegram" },
                       { Icon: Twitter, label: "X" },
