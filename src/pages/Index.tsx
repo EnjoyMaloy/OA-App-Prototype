@@ -193,25 +193,16 @@ const Index = () => {
   return (
     <div
       className="relative min-h-screen"
-      style={{
-        background:
-          "linear-gradient(180deg, hsl(270 60% 89%) 0%, hsl(270 70% 86%) 45%, hsl(270 60% 89%) 100%)",
-      }}
+      style={{ background: "hsl(268 65% 93%)" }}
     >
-      {/* Клетка и точки: фактура карты на всём экране */}
+      {/* Паттерн карты: крупные мягкие круги чуть темнее подложки */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            "linear-gradient(hsl(var(--violet-dark) / 0.07) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--violet-dark) / 0.07) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-      />
-      <div
-        className="absolute inset-0 opacity-20 pointer-events-none"
-        style={{
-          backgroundImage: "radial-gradient(circle, hsl(var(--violet-dark) / 0.35) 1px, transparent 1px)",
-          backgroundSize: "16px 16px",
+            "radial-gradient(circle, hsl(268 52% 87%) 11px, transparent 12px), radial-gradient(circle, hsl(268 52% 87%) 11px, transparent 12px)",
+          backgroundSize: "44px 44px, 44px 44px",
+          backgroundPosition: "0 0, 22px 22px",
         }}
       />
 
@@ -435,21 +426,25 @@ const Index = () => {
                   return (
                     <div
                       data-lesson-popover
-                      className="absolute z-30 animate-in fade-in slide-in-from-top-2 duration-200"
+                      className="fixed inset-x-0 bottom-0 z-50 animate-in slide-in-from-bottom duration-250 md:absolute md:inset-x-auto md:bottom-4 md:left-1/2 md:-translate-x-1/2 md:w-[340px] md:rounded-[20px]"
                       style={{
-                        left: "50%",
-                        bottom: 16,
-                        transform: "translateX(-50%)",
-                        width: 320,
                         background: '#FFFFFF',
-                        border: '1px solid #EBE9EA',
-                        boxShadow: '0px 8px 24px rgba(70, 4, 102, 0.12)',
-                        borderRadius: 14,
-                        overflow: 'hidden',
+                        boxShadow: '0px -8px 30px rgba(70, 4, 102, 0.16)',
+                        borderTopLeftRadius: 24,
+                        borderTopRightRadius: 24,
+                        paddingBottom: 'max(16px, env(safe-area-inset-bottom))',
                       }}
                     >
-                      <div style={{ background: '#F7F7F8', padding: '14px 18px', borderBottom: '1px solid #EBE9EA' }}>
-                        <span className="text-[13px] font-medium tracking-[0.04em] uppercase" style={{ color: '#8D8D8D' }}>
+                      {/* Ручка шторки */}
+                      <div className="flex justify-center pt-2.5 pb-1 md:hidden">
+                        <span className="w-10 h-1 rounded-full" style={{ background: '#DCDCDE' }} />
+                      </div>
+
+                      <div style={{ padding: '10px 18px 0' }}>
+                        <span
+                          className="inline-block text-[13px] font-medium tracking-[0.04em] uppercase"
+                          style={{ color: '#8D8D8D', background: '#F4F4F5', padding: '10px 14px', borderRadius: 10, width: '100%' }}
+                        >
                           {t("index.lesson")} {lesson.number}
                         </span>
                       </div>
@@ -475,32 +470,18 @@ const Index = () => {
                           </div>
                         )}
                       </div>
-                      <div style={{ borderTop: '1px solid #EBE9EA' }} />
-                      <div className="flex justify-between" style={{ padding: '14px 18px 16px' }}>
-                        <div className="flex flex-col" style={{ gap: 6 }}>
-                          <span className="text-[14px] font-normal leading-[100%]" style={{ color: '#8D8D8D' }}>{t("index.completed")}</span>
-                          <span className="text-[24px] font-semibold leading-[100%] tracking-[-0.01em]" style={{ color: lesson.progress > 0 ? '#232323' : '#8D8D8D' }}>
-                            {lesson.progress}%
-                          </span>
-                        </div>
-                        <div className="flex flex-col" style={{ gap: 6 }}>
-                          <span className="text-[14px] font-normal leading-[100%]" style={{ color: '#8D8D8D' }}>{t("index.reward")}</span>
-                          <div className="flex items-center" style={{ gap: 6 }}>
-                            <span
-                              className="inline-flex items-center justify-center rounded-full text-[11px] font-bold"
-                              style={{ width: 22, height: 22, background: '#FF7D60', color: '#FFFFFF' }}
-                            >S</span>
-                            <span className="text-[22px] font-semibold leading-[100%] tracking-[-0.01em]" style={{ color: '#232323' }}>
-                              {lesson.reward.toLocaleString()}
-                            </span>
-                          </div>
-                        </div>
+                      <div style={{ borderTop: '1px solid #EBE9EA', margin: '0 18px' }} />
+                      <div className="flex flex-col" style={{ gap: 6, padding: '16px 18px 18px' }}>
+                        <span className="text-[15px] font-normal leading-[100%]" style={{ color: '#8D8D8D' }}>{t("index.completed")}</span>
+                        <span className="text-[28px] font-semibold leading-[100%] tracking-[-0.01em]" style={{ color: lesson.progress > 0 ? '#232323' : '#8D8D8D' }}>
+                          {lesson.progress}%
+                        </span>
                       </div>
-                      <div style={{ padding: '0 14px 14px' }}>
+                      <div style={{ padding: '0 18px' }}>
                         <button
                           onClick={() => { setPopoverIndex(null); setActiveLesson(popoverIndex); setLessonOpen(true); }}
-                          className="w-full text-[16px] font-medium tracking-[0.01em] hover:opacity-90 transition-opacity"
-                          style={{ background: '#232323', color: '#FFFFFF', borderRadius: 12, height: 52 }}
+                          className="w-full text-[17px] font-medium tracking-[0.01em] active:opacity-90 transition-opacity"
+                          style={{ background: '#232323', color: '#FFFFFF', borderRadius: 999, height: 58 }}
                         >
                           {lesson.progress === 100 ? t("index.retake") : lesson.progress > 0 ? t("index.continue") : t("index.start")}
                         </button>
