@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams, useParams } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { usePurchaseStore } from "@/hooks/usePurchaseStore";
 import {
+  ArrowLeft,
   Star,
   Users,
   Calendar,
@@ -415,76 +416,72 @@ const CourseExperimental = () => {
 
   const totalMin = filteredLessons.reduce((s, l) => s + l.min, 0);
 
-  // Price block per scenario
   return (
     <div className="min-h-screen bg-background">
-      <div className="w-full px-4 md:px-8 py-6 md:py-8">
-
-        {/* HERO */}
-        <div className="relative overflow-hidden rounded-2xl border border-border mb-8" style={{ backgroundColor: COURSE_COLOR.superLight }}>
-          <div
-            className="absolute inset-0"
+      {/* HERO во всю ширину: обложка от самого верха, под ней градиентная подложка курса */}
+      <div
+        className="relative"
+        style={{
+          backgroundColor: COURSE_COLOR.superLight,
+          backgroundImage: `radial-gradient(120% 90% at 100% 0%, ${COURSE_COLOR.light} 0%, transparent 60%), radial-gradient(120% 80% at 0% 100%, ${COURSE_COLOR.base}2E 0%, transparent 55%)`,
+        }}
+      >
+        {/* Обложка: нижний край растворяется в подложке */}
+        <div className="relative aspect-[4/3] md:aspect-[21/9]">
+          <img
+            src={IMG}
+            alt={title}
+            className="absolute inset-0 w-full h-full object-cover"
             style={{
-              backgroundImage: `radial-gradient(120% 90% at 100% 0%, ${COURSE_COLOR.light} 0%, transparent 60%), radial-gradient(120% 90% at 0% 100%, ${COURSE_COLOR.base}33 0%, transparent 55%)`,
+              maskImage: "linear-gradient(to bottom, #000 72%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, #000 72%, transparent 100%)",
             }}
           />
-          <div className="relative">
-            {/* Обложка сверху: нижний край растворяется в подложке карточки */}
-            <div className="relative aspect-video md:aspect-[21/9]">
-              <img
-                src={IMG}
-                alt={title}
-                className="absolute inset-0 w-full h-full object-cover"
-                style={{
-                  maskImage: "linear-gradient(to bottom, #000 55%, transparent 100%)",
-                  WebkitMaskImage: "linear-gradient(to bottom, #000 55%, transparent 100%)",
-                }}
-              />
-            </div>
 
-            {/* Текст под обложкой */}
-            <div className="px-5 md:px-10 pb-6 md:pb-10 -mt-6 md:-mt-10">
-              <h1 className="text-[34px] md:text-[52px] leading-[1.02] font-medium tracking-[-0.02em] text-foreground">
-                {title}
-              </h1>
-              <p className="mt-3 text-[17px] md:text-[20px] leading-[1.45] text-muted-foreground max-w-[580px]">
-                {description}
-              </p>
-
-              {/* Метрики одной строкой: точка-разделитель приклеена к элементу, поэтому переносится вместе с ним */}
-              <div className="mt-5 flex flex-wrap items-center gap-y-1.5 text-[15px] text-muted-foreground">
-                <span className="inline-flex items-center gap-1.5">
-                  <Star className="w-[17px] h-[17px] fill-orange-400 text-orange-400" />
-                  <span className="font-semibold text-foreground">{config.rating}</span>
-                </span>
-                <span className="before:content-['·'] before:mx-2">
-                  {config.reviewCount}{" "}
-                  {lang === "ru"
-                    ? pluralRu(config.reviewCount, ["отзыв", "отзыва", "отзывов"])
-                    : config.reviewCount === 1
-                      ? "review"
-                      : "reviews"}
-                </span>
-                <span className="before:content-['·'] before:mx-2">
-                  {config.students.toLocaleString("ru-RU")}{" "}
-                  {lang === "ru"
-                    ? pluralRu(config.students, ["ученик", "ученика", "учеников"])
-                    : "students"}
-                </span>
-              </div>
-              <div className="mt-1.5 text-[15px] text-muted-foreground">{updated}</div>
-
-              {/* Одна кнопка: начать курс */}
-              <Button
-                onClick={startCourse}
-                className="mt-7 w-full h-[56px] rounded-2xl text-[17px] font-medium"
-              >
-                {lang === "ru" ? "Начать курс" : "Start course"}
-              </Button>
-            </div>
-          </div>
+          {/* Стеклянная кнопка «назад» прямо на картинке */}
+          <button
+            onClick={() => navigate(-1)}
+            aria-label={lang === "ru" ? "Назад" : "Back"}
+            className="glass absolute left-4 top-[max(14px,env(safe-area-inset-top))] w-11 h-11 rounded-full flex items-center justify-center active:scale-95 transition-transform"
+          >
+            <ArrowLeft strokeWidth={2.2} className="w-[22px] h-[22px] text-foreground" />
+          </button>
         </div>
 
+        {/* Заголовок, чип с информацией и кнопка — по центру */}
+        <div className="px-6 pb-9 -mt-4 md:-mt-10 flex flex-col items-center text-center">
+          <h1 className="text-[32px] md:text-[48px] leading-[1.05] font-medium tracking-[-0.02em] text-foreground max-w-[640px]">
+            {title}
+          </h1>
+          <p className="mt-3 text-[16px] md:text-[19px] leading-[1.45] text-muted-foreground max-w-[520px]">
+            {description}
+          </p>
+
+          {/* Чип с информацией о курсе */}
+          <div className="mt-5 inline-flex items-center gap-2 h-[38px] px-4 rounded-full bg-background/70 backdrop-blur-md text-[14px] text-muted-foreground">
+            <Star className="w-[15px] h-[15px] fill-orange-400 text-orange-400" />
+            <span className="font-semibold text-foreground">{config.rating}</span>
+            <span aria-hidden className="opacity-40">·</span>
+            <span>
+              {config.students.toLocaleString("ru-RU")}{" "}
+              {lang === "ru"
+                ? pluralRu(config.students, ["ученик", "ученика", "учеников"])
+                : "students"}
+            </span>
+            <span aria-hidden className="opacity-40">·</span>
+            <span>{totalMin} {lang === "ru" ? "мин" : "min"}</span>
+          </div>
+
+          <Button
+            onClick={startCourse}
+            className="mt-6 w-full max-w-[420px] h-[56px] rounded-2xl text-[17px] font-medium"
+          >
+            {lang === "ru" ? "Начать курс" : "Start course"}
+          </Button>
+        </div>
+      </div>
+
+      <div className="w-full px-4 md:px-8 py-8">
         <div>
           {/* MAIN COL */}
           <div className="min-w-0 space-y-10">
