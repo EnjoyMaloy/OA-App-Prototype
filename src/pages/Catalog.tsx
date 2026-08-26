@@ -170,6 +170,7 @@ const Catalog = () => {
                 isNew={course.isNew}
                 trending={course.trending}
                 updatedDaysAgo={course.updatedDaysAgo}
+              large
                 isOwned={isOwned}
               />
             );

@@ -22,6 +22,8 @@ interface CourseCardProps {
   updatedDaysAgo: number;
   /** Прогресс прохождения: рисуется полоской под метриками, если передан */
   progress?: number;
+  /** Крупная карточка во всю ширину: больше заголовок, метрики и воздух между ними */
+  large?: boolean;
 }
 
 const CourseCard = ({
@@ -34,6 +36,7 @@ const CourseCard = ({
   imageBg,
   updatedDaysAgo,
   progress,
+  large = false,
 }: CourseCardProps) => {
   const { lang } = useLanguage();
   const navigate = useNavigate();
@@ -61,16 +64,22 @@ const CourseCard = ({
 
       {/* Заголовок всегда занимает две строки, чтобы карточки в ленте были одной высоты */}
       <h3
-        className="px-1.5 pt-3 text-[18px] font-medium leading-[1.2] line-clamp-2 min-h-[43px]"
+        className={`px-1.5 line-clamp-2 font-medium ${
+          large ? "pt-4 text-[24px] leading-[1.15] min-h-[56px]" : "pt-3 text-[18px] leading-[1.2] min-h-[43px]"
+        }`}
         style={{ color: "hsl(0 0% 6%)" }}
       >
         {title}
       </h3>
 
       {/* Под заголовком: компактный ряд иконок с цифрами, без плашек */}
-      <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 px-1.5 pt-2.5">
-        <span className="inline-flex items-center gap-1 text-[15px] text-foreground">
-          <svg width="15" height="15" viewBox="0 0 14 14" fill="none" aria-hidden>
+      <div
+        className={`flex flex-wrap items-center gap-y-1 px-1.5 ${
+          large ? "gap-x-3 pt-4 text-[17px]" : "gap-x-1.5 pt-2.5 text-[15px]"
+        }`}
+      >
+        <span className="inline-flex items-center gap-1 text-foreground">
+          <svg width={large ? 17 : 15} height={large ? 17 : 15} viewBox="0 0 14 14" fill="none" aria-hidden>
             <path
               d="M7 1L8.854 4.756L13 5.362L10 8.284L10.708 12.412L7 10.468L3.292 12.412L4 8.284L1 5.362L5.146 4.756L7 1Z"
               fill="#FF7D60"
@@ -79,14 +88,14 @@ const CourseCard = ({
           {rating}
         </span>
 
-        <span className="inline-flex items-center gap-1 text-[15px]" style={{ color: "hsl(0 0% 42%)" }}>
-          <Users className="w-[17px] h-[17px]" strokeWidth={1.5} />
+        <span className="inline-flex items-center gap-1" style={{ color: "hsl(0 0% 42%)" }}>
+          <Users className={large ? "w-[19px] h-[19px]" : "w-[17px] h-[17px]"} strokeWidth={1.5} />
           {students.toLocaleString("ru-RU")}
         </span>
 
         {/* Когда курс обновляли — как «2 недели назад» на YouTube */}
-        <span className="inline-flex items-center gap-1 text-[15px]" style={{ color: "hsl(0 0% 42%)" }}>
-          <History className="w-4 h-4" strokeWidth={1.6} />
+        <span className="inline-flex items-center gap-1" style={{ color: "hsl(0 0% 42%)" }}>
+          <History className={large ? "w-[18px] h-[18px]" : "w-4 h-4"} strokeWidth={1.6} />
           {agoLabel(updatedDaysAgo, lang)}
         </span>
       </div>
