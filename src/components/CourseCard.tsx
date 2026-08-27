@@ -87,12 +87,13 @@ const CourseCard = ({
               large ? "top-1 right-1 w-10 h-10" : "top-0.5 right-0.5 w-9 h-9"
             }`}
           >
+            {/* Неактивное сердце белое с тёмным полупрозрачным контуром — заметно на любой обложке */}
             <Heart
-              strokeWidth={2}
-              className={large ? "w-[21px] h-[21px]" : "w-[19px] h-[19px]"}
-              stroke="#FFFFFF"
+              strokeWidth={liked ? 2 : 1.6}
+              className={large ? "w-[24px] h-[24px]" : "w-[22px] h-[22px]"}
+              stroke={liked ? "#FFFFFF" : "rgba(0,0,0,0.38)"}
               fill={liked ? "#FF3B5C" : "#FFFFFF"}
-              style={{ filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.35))" }}
+              style={{ filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.28))" }}
             />
           </button>
         )}
