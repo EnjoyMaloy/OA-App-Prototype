@@ -171,6 +171,7 @@ const Catalog = () => {
                 trending={course.trending}
                 updatedDaysAgo={course.updatedDaysAgo}
               large
+              likeable
                 isOwned={isOwned}
               />
             );

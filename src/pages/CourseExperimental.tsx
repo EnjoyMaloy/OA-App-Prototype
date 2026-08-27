@@ -5,7 +5,6 @@ import { usePurchaseStore } from "@/hooks/usePurchaseStore";
 import {
   ChevronLeft,
   Heart,
-  Share,
   Star,
   Users,
   Calendar,
@@ -465,7 +464,7 @@ const CourseExperimental = () => {
         </button>
 
         {/* Избранное и поделиться — столбиком у правого края */}
-        <div className="absolute right-3 top-[max(14px,env(safe-area-inset-top))] flex flex-col gap-1">
+        <div className="absolute right-3 top-[max(14px,env(safe-area-inset-top))]">
           <button
             onClick={() => setLiked((v) => !v)}
             aria-label={lang === "ru" ? "В избранное" : "Save"}
@@ -482,17 +481,6 @@ const CourseExperimental = () => {
             />
           </button>
 
-          <button
-            aria-label={lang === "ru" ? "Поделиться" : "Share"}
-            className="w-11 h-11 -mr-1 flex items-center justify-center active:scale-95 transition-transform"
-          >
-            {/* Квадрат со стрелкой вверх — системная иконка «поделиться» */}
-            <Share
-              strokeWidth={2}
-              className="w-[21px] h-[21px] text-white"
-              style={{ filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.35))" }}
-            />
-          </button>
         </div>
 
         {/* Заголовок, чип с информацией и кнопка — по центру */}

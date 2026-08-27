@@ -71,6 +71,7 @@ const Home = () => {
             trending={course.trending}
             updatedDaysAgo={course.updatedDaysAgo}
             isOwned={isOwned(course.id, course.premium)}
+            likeable
           />
         </div>
       ))}

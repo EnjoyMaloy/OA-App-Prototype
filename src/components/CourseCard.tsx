@@ -1,5 +1,6 @@
-import { Check, History, Users } from "lucide-react";
+import { Check, Heart, History, Users } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { agoLabelShort, compactNumber, formatRating } from "@/lib/utils";
 
@@ -28,6 +29,8 @@ interface CourseCardProps {
   hideMeta?: boolean;
   /** Курс пройден: на обложке появляется зелёная галочка */
   completed?: boolean;
+  /** Показать сердечко «в избранное» в углу обложки */
+  likeable?: boolean;
 }
 
 const CourseCard = ({
@@ -43,10 +46,12 @@ const CourseCard = ({
   large = false,
   hideMeta = false,
   completed = false,
+  likeable = false,
 }: CourseCardProps) => {
   const { lang } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
+  const [liked, setLiked] = useState(false);
   const title = lang === "ru" ? titleRu : titleEn;
 
   return (
@@ -68,6 +73,29 @@ const CourseCard = ({
           }`}
           loading="lazy"
         />
+
+        {/* Сердечко «в избранное» — в том же углу, что и на странице курса */}
+        {likeable && !completed && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setLiked((v) => !v);
+            }}
+            aria-label={lang === "ru" ? "В избранное" : "Save"}
+            aria-pressed={liked}
+            className={`absolute flex items-center justify-center active:scale-95 transition-transform ${
+              large ? "top-1 right-1 w-10 h-10" : "top-0.5 right-0.5 w-9 h-9"
+            }`}
+          >
+            <Heart
+              strokeWidth={2}
+              className={large ? "w-[21px] h-[21px]" : "w-[19px] h-[19px]"}
+              stroke="#FFFFFF"
+              fill={liked ? "#FF3B5C" : "#FFFFFF"}
+              style={{ filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.35))" }}
+            />
+          </button>
+        )}
 
         {/* Пройденный курс отмечен галочкой в углу обложки */}
         {completed && (
