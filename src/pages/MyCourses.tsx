@@ -68,6 +68,9 @@ const MyCourses = () => {
                 // В «Прохожу» и «Завершил» метрики не нужны — важен только сам курс
                 hideMeta={tab !== "favorites"}
                 completed={course.progress === 100}
+                // В «Избранных» сердечко видно и сразу активно
+                likeable={tab === "favorites"}
+                defaultLiked={tab === "favorites"}
               />
             ))}
           </div>

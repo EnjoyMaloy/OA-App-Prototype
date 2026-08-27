@@ -31,6 +31,8 @@ interface CourseCardProps {
   completed?: boolean;
   /** Показать сердечко «в избранное» в углу обложки */
   likeable?: boolean;
+  /** Сердечко сразу активно — например, в разделе «Избранные» */
+  defaultLiked?: boolean;
 }
 
 const CourseCard = ({
@@ -47,11 +49,12 @@ const CourseCard = ({
   hideMeta = false,
   completed = false,
   likeable = false,
+  defaultLiked = false,
 }: CourseCardProps) => {
   const { lang } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(defaultLiked);
   const title = lang === "ru" ? titleRu : titleEn;
 
   return (
