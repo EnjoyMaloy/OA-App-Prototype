@@ -1,6 +1,6 @@
 import { Check, History, Users } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { agoLabelShort, compactNumber, formatRating } from "@/lib/utils";
 
 interface CourseCardProps {
@@ -46,11 +46,13 @@ const CourseCard = ({
 }: CourseCardProps) => {
   const { lang } = useLanguage();
   const navigate = useNavigate();
+  const location = useLocation();
   const title = lang === "ru" ? titleRu : titleEn;
 
   return (
     <div
-      onClick={() => navigate(`/course/${id}`)}
+      // Откуда пришли — подписываем кнопку «назад» на странице курса
+      onClick={() => navigate(`/course/${id}`, { state: { fromPath: location.pathname } })}
       className="flex flex-col cursor-pointer rounded-[20px] p-1 pb-3.5 bg-muted"
     >
       {/* Обложка 16:9 со скруглением, внутри общей подложки */}

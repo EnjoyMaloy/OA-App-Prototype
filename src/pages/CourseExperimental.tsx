@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate, useSearchParams, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams, useParams } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { usePurchaseStore } from "@/hooks/usePurchaseStore";
 import {
-  ArrowLeft,
+  ChevronLeft,
+  Heart,
+  Share2,
   Star,
   Users,
   Calendar,
@@ -382,7 +384,9 @@ const PlayRounded = ({ className = "" }: { className?: string }) => (
 
 const CourseExperimental = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { lang } = useLanguage();
+  const [liked, setLiked] = useState(false);
   const store = usePurchaseStore();
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get("q") || "";
@@ -410,6 +414,17 @@ const CourseExperimental = () => {
   const currentCategoryId = allCourses.find((c) => c.id === COURSE_ID)?.categoryId;
   const otherCourses = allCourses.filter((c) => c.id !== COURSE_ID);
   const similarCourses = otherCourses.filter((c) => c.categoryId === currentCategoryId);
+
+  // Подпись кнопки «назад»: раздел, из которого открыли курс
+  const fromPath = (location.state as { fromPath?: string } | null)?.fromPath ?? "";
+  const backLabel = (() => {
+    if (fromPath.startsWith("/catalog")) return lang === "ru" ? "Каталог" : "Catalog";
+    if (fromPath.startsWith("/my-courses")) return lang === "ru" ? "Мои курсы" : "My courses";
+    if (fromPath.startsWith("/collection/new")) return lang === "ru" ? "Новое" : "New";
+    if (fromPath.startsWith("/collection/trending")) return lang === "ru" ? "В тренде" : "Trending";
+    if (fromPath === "/") return lang === "ru" ? "Главная" : "Home";
+    return lang === "ru" ? "Назад" : "Back";
+  })();
 
   const startCourse = () => navigate(`/course/${COURSE_ID}/lessons`);
 
@@ -440,14 +455,37 @@ const CourseExperimental = () => {
           <img src={IMG} alt={title} className="absolute inset-0 w-full h-full object-cover" />
         </div>
 
-        {/* Стеклянная кнопка «назад» — вне маски, поэтому не растворяется */}
+        {/* Кнопки поверх обложки — вне маски, поэтому не растворяются */}
         <button
           onClick={() => navigate(-1)}
-          aria-label={lang === "ru" ? "Назад" : "Back"}
-          className="glass absolute left-4 top-[max(14px,env(safe-area-inset-top))] w-11 h-11 rounded-full flex items-center justify-center active:scale-95 transition-transform"
+          className="glass absolute left-4 top-[max(14px,env(safe-area-inset-top))] h-11 pl-2.5 pr-4 rounded-full inline-flex items-center gap-1 text-[16px] font-medium text-foreground active:scale-95 transition-transform"
         >
-          <ArrowLeft strokeWidth={2.2} className="w-[22px] h-[22px] text-foreground" />
+          <ChevronLeft strokeWidth={2.4} className="w-[21px] h-[21px]" />
+          {backLabel}
         </button>
+
+        {/* Избранное и поделиться — столбиком у правого края */}
+        <div className="absolute right-4 top-[max(14px,env(safe-area-inset-top))] flex flex-col gap-2.5">
+          <button
+            onClick={() => setLiked((v) => !v)}
+            aria-label={lang === "ru" ? "В избранное" : "Save"}
+            aria-pressed={liked}
+            className="glass w-11 h-11 rounded-full flex items-center justify-center active:scale-95 transition-transform"
+          >
+            <Heart
+              strokeWidth={2.2}
+              className={`w-[21px] h-[21px] transition-colors ${liked ? "text-[#FF4D6D]" : "text-foreground"}`}
+              fill={liked ? "currentColor" : "none"}
+            />
+          </button>
+
+          <button
+            aria-label={lang === "ru" ? "Поделиться" : "Share"}
+            className="glass w-11 h-11 rounded-full flex items-center justify-center active:scale-95 transition-transform"
+          >
+            <Share2 strokeWidth={2.2} className="w-[19px] h-[19px] text-foreground" />
+          </button>
+        </div>
 
         {/* Заголовок, чип с информацией и кнопка — по центру */}
         <div className="px-6 pb-9 -mt-4 md:-mt-10 flex flex-col items-center text-center">
