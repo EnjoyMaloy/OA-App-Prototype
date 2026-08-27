@@ -76,10 +76,10 @@ const CourseCard = ({
       <div
         // Метрики всегда в одну строку: числа компактные, дата при нехватке места обрезается
         className={`flex items-center min-w-0 px-1.5 ${
-          large ? "gap-x-3 pt-4 text-[17px]" : "gap-x-1.5 pt-2.5 text-[15px]"
+          large ? "gap-x-4 pt-4 text-[17px]" : "gap-x-2.5 pt-2.5 text-[15px]"
         }`}
       >
-        <span className="inline-flex items-center gap-1 flex-shrink-0 text-foreground">
+        <span className="inline-flex items-center gap-[3px] flex-shrink-0 text-foreground">
           <svg width={large ? 17 : 15} height={large ? 17 : 15} viewBox="0 0 14 14" fill="none" aria-hidden>
             <path
               d="M7 1L8.854 4.756L13 5.362L10 8.284L10.708 12.412L7 10.468L3.292 12.412L4 8.284L1 5.362L5.146 4.756L7 1Z"
@@ -89,13 +89,13 @@ const CourseCard = ({
           {formatRating(rating)}
         </span>
 
-        <span className="inline-flex items-center gap-1 flex-shrink-0" style={{ color: "hsl(0 0% 42%)" }}>
+        <span className="inline-flex items-center gap-[3px] flex-shrink-0" style={{ color: "hsl(0 0% 42%)" }}>
           <Users className={large ? "w-[19px] h-[19px]" : "w-[17px] h-[17px]"} strokeWidth={1.5} />
           {compactNumber(students, lang)}
         </span>
 
         {/* Когда курс обновляли — как «2 недели назад» на YouTube */}
-        <span className="inline-flex items-center gap-1 min-w-0" style={{ color: "hsl(0 0% 42%)" }}>
+        <span className="inline-flex items-center gap-[3px] min-w-0" style={{ color: "hsl(0 0% 42%)" }}>
           <History className={`flex-shrink-0 ${large ? "w-[18px] h-[18px]" : "w-4 h-4"}`} strokeWidth={1.6} />
           <span className="truncate">{agoLabelShort(updatedDaysAgo, lang)}</span>
         </span>
