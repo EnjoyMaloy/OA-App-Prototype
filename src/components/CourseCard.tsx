@@ -1,4 +1,4 @@
-import { History, Users } from "lucide-react";
+import { Check, History, Users } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useNavigate } from "react-router-dom";
 import { agoLabelShort, compactNumber, formatRating } from "@/lib/utils";
@@ -26,6 +26,8 @@ interface CourseCardProps {
   large?: boolean;
   /** Скрыть ряд метрик — например, в завершённых курсах они не нужны */
   hideMeta?: boolean;
+  /** Курс пройден: на обложке появляется зелёная галочка */
+  completed?: boolean;
 }
 
 const CourseCard = ({
@@ -40,6 +42,7 @@ const CourseCard = ({
   progress,
   large = false,
   hideMeta = false,
+  completed = false,
 }: CourseCardProps) => {
   const { lang } = useLanguage();
   const navigate = useNavigate();
@@ -63,6 +66,22 @@ const CourseCard = ({
           }`}
           loading="lazy"
         />
+
+        {/* Пройденный курс отмечен галочкой в углу обложки */}
+        {completed && (
+          <span
+            className={`absolute flex items-center justify-center rounded-full text-white ${
+              large ? "top-2.5 right-2.5 w-8 h-8" : "top-2 right-2 w-7 h-7"
+            }`}
+            style={{
+              background: "linear-gradient(135deg, #4ADE80 0%, #16A34A 100%)",
+              boxShadow: "0 2px 8px rgba(6, 78, 59, 0.28)",
+            }}
+            aria-label="Курс пройден"
+          >
+            <Check className={large ? "w-[18px] h-[18px]" : "w-4 h-4"} strokeWidth={3} />
+          </span>
+        )}
       </div>
 
       {/* Заголовок всегда занимает две строки, чтобы карточки в ленте были одной высоты */}

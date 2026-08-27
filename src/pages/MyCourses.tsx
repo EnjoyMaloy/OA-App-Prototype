@@ -63,8 +63,10 @@ const MyCourses = () => {
                 trending={course.trending}
                 updatedDaysAgo={course.updatedDaysAgo}
                 isOwned={isOwned(course.id, course.premium)}
-                progress={tab === "favorites" ? undefined : course.progress}
+                // У пройденного курса вместо полосы 100% — галочка на обложке
+                progress={tab === "favorites" || course.progress === 100 ? undefined : course.progress}
                 hideMeta={tab === "finished"}
+                completed={course.progress === 100}
               />
             ))}
           </div>
