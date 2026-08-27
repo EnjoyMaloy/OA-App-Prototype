@@ -28,7 +28,7 @@ const SegmentedTabs = ({ tabs, value, onChange, className = "" }: SegmentedTabsP
           <button
             key={tab.id}
             onClick={() => onChange(tab.id)}
-            className={`h-[50px] px-2 rounded-full text-[17px] font-medium whitespace-nowrap overflow-hidden transition-colors ${
+            className={`h-[42px] px-2 rounded-full text-[16px] font-medium whitespace-nowrap overflow-hidden transition-colors ${
               active
                 ? "bg-background dark:bg-[hsl(var(--foreground)/0.14)] text-foreground shadow-sm"
                 : "text-muted-foreground"

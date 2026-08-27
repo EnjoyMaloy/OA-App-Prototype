@@ -31,6 +31,32 @@ export function agoLabel(days: number, lang: "ru" | "en") {
     : `${y} year${y > 1 ? "s" : ""} ago`;
 }
 
+/** Компактное число для карточек: 1 024 → 1К, 35 419 → 35К */
+export function compactNumber(n: number, lang: "ru" | "en") {
+  const k = lang === "ru" ? "К" : "K";
+  if (n < 1000) return String(n);
+  const v = n / 1000;
+  const digits = v < 10 ? 1 : 0;
+  const num = v.toFixed(digits).replace(/\.0$/, "");
+  return (lang === "ru" ? num.replace(".", ",") : num) + k;
+}
+
+/** Короткая дата обновления, когда полная не помещается: «2 дня», «3 нед», «5 мес» */
+export function agoLabelShort(days: number, lang: "ru" | "en") {
+  if (days <= 0) return lang === "ru" ? "сегодня" : "today";
+  if (days < 7) return lang === "ru" ? `${days} ${pluralRu(days, ["день", "дня", "дней"])}` : `${days}d`;
+  if (days < 31) {
+    const w = Math.round(days / 7);
+    return lang === "ru" ? `${w} нед` : `${w}w`;
+  }
+  if (days < 365) {
+    const m = Math.round(days / 30);
+    return lang === "ru" ? `${m} мес` : `${m}mo`;
+  }
+  const y = Math.round(days / 365);
+  return lang === "ru" ? `${y} ${pluralRu(y, ["год", "года", "лет"])}` : `${y}y`;
+}
+
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
