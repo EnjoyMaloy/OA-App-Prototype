@@ -15,7 +15,7 @@ import {
   Instagram,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { pluralRu } from "@/lib/utils";
+import { formatRating, pluralRu } from "@/lib/utils";
 import ReviewCard, { type Review } from "@/components/ReviewCard";
 import CourseCard from "@/components/CourseCard";
 import authorPhoto from "@/assets/author-photo.jpg";
@@ -461,7 +461,7 @@ const CourseExperimental = () => {
           {/* Чип с информацией о курсе */}
           <div className="mt-5 inline-flex items-center gap-2 h-[38px] px-4 rounded-full bg-muted text-[14px] text-muted-foreground">
             <Star className="w-[15px] h-[15px] fill-orange-400 text-orange-400" />
-            <span className="font-semibold text-foreground">{config.rating}</span>
+            <span className="font-semibold text-foreground">{formatRating(config.rating)}</span>
             <span aria-hidden className="opacity-40">·</span>
             <span>
               {config.students.toLocaleString("ru-RU")}{" "}

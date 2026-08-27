@@ -31,6 +31,11 @@ export function agoLabel(days: number, lang: "ru" | "en") {
     : `${y} year${y > 1 ? "s" : ""} ago`;
 }
 
+/** Рейтинг всегда с одним знаком: 4.95 → 4.9 */
+export function formatRating(r: number) {
+  return (Math.floor(r * 10) / 10).toFixed(1);
+}
+
 /** Компактное число для карточек: 1 024 → 1К, 35 419 → 35К */
 export function compactNumber(n: number, lang: "ru" | "en") {
   const k = lang === "ru" ? "К" : "K";

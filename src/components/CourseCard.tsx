@@ -1,7 +1,7 @@
 import { History, Users } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useNavigate } from "react-router-dom";
-import { agoLabelShort, compactNumber } from "@/lib/utils";
+import { agoLabelShort, compactNumber, formatRating } from "@/lib/utils";
 
 interface CourseCardProps {
   id: string;
@@ -86,7 +86,7 @@ const CourseCard = ({
               fill="#FF7D60"
             />
           </svg>
-          {rating}
+          {formatRating(rating)}
         </span>
 
         <span className="inline-flex items-center gap-1 flex-shrink-0" style={{ color: "hsl(0 0% 42%)" }}>
