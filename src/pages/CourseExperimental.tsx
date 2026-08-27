@@ -472,10 +472,13 @@ const CourseExperimental = () => {
             aria-pressed={liked}
             className="glass w-11 h-11 rounded-full flex items-center justify-center active:scale-95 transition-transform"
           >
+            {/* Сердце белое, при нажатии заливается красным — белый контур остаётся */}
             <Heart
-              strokeWidth={2.2}
-              className={`w-[21px] h-[21px] transition-colors ${liked ? "text-[#FF4D6D]" : "text-foreground"}`}
-              fill={liked ? "currentColor" : "none"}
+              strokeWidth={2}
+              className="w-[22px] h-[22px] transition-colors"
+              stroke="#FFFFFF"
+              fill={liked ? "#FF3B5C" : "#FFFFFF"}
+              style={{ filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.35))" }}
             />
           </button>
 
