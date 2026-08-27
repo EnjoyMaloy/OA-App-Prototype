@@ -5,7 +5,7 @@ import { usePurchaseStore } from "@/hooks/usePurchaseStore";
 import {
   ChevronLeft,
   Heart,
-  Share2,
+  Share,
   Star,
   Users,
   Calendar,
@@ -465,12 +465,12 @@ const CourseExperimental = () => {
         </button>
 
         {/* Избранное и поделиться — столбиком у правого края */}
-        <div className="absolute right-4 top-[max(14px,env(safe-area-inset-top))] flex flex-col gap-2.5">
+        <div className="absolute right-3 top-[max(14px,env(safe-area-inset-top))] flex flex-col gap-1">
           <button
             onClick={() => setLiked((v) => !v)}
             aria-label={lang === "ru" ? "В избранное" : "Save"}
             aria-pressed={liked}
-            className="glass w-11 h-11 rounded-full flex items-center justify-center active:scale-95 transition-transform"
+            className="w-11 h-11 -mr-1 flex items-center justify-center active:scale-95 transition-transform"
           >
             {/* Сердце белое, при нажатии заливается красным — белый контур остаётся */}
             <Heart
@@ -484,9 +484,14 @@ const CourseExperimental = () => {
 
           <button
             aria-label={lang === "ru" ? "Поделиться" : "Share"}
-            className="glass w-11 h-11 rounded-full flex items-center justify-center active:scale-95 transition-transform"
+            className="w-11 h-11 -mr-1 flex items-center justify-center active:scale-95 transition-transform"
           >
-            <Share2 strokeWidth={2.2} className="w-[19px] h-[19px] text-foreground" />
+            {/* Квадрат со стрелкой вверх — системная иконка «поделиться» */}
+            <Share
+              strokeWidth={2}
+              className="w-[21px] h-[21px] text-white"
+              style={{ filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.35))" }}
+            />
           </button>
         </div>
 
