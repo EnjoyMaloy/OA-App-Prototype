@@ -64,6 +64,7 @@ const MyCourses = () => {
                 updatedDaysAgo={course.updatedDaysAgo}
                 isOwned={isOwned(course.id, course.premium)}
                 progress={tab === "favorites" ? undefined : course.progress}
+                hideMeta={tab === "finished"}
               />
             ))}
           </div>
