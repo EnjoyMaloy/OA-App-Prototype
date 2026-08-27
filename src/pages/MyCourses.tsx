@@ -65,7 +65,8 @@ const MyCourses = () => {
                 isOwned={isOwned(course.id, course.premium)}
                 // У пройденного курса вместо полосы 100% — галочка на обложке
                 progress={tab === "favorites" || course.progress === 100 ? undefined : course.progress}
-                hideMeta={tab === "finished"}
+                // В «Прохожу» и «Завершил» метрики не нужны — важен только сам курс
+                hideMeta={tab !== "favorites"}
                 completed={course.progress === 100}
               />
             ))}
