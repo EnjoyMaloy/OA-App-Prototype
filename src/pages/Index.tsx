@@ -90,7 +90,7 @@ const COMPLETED_PATHS = [
 
 
 const Index = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
   const lessonColors = {
@@ -440,48 +440,59 @@ const Index = () => {
                         <span className="w-10 h-1 rounded-full" style={{ background: '#DCDCDE' }} />
                       </div>
 
-                      <div style={{ padding: '10px 18px 0' }}>
-                        <span
-                          className="inline-block text-[13px] font-medium tracking-[0.04em] uppercase"
-                          style={{ color: '#8D8D8D', background: '#F4F4F5', padding: '10px 14px', borderRadius: 10, width: '100%' }}
+                      <div style={{ padding: '14px 20px 0' }}>
+                        {/* Место урока в курсе вместо процентов */}
+                        <p
+                          className="text-[13px] font-medium tracking-[0.04em] uppercase m-0"
+                          style={{ color: '#8D8D8D' }}
                         >
-                          {t("index.lesson")} {lesson.number}
-                        </span>
-                      </div>
-                      <div style={{ padding: '16px 18px 14px' }}>
-                        <div className="flex items-center gap-2">
-                          <BookOpenCheck className="w-[22px] h-[22px] text-primary flex-shrink-0" />
-                          <span className="text-[18px] font-semibold leading-[110%]" style={{ color: '#232323' }}>
-                            {lesson.title}
-                          </span>
-                        </div>
-                        <p className="text-[14px] font-normal leading-[140%]" style={{ color: '#8D8D8D', marginTop: 8 }}>
+                          {t("index.lesson")} {lesson.number} {lang === "ru" ? "из" : "of"} {lessonsData.length}
+                        </p>
+                        <h3
+                          className="text-[22px] font-semibold leading-[1.2] tracking-[-0.02em] m-0"
+                          style={{ color: '#232323', marginTop: 6 }}
+                        >
+                          {lesson.title}
+                        </h3>
+                        <p className="text-[15px] font-normal leading-[1.45]" style={{ color: '#8D8D8D', marginTop: 8 }}>
                           {lesson.description}
                         </p>
+
                         {lesson.hasInstruction && (
-                          <div className="flex items-center gap-1.5 mt-3">
-                            <span
-                              className="inline-flex items-center gap-1 text-[12px] font-medium"
-                              style={{ color: '#460466', background: '#E8DCFB', padding: '4px 10px', borderRadius: 6 }}
-                            >
-                              <FileText className="w-3.5 h-3.5" />
-                              {t("index.instruction")}
-                            </span>
-                          </div>
+                          <span
+                            className="inline-flex items-center gap-1.5 text-[13px] font-medium"
+                            style={{ color: '#460466', background: '#E8DCFB', padding: '6px 12px', borderRadius: 999, marginTop: 12 }}
+                          >
+                            <FileText className="w-3.5 h-3.5" />
+                            {t("index.instruction")}
+                          </span>
                         )}
-                      </div>
-                      <div style={{ borderTop: '1px solid #EBE9EA', margin: '0 18px' }} />
-                      <div className="flex flex-col" style={{ gap: 6, padding: '16px 18px 18px' }}>
-                        <span className="text-[15px] font-normal leading-[100%]" style={{ color: '#8D8D8D' }}>{t("index.completed")}</span>
-                        <span className="text-[28px] font-semibold leading-[100%] tracking-[-0.01em]" style={{ color: lesson.progress > 0 ? '#232323' : '#8D8D8D' }}>
-                          {lesson.progress}%
-                        </span>
-                      </div>
-                      <div style={{ padding: '0 18px' }}>
+
+                        {/* Сегменты курса: пройденные, текущий и предстоящие уроки */}
+                        <div className="flex gap-[5px]" style={{ marginTop: 18 }}>
+                          {lessonsData.map((_, i) => {
+                            const state = lessonState(i);
+                            return (
+                              <span
+                                key={i}
+                                className="flex-1 h-[5px] rounded-full"
+                                style={{
+                                  background:
+                                    i === popoverIndex
+                                      ? 'hsl(var(--primary))'
+                                      : state === 'completed'
+                                        ? 'hsl(var(--primary) / 0.45)'
+                                        : '#ECECEE',
+                                }}
+                              />
+                            );
+                          })}
+                        </div>
+
                         <button
                           onClick={() => { setPopoverIndex(null); setActiveLesson(popoverIndex); setLessonOpen(true); }}
                           className="w-full text-[17px] font-medium tracking-[0.01em] active:opacity-90 transition-opacity"
-                          style={{ background: '#232323', color: '#FFFFFF', borderRadius: 999, height: 58 }}
+                          style={{ background: '#232323', color: '#FFFFFF', borderRadius: 999, height: 56, marginTop: 20 }}
                         >
                           {lesson.progress === 100 ? t("index.retake") : lesson.progress > 0 ? t("index.continue") : t("index.start")}
                         </button>
