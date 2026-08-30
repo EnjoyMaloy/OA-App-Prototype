@@ -17,8 +17,8 @@ const BottomNav = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useLanguage();
-  // Пункты курса нужны на карте уроков; сам раздел «Мои курсы» — обычный список
-  const isLessonMap = location.pathname.endsWith("/lessons");
+  // На страницах курса нижнего меню нет: и предпросмотр, и карта уроков — отдельные экраны
+  const isCourseScreen = location.pathname.startsWith("/course/");
 
   // Поиск живёт в каталоге: кнопка уводит туда и фокусирует поле сверху
   const openSearch = () => navigate("/catalog?focus=1");
@@ -32,8 +32,7 @@ const BottomNav = () => {
 
   const items = defaultItems;
 
-  // На карте уроков нижнего меню нет: навигация — кнопка «назад» в шапке
-  if (isLessonMap) return null;
+  if (isCourseScreen) return null;
 
   const isActive = (item: NavItem) => {
     if (item.disabled) return false;
