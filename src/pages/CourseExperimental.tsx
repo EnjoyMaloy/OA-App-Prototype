@@ -508,26 +508,10 @@ const CourseExperimental = () => {
             <span>{totalMin} {lang === "ru" ? "мин" : "min"}</span>
           </div>
 
-          {/* Кнопка с переливающимся бордюром — как у премиума в шапке */}
-          <div
-            className="mt-6 w-full max-w-[420px] p-[3px] rounded-[22px] animate-gradient-border"
-            style={{
-              background: "linear-gradient(270deg, #924CFE, #BF96FF, #D9C0FF, #A66CFF, #924CFE)",
-              backgroundSize: "300% 300%",
-            }}
-          >
-            <button
-              onClick={startCourse}
-              className="w-full h-[56px] rounded-[19px] bg-primary text-primary-foreground text-[19px] font-medium inline-flex items-center justify-center gap-2.5 active:brightness-95 transition-[filter]"
-            >
-              <PlayRounded className="w-[20px] h-[20px]" />
-              {lang === "ru" ? "Начать курс" : "Start course"}
-            </button>
-          </div>
         </div>
       </div>
 
-      <div className="w-full px-4 md:px-8 py-8">
+      <div className="w-full px-4 md:px-8 py-8 pb-[calc(96px+env(safe-area-inset-bottom))]">
         <div>
           {/* MAIN COL */}
           <div className="min-w-0 space-y-10">
@@ -694,6 +678,33 @@ const CourseExperimental = () => {
         </div>
       </div>
 
+
+      {/* Кнопка курса закреплена внизу экрана */}
+      <div
+        className="fixed inset-x-0 bottom-0 z-40 px-4 pt-3 pb-[max(14px,env(safe-area-inset-bottom))] flex justify-center"
+        style={{
+          background: "linear-gradient(180deg, hsl(var(--background) / 0) 0%, hsl(var(--background) / 0.92) 32%, hsl(var(--background)) 100%)",
+          backdropFilter: "blur(10px)",
+          WebkitBackdropFilter: "blur(10px)",
+        }}
+      >
+        {/* Переливающийся бордюр — как у премиума в шапке */}
+        <div
+          className="w-full max-w-[420px] p-[3px] rounded-[22px] animate-gradient-border"
+          style={{
+            background: "linear-gradient(270deg, #924CFE, #BF96FF, #D9C0FF, #A66CFF, #924CFE)",
+            backgroundSize: "300% 300%",
+          }}
+        >
+          <button
+            onClick={startCourse}
+            className="w-full h-[56px] rounded-[19px] bg-primary text-primary-foreground text-[19px] font-medium inline-flex items-center justify-center gap-2.5 active:brightness-95 transition-[filter]"
+          >
+            <PlayRounded className="w-[20px] h-[20px]" />
+            {lang === "ru" ? "Начать курс" : "Start course"}
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
