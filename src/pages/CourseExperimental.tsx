@@ -476,7 +476,7 @@ const CourseExperimental = () => {
             <Heart
               strokeWidth={liked ? 2 : 1.6}
               className="w-[26px] h-[26px] transition-colors"
-              stroke={liked ? "#FFFFFF" : "rgba(0,0,0,0.38)"}
+              stroke={liked ? "#FFFFFF" : "rgba(0,0,0,0.18)"}
               fill={liked ? "#FF3B5C" : "#FFFFFF"}
               style={{ filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.28))" }}
             />
