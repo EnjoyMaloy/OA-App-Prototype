@@ -4,12 +4,12 @@ OUT = '/tmp/claude-0/-home-user-OA-App-Prototype/056fdada-85c9-5018-8a39-7019b88
 
 def demo(installed, light_banner, lang="ru"):
     sub = {
-        ("ru", False): "В приложении удобнее",
+        ("ru", False): "Учиться удобнее",
         ("ru", True): "Открыть в приложении",
         ("en", False): "Faster in the app",
         ("en", True): "Open in the app",
     }[(lang, installed)]
-    cta = {("ru", False): "Установить", ("ru", True): "Открыть",
+    cta = {("ru", False): "Скачать", ("ru", True): "Открыть",
            ("en", False): "Get", ("en", True): "Open"}[(lang, installed)]
     cls = "demo demo--light" if light_banner else "demo"
     return ('<div class="' + cls + '">'

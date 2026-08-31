@@ -37,11 +37,11 @@ const SmartAppBanner = ({ installed = false, href = "#" }: SmartAppBannerProps) 
 
   const subtitle = installed
     ? lang === "ru"
-      ? "Открой в приложении"
+      ? "Открыть в приложении"
       : "Open in the app"
     : lang === "ru"
-      ? "Установи наше приложение"
-      : "Install our app";
+      ? "Учиться удобнее"
+      : "Faster in the app";
 
   const action = installed
     ? lang === "ru"
@@ -49,7 +49,7 @@ const SmartAppBanner = ({ installed = false, href = "#" }: SmartAppBannerProps) 
       : "Open"
     : lang === "ru"
       ? "Скачать"
-      : "Install";
+      : "Get";
 
   return (
     <div
