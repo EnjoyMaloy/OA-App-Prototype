@@ -80,7 +80,7 @@ const SmartAppBanner = ({ installed = false, href = "#" }: SmartAppBannerProps) 
       </span>
 
       <span className="min-w-0 flex-1 flex flex-col">
-        <span className="text-[16px] font-semibold leading-[1.1] text-white dark:text-[#141416] truncate">
+        <span className="text-[16px] font-medium leading-[1.1] text-white dark:text-[#141416] truncate">
           Open Academy
         </span>
         <span className="text-[13px] leading-[1.15] truncate text-white/55 dark:text-black/50">
