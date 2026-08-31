@@ -153,20 +153,28 @@ HTML = '''<title>Смарт-баннер Open Academy</title>
   <section>
     <div class="previews">
       <div class="frame">
-        <p class="frame__label">Светлая страница</p>
+        <p class="frame__label">Светлая страница · не установлено</p>
         <div>DEMO_A<div class="frame__page frame__page--light">контент сайта</div></div>
       </div>
       <div class="frame">
-        <p class="frame__label">Тёмная страница</p>
-        <div>DEMO_B<div class="frame__page frame__page--dark">контент сайта</div></div>
+        <p class="frame__label">Светлая страница · установлено</p>
+        <div>DEMO_B<div class="frame__page frame__page--light">контент сайта</div></div>
       </div>
       <div class="frame">
-        <p class="frame__label">Приложение установлено</p>
-        <div>DEMO_C<div class="frame__page frame__page--light">контент сайта</div></div>
+        <p class="frame__label">Тёмная страница · не установлено</p>
+        <div>DEMO_C<div class="frame__page frame__page--dark">контент сайта</div></div>
       </div>
       <div class="frame">
-        <p class="frame__label">English</p>
-        <div>DEMO_D<div class="frame__page frame__page--light">site content</div></div>
+        <p class="frame__label">Тёмная страница · установлено</p>
+        <div>DEMO_D<div class="frame__page frame__page--dark">контент сайта</div></div>
+      </div>
+      <div class="frame">
+        <p class="frame__label">English · not installed</p>
+        <div>DEMO_E<div class="frame__page frame__page--light">site content</div></div>
+      </div>
+      <div class="frame">
+        <p class="frame__label">English · installed</p>
+        <div>DEMO_F<div class="frame__page frame__page--light">site content</div></div>
       </div>
     </div>
   </section>
@@ -182,9 +190,11 @@ HTML = '''<title>Смарт-баннер Open Academy</title>
 
 out = (HTML
        .replace("DEMO_A", demo(False, False))
-       .replace("DEMO_B", demo(False, True))
-       .replace("DEMO_C", demo(True, False))
-       .replace("DEMO_D", demo(False, False, "en"))
+       .replace("DEMO_B", demo(True, False))
+       .replace("DEMO_C", demo(False, True))
+       .replace("DEMO_D", demo(True, True))
+       .replace("DEMO_E", demo(False, False, "en"))
+       .replace("DEMO_F", demo(True, False, "en"))
        .replace("SPEC_ROWS", rows))
 
 open(OUT, 'w').write(out)
