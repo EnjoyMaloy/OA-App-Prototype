@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/Navbar";
+import SmartAppBanner from "@/components/SmartAppBanner";
 import BottomNav from "@/components/BottomNav";
 import Sidebar from "@/components/Sidebar";
 import Index from "./pages/Index.tsx";
@@ -52,6 +53,7 @@ const App = () => (
                 {/* Шапка лежит внутри области прокрутки: так при скрытии она
                     не оставляет за собой пустую полосу в разметке */}
                 <main className="flex-1 min-w-0 overflow-auto pb-28 md:pb-0">
+                  <SmartAppBanner />
                   <Navbar />
                   <Routes>
                     <Route path="/" element={<Home />} />
