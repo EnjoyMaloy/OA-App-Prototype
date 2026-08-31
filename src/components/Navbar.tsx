@@ -1,5 +1,5 @@
 import { Link, useLocation, useSearchParams } from "react-router-dom";
-import { LogIn, Search, Sun, Moon, ChevronDown } from "lucide-react";
+import { LogIn, Search } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
 import type { User as SupaUser } from "@supabase/supabase-js";
@@ -11,9 +11,6 @@ import PointsStar from "@/components/icons/PointsStar";
 import StreakFlame from "@/components/icons/StreakFlame";
 import { usePurchaseStore } from "@/hooks/usePurchaseStore";
 import defaultAvatar from "@/assets/default-avatar.jpg";
-import { useTheme } from "next-themes";
-import flagEn from "@/assets/flag-en.png";
-import flagRu from "@/assets/flag-ru.png";
 
 const Navbar = () => {
   const [user, setUser] = useState<SupaUser | null>(null);
@@ -32,8 +29,7 @@ const Navbar = () => {
   // У подборки своя стеклянная кнопка «назад», шапка на мобильном не нужна
   const isCollection = location.pathname.startsWith("/collection/");
   const searchValue = searchParams.get("q") || "";
-  const { lang, setLang, t } = useLanguage();
-  const { theme, setTheme } = useTheme();
+  const { lang, t } = useLanguage();
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -145,29 +141,6 @@ const Navbar = () => {
 
         {/* Right side */}
         <div className="flex items-center gap-2 md:gap-3">
-          {/* Language switcher - desktop only */}
-          <div className="hidden md:flex items-center gap-3">
-            <button
-              onClick={() => setLang(lang === "ru" ? "en" : "ru")}
-              className="flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-lg border border-border bg-background text-foreground hover:bg-muted transition-colors"
-              style={{ height: 48, minWidth: 102 }}
-            >
-              <img src={lang === "ru" ? flagRu : flagEn} alt="" className="w-[27px] h-[18px] rounded-[3px] object-cover" />
-              <span className="text-[16px] font-normal" style={{ color: "hsl(var(--foreground))" }}>
-                {lang === "ru" ? "RU" : "EN"}
-              </span>
-              <ChevronDown className="w-3 h-3 text-foreground" />
-            </button>
-          </div>
-
-          {/* Theme toggle - desktop only in navbar */}
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="hidden md:flex items-center justify-center rounded-lg border border-border bg-background text-foreground hover:bg-muted transition-colors w-12 h-12"
-          >
-            {theme === "dark" ? <Sun className="w-[18px] h-[18px]" /> : <Moon className="w-[18px] h-[18px]" />}
-          </button>
-
           {balanceBlock}
 
           {/* Buy subscription */}

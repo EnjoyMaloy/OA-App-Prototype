@@ -8,6 +8,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/Navbar";
 import SmartAppBanner from "@/components/SmartAppBanner";
+import AppSettingsDock from "@/components/AppSettingsDock";
 import BottomNav from "@/components/BottomNav";
 import Sidebar from "@/components/Sidebar";
 import Index from "./pages/Index.tsx";
@@ -77,6 +78,7 @@ const App = () => (
               </div>
             </div>
             <BottomNav />
+            <AppSettingsDock />
           </BrowserRouter>
         </TooltipProvider>
       </LanguageProvider>
