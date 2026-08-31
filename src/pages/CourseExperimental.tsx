@@ -457,8 +457,9 @@ const CourseExperimental = () => {
         {/* Кнопки поверх обложки — вне маски, поэтому не растворяются */}
         <button
           onClick={() => navigate(-1)}
-          // Кнопка «назад» держится у верхнего края и при прокрутке
-          className="glass fixed left-4 top-[max(14px,env(safe-area-inset-top))] z-50 h-11 pl-2.5 pr-4 rounded-full inline-flex items-center gap-1 text-[16px] font-medium text-foreground active:scale-95 transition-transform"
+          // Кнопка «назад» держится у верхнего края и при прокрутке, ниже смарт-баннера
+          className="glass fixed left-4 z-50 h-11 pl-2.5 pr-4 rounded-full inline-flex items-center gap-1 text-[16px] font-medium text-foreground active:scale-95 transition-transform"
+          style={{ top: "calc(var(--app-banner-h, 0px) + max(14px, env(safe-area-inset-top)))" }}
         >
           <ChevronLeft strokeWidth={2.4} className="w-[21px] h-[21px]" />
           {backLabel}
