@@ -62,7 +62,7 @@ const SmartAppBanner = ({ installed = false, href = "#" }: SmartAppBannerProps) 
       <button
         onClick={() => setHidden(true)}
         aria-label={lang === "ru" ? "Закрыть" : "Dismiss"}
-        className="w-7 h-7 flex-shrink-0 flex items-center justify-center rounded-full text-white/50 dark:text-black/40 active:scale-95 transition-transform"
+        className="w-7 h-7 flex-shrink-0 flex items-center justify-center rounded-full text-white/45 dark:text-black/35 active:scale-95 transition-transform"
       >
         <X className="w-[18px] h-[18px]" strokeWidth={2.2} />
       </button>
@@ -80,10 +80,10 @@ const SmartAppBanner = ({ installed = false, href = "#" }: SmartAppBannerProps) 
       </span>
 
       <span className="min-w-0 flex-1 flex flex-col">
-        <span className="text-[16px] font-medium leading-[1.1] text-white dark:text-[#141416] truncate">
+        <span className="text-[16px] font-medium leading-[1.1] text-white/85 dark:text-black/85 truncate">
           Open Academy
         </span>
-        <span className="text-[13px] leading-[1.15] truncate text-white/55 dark:text-black/50">
+        <span className="text-[13px] leading-[1.15] truncate text-white/50 dark:text-black/45">
           {subtitle}
         </span>
       </span>
@@ -91,7 +91,7 @@ const SmartAppBanner = ({ installed = false, href = "#" }: SmartAppBannerProps) 
       <a
         href={href}
         // Голубая кнопка как в App Store
-        className="flex-shrink-0 inline-flex items-center justify-center h-8 px-4 rounded-full text-[15px] font-medium text-white active:brightness-90 transition-[filter]"
+        className="flex-shrink-0 inline-flex items-center justify-center h-8 px-4 rounded-full text-[15px] font-medium text-white/95 active:brightness-90 transition-[filter]"
         style={{ background: "#0A84FF" }}
       >
         {action}
